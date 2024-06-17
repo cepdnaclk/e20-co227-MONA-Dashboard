@@ -1,30 +1,41 @@
 {
+    "title": "MONA Dashboard",
     "team": [
         {
-            "name": "Team Member Name 1",
-            "email": "email@eng.pdn.ac.lk",
-            "eNumber": "E/yy/xxx"
+            "name": "Yohan Senadheera",
+            "email": "e20361@eng.pdn.ac.lk",
+            "eNumber": "E/20/361"
         },
         {
-            "name": "Team Member Name 2",
-            "email": "email@eng.pdn.ac.lk",
-            "eNumber": "E/yy/xxx"
+            "name": "Amanda Siriwardhane",
+            "email": "e20378@eng.pdn.ac.lk",
+            "eNumber": "E/20/378"
         },
         {
-            "name": "Team Member Name 3",
-            "email": "email@eng.pdn.ac.lk",
-            "eNumber": "E/yy/xxx"
+            "name": "Bhagya Senevirathna",
+            "email": "e20366@eng.pdn.ac.lk",
+            "eNumber": "E/20/366"
+        },
+        {
+            "name": "Budhika Ariyarathna",
+            "email": "e20024@eng.pdn.ac.lk",
+            "eNumber": "E/20/024"
+        },
+        {
+            "name": "Yasiru Harinda",
+            "email": "e20089@eng.pdn.ac.lk",
+            "eNumber": "E/20/089"
         }
     ],
     "supervisors": [
         {
-            "name": "Dr. Supervisor 1",
-            "email": "email@eng.pdn.ac.lk"
+            "name": "Dr. Isuru Nawinna",
+            "email": "isurunawinne@eng.pdn.ac.lk"
         },
         {
-            "name": "Supervisor 2",
-            "email": "email@eng.pdn.ac.lk"
+            "name": "Keshara Weerasingha",
+            "email": "kesharaw@eng.pdn.ac.lk"
         }
     ],
-    "tags": []
+    "tags": ["Web", "React"]
 }
