@@ -24,7 +24,7 @@ This is a sample image, to show how to add images to your page. To learn more op
 - E/20/378, Amanda Siriwardhane, [e20378@eng.pdn.ac.lk](mailto:e20378@eng.pdn.ac.lk)
 - E/20/366, Bhagya Senevirathna, [e20366@eng.pdn.ac.lk](mailto:e20366@eng.pdn.ac.lk)
 - E/20/024, Buddhika Ariyarathna , [e20024@engdn.ac.lk](mailto:e20024@eng.pdn.ac.lk)
-- E/20/078, Yasiru Harinda, [e20078@engdn.ac.lk](mailto:e20078@eng.pdn.ac.lk)
+- E/20/089, Yasiru Harinda, [e20078@engdn.ac.lk](mailto:e20089@eng.pdn.ac.lk)
 
 ## Table of Contents
 
