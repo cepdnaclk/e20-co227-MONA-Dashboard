@@ -16,7 +16,7 @@ repository-name: e20-co225-MONA-Dashboard
 This is a sample image, to show how to add images to your page. To learn more options, please refer [this](https://projects.ce.pdn.ac.lk/docs/faq/how-to-add-an-image/)
  -->
 
-![Sample Image](./images/logo.png)
+![logo](https://github.com/cepdnaclk/e20-co225-MONA-Dashboard/assets/150885280/4943a89d-ab26-4886-aab4-f869547b8883)
 
 ## Team
 
