@@ -1,0 +1,10 @@
+.real-time-container{
+        justify-content: space-between;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+        padding:10px;
+        border: 1px solid #ccc;
+        height: 950px;
+        width: 1260px;
+}
