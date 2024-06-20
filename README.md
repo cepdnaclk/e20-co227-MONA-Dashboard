@@ -4,7 +4,22 @@
 
 ## Overview 
 
-Our project, the Production Monitoring System, was initially started by a group of students from the E19 batch. We are continuing their work by developing a system that can collect data from a production monitoring system, store, manipulate, and display it in a user-friendly manner.
+Our project focuses on developing an advanced real-time monitoring dashboard tailored for a production environment. This dashboard aims to enhance the efficiency and reliability of production processes by providing critical insights and timely alerts. Our system is designed with user-friendliness at its core, ensuring that operators and managers can easily access and interpret the data they need to maintain optimal production performance.
+
+## Key Features
+
+### Real-Time Monitoring of Mold Machines:
+#### Particle Detection and Alerts:
+The dashboard includes a dedicated tab for monitoring mold machines. It provides real-time detection of particles stuck in the molds, an issue that can significantly impact production quality and efficiency. When particles are detected, the system immediately triggers alerts, allowing for prompt intervention and minimizing downtime.
+
+### Production Rate Monitoring:
+#### Live Production Metrics:
+Another tab is devoted to displaying the current production rates of various machines. This feature enables users to track and analyze the performance of each machine in real-time. By continuously monitoring production rates, the dashboard helps in identifying bottlenecks, underperforming machines, and opportunities for process improvements.
+
+### Historical Production Data:
+#### Comprehensive Production History:
+The third tab provides access to a detailed history of production activities. Users can review past performance data, analyze trends, and generate reports. This historical perspective is crucial for long-term planning, quality control, and identifying recurring issues that may need strategic solutions.
+
 
 
 ## Team
