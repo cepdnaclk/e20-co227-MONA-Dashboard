@@ -36,7 +36,7 @@ This is a sample image, to show how to add images to your page. To learn more op
 
 ## Introduction
 
-Our project, the Production Monitoring System, was initially started by a group of students from the E19 batch. We are continuing their work by developing a system that can collect data from a production monitoring system, store, manipulate, and display it in a user-friendly manner.
+Our project focuses on developing an advanced real-time monitoring dashboard tailored for a production environment. This dashboard aims to enhance the efficiency and reliability of production processes by providing critical insights and timely alerts. Our system is designed with user-friendliness at its core, ensuring that operators and managers can easily access and interpret the data they need to maintain optimal production performance.
 
 ## Other Sub Topics
 
