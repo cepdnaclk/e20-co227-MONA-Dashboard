@@ -7,7 +7,7 @@ function MachineStatus(){
         return(
                 
                 <div className="machine-status" >
-                        <h1 style={{ textAlign: 'center', color: '#381E72' ,marginTop:'10px' }}>MACHINE PROTECTOR STATUS</h1>
+                        <h5 style={{ textAlign: 'center', color: '#381E72' ,marginTop:'10px' }}>MACHINE PROTECTOR STATUS</h5>
                         <ButtonGrid />
                 
                 <div style={{ display: 'flex', justifyContent: 'center', marginTop: '15px' }}>
@@ -16,7 +16,7 @@ function MachineStatus(){
                         <button style={{color: 'white' , backgroundColor: '#cc6666'}}>STUCKED</button>
                 </div>
                 
-                        <h1  style={{ textAlign: 'center', color: '#381E72' ,marginTop:'40px',marginBottom:'10px'}}>PRODUCTION SUMMARY</h1>
+                        <h3  style={{ textAlign: 'center', color: '#381E72' ,marginTop:'40px',marginBottom:'10px'}}>PRODUCTION SUMMARY</h3>
                         <ProductionSummary />
                         
                 

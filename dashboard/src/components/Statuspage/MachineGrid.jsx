@@ -28,7 +28,7 @@ const MachineGrid = () => {
       setError(null);
 
       try {
-        const response = await fetch('https://your-backend-api/machines'); // Replace with your API endpoint
+        const response = await fetch('http://localhost:8000/status'); // Replace with your API endpoint
         const data = await response.json();
         setMachines(data);
       } catch (error) {
