@@ -3,7 +3,7 @@ import './ButtonGrid.css'; // Import CSS for styling (optional)
 import axios from 'axios';
 
 const ButtonGrid = () => {
-  const [machines_1, setMachines] = useState([]); // Use clear variable name
+  const [realtimeinfo, setMachines] = useState([]); // Use clear variable name
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,9 +25,9 @@ const ButtonGrid = () => {
     switch (status) {
       case "-1": // Use single quotes for string literals
         return { backgroundColor: '#cc6666' };
-      case '0':
+      case "0":
         return { backgroundColor: '#ffcc66' };
-      case '1':
+      case "1":
         return { backgroundColor: '#99cc33' };
       default:
         return { backgroundColor: '#bbb' };
@@ -36,12 +36,12 @@ const ButtonGrid = () => {
 
   return (
     <div className="button-grid">
-      {machines_1.length === 0 ? (
+      {realtimeinfo.length === 0 ? (
         <p>Loading machines...</p>
       ) : (
-        machines_1.map((machines_1) => (
-          <button key={machines_1.MachineNumber} style={buttonStyle(machines_1.Status)}>
-            {machines_1.MachineNumber}
+        realtimeinfo.map((realtimeinfo) => (
+          <button key={realtimeinfo.MachineNumber} style={buttonStyle(realtimeinfo.Status)}>
+            {realtimeinfo.MachineNumber}
           </button>
         ))
       )}
