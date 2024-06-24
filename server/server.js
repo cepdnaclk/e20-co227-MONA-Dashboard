@@ -1,13 +1,18 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
+const machineInfo = require('./models/machineInfo');
+
 
 const app = express();
+app.use(cors());
+app.use(express.json());
 
 // port number can be any number
 const port = process.env.PORT || 8000;
 
 // url
-const DB_URI = "mongodb+srv://bhagya:bhagya123@monadash.v8cvc3k.mongodb.net/?retryWrites=true&w=majority";
+const DB_URI = "mongodb+srv://bhagya:bhagya123@monadash.v8cvc3k.mongodb.net/?retryWrites=true&w=majority/my_test";
 
 
 mongoose.connect(DB_URI)
@@ -17,6 +22,12 @@ mongoose.connect(DB_URI)
         .catch((err) => {
         console.error(err);
         });
+
+app.get('/status', async (req, res) => {
+        machineInfo.find()
+        .then(users => res.json(users))
+        .catch(err => res.json('Error: ' + err))
+})
 
 
 app.listen(port, () => {

@@ -10,7 +10,7 @@ function ProductionSummary() {
 
   useEffect(() => {
     // Fetch data from backend (replace with your actual API call)
-    fetch('https://your-api.com/data')
+    fetch('https://localhost:8000/status')
       .then(response => response.json())
       .then(fetchedData => setData(fetchedData))
       .catch(error => console.error(error));

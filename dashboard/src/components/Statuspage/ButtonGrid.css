@@ -10,7 +10,7 @@
       
 .button-grid button {
         border-radius: 8px;
-        /*cursor: pointer;*/
+        cursor: pointers;
         width: 100px;
         height: 45px;
         font-size: 30px;  /*30px*/

@@ -1,5 +1,5 @@
 import React from "react";
-import './MachineStatus.css';
+import './statuspage.css';
 import ButtonGrid from "./ButtonGrid";
 import ProductionSummary from "./ProductionSummary";
 
