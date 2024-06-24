@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import './statuspage.css';
 import axios from 'axios';
 import { BiSolidUpArrow } from "react-icons/bi";
+import { PieChart } from '@mui/x-charts/PieChart';
 
 
 function RealTime() {
@@ -23,41 +24,6 @@ function RealTime() {
         // Cleanup function to clear the interval when the component unmounts
         return () => clearInterval(intervalId);
     }, []); // Empty dependency array to fetch data only once on mount
-    /*
-      return (
-          <div className="real-time-container">
-              <div className="w-50">
-                  <table className="table table-striped">
-                      <thead>
-                          <tr>
-                              <th>Machine Number</th>
-                              <th>Status</th>
-                              <th>Material</th>
-                              <th>Success Slots</th>
-                              <th>Failure Slots</th>
-                              <th>Total Slots</th>
-                              <th>Rate</th>
-                          </tr>
-                      </thead>
-                      <tbody style={{ fontSize: '13px' }}>
-                          {realtimeinfo.map(user => {
-                              return <tr>
-                                  <td>{user.MachineNumber}</td>
-                                  <td>{user.Status}</td>
-                                  <td>{user.Material}</td>
-                                  <td>{user.SuccessSlots}</td>
-                                  <td>{user.FailureSlots}</td>
-                                  <td>{user.TotalSlots}</td>
-                                  <td>{user.Rate}</td>
-                              </tr>
-                          })
-                          }
-                      </tbody>
-                  </table>
-              </div>
-          </div>
-      )
-  */
 
     return (
         <div className="card-grid " >
@@ -80,13 +46,35 @@ function RealTime() {
                             <span style={{ textAlign: 'center' }}>Success<br></br> {realtimeinfo.SuccessSlots}</span>
                             <span style={{ textAlign: 'center' }}>Failure <br></br>{realtimeinfo.FailureSlots}</span>
                         </div>
-                        <div className="headrow" style={{width:"60%"}}>
+                        
+                        <div>
+                        <PieChart
+                            series={[
+                                {
+                                    data: [
+                                        { value: realtimeinfo.SuccessSlots ,color: '#99cc33' /*, label: 'Success Slots'*/},
+                                        { value: realtimeinfo.FailureSlots ,color: '#cc6666' /*, label: 'Failure Slots'*/},
+                                    ],
+                                    innerRadius: 30,
+                                    outerRadius: 65,/*65*/
+                                    paddingAngle: 2,
+                                    cornerRadius: 5,
+                                    startAngle: -110,
+                                    endAngle: 110,
+                                    cx: 95,
+                                    cy: 65,
+                                },
+                            ]}
+                            width={200}
+                            height={100}
+                        />
+                        
+                        </div>
+                        <div className="headrow" style={{width:"60%",marginLeft:"10px"}}>
                             <span>Rate:  {realtimeinfo.Rate}</span>
                             <span><BiSolidUpArrow style={{ color: realtimeinfo.Status === "1" ? '#99cc33' :  '#cc6666' ,transform: realtimeinfo.Status === "1" ? 'none' :'scaleY(-1)' }}/></span>
                         </div>
-                        <div>
-                        
-                        </div>
+
                     </div>
                 ))
             )}

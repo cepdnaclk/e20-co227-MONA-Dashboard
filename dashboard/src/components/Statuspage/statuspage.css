@@ -19,7 +19,7 @@
         width: 1260px;
         overflow: hidden;
         overflow-y: scroll;
-        margin: left 10px; ;
+        margin-left: 15px; ;
 }
 .card{
         display: flex;
@@ -27,7 +27,7 @@
         align-items: center;
         padding: 10px;
         border: 1px solid #ccc;
-        height: 400px;
+        height: 330px;
         width: 98%;
         border: 1px solid #000;
         border-radius: 5px;
