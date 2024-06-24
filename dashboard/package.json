@@ -14,10 +14,14 @@
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
     "boxicons": "^2.1.4",
+    "chart.js": "^4.4.3",
     "echarts": "^5.5.0",
     "mui": "^0.0.1",
+    "nth-check": "^2.1.1",
     "react": "^18.3.1",
     "react-apexcharts": "^1.4.1",
+    "react-chartjs-2": "^5.2.0",
+    "react-circular-progressbar": "^2.1.0",
     "react-dom": "^18.3.1",
     "react-icons": "^5.2.1",
     "react-router-dom": "^6.23.1",
@@ -25,6 +29,10 @@
     "remixicon": "^4.3.0",
     "sass": "^1.77.6",
     "web-vitals": "^2.1.4"
+  },
+  "overrides": {
+    "nth-check": "^2.1.1",
+    "postcss": "^8.4.38"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -49,5 +57,15 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "index.js",
+  "devDependencies": {
+    "@babel/plugin-transform-private-property-in-object": "^7.24.7",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react": "^7.34.3"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
