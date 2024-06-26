@@ -7,23 +7,27 @@ import { PieChart } from '@mui/x-charts/PieChart';
 
 function RealTime() {
 
-    const [realtimeinfo, setMachines] = useState([]); // Use clear variable name
+const [realtimeinfo, setMachines] = useState([]); // Use clear variable name
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:8000/status');
+                const response = await axios.get('http://localhost:8000/machineinfo');
                 setMachines(response.data);
             } catch (error) {
                 console.error('Error fetching machine data:', error);
             }
         };
 
-        const intervalId = setInterval(fetchData, 5000); // Update every 5 seconds
+        const intervalId = setInterval(fetchData, 500); // Update every 0.5 seconds
 
         // Cleanup function to clear the interval when the component unmounts
         return () => clearInterval(intervalId);
     }, []); // Empty dependency array to fetch data only once on mount
+
+
+
+
 
     return (
         <div className="card-grid " >

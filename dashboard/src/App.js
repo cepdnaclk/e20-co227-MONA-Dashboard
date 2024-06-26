@@ -1,20 +1,30 @@
-//import Icons
-import 'bootstrap-icons/font/bootstrap-icons.css';
-import 'remixicon/fonts/remixicon.css';
-
-//Import Bootsrtrap
 import './App.css';
 
 import Status from './pages/Status';
 import Rate from './pages/Rate';
 import History from './pages/History';
 import Page404 from './pages/page404';
+import Loader from './components/Loader/Loader';
 
 
 import { BrowserRouter , Routes ,Route } from 'react-router-dom';
+import { useEffect,useState } from 'react';
 
 function App() {
-  return (
+        
+        const[isloading, setIsLoading] = useState(true);
+
+        useEffect(() => {
+                const fakeDataFetch = () => {
+                        setTimeout(() => {
+                                setIsLoading(false);
+                        }, 3000);
+                }
+                fakeDataFetch();
+        }, []);
+
+  return isloading ? (
+        <Loader />) : (
     <div>
       <BrowserRouter> 
         <Routes>
