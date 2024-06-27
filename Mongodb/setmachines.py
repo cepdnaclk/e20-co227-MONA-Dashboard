@@ -9,7 +9,8 @@ client = pymongo.MongoClient("mongodb+srv://bhagya:bhagya123@monadash.v8cvc3k.mo
 
 
 db = client["test"]  # Replace with your desired database name
-collection = db["realtimeinfos"]  # Replace with your desired collection name
+collection1 = db["realtimeinfos"]  # Replace with your desired collection name
+collection2 = db["dayinfos"]
 
 # Define the document structure
 machine_data = [
@@ -28,17 +29,30 @@ machine_data = [
     for i in range(50)
 ]
 
-# Insert the documents into the collection
-collection.insert_many(machine_data)
+machine_data1 = {
+        "Doc": 1,
+        "SuccessItems": 0,
+        "FailureItems": 0,
+        "TotalItems": 0,
+        "SuccessRate": 0,
+    }
 
-print("50 documents successfully inserted into the 'machines' collection!")
+
+# Insert the documents into the collection
+collection1.insert_many(machine_data)
+
+print("50 documents successfully inserted into the 'machinesinfos' collection!")
+collection2.insert_one(machine_data1)
+
+
+print("1 documents successfully inserted into the 'dayinfos' collection!")
 
 # List of materials
 materials = ["GPPS", "TPR", "SAAS", "MABS", "ABS", "HIP"]
 
 # Update all documents with random material
-for document in collection.find():
+for document in collection1.find():
     update = {"$set": {"Material": choice(materials)}}
-    collection.update_one({"_id": document["_id"]}, update)
+    collection1.update_one({"_id": document["_id"]}, update)
 
-print("Material field updated with random values for all documents in the 'machines' collection!")
+print("Material field updated with random values for all documents in the 'realtimeinfos' collection!")

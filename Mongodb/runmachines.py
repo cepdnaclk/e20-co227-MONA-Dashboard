@@ -13,7 +13,7 @@ client = pymongo.MongoClient("mongodb+srv://bhagya:bhagya123@monadash.v8cvc3k.mo
 db = client["test"]  # Replace with your desired database name
 collection1 = db["realtimeinfos"]  # Replace with your desired collection name
 collection2 = db["dayinfos"]
-#collection3 = db["rateinfos"]
+collection3 = db["rateinfos"]
 
 #setmachine time
 MachineTime = 3
@@ -40,7 +40,7 @@ update = {"$set": {update_field_2: 0, update_field_3: 0, update_field_4: 0, upda
 result = collection1.update_many({}, update) 
 
 # Delete all documents in collection 3
-#collection3.delete_many({})
+collection3.delete_many({})
 
 # Capture start time at the beginning
 start_time = datetime.datetime.utcnow()  # Get current UTC time
@@ -48,6 +48,8 @@ start_time = datetime.datetime.utcnow()  # Get current UTC time
 
 while True:
     try:
+        current_time = datetime.datetime.utcnow()
+        
         for document in collection1.find():
             Rnumber = choice([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
 
@@ -66,7 +68,7 @@ while True:
                 
             # Update LastUpdatedTime and StartedTime
             update["$set"][update_field_5] = start_time 
-            current_time = datetime.datetime.utcnow()
+            
             update["$set"][update_field_6] = current_time
             
             
@@ -80,18 +82,17 @@ while True:
 
             collection1.update_one({"_id": document["_id"]}, update)
             
-            #rate_info = {
-                        #"MachineNumber": document.get(update_field_0, 0),
-                        #"Status": document.get(update_field_1,0), 
-                        #"SuccessSlots": document.get(update_field_2, 0),
-                        #"FailureSlots": document.get(update_field_3, 0),
-                        #"TotalSlots": document.get(update_field_4, 0),
-                        #"LastUpdatedTime": None,
-                        #"Rate": 0,
-                #}
+            rate_info = {
+                        "MachineNumber": document.get(update_field_0, 0),
+                        "Status": document.get(update_field_1,0), 
+                        "SuccessSlots": document.get(update_field_2, 0),
+                        "FailureSlots": document.get(update_field_3, 0),
+                        "LastUpdatedTime": current_time,
+                        "Rate": document.get(update_field_7, 0),
+                }
             
             # Insert the documents into the collection
-            #collection3.insert_many(rate_info)
+            collection3.insert_one(rate_info)
             
                         
             
@@ -149,7 +150,7 @@ while True:
             
 
         print("Updated all documents in the 'realtimeinfos','dayinfos','rateinfos' collection!")
-        sleep(MachineTime)
+        #sleep(MachineTime)
 
     except Exception as e:
         print(f"Error updating materials: {e}")
