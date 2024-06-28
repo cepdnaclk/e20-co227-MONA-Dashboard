@@ -4,7 +4,7 @@
 
 ## Overview 
 
-Our project focuses on developing an advanced real-time monitoring dashboard tailored for a production environment. This dashboard aims to enhance the efficiency and reliability of production processes by providing critical insights and timely alerts. Our system is designed with user-friendliness at its core, ensuring that operators and managers can easily access and interpret the data they need to maintain optimal production performance.
+Our project focuses on developing an advanced real-time monitoring dashboard tailored for a production environment. This dashboard aims to enhance the efficiency and reliability of production processes by providing critical insights and timely alerts. Our system is designed with user-friendliness, ensuring that operators and managers can easily access and interpret the data they need to maintain optimal production performance.
 
 ## Key Features
 
@@ -14,11 +14,11 @@ The dashboard includes a dedicated tab for monitoring mold machines. It provides
 
 ### Production Rate Monitoring:
 #### Live Production Metrics:
-Another tab is devoted to displaying the current production rates of various machines. This feature enables users to track and analyze the performance of each machine in real-time. By continuously monitoring production rates, the dashboard helps in identifying bottlenecks, underperforming machines, and opportunities for process improvements.
+Another tab is devoted to displaying the current production rates of various machines. This feature enables users to track and analyze the performance of each machine in real time. By continuously monitoring production rates, the dashboard helps identify bottlenecks, underperforming machines, and opportunities for process improvements.
 
 ### Historical Production Data:
 #### Comprehensive Production History:
-The third tab provides access to a detailed history of production activities. Users can review past performance data, analyze trends, and generate reports. This historical perspective is crucial for long-term planning, quality control, and identifying recurring issues that may need strategic solutions.
+The third tab provides access to a detailed history of production activities. Users can review past performance data, analyze trends, and generate reports. This historical perspective is crucial for long-term planning, quality control, and identifying recurring issues needing strategic solutions.
 
 
 
