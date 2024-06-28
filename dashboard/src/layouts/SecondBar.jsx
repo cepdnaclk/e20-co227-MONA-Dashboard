@@ -22,7 +22,7 @@ const SecondBar = () => {
       <div className='box'>
         <ul>
                 
-          <li  onClick={() => handleButtonClick('/status')} style={{ backgroundColor : location.pathname === '/status' ? '#201F67' : 'default' }}>
+          <li  onClick={() => handleButtonClick('/status')} style={{ backgroundColor : location.pathname === '/status'  ? '#201F67' : 'default' }}>
             <DashboardRoundedIcon className='icon' style={{ color : location.pathname === '/status' ? 'white' : 'default' }}/>
             <span style={{ color : location.pathname === '/status' ? 'white' : 'default' }} >STATUS</span>
           </li>

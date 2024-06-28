@@ -13,7 +13,7 @@ import { useEffect,useState } from 'react';
 function App() {
         
         const[isloading, setIsLoading] = useState(true);
-
+        
         useEffect(() => {
                 const fakeDataFetch = () => {
                         setTimeout(() => {
@@ -21,13 +21,16 @@ function App() {
                         }, 3000);
                 }
                 fakeDataFetch();
+                
+
         }, []);
 
   return isloading ? (
         <Loader />) : (
     <div>
-      <BrowserRouter> 
+      <BrowserRouter > 
         <Routes>
+          
           <Route index element ={<Status/>}/>
           <Route path="/status" element={<Status/>} />
           <Route path="/rate" element={<Rate/>} />

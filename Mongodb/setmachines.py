@@ -8,7 +8,7 @@ from random import choice
 client = pymongo.MongoClient("mongodb+srv://bhagya:bhagya123@monadash.v8cvc3k.mongodb.net/?retryWrites=true&w=majority&appName=monadash")
 
 
-db = client["test_1"]  # Replace with your desired database name
+db = client["test"]  # Replace with your desired database name
 collection1 = db["realtimeinfos"]  # Replace with your desired collection name
 collection2 = db["dayinfos"]
 
