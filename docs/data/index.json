@@ -1,0 +1,40 @@
+{
+    "team": [
+        {
+            "name": "Yohan Senadheera",
+            "email": "e20361@eng.pdn.ac.lk",
+            "eNumber": "E/20/361"
+        },
+        {
+            "name": "Amanda Siriwardhane",
+            "email": "e20378@eng.pdn.ac.lk",
+            "eNumber": "E/20/378"
+        },
+        {
+            "name": "Bhagya Senevirathna",
+            "email": "e20366@eng.pdn.ac.lk",
+            "eNumber": "E/20/366"
+        },
+        {
+            "name": "Budhika Ariyarathna",
+            "email": "e20024@eng.pdn.ac.lk",
+            "eNumber": "E/20/024"
+        },
+        {
+            "name": "Yasiru Harinda",
+            "email": "e20089@eng.pdn.ac.lk",
+            "eNumber": "E/20/089"
+        }
+    ],
+    "supervisors": [
+        {
+            "name": "Dr. Isuru Nawinna",
+            "email": "isurunawinne@eng.pdn.ac.lk"
+        },
+        {
+            "name": "Keshara Weerasingha",
+            "email": "kesharaw@eng.pdn.ac.lk"
+        }
+    ],
+    "tags": ["Web", "React"]
+}
