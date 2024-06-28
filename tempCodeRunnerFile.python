@@ -1,0 +1,53 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Function to plot phasor diagram
+def plot_phasor_diagram(phasors, title):
+    plt.figure(figsize=(8, 8))
+    ax = plt.gca()
+    
+    # Set the aspect of the plot to be equal
+    ax.set_aspect('equal')
+    
+    # Draw phasors
+    for phasor in phasors:
+        plt.arrow(0, 0, phasor['x'], phasor['y'], head_width=0.1, head_length=0.2, fc=phasor['color'], ec=phasor['color'])
+        plt.text(phasor['x'] * 1.1, phasor['y'] * 1.1, phasor['label'], color=phasor['color'], fontsize=12)
+    
+    # Draw grid
+    plt.grid(True)
+    
+    # Draw axes
+    plt.axhline(0, color='black',linewidth=0.5)
+    plt.axvline(0, color='black',linewidth=0.5)
+    
+    # Set labels and title
+    plt.xlabel('Real Part')
+    plt.ylabel('Imaginary Part')
+    plt.title(title)
+    
+    plt.xlim(-2, 2)
+    plt.ylim(-2, 2)
+    
+    plt.show()
+
+# Initial Circuit
+phasors_initial = [
+    {'x': 1, 'y': 0, 'label': 'V', 'color': 'blue'},
+    {'x': 1, 'y': 0, 'label': 'I_R', 'color': 'green'},
+    {'x': 0, 'y': -1, 'label': 'I_L', 'color': 'red'},
+    {'x': 1, 'y': -1, 'label': 'I', 'color': 'purple'}
+]
+
+# Circuit with Capacitor
+phasors_with_capacitor = [
+    {'x': 1, 'y': 0, 'label': 'V', 'color': 'blue'},
+    {'x': 1, 'y': 0, 'label': 'I_R', 'color': 'green'},
+    {'x': 0, 'y': -1, 'label': 'I_L', 'color': 'red'},
+    {'x': 0, 'y': 1, 'label': 'I_C', 'color': 'orange'},
+    {'x': 1, 'y': 0, 'label': 'I_{total}', 'color': 'purple'}
+]
+
+# Plot the diagrams
+plot_phasor_diagram(phasors_initial, 'Phasor Diagram for Initial Circuit')
+plot_phasor_diagram(phasors_with_capacitor, 'Phasor Diagram with Capacitor Added')
