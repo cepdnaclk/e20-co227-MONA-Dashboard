@@ -48,7 +48,7 @@ start_time = datetime.datetime.utcnow()  # Get current UTC time
 
 while True:
     try:
-        current_time = datetime.datetime.utcnow()
+        
         
         for document in collection1.find():
             Rnumber = choice([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
@@ -69,6 +69,7 @@ while True:
             # Update LastUpdatedTime and StartedTime
             update["$set"][update_field_5] = start_time 
             
+            current_time = datetime.datetime.utcnow()
             update["$set"][update_field_6] = current_time
             
             
