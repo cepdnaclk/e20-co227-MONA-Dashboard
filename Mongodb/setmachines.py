@@ -12,7 +12,7 @@ db = client["test_1"]  # Replace with your desired database name
 collection1 = db["realtimeinfos"]  # Replace with your desired collection name
 collection2 = db["dayinfos"]
 
-print("Enter the password to set the collection:")
+print(" Enter the password to set the collection:")
 if(input() == "1234"):
         
 
@@ -40,9 +40,6 @@ if(input() == "1234"):
                 "TotalItems": 0,
                 "SuccessRate": 0,
         }
-
-
-                
 
         # Insert the documents into the collection
         collection1.insert_many(machine_data)
