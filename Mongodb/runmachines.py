@@ -35,6 +35,9 @@ update_field_14 = "SuccessRate"
 
 target_document = {"Doc": 1 }  # Filter for the target document in collection 2
 
+#sort the documents in ascending order of MachineNumber
+collection1.find().sort("MachineNumber", 1)
+
 # Update all documents with zero values for specified fields
 update = {"$set": {update_field_2: 0, update_field_3: 0, update_field_4: 0, update_field_7:0}}
 result = collection1.update_many({}, update) 
@@ -94,11 +97,6 @@ while True:
             
             # Insert the documents into the collection
             collection3.insert_one(rate_info)
-            
-                        
-            
-            
-             
             
         # Calculate the total sum using aggregation pipeline
         pipeline = [

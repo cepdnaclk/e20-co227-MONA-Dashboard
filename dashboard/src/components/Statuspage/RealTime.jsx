@@ -3,11 +3,12 @@ import './statuspage.css';
 import axios from 'axios';
 import { BiSolidUpArrow } from "react-icons/bi";
 import { PieChart } from '@mui/x-charts/PieChart';
+import Tooltip from '@mui/material/Tooltip';
 
 
 function RealTime() {
 
-const [realtimeinfo, setMachines] = useState([]); // Use clear variable name
+    const [realtimeinfo, setMachines] = useState([]); // Use clear variable name
 
     useEffect(() => {
         const fetchData = async () => {
@@ -37,46 +38,59 @@ const [realtimeinfo, setMachines] = useState([]); // Use clear variable name
                 realtimeinfo.map((realtimeinfo) => (
                     <div key={realtimeinfo.MachineNumber} className="card " >
                         <div className="headrow">
-                            <h2 style={{ color: '#012970' }}>Machine {realtimeinfo.MachineNumber}</h2>
-                            <span className='statusdot' style={{ backgroundColor: realtimeinfo.Status === "-1" ? '#cc6666' : realtimeinfo.Status === "0" ? '#ffcc66' : realtimeinfo.Status === "1" ? '#99cc33' : '#bbb' }}>
-
-                            </span>
+                            <h2 style={{ color: '#012970', cursor: 'default' }}>Machine {realtimeinfo.MachineNumber}</h2>
+                            <Tooltip title={realtimeinfo.Status === "-1" ? 'Machine Status: Stucked Materials' : realtimeinfo.Status === "0" ? 'Machine Status: Stoped' : realtimeinfo.Status === "1" ? 'Machine Status: Running' : 'Machine Status: unknown'} placement="top" arrow>
+                                <span className='statusdot' style={{ backgroundColor: realtimeinfo.Status === "-1" ? '#cc6666' : realtimeinfo.Status === "0" ? '#ffcc66' : realtimeinfo.Status === "1" ? '#99cc33' : '#bbb' }}>
+                                </span>
+                            </Tooltip>
                         </div>
                         <div className="headrow" >
-                            <span className="lable">{realtimeinfo.MachineName}</span>
-                            <span className="lable">{realtimeinfo.Material}</span>
+                            <Tooltip title="Machine Name" placement="top" arrow>
+                                <span className="lable">{realtimeinfo.MachineName}</span>
+                            </Tooltip>
+                            <Tooltip title="Material" placement="top" arrow>
+                                <span className="lable">{realtimeinfo.Material}</span>
+                            </Tooltip>
+
                         </div>
-                        <div className="headrow" style={{width:"82%"}}>
-                            <span style={{ textAlign: 'center' }}>Success<br></br> {realtimeinfo.SuccessSlots}</span>
-                            <span style={{ textAlign: 'center' }}>Failure <br></br>{realtimeinfo.FailureSlots}</span>
+                        <div className="headrow" style={{ width: "82%" }}>
+                            <Tooltip title="No of Success Slots" placement="top" arrow>
+                            <span style={{ textAlign: 'center', cursor: 'pointer' }}>Success<br></br> {realtimeinfo.SuccessSlots}</span>
+                            </Tooltip>
+                            <Tooltip title="No of Failure Slots" placement="top" arrow>
+                            <span style={{ textAlign: 'center', cursor: 'pointer' }}>Failure <br></br>{realtimeinfo.FailureSlots}</span>
+                            </Tooltip>
                         </div>
-                        
+
                         <div>
-                        <PieChart
-                            series={[
-                                {
-                                    data: [
-                                        { value: realtimeinfo.SuccessSlots ,color: '#99cc33' /*, label: 'Success Slots'*/},
-                                        { value: realtimeinfo.FailureSlots ,color: '#cc6666' /*, label: 'Failure Slots'*/},
-                                    ],
-                                    innerRadius: 30,
-                                    outerRadius: 65,/*65*/
-                                    paddingAngle: 2,
-                                    cornerRadius: 5,
-                                    startAngle: -110,
-                                    endAngle: 110,
-                                    cx: 95,
-                                    cy: 65,
-                                },
-                            ]}
-                            width={200}
-                            height={100}
-                        />
-                        
+                            <PieChart
+                                series={[
+                                    {
+                                        data: [
+                                            { value: realtimeinfo.SuccessSlots, color: '#99cc33' /*, label: 'Success Slots'*/ },
+                                            { value: realtimeinfo.FailureSlots, color: '#cc6666' /*, label: 'Failure Slots'*/ },
+                                        ],
+                                        innerRadius: 30,
+                                        outerRadius: 65,/*65*/
+                                        paddingAngle: 2,
+                                        cornerRadius: 5,
+                                        startAngle: -110,
+                                        endAngle: 110,
+                                        cx: 95,
+                                        cy: 65,
+                                    },
+                                ]}
+                                width={200}
+                                height={100}
+                            />
+
                         </div>
-                        <div className="headrow" style={{width:"60%",marginLeft:"10px"}}>
-                            <span>Rate:  {realtimeinfo.Rate}</span>
-                            <span><BiSolidUpArrow style={{ color: realtimeinfo.Status === "1" ? '#99cc33' :  '#cc6666' ,transform: realtimeinfo.Status === "1" ? 'none' :'scaleY(-1)' }}/></span>
+                        <div className="headrow" style={{ width: "60%", marginLeft: "10px" }}>
+                            <Tooltip title="Current Rate" placement="top" arrow>
+                                <span style={{ cursor:'pointer' }}>Rate: {realtimeinfo.Rate}</span>
+                                <span>  </span>
+                                <span><BiSolidUpArrow style={{ color: realtimeinfo.Status === "1" ? '#99cc33' : '#cc6666', transform: realtimeinfo.Status === "1" ? 'none' : 'scaleY(-1)' }} /></span>
+                            </Tooltip>
                         </div>
 
                     </div>
