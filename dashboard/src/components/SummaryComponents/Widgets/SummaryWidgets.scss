@@ -1,0 +1,50 @@
+.widgets{
+  flex:1;
+  justify-content: center;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
+  background: #EADDFF;
+  border: 2px solid #4F378B;
+  left: 0%;
+  right: 0%;
+  top: 0%;
+  bottom: 0%;
+  border-radius: 10px;
+  &:hover{
+    cursor: pointer;
+    background-color: #cbbbf6;
+  }
+  .top{
+    
+  padding-top:60px;
+  display: flex;
+    justify-content: center;
+    gap: 5px;
+    align-items: center;
+    color: #2f1e5a;
+    
+    .title{
+      font-weight: 750;
+      font-size: 15px;
+      font-family: sans-serif;
+    }
+    .icon{
+      font-size: 25px;
+    }
+  }
+
+  .bottom{
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #311f61;
+    
+
+    .count{
+      font-weight: 900;
+      font-size: 38px;
+      font-family: sans-serif;
+    }
+
+  }
+}
