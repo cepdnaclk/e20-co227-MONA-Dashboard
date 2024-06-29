@@ -35,3 +35,5 @@ const machineInfoSchema = new mongoose.Schema({
 });
 const machineInfo = mongoose.model('realtimeinfo', machineInfoSchema);
 module.exports = machineInfo;
+
+
