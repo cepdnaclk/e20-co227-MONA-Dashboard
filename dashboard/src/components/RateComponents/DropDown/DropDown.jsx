@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 
 import "./DropDown.scss";
-import JSONDATA from "./productioncopy.json"; // Import JSON data
+import JSONDATA from "../Data/productioncopy.json";
 
 function Dropdown({ selected, setSelected }) {
   const [isActive, setIsActive] = useState(false);

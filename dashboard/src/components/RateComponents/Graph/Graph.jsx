@@ -2,7 +2,7 @@ import React from "react";
 import "./Graph.css";
 import { Line } from "react-chartjs-2";
 import { defaults } from "chart.js/auto";
-import chartdata from "./chartdata.json";
+import chartdata from "../Data/chartdata.json"
 
 defaults.responsive = true;
 defaults.maintainAspectRatio = false;

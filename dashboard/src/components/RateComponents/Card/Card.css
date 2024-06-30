@@ -1,99 +1,113 @@
-.CompactCards {
+.CompactCard {
   display: flex;
-  width: 340px;
-  height: 11rem !important;
+  flex: 1;
+  height: 12rem !important;
   border-radius: 0.7rem;
   color: white;
-  position: absolute;
+  padding: 1rem;
+  position: relative;
   cursor: pointer;
-  padding: 1.5rem;
-  margin-top: 100px;
+  width: 300px;
+  top: 0;
 }
-
-.CompactCards:hover {
+.CompactCard:hover {
   box-shadow: none !important;
 }
 
+/* radial bar */
 .radialBar {
-  flex: 1;
+  flex: 1 1;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   gap: 1rem;
+  padding-right: 25px;
 }
-
 .CircularProgressbar {
-  width: 5.5rem !important;
+  width: 7rem !important;
   overflow: visible;
 }
-
 .CircularProgressbar-path {
   stroke: white !important;
-  stroke-width: 10px !important;
-  filter: drop-shadow(2px 4px 6px rgb(255, 255, 255));
+  stroke-width: 9px !important;
+  filter: drop-shadow(2px 4px 6px white);
 }
-
 .CircularProgressbar-trail {
   display: none;
 }
-
 .CircularProgressbar-text {
-  font-size: 1.5rem;
-  font-weight: bold;
   fill: white !important;
 }
+
 .radialBar > span {
-  font-size: 17px;
+  font-size: 20px;
   font-weight: bold;
+  margin-left: 18px;
 }
 
+/* sideDetail*/
 .detail {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: flex-end;
+  justify-content: space-between;
+  position: relative;
 }
 
 .detail > span:nth-child(2) {
-    font-size: 22px;
-    font-weight: bold;
+  font-size: 22px;
+  font-weight: bold;
+  position: absolute;
+  right: 0;
+  bottom: 30%;
 }
-
 .detail > span:nth-child(3) {
-    font-size: 12px;
-    font-weight: bold;
+  font-size: 12px;
 }
 
-
+/* ExpandedCard */
 .ExpandedCard {
-    position: absolute;
-    width: 60%;
-    height: 70vh;
-    z-index: 9;
-    left: 13rem;
-    border-radius: 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem;  
+  position: absolute;
+  width: 60%;
+  height: 70vh;
+  z-index: 9;
+  left: 13rem;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 1rem;
 }
-
 .ExpandedCard > span:nth-of-type(1) {
-    font-size: 26px;
-    font-weight: bold;
-    color: white;
-    text-shadow: 0px 0px 15px white;
+  color: white;
+  font-size: 26px;
+  font-weight: bold;
+  text-shadow: 0px 0px 15px white;
 }
-
 .ExpandedCard > span:nth-of-type(2) {
-    font-size: 16px;
-    font-weight: bold;
-    color: rgb(222, 222, 222);
-    text-shadow: 0px 0px 15px white;
+  color: rgb(236, 236, 236);
+  font-size: 15px;
 }
 
 .chartContainer {
-    width: 70%;
+  width: 70%;
+}
+
+@media screen and (max-width: 1200px) {
+  .ExpandedCard {
+    top: 2rem;
+    height: 45vh;
+    left: 6rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .ExpandedCard {
+    top: 8rem;
+    height: 50%;
+    left: 25px;
+    width: 80%;
+  }
 }
