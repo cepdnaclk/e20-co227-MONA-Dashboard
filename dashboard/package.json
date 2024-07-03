@@ -1,5 +1,6 @@
 {
   "name": "dashboard",
+  "homepage": "/status",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -8,6 +9,7 @@
     "@iconscout/react-unicons": "^2.0.2",
     "@mui/icons-material": "^5.15.20",
     "@mui/material": "^5.15.20",
+    "@mui/x-charts": "^7.7.1",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -68,8 +70,5 @@
     "@babel/plugin-transform-private-property-in-object": "^7.24.7",
     "eslint": "^8.57.0",
     "eslint-plugin-react": "^7.34.3"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  }
 }

@@ -37,7 +37,7 @@ function Datenow() {
 function Logo() {
         return (
               <div className="logo">
-                      <a href="/" className="logo">
+                      <a href="/status" className="logo">
                               <img src={imagepath} alt="" className="img-fluid"/>
                       </a>
               </div>
