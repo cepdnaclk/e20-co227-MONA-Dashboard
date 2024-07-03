@@ -1,6 +1,7 @@
 .grid-container {
   text-align: center;
   display: flex;
+  
     justify-content: center;
     direction: flex-start;
   /* margin: 20px; */

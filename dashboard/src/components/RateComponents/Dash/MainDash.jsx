@@ -5,7 +5,7 @@ import Graph from "../Graph/Graph";
 import DropdownContainer from "../Containers/DropDownContainer";
 import Button from "../Button/Button";
 import Table from "../Table/Table";
-import ButtonGroup from "../ButtonGroup/ButtonGroup";
+
 const MainDash = () => {
   return (
     <div className="MainDash">
@@ -23,11 +23,10 @@ const MainDash = () => {
       <div className="graph-container">
         <Graph />
       </div>
-      <div className="ButtonGroup">
-        <ButtonGroup />
-      </div>
+     
 
       <Table />
+
     </div>
   );
 };

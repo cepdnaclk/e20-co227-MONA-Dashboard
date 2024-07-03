@@ -1,7 +1,8 @@
 import React from "react";
 import "./ButtonGroup.css";
 
-const ButtonGroup= () => {
+const ButtonGroup = ({ onButtonClick }) => {
+  console.log("ButtonGroup rendered");
   const statuses = [
     "running",
     "stopped",
@@ -13,7 +14,6 @@ const ButtonGroup= () => {
     "stopped",
     "running",
     "stopped",
-    "running",
     "running",
     "running",
     "running",
@@ -56,11 +56,14 @@ const ButtonGroup= () => {
   ];
 
   return (
-    <div className="grid-container">
-
+    <div className="button-group-container">
       <div className="button-group">
         {statuses.map((status, index) => (
-          <button key={index} className={`grid-button ${status}`}>
+          <button
+            key={index}
+            className={`grid-button ${status}`}
+            onClick={onButtonClick}
+          >
             {index + 1}
           </button>
         ))}

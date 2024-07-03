@@ -1,9 +1,9 @@
 .Table {
   width: 50%;
   border-collapse: collapse;
-  position: absolute;
-  margin-top: 780px;
-    margin-right: 1100px;
+  position: fixed;
+  margin-top: 730px;
+    margin-right: 1150px;
     width:  1300px;
 }
 .MuiTableRow-root > * {

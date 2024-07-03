@@ -18,6 +18,7 @@
   justify-content: center;
   padding: 30px;
   margin-left: 1600px;
+  margin-top: -20px;
 }
 
 .cards-container {
@@ -26,14 +27,16 @@
   justify-content: center;
   padding: 30px;
   position: relative;
-  margin-top: -75px;
+  margin-top: -100px;
 }
 
 .button-container {
-  position: fixed;
+  position: absolute;
   margin-left: 1000px;
   margin-top: 50px;
 }
+
+
 
 @media screen and (max-width: 1200px) {
   .MainDash {
