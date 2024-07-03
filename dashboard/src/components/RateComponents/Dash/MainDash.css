@@ -1,0 +1,52 @@
+.MainDash {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.drop-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.graph-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+  margin-left: 1600px;
+  margin-top: 80px;
+}
+
+.cards-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+  position: relative;
+  margin-top: 100px;
+}
+
+.button-container {
+  position: absolute;
+  margin-left: 1000px;
+  margin-top: 50px;
+}
+
+
+
+@media screen and (max-width: 1200px) {
+  .MainDash {
+    justify-content: flex-start;
+    margin-top: 2rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .MainDash {
+    align-items: center;
+  }
+}
