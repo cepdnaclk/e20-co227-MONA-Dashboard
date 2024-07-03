@@ -5,42 +5,44 @@ import Rate from './pages/Rate';
 import Page404 from './pages/page404';
 import Loader from './components/Loader/Loader';
 import SummaryPage from './pages/Summary/SummaryPage';
+import Settings from './pages/Settings';
 
 
-import { BrowserRouter , Routes ,Route } from 'react-router-dom';
-import { useEffect,useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 function App() {
-        
-        const[isloading, setIsLoading] = useState(true);
-        
-        useEffect(() => {
-                const fakeDataFetch = () => {
-                        setTimeout(() => {
-                                setIsLoading(false);
-                        }, 3000);
-                }
-                fakeDataFetch();
-                
 
-        }, []);
+    const [isloading, setIsLoading] = useState(true);
 
-  return isloading ? (
+    useEffect(() => {
+        const fakeDataFetch = () => {
+            setTimeout(() => {
+                setIsLoading(false);
+            }, 3000);
+        }
+        fakeDataFetch();
+
+
+    }, []);
+
+    return isloading ? (
         <Loader />) : (
-    <div>
-      <BrowserRouter > 
-        <Routes>
-          
-          <Route index element ={<Status/>}/>
-          <Route path="/status" element={<Status/>} />
-          <Route path="/rate" element={<Rate/>} />
-          <Route path="/history" element={<SummaryPage/>} />
-          <Route path="*" element={<Page404 />} />
+        <div>
+            <BrowserRouter >
+                <Routes>
 
-        </Routes>
-      </BrowserRouter>
-    </div>
-  );
+                    <Route index element={<Status />} />
+                    <Route path="/status" element={<Status />} />
+                    <Route path="/rate" element={<Rate />} />
+                    <Route path="/history" element={<SummaryPage />} />
+                    <Route path="/settings" element={<Settings />} />
+                    <Route path="*" element={<Page404 />} />
+
+                </Routes>
+            </BrowserRouter>
+        </div>
+    );
 }
 
 export default App;

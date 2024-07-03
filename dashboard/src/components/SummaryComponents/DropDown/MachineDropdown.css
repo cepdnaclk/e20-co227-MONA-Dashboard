@@ -5,7 +5,6 @@
 .mdropdown{
   width:300px;
   height: 40px;
-  user-select: none;
   left:2%;
   position:relative;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -24,6 +23,7 @@
   justify-content: space-between;
   cursor: pointer;
   border-radius: 6px;
+  
 
 }
 .mdropdown .mdropdown-content{
@@ -36,6 +36,8 @@
   color: #333;
   width: 93%;
   font-size: 13px;
+  height: 500px;
+        overflow-y: auto;
 }
 
 .mdropdown .mdropdown-content .mdropdown-item{

@@ -78,7 +78,7 @@ while True:
             
             # calculate rate
             time_delta = current_time - start_time  # Calculate time difference
-            success_slots = document.get(update_field_2, 0)
+            success_slots = document.get(update_field_2)
             if success_slots > 0 and time_delta.total_seconds() > 0:  # Avoid division by zero
                 update["$set"][update_field_7] = round (success_slots / time_delta.total_seconds(),3)
             else:
@@ -87,12 +87,12 @@ while True:
             collection1.update_one({"_id": document["_id"]}, update)
             
             rate_info = {
-                        "MachineNumber": document.get(update_field_0, 0),
-                        "Status": document.get(update_field_1,0), 
-                        "SuccessSlots": document.get(update_field_2, 0),
-                        "FailureSlots": document.get(update_field_3, 0),
+                        "MachineNumber": document.get(update_field_0),
+                        "Status": document.get(update_field_1), 
+                        "SuccessSlots": document.get(update_field_2),
+                        "FailureSlots": document.get(update_field_3),
                         "LastUpdatedTime": current_time,
-                        "Rate": document.get(update_field_7, 0),
+                        "Rate": document.get(update_field_7),
                 }
             
             # Insert the documents into the collection
@@ -135,8 +135,8 @@ while True:
 
         for document in collection2.find():
             update = {"$set": {}}
-            success_items = document.get(update_field_11, 0)
-            failure_items = document.get(update_field_12, 0)
+            success_items = document.get(update_field_11)
+            failure_items = document.get(update_field_12)
             update["$set"][update_field_13] = success_items + failure_items
             if success_items > 0 and (success_items + failure_items) > 0:
                 update["$set"][update_field_14] = round((success_items / (success_items + failure_items)) * 100, 2)
@@ -147,8 +147,8 @@ while True:
                         
                         
             
-
-        print("Updated all documents in the 'realtimeinfos','dayinfos','rateinfos' collection!")
+        current_time2 = datetime.datetime.utcnow()
+        print("Updated all documents in the 'realtimeinfos','dayinfos','rateinfos' collection!"+current_time2.strftime("%Y-%m-%d %H:%M:%S"))
         #sleep(MachineTime)
 
     except Exception as e:
