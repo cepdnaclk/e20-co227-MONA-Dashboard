@@ -5,6 +5,7 @@ import RealTime from '../components/Statuspage/RealTime';
 import MachineStatus from '../components/Statuspage/MachineStatus';
 
 export default function Status() {
+        document.title = 'Dashboard - Production Status';
         return(
                 <>
                 <Header />

@@ -1,7 +1,7 @@
 import './App.css';
 
 import Status from './pages/Status';
-import Rate from './pages/Rate';
+import Rate from './pages/Rate/Rate';
 import Page404 from './pages/page404';
 import Loader from './components/Loader/Loader';
 import SummaryPage from './pages/Summary/SummaryPage';
@@ -36,7 +36,6 @@ function App() {
           <Route path="/rate" element={<Rate/>} />
           <Route path="/history" element={<SummaryPage/>} />
           <Route path="*" element={<Page404 />} />
-
         </Routes>
       </BrowserRouter>
     </div>

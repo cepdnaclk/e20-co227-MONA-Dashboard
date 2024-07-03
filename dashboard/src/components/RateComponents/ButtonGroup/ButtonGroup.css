@@ -1,0 +1,67 @@
+.grid-container {
+  text-align: center;
+  display: flex;
+  
+    justify-content: center;
+    direction: flex-start;
+  /* margin: 20px; */
+  margin-top: -1060px;
+  margin-left: -1010px;
+}
+
+.button-group {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+}
+
+.grid-button {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.grid-button:hover {
+  transform: scale(1.2);
+}
+
+.running {
+  background-color: #4CAF50; /* Green */
+}
+
+.stopped {
+  background-color: #FF9800; /* Orange */
+}
+
+.stucked {
+  background-color: #F44336; /* Red */
+}
+
+.status-legend {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.status {
+  margin: 0 10px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: white;
+}
+
+.status.running {
+  background-color: #4CAF50;
+}
+
+.status.stopped {
+  background-color: #FF9800;
+}
+
+.status.stucked {
+  background-color: #F44336;
+}
