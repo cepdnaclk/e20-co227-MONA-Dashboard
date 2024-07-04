@@ -36,12 +36,14 @@ function RealTime() {
             {realtimeinfo.length === 0 ? (
                 <video src={videold} autoPlay loop muted></video>
             ) : (
+
                 realtimeinfo.map((realtimeinfo) => (
                     <div key={realtimeinfo.MachineNumber} className="card " style={{ backgroundColor: realtimeinfo.Status === "0" ? '#dddddd' : '#fff' }}>
-                        <div className="headrow">
+                        <div className="headrow" style={{ backgroundColor: realtimeinfo.Status === "-1" ? '#cc6666' : realtimeinfo.Status === "0" ? '#ababab' : realtimeinfo.Status === "1" ? '#99cc33' : '#bbb' }} >
                             <h2 style={{ color: realtimeinfo.Status === "0" ? '#888888' : '#012970', cursor: 'default' }}>Machine {realtimeinfo.MachineNumber}</h2>
-                            <Tooltip title={realtimeinfo.Status === "-1" ? 'Machine Status: Stucked Materials' : realtimeinfo.Status === "0" ? 'Machine Status: Stoped' : realtimeinfo.Status === "1" ? 'Machine Status: Running' : 'Machine Status: unknown'} placement="top" arrow>
-                                <span className='statusdot' style={{ backgroundColor: realtimeinfo.Status === "-1" ? '#cc6666' : realtimeinfo.Status === "0" ? '#888888' : realtimeinfo.Status === "1" ? '#99cc33' : '#bbb' }}>
+                            <Tooltip title={realtimeinfo.Status === "-1" ? 'Machine Status: Emergency !' : realtimeinfo.Status === "0" ? 'Machine Status: Not Responding' : realtimeinfo.Status === "1" ? 'Machine Status: Active' : 'Machine Status: unknown'} placement="top" arrow>
+                                <span className='status' >
+                                    {realtimeinfo.Status === "-1" ? 'Emergency !' : realtimeinfo.Status === "0" ? 'Not Responding' : realtimeinfo.Status === "1" ? 'Active' : '?'}
                                 </span>
                             </Tooltip>
                         </div>
@@ -83,16 +85,10 @@ function RealTime() {
                                 width={380}
                                 height={70}
                             />
-
                         </div>
-
-
-
-
                     </div>
                 ))
             )}
-
         </div>
     )
 

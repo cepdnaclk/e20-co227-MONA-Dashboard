@@ -7,13 +7,12 @@
         width: 99%;
         padding-top: 10px;
         padding-left: 30px;
-        overflow: hidden; ;
+        overflow: hidden; 
 }
 .card{
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 5px;
         border: 1px solid #ccc;
         height: 175px;
         overflow: hidden;
@@ -29,9 +28,9 @@
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
-        padding: 5px;
-        width: 98%;
-        /*color: #012970;*/
+        padding-left: 10px;
+        padding-top: 5px;
+        width: 100%;/*98%*/
 }
 .bodyrow1{
         display: flex;
@@ -45,10 +44,8 @@
 }
 
 
-.statusdot{
-        width:160px;
+.status{
         height: 20px;
-        border-radius: 10px;
         cursor: pointer;
 
 
