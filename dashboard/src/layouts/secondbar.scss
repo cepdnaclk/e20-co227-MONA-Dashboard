@@ -5,9 +5,8 @@
 
 
   .box{
-
     padding-top: 10px;
-    padding-left: 1%;
+    padding-left: 2%;
 
     ul {
       list-style: none;
@@ -16,35 +15,27 @@
       width: auto;
       height: 40px;
       display: flex;
+      gap: 1%;
 
-      gap:1%;
+      li {
+        height: auto;
+        width: 32%;
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        box-sizing: content-box;
+        background: #ffffff;
+        border: 1px solid #201f67;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25),
+          0px 1px 2px rgba(0, 0, 0, 0.05);
+        border-radius: 8px;
+        justify-content: center;
 
-        li{
-          height: auto;
-          width: 32.4%;
-          display: flex;
-          align-items: center;
-          flex-direction: row;  
-          box-sizing:content-box;
-          border: 1px solid #201F67;
-          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 1px 2px rgba(0, 0, 0, 0.05);
-          border-radius: 8px;
-          justify-content: center;
-
-          &:hover{
-            cursor: pointer;
-            background: #c6b2f1;
-            color: #E0E0E0;
-          
-          
-          }
-
-          .icon {
-            size: 10px;
-            display:grid;
-            place-items: center;
-            color: #201F67;
-
+        &:hover {
+          cursor: pointer;
+          background: #c6b2f1;
+          color: #e0e0e0;
+        }
 
         .icon {
           size: 10px;
@@ -67,10 +58,4 @@
       }
     }
   }
-}
-
-.active {
-        color: #ffffff;
-        background-color: #012970;
-      }
 }

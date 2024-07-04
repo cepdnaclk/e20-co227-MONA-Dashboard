@@ -16,7 +16,7 @@ const rows = [
   createData("Doll 1", 18908424, "11:00:00 h", "Success"),
   createData("Doll 2", 18908424, "13:00:00 h", "Stucked"),
   createData("Doll 3", 18908424, "13:01:00 h", "Success"),
-  createData("Doll 4", 18908421, "14:00:05 h", "Delivered"),
+  createData("Doll 4", 18908421, "14:00:05 h", "Stopped"),
 ];
 
 const makeStyle = (status) => {

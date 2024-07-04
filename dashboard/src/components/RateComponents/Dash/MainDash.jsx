@@ -9,9 +9,9 @@ import Table from "../Table/Table";
 const MainDash = () => {
   return (
     <div className="MainDash">
-      <div className="drop-container">
+      {/* <div className="drop-container">
         <DropdownContainer />
-      </div>
+      </div> */}
 
       <div className="cards-container">
         <div className="button-container">
