@@ -2,10 +2,11 @@
 .card-grid{
         display: grid;
         grid-template-columns: repeat(5, 1fr);
-        grid-gap: 10px;
+        grid-row-gap: 15px;
+        grid-column-gap:10px;
         height: 88%;
         width: 99%;
-        padding-top: 10px;
+        padding-top: 5px;
         padding-left: 30px;
         overflow: hidden; 
 }
@@ -17,8 +18,8 @@
         height: 175px;
         overflow: hidden;
         width: 98%;
-        border: 1px solid #000;
-        border-radius: 5px;
+        /*border: 1px solid #000;*/
+        border-radius: 10px;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 2px 2px 2px rgba(0, 0, 0, 0.05);
 
 }
