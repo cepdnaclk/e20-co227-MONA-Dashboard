@@ -35,7 +35,12 @@ const machineInfoSchema = new mongoose.Schema({
     Rate: {
         type: String,
         required: true
+    },
+    StatusChangedTime:{
+        type: Date,
+        required: true
     }
+    
 });
 const machineInfo = mongoose.model('realtimeinfo', machineInfoSchema);
 module.exports = machineInfo;

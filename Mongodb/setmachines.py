@@ -26,6 +26,7 @@ if(input() == "1234"):
                 "Status": 0,
                 "StartedTime": None,  # Can be set to datetime.datetime.now() if needed
                 "LastUpdatedTime": None,
+                "StatusChangedTime": None,
                 "SuccessSlots": 0,
                 "FailureSlots": 0,
                 "TotalSlots": 0,

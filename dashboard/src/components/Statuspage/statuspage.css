@@ -24,6 +24,21 @@
 
 }
 
+.statu{
+        height: 20px;
+        cursor: default;
+        display: flex;
+        justify-content: space-between;
+        width:65%;
+        font-weight:bold;
+        color:#fff;
+        font-size: 14px;
+        margin-top: 5px;
+        padding-right: 10px;
+
+
+
+}
 .headrow{
         display: flex;
         flex-direction: row;
@@ -45,12 +60,6 @@
 }
 
 
-.status{
-        height: 20px;
-        cursor: pointer;
-
-
-}
 .lable{
         width:80px;
         height:30px;

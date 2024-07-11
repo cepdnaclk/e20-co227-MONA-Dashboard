@@ -7,11 +7,43 @@ import Tooltip from '@mui/material/Tooltip';
 import videold from './load.mp4';
 
 
+function TimeDifference({ TimeString }) {
+    const [timeDifference, setTimeDifference] = useState({ minutes: 0, seconds: 0 });
+
+    useEffect(() => {
+        const updateDifference = () => {
+            const now = new Date();
+            const backendTime = new Date(TimeString);
+            const diffMs = now.getTime() - backendTime.getTime();
+            const minutes = Math.floor(diffMs / (1000 * 60));
+            const seconds = Math.floor((diffMs % (1000 * 60)) / 1000);
+            setTimeDifference({ minutes, seconds });
+        };
+
+        updateDifference();
+        const intervalId = setInterval(updateDifference, 1000);
+
+        return () => clearInterval(intervalId);
+    }, [TimeString]);
+
+    return (
+        <div>
+            <p>
+                {timeDifference.minutes} m {timeDifference.seconds} s
+            </p>
+        </div>
+    );
+}
+
+
 function RealTime() {
 
     const [realtimeinfo, setMachines] = useState([]); // Use clear variable name
 
+
     useEffect(() => {
+
+
         const fetchData = async () => {
             try {
                 const response = await axios.get('http://localhost:8000/machineinfo');
@@ -31,6 +63,9 @@ function RealTime() {
 
 
 
+
+
+
     return (
         <div className="card-grid " >
             {realtimeinfo.length === 0 ? (
@@ -38,14 +73,20 @@ function RealTime() {
             ) : (
 
                 realtimeinfo.map((realtimeinfo) => (
-                    <div key={realtimeinfo.MachineNumber} className="card " style={{ backgroundColor: realtimeinfo.Status === "0" ? '#dddddd' : '#fff' }}>
-                        <div className="headrow" style={{ backgroundColor: realtimeinfo.Status === "-1" ? '#cc6666' : realtimeinfo.Status === "0" ? '#ababab' : realtimeinfo.Status === "1" ? '#99cc33' : '#bbb' }} >
-                            <h2 style={{ color: realtimeinfo.Status === "0" ? '#888888' : '#012970', cursor: 'default' }}>Machine {realtimeinfo.MachineNumber}</h2>
-                            <Tooltip title={realtimeinfo.Status === "-1" ? 'Machine Status: Emergency !' : realtimeinfo.Status === "0" ? 'Machine Status: Not Responding' : realtimeinfo.Status === "1" ? 'Machine Status: Active' : 'Machine Status: unknown'} placement="top" arrow>
-                                <span className='status' >
-                                    {realtimeinfo.Status === "-1" ? 'Emergency !' : realtimeinfo.Status === "0" ? 'Not Responding' : realtimeinfo.Status === "1" ? 'Active' : '?'}
+                    <div key={realtimeinfo.MachineNumber} className="card " style={{ backgroundColor: realtimeinfo.Status === "off" ? '#dddddd' : '#fff' }}>
+                        <div className="headrow" style={{ height: '18%', backgroundColor: realtimeinfo.Status === "-1" ? '#cc6666' : realtimeinfo.Status === "off" ? '#ababab' : realtimeinfo.Status === "1" ? '#99cc33' : realtimeinfo.Status === "0" ? '#77ccee' : '#bbb' }} >
+                            <h3 style={{ color: realtimeinfo.Status === "off" ? '#888888' : '#012970', cursor: 'default' }}>Machine {realtimeinfo.MachineNumber}
+                            </h3>
+                            <div className='statu' style={{}}>
+                                <span>{realtimeinfo.MachineName}</span>
+                                <span>
+                                    {realtimeinfo.Status === "-1" ? 'Emergency !' : realtimeinfo.Status === "off" ? 'Inactive' : realtimeinfo.Status === "1" ? 'Active' : realtimeinfo.Status === "0" ? 'Idel' : '?'}
                                 </span>
-                            </Tooltip>
+                                <span>
+                                <TimeDifference TimeString={realtimeinfo.StatusChangedTime} />
+                                </span>
+                            </div>
+
                         </div>
                         <div className='headrow' style={{ height: '40px', width: "95%" }}>
 
@@ -69,8 +110,8 @@ function RealTime() {
                                 series={[
                                     {
                                         data: [
-                                            { value: realtimeinfo.SuccessSlots, color: realtimeinfo.Status === "0" ? '#888888' : '#99cc33', label: "Success Slots : " + realtimeinfo.SuccessSlots },
-                                            { value: realtimeinfo.FailureSlots, color: realtimeinfo.Status === "0" ? '#ababab' : '#cc6666', label: 'Failure Slots    : ' + realtimeinfo.FailureSlots },/*alt+0160 */
+                                            { value: realtimeinfo.SuccessSlots, color: realtimeinfo.Status === "off" ? '#888888' : '#99cc33', label: "Success Slots : " + realtimeinfo.SuccessSlots },
+                                            { value: realtimeinfo.FailureSlots, color: realtimeinfo.Status === "off" ? '#ababab' : '#cc6666', label: 'Failure Slots    : ' + realtimeinfo.FailureSlots },/*alt+0160 */
                                         ],
                                         innerRadius: 30,
                                         outerRadius: 65,/*65*/
@@ -86,6 +127,7 @@ function RealTime() {
                                 height={70}
                             />
                         </div>
+
                     </div>
                 ))
             )}
