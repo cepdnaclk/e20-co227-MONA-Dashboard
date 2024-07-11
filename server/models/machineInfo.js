@@ -39,6 +39,10 @@ const machineInfoSchema = new mongoose.Schema({
     StatusChangedTime:{
         type: Date,
         required: true
+    },
+    TargetSlots:{
+        type: String,
+        required: true
     }
     
 });

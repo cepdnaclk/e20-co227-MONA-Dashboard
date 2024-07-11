@@ -80,7 +80,7 @@ function RealTime() {
                             <div className='statu' style={{}}>
                                 <span>{realtimeinfo.MachineName}</span>
                                 <span>
-                                    {realtimeinfo.Status === "-1" ? 'Emergency !' : realtimeinfo.Status === "off" ? 'Inactive' : realtimeinfo.Status === "1" ? 'Active' : realtimeinfo.Status === "0" ? 'Idel' : '?'}
+                                    {realtimeinfo.Status === "-1" ? 'Emergency !' : realtimeinfo.Status === "off" ? 'Inactive' : realtimeinfo.Status === "1" ? 'Active' : realtimeinfo.Status === "0" ? 'Idle' : '?'}
                                 </span>
                                 <span>
                                 <TimeDifference TimeString={realtimeinfo.StatusChangedTime} />
@@ -88,44 +88,68 @@ function RealTime() {
                             </div>
 
                         </div>
-                        <div className='headrow' style={{ height: '40px', width: "95%" }}>
-
-
-                            <Tooltip title="Machine Name" placement="top" arrow>
-                                <span className="lable">{realtimeinfo.MachineName}</span>
-                            </Tooltip>
-                            <Tooltip title="Material" placement="top" arrow>
-                                <span className="lable">{realtimeinfo.Material}</span>
-                            </Tooltip>
-                            <Tooltip title="Production" placement="top" arrow>
-                                <span className="lable" style={{ width: "120px" }}>{realtimeinfo.Production}</span>
-                            </Tooltip>
-
-
-                        </div>
-
-
-                        <div className="headrow">
+                        
+                        <div className="headrow" style={{cursor:'default'}}>
+                            
+                            
                             <PieChart
                                 series={[
                                     {
                                         data: [
-                                            { value: realtimeinfo.SuccessSlots, color: realtimeinfo.Status === "off" ? '#888888' : '#99cc33', label: "Success Slots : " + realtimeinfo.SuccessSlots },
-                                            { value: realtimeinfo.FailureSlots, color: realtimeinfo.Status === "off" ? '#ababab' : '#cc6666', label: 'Failure Slots    : ' + realtimeinfo.FailureSlots },/*alt+0160 */
+                                            { value: realtimeinfo.SuccessSlots, color: realtimeinfo.Status === "off" ? 'none' : '#99cc33', label: "Success Slots : " + realtimeinfo.SuccessSlots },
+                                            { value: realtimeinfo.FailureSlots, color: realtimeinfo.Status === "off" ? 'none' : '#cc6666', label: 'Failure Slots    : ' + realtimeinfo.FailureSlots },/*alt+0160 */
+                                            { value: ((realtimeinfo.TargetSlots*2)-(realtimeinfo.SuccessSlots - realtimeinfo.FailureSlots)), color:  '#dddddd' },
                                         ],
-                                        innerRadius: 30,
-                                        outerRadius: 65,/*65*/
-                                        paddingAngle: 2,
-                                        cornerRadius: 5,
+                                        innerRadius: 55,
+                                        outerRadius: 70,/*65*/
+                                        paddingAngle: 1,
+                                        cornerRadius: 7,
                                         startAngle: -90,
                                         endAngle: 90,
-                                        cx: 95,
-                                        cy: 65,
+                                        cx: 100,
+                                        cy: 80,
+                                    },
+                                    {
+                                        data: [
+                                            /*
+                                            { value: realtimeinfo.TargetSlots*24, color: 'none' },
+                                            { value: realtimeinfo.TargetSlots, color:  realtimeinfo.Status === "off" ? 'none' :'black' ,label:"Target Slots     : " + realtimeinfo.TargetSlots},
+                                            { value: realtimeinfo.TargetSlots*24, color: 'none' },
+                                            */
+                                            { value: realtimeinfo.TargetSlots, color: realtimeinfo.Status === "off" ? 'none' :'#888888' ,label:"Target Slots     : " + realtimeinfo.TargetSlots},
+                                            { value: realtimeinfo.TargetSlots, color: 'none' },
+
+
+                                        ],
+                                        innerRadius: 71,
+                                        outerRadius: 75,/*65*/
+                                        paddingAngle: 2,
+                                        startAngle: -86,
+                                        endAngle: 86,
+                                        cx: 100,
+                                        cy: 80,
+                                        
+                                        legend: { hidden: true },
+
+                                    
                                     },
                                 ]}
+                                
+
                                 width={380}
-                                height={70}
-                            />
+                                height={100}
+                                
+                                skipAnimation/>
+                            
+                        </div>
+
+                        <div className='headrow' style={{ height: '40px', width: "95%" }}>
+                            <Tooltip title="Production" placement="top" arrow>
+                                <span className="lable" style={{ width: "120px" }}>{realtimeinfo.Production}</span>
+                            </Tooltip>
+                            <Tooltip title="Material" placement="top" arrow>
+                                <span className="lable">{realtimeinfo.Material}</span>
+                            </Tooltip>
                         </div>
 
                     </div>
@@ -138,25 +162,3 @@ function RealTime() {
 
 }
 export default RealTime;
-
-/*                        <div className="headrow" style={{ width: "60%", marginLeft: "10px" }}>
-                            <Tooltip title="Current Rate" placement="top" arrow>
-                                <span style={{ cursor:'pointer' }}>Rate: {realtimeinfo.Rate}</span>
-                                <span>  </span>
-                                <span><BiSolidUpArrow style={{ color: realtimeinfo.Status === "1" ? '#99cc33' : realtimeinfo.Status === "-1" ? '#cc6666' : '#888888', transform: realtimeinfo.Status === "1" ? 'none' : 'scaleY(-1)' }} /></span>
-                            </Tooltip>
-                        </div>
-                        */
-
-/*
-                        <div className="headrow" style={{ width: "82%" }}>
-                            <Tooltip title="No of Success Slots" placement="top" arrow>
-                            <span style={{ textAlign: 'center', cursor: 'pointer' }}>Success {realtimeinfo.SuccessSlots}</span>
-                            </Tooltip>
-                            </div>
-                            <div className="headrow" style={{ width: "82%" }} >
-                            <Tooltip title="No of Failure Slots" placement="top" arrow>
-                            <span style={{ textAlign: 'center', cursor: 'pointer' }}>Failure {realtimeinfo.FailureSlots}</span>
-                            </Tooltip>
-                        </div>
-                        */

@@ -30,6 +30,7 @@ if(input() == "1234"):
                 "SuccessSlots": 0,
                 "FailureSlots": 0,
                 "TotalSlots": 0,
+                "TargetSlots": 20,
                 "Rate": 0,
         }
         for i in range(25)
