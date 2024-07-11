@@ -88,8 +88,17 @@ function RealTime() {
                             </div>
 
                         </div>
-                        
-                        <div className="headrow" style={{cursor:'default'}}>
+
+                        <div className='headrow' style={{ height: '30px', width: "90%" }}>
+                            <Tooltip title="Production" placement="top" arrow>
+                                <span className="lable" style={{ width: "110px" }}>{realtimeinfo.Production}</span>
+                            </Tooltip>
+                            <Tooltip title='Material' placement="top" arrow>
+                                <span className="lable" style={{ width: "70px" }}>{realtimeinfo.Material}</span>
+                            </Tooltip>
+                        </div>
+
+                        <div className="headrow" style={{cursor:'default',height:'50%'}}>
                             
                             
                             <PieChart
@@ -100,9 +109,8 @@ function RealTime() {
                                             { value: realtimeinfo.FailureSlots, color: realtimeinfo.Status === "off" ? 'none' : '#cc6666', label: 'Failure Slots    : ' + realtimeinfo.FailureSlots },/*alt+0160 */
                                             { value: ((realtimeinfo.TargetSlots*2)-(realtimeinfo.SuccessSlots - realtimeinfo.FailureSlots)), color:  '#dddddd' },
                                         ],
-                                        innerRadius: 55,
+                                        innerRadius: 50,
                                         outerRadius: 70,/*65*/
-                                        paddingAngle: 1,
                                         cornerRadius: 7,
                                         startAngle: -90,
                                         endAngle: 90,
@@ -122,9 +130,9 @@ function RealTime() {
 
                                         ],
                                         innerRadius: 71,
-                                        outerRadius: 75,/*65*/
-                                        paddingAngle: 2,
-                                        startAngle: -86,
+                                        outerRadius: 76,
+                                        startAngle: -86,                                        
+                                        cornerRadius: 2,
                                         endAngle: 86,
                                         cx: 100,
                                         cy: 80,
@@ -143,13 +151,14 @@ function RealTime() {
                             
                         </div>
 
-                        <div className='headrow' style={{ height: '40px', width: "95%" }}>
-                            <Tooltip title="Production" placement="top" arrow>
-                                <span className="lable" style={{ width: "120px" }}>{realtimeinfo.Production}</span>
-                            </Tooltip>
-                            <Tooltip title="Material" placement="top" arrow>
-                                <span className="lable">{realtimeinfo.Material}</span>
-                            </Tooltip>
+                        
+                        <div className='bodyrow' style={{width:'100%',height:'20%',background:'#dddddd'}}>
+                            <span  style={{paddingLeft:'10%',width:'50%',fontWeight :'bold', color: realtimeinfo.Status =='off'? 'none' : (realtimeinfo.TargetSlots-realtimeinfo.SuccessSlots) > 0 ? "#f46c00" : '#99cc33'}}>
+                                {realtimeinfo.Status =='off'? '' : (realtimeinfo.SuccessSlots/realtimeinfo.TargetSlots*100).toFixed(1) +"% Slots Goal"}
+                            </span>
+                            <span  style={{width:'45%',fontWeight :'bold', color:(realtimeinfo.TargetSlots-realtimeinfo.SuccessSlots) > 0 ? "#f46c00" : '#99cc33'}}>
+                                {realtimeinfo.Status =='off'? "" : realtimeinfo.TargetSlots-realtimeinfo.SuccessSlots > 0 ? (realtimeinfo.TargetSlots-realtimeinfo.SuccessSlots) + " Slots behind": " Target Achieved" }
+                            </span>
                         </div>
 
                     </div>
