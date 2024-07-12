@@ -35,6 +35,46 @@ function TimeDifference({ TimeString }) {
     );
 }
 
+const PieChartText = ({ x, y, text, color, size }) => (
+    <svg>
+        <text x={x} y={y} dominantBaseline="middle" textAnchor="middle"
+            style={{ fontWeight: 'bold', fill: color, fontSize: size }}
+        >
+
+            {text}
+        </text>
+    </svg>
+);
+
+const PieChartLable = ({ x, y,xb,yb, text, size,color, boxWidth, boxHeight }) => (
+    <svg>
+      <rect
+        x={xb} // Center the box horizontally
+        y={yb} // Center the box vertically
+        width={boxWidth}
+        height={boxHeight}
+        fill='none'
+        stroke={ color} // Border color
+        strokeWidth={1} // Border width
+        
+      />
+      <text
+        x={x}
+        y={y}
+        dominantBaseline="middle"
+        textAnchor="middle"
+        style={{
+          fontWeight: 'bold',
+          fill: color,
+          fontSize: size,
+        }}
+      >
+        {text}
+      </text>
+    </svg>
+  );
+
+
 
 function RealTime() {
 
@@ -47,7 +87,7 @@ function RealTime() {
         const fetchData = async () => {
             try {
                 const response = await axios.get('http://localhost:8000/machineinfo');
-                setMachines(response.data);
+                setMachines(response.data.sort((a, b) => a.MachineNumber - b.MachineNumber));
             } catch (error) {
                 console.error('Error fetching machine data:', error);
             }
@@ -83,12 +123,12 @@ function RealTime() {
                                     {realtimeinfo.Status === "-1" ? 'Emergency !' : realtimeinfo.Status === "off" ? 'Inactive' : realtimeinfo.Status === "1" ? 'Active' : realtimeinfo.Status === "0" ? 'Idle' : '?'}
                                 </span>
                                 <span>
-                                <TimeDifference TimeString={realtimeinfo.StatusChangedTime} />
+                                    <TimeDifference TimeString={realtimeinfo.StatusChangedTime} />
                                 </span>
                             </div>
 
                         </div>
-
+                        {/*}
                         <div className='headrow' style={{ height: '30px', width: "90%" }}>
                             <Tooltip title="Production" placement="top" arrow>
                                 <span className="lable" style={{ width: "110px" }}>{realtimeinfo.Production}</span>
@@ -97,23 +137,23 @@ function RealTime() {
                                 <span className="lable" style={{ width: "70px" }}>{realtimeinfo.Material}</span>
                             </Tooltip>
                         </div>
+*/}
+                        <div className="headrow" style={{ cursor: 'default', height: '150px' }}>
 
-                        <div className="headrow" style={{cursor:'default',height:'50%'}}>
-                            
-                            
+
                             <PieChart
                                 series={[
                                     {
                                         data: [
                                             { value: realtimeinfo.SuccessSlots, color: realtimeinfo.Status === "off" ? 'none' : '#99cc33', label: "Success Slots : " + realtimeinfo.SuccessSlots },
                                             { value: realtimeinfo.FailureSlots, color: realtimeinfo.Status === "off" ? 'none' : '#cc6666', label: 'Failure Slots    : ' + realtimeinfo.FailureSlots },/*alt+0160 */
-                                            { value: ((realtimeinfo.TargetSlots*2)-(realtimeinfo.SuccessSlots - realtimeinfo.FailureSlots)), color:  '#dddddd' },
+                                            { value: ((realtimeinfo.TargetSlots * 2) - realtimeinfo.SuccessSlots - realtimeinfo.FailureSlots) > 0 ? ((realtimeinfo.TargetSlots * 2) - realtimeinfo.SuccessSlots - realtimeinfo.FailureSlots) : 0, color: '#dddddd' },
                                         ],
                                         innerRadius: 50,
-                                        outerRadius: 70,/*65*/
+                                        outerRadius: 70,
                                         cornerRadius: 7,
-                                        startAngle: -90,
-                                        endAngle: 90,
+                                        startAngle: 0,
+                                        endAngle: 360,
                                         cx: 100,
                                         cy: 80,
                                     },
@@ -124,42 +164,84 @@ function RealTime() {
                                             { value: realtimeinfo.TargetSlots, color:  realtimeinfo.Status === "off" ? 'none' :'black' ,label:"Target Slots     : " + realtimeinfo.TargetSlots},
                                             { value: realtimeinfo.TargetSlots*24, color: 'none' },
                                             */
-                                            { value: realtimeinfo.TargetSlots, color: realtimeinfo.Status === "off" ? 'none' :'#888888' ,label:"Target Slots     : " + realtimeinfo.TargetSlots},
-                                            { value: realtimeinfo.TargetSlots, color: 'none' },
+                                            { value: realtimeinfo.TargetSlots, color: realtimeinfo.Status === "off" ? 'none' : '#888888', label: "Target Slots     : " + realtimeinfo.TargetSlots },
+                                            { value: ((realtimeinfo.TargetSlots * 2) - realtimeinfo.SuccessSlots - realtimeinfo.FailureSlots) < 0 ? parseInt(realtimeinfo.SuccessSlots, 10) + parseInt(realtimeinfo.FailureSlots, 10) - parseInt(realtimeinfo.TargetSlots, 10) : realtimeinfo.TargetSlots, color: 'none' },
 
 
                                         ],
                                         innerRadius: 71,
                                         outerRadius: 76,
-                                        startAngle: -86,                                        
+                                        startAngle: 0,
+                                        endAngle: 360,
                                         cornerRadius: 2,
-                                        endAngle: 86,
                                         cx: 100,
                                         cy: 80,
-                                        
-                                        legend: { hidden: true },
 
-                                    
+
+
                                     },
                                 ]}
-                                
 
-                                width={380}
-                                height={100}
-                                
-                                skipAnimation/>
-                            
+
+                                width={420}
+                                height={160}
+
+
+                                skipAnimation >
+                                <PieChartText
+                                    x="25%"
+                                    y="45%"
+                                    size={'18px'}
+                                    color={realtimeinfo.Status === 'off' ? 'none' : (realtimeinfo.TargetSlots - realtimeinfo.SuccessSlots) > 0 ? "#f46c00" : '#99cc33'}
+                                    text={realtimeinfo.Status === 'off' ? '' : (realtimeinfo.SuccessSlots / realtimeinfo.TargetSlots * 100).toFixed(1) + " %"}
+                                    style={{ transform: 'translate(-50%, -50%)', fontSize: '15px' }} // Center the text
+                                />
+                                <PieChartText
+                                    x="25%"
+                                    y="55%"
+                                    size='10px'
+                                    color={realtimeinfo.Status === 'off' ? 'none' : (realtimeinfo.TargetSlots - realtimeinfo.SuccessSlots) > 0 ? "#f46c00" : '#99cc33'}
+                                    text={"SLOTS GOAL"}
+                                    style={{ transform: 'translate(-50%, -50%)', fontSize: '10px' }} // Center the text
+                                />
+                                <PieChartText
+                                    x="25%"
+                                    y="65%"
+                                    size='10px'
+                                    color={realtimeinfo.Status === 'off' ? 'none' : (realtimeinfo.TargetSlots - realtimeinfo.SuccessSlots) > 0 ? "#f46c00" : '#99cc33'}
+                                    text={realtimeinfo.Status === 'off' ? "" : realtimeinfo.TargetSlots - realtimeinfo.SuccessSlots > 0 ? (realtimeinfo.TargetSlots - realtimeinfo.SuccessSlots) + " slots behind" : " Target Achieved"}
+                                    style={{ transform: 'translate(-50%, -50%)', fontSize: '10px' }} // Center the text
+                                />
+                                <PieChartLable
+                                    x="60%"
+                                    y="10%"
+                                    xb={"47%"}
+                                    yb={"2%"}
+                                    size="15px"
+                                    color={realtimeinfo.Status === 'off' ? '#888888' : "black"}
+                                    text={realtimeinfo.Production}
+                                    borderWidth={1} // Set default border width (optional)
+                                    boxWidth={'26%'} // Adjust for desired text box width
+                                    boxHeight={"14%"} // Adjust for desired text box height
+                                    />
+                                    <PieChartLable
+                                    x="89%"
+                                    y="10%"
+                                    xb={"81%"}
+                                    yb={"2%"}
+                                    size="15px"
+                                    color={realtimeinfo.Status === 'off' ? '#888888' : "black"}
+                                    text={realtimeinfo.Material}
+                                    borderWidth={1} // Set default border width (optional)
+                                    boxWidth={'16%'} // Adjust for desired text box width
+                                    boxHeight={"14%"} // Adjust for desired text box height
+                                    />
+                            </PieChart>
+
                         </div>
 
-                        
-                        <div className='bodyrow' style={{width:'100%',height:'20%',background:'#dddddd'}}>
-                            <span  style={{paddingLeft:'10%',width:'50%',fontWeight :'bold', color: realtimeinfo.Status =='off'? 'none' : (realtimeinfo.TargetSlots-realtimeinfo.SuccessSlots) > 0 ? "#f46c00" : '#99cc33'}}>
-                                {realtimeinfo.Status =='off'? '' : (realtimeinfo.SuccessSlots/realtimeinfo.TargetSlots*100).toFixed(1) +"% Slots Goal"}
-                            </span>
-                            <span  style={{width:'45%',fontWeight :'bold', color:(realtimeinfo.TargetSlots-realtimeinfo.SuccessSlots) > 0 ? "#f46c00" : '#99cc33'}}>
-                                {realtimeinfo.Status =='off'? "" : realtimeinfo.TargetSlots-realtimeinfo.SuccessSlots > 0 ? (realtimeinfo.TargetSlots-realtimeinfo.SuccessSlots) + " Slots behind": " Target Achieved" }
-                            </span>
-                        </div>
+
+
 
                     </div>
                 ))
