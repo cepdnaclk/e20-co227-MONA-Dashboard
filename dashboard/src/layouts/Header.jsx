@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './Header.css';
 import imagepath from '../images/logo.png';
+import SettingsSharpIcon from '@mui/icons-material/SettingsSharp';
+import { useNavigate } from 'react-router-dom';
+
+
      
 function Datenow() {
         const [dateTime, setDateTime] = useState(new Date());
@@ -45,13 +49,22 @@ function Logo() {
       }
 
 function Header() {
+
+        
+        const navigate = useNavigate();
+        const handleButtonClick = (path) => {
+                navigate(path);
+        }
         
   return (
-        <header id="header" className="header fixed-top d-flex align-items-center">
+        <header id="header" className="header" >
                 
                 <Logo/> 
                 
                 <Datenow/>
+                
+                <button onClick={() => handleButtonClick('/settings')} className="settings"><SettingsSharpIcon /></button>
+                
                 
         </header>
         

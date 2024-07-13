@@ -59,6 +59,7 @@ const SummaryPage = () => {
             <ProductPercentage type='complete' productName={selectedProductName}/>
             <ProductPercentage type='notComplete' productName={selectedProductName}/>
           </div>
+
         </div>
       </div>
     </div>

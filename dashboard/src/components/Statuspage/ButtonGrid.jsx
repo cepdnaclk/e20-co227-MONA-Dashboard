@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './ButtonGrid.css'; // Import CSS for styling (optional)
 import axios from 'axios';
+import Tooltip from '@mui/material/Tooltip';
 
 const ButtonGrid = () => {
   const [realtimeinfo, setMachines] = useState([]); // Use clear variable name
@@ -40,9 +41,11 @@ const ButtonGrid = () => {
         <p>Loading machines...</p>
       ) : (
         realtimeinfo.map((realtimeinfo) => (
+                <Tooltip title={realtimeinfo.Status === "-1" ? 'Machine Status: Stucked Materials' : realtimeinfo.Status === "0" ? 'Machine Status: Stoped' : realtimeinfo.Status === "1" ? 'Machine Status: Running' : 'Machine Status: unknown'} placement="top" arrow>
           <button key={realtimeinfo.MachineNumber} style={buttonStyle(realtimeinfo.Status)}>
             {realtimeinfo.MachineNumber}
           </button>
+          </Tooltip>
         ))
       )}
     </div>
