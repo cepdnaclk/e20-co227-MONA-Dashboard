@@ -1,5 +1,5 @@
 import React from 'react';
-import './SummaryTable.scss';
+import './ProductTable.scss';
 import productData from '../../../product.json';
 
 const ProductTable = ({ productName }) => {

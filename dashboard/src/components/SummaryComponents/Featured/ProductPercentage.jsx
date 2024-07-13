@@ -1,5 +1,5 @@
 import React from 'react';
-import './SummaryPercentage.scss';
+import './ProductPercentage.scss';
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import DoneAllRoundedIcon from '@mui/icons-material/DoneAllRounded';
