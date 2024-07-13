@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './MachineDropdown.css';
-import JSONDATA from '../../../production.json';  
+import JSONDATA from '../../../product.json';  
 
 function MachineDropdown({ selected, setSelected }) {
   const [isActive, setIsActive] = useState(false);
@@ -17,12 +17,12 @@ function MachineDropdown({ selected, setSelected }) {
             <div
               key={key}  // Unique key for each item
               onClick={() => {
-                setSelected(val.machine_no);  // Use machine_no from JSON data
+                setSelected(val.product_name);  
                 setIsActive(false);
               }}
               className='mdropdown-item'
             >
-              {val.machine_no}
+              {val.product_name}
             </div>
           ))}
         </div>
