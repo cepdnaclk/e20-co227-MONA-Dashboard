@@ -43,6 +43,11 @@ const machineInfoSchema = new mongoose.Schema({
     TargetSlots:{
         type: String,
         required: true
+    },
+    Info:{
+        type: String,
+        required: true
+    
     }
     
 });

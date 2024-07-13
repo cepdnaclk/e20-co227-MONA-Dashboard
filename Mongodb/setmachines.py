@@ -31,6 +31,7 @@ if(input() == "1234"):
                 "TotalSlots": 0,
                 "TargetSlots": 20,
                 "Rate": 0,
+                "Info":"This is Machine " + str(i+1) + " with MachineName M#" + str(i+1) ,
         }
         for i in range(25)
         ]

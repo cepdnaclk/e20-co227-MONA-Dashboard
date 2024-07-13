@@ -54,7 +54,7 @@ def reset_doc():
         
         pass
 
-inputword=input("Enter 'R' to restart or Enter 'C' to continue all machines : ")
+inputword=input("Do you want to restart (r) or continue (c) all machines ")
 if inputword in("R","r"):
         print("All Machines restarted and continue to run...")
         reset_doc()

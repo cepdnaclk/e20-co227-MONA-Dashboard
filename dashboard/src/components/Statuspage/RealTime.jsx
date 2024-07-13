@@ -46,33 +46,36 @@ const PieChartText = ({ x, y, text, color, size }) => (
     </svg>
 );
 
-const PieChartLable = ({ x, y,xb,yb, text, size,color, boxWidth, boxHeight }) => (
-    <svg>
-      <rect
-        x={xb} // Center the box horizontally
-        y={yb} // Center the box vertically
-        width={boxWidth}
-        height={boxHeight}
-        fill='none'
-        stroke={ color} // Border color
-        strokeWidth={1} // Border width
-        
-      />
-      <text
-        x={x}
-        y={y}
-        dominantBaseline="middle"
-        textAnchor="middle"
-        style={{
-          fontWeight: 'bold',
-          fill: color,
-          fontSize: size,
-        }}
-      >
-        {text}
-      </text>
-    </svg>
-  );
+const PieChartLable = ({ x, y, xb, yb, text, size, color, boxWidth, boxHeight , title}) => (
+    <Tooltip title={title} placement="top" arrow>
+        <svg>
+            <rect
+                x={xb}
+                y={yb}
+                width={boxWidth}
+                height={boxHeight}
+                fill='none'
+                stroke={color}
+                strokeWidth={1}
+
+            />
+            <text
+                x={x}
+                y={y}
+                dominantBaseline="middle"
+                textAnchor="middle"
+                style={{
+                    fontWeight: 'bold',
+                    fill: color,
+                    fontSize: size,
+                    cursor: 'pointer',
+                }}
+            >
+                {text}
+            </text>
+        </svg>
+    </Tooltip>
+);
 
 
 
@@ -128,16 +131,7 @@ function RealTime() {
                             </div>
 
                         </div>
-                        {/*}
-                        <div className='headrow' style={{ height: '30px', width: "90%" }}>
-                            <Tooltip title="Production" placement="top" arrow>
-                                <span className="lable" style={{ width: "110px" }}>{realtimeinfo.Production}</span>
-                            </Tooltip>
-                            <Tooltip title='Material' placement="top" arrow>
-                                <span className="lable" style={{ width: "70px" }}>{realtimeinfo.Material}</span>
-                            </Tooltip>
-                        </div>
-*/}
+
                         <div className="headrow" style={{ cursor: 'default', height: '150px' }}>
 
 
@@ -212,30 +206,35 @@ function RealTime() {
                                     text={realtimeinfo.Status === 'off' ? "" : realtimeinfo.TargetSlots - realtimeinfo.SuccessSlots > 0 ? (realtimeinfo.TargetSlots - realtimeinfo.SuccessSlots) + " slots behind" : " Target Achieved"}
                                     style={{ transform: 'translate(-50%, -50%)', fontSize: '10px' }} // Center the text
                                 />
+
                                 <PieChartLable
                                     x="60%"
                                     y="10%"
                                     xb={"47%"}
                                     yb={"2%"}
                                     size="15px"
+                                    title="Production"
                                     color={realtimeinfo.Status === 'off' ? '#888888' : "black"}
                                     text={realtimeinfo.Production}
                                     borderWidth={1} // Set default border width (optional)
                                     boxWidth={'26%'} // Adjust for desired text box width
                                     boxHeight={"14%"} // Adjust for desired text box height
-                                    />
-                                    <PieChartLable
+                                    style={{ transform: 'translate(-50%, -50%)', fontSize: '15px' }} // Center the text
+                                />
+
+                                <PieChartLable
                                     x="89%"
                                     y="10%"
                                     xb={"81%"}
                                     yb={"2%"}
                                     size="15px"
+                                    title="Material"
                                     color={realtimeinfo.Status === 'off' ? '#888888' : "black"}
                                     text={realtimeinfo.Material}
                                     borderWidth={1} // Set default border width (optional)
                                     boxWidth={'16%'} // Adjust for desired text box width
                                     boxHeight={"14%"} // Adjust for desired text box height
-                                    />
+                                />
                             </PieChart>
 
                         </div>
