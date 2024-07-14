@@ -24,7 +24,7 @@ const ProductChart = ({ productName }) => {
   }
 
   return (
-    <div className='chart'>
+    <div className='chart-container'>
       <Line
         data={{
           labels: labels,

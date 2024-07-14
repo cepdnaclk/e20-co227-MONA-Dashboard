@@ -38,7 +38,7 @@ const ProductTable = ({ productName }) => {
   const keys = Object.keys(keyLabelMap);
 
   return (
-    <div className='summaryTable'>
+    <div className='productTable'>
       <table>
         <tbody>
           {keys.map((key, idx) => (

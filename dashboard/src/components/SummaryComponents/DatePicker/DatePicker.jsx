@@ -25,15 +25,15 @@ const DatePicker = () => {
   };
 
   return (
-    <div className='container'>
-      <span onClick={handleClick} className='calendar'>
+    <div className='date-picker-container'>
+      <span onClick={handleClick} className='date-picker-calendar'>
         {isSelected
           ? `${format(date.startDate, 'MMM/dd/yyyy')} to ${format(date.endDate, 'MMM/dd/yyyy')}`
           : 'Select the duration'}
       </span>
       {openDate && (
         <DateRangePicker
-          className='dateRange'
+          className='date-picker-range'
           ranges={[date]}
           onChange={handleChange}
         />
