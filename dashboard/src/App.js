@@ -5,8 +5,6 @@ import Rate from './pages/Rate/Rate';
 import Page404 from './pages/page404';
 import Loader from './components/Loader/Loader';
 import SummaryPage from './pages/Summary/SummaryPage';
-import Settings from './pages/Settings';
-
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react';
@@ -37,7 +35,6 @@ function App() {
                     <Route path="/status" element={<Status />} />
                     <Route path="/rate" element={<Rate />} />
                     <Route path="/history" element={<SummaryPage />} />
-                    <Route path="/settings" element={<Settings />} />
                     <Route path="*" element={<Page404 />} />
 
                 </Routes>

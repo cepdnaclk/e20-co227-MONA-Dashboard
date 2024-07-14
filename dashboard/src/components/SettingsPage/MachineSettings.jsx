@@ -82,7 +82,7 @@ function MachineSettings() {
 
 
             <div >
-                <h3 style={{ marginLeft: '30px' }}>Machine {selectedMachine} Details</h3>
+                <h3 style={{ marginLeft: '60px',marginBottom:'30px' }}>Machine {selectedMachine} Details</h3>
                 <div className="lablelayer">
                     <label className="lablelable" htmlFor="machineName">Machine Name:</label>
                     <input

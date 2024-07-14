@@ -35,7 +35,7 @@ body, html {
     top: 120px; 
     left: 160px;
     width: 80px; 
-    z-index: 10;
+    z-index: 0;
 }
 
 /* Grid layout for the rate blocks */
@@ -96,7 +96,8 @@ body, html {
     }
 
     .button-group-container {
-        position: static;
+        position: fixed;
+        z-index: 2;
         width: 100%;
     }
 }

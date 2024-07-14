@@ -1,10 +1,40 @@
+.fixed-element {
+    position: fixed;
+    inset: 0; /* Shorthand for top: 0; right: 0; bottom: 0; left: 0; */
+    width: 100%; /* Optional: Set width to 100% for horizontal filling */
+    height: 100%; /* Optional: Set height to 100% for vertical filling */
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px); /* Add -webkit-backdrop-filter for Safari support */
+    z-index: 100;
+
+  }
+
+.xbutton{
+    background-color: #ffffff;
+    color: black;
+    cursor: pointer;
+    width:35px;
+    height: 35px;
+    border-radius: 30%;
+    padding: 0.3%;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.25), 2px 2px 2px rgba(0, 0, 0, 0.05);
+    margin-left: 95%;
+
+}
+.xbutton:hover{
+    color: #ff0000;
+    transform: scale(1.05);
+}
+  
+
 .buttons{
     background-color: #ffffff;
     display: flex;
+    align-self: center;
     font-weight: bold;
     border: '1px solid #000';
     color: black;
-    padding: 20px 22px;
+    padding: 17px 22px;
     text-align: center;
     text-decoration: none;
     font-size: 16px;
@@ -15,7 +45,8 @@
 }
 
 .buttons:hover{
-    color: #3847ce;
+    color: #5662cc;
+    transform: scale(1.02);
 }
 
 .machinesettings{
@@ -26,18 +57,18 @@
     height: 630px;
     width:660px;
     border: 1px solid #d6d6d6;
-    border-radius: 10px;
+    border-radius: 30px;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.25), 2px 2px 2px rgba(0, 0, 0, 0.05);
 
 }
 
 .selectbutton{
-    background-color: #dfdddd;
+    background-color: #201f67;
     display: flex;
     font-weight: bold;
     border: '1px solid #000';
-    color: #3847ce;
-    padding: 20px 22px;
+    color: #ffffff;
+    padding: 17px 22px;
     text-align: center;
     text-decoration: none;
     font-size: 16px;
@@ -45,6 +76,10 @@
     cursor: pointer;
     width:260px;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.25), 2px 2px 2px rgba(0, 0, 0, 0.05);
+}
+.selectbutton:hover{
+    color: #ffffff;
+    transform: scale(1.02);
 }
 
 .dropbox{
@@ -64,7 +99,7 @@
     justify-content: space-between;
     align-items: center;
     font-weight: bold;
-    margin-left: 30px;
+    margin-left: 60px;
 }
 
 .lablelable{
@@ -95,7 +130,7 @@
     padding: 10px 10px;
     text-align: center;
     text-decoration: none;
-    margin: 20px 370px;
+    margin: 20px 410px;
     cursor: pointer;
     width:100px;
     height: 40px;
@@ -104,5 +139,6 @@
 
 .buttonedit:hover{
     color: #3847ce;
-    background-color: #dfdddd;
+    background-color: #ebebeb;
+    transform: scale(1.05);
 }
