@@ -1,5 +1,5 @@
 import React from 'react';
-import './SummaryChart.scss';
+import './ProductChart.scss';
 import { Line } from "react-chartjs-2";
 import { defaults } from 'chart.js/auto';
 import chartdata from '../../../productChart.json';
@@ -24,7 +24,7 @@ const ProductChart = ({ productName }) => {
   }
 
   return (
-    <div className='chart'>
+    <div className='chart-container'>
       <Line
         data={{
           labels: labels,

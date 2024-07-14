@@ -1,5 +1,5 @@
 import React from 'react';
-import './SummaryPercentage.scss';
+import './ProductPercentage.scss';
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import DoneAllRoundedIcon from '@mui/icons-material/DoneAllRounded';
@@ -27,7 +27,7 @@ const ProductPercentage = ({ type, productName }) => {
     switch (type) {
       case 'complete':
         data1 = {
-          icon: <DoneAllRoundedIcon className='icon' />,
+          icon: <DoneAllRoundedIcon className='product-icon' />,
           title: 'COMPLETED PERCENTAGE',
           chart: (
             <CircularProgressbar
@@ -39,7 +39,7 @@ const ProductPercentage = ({ type, productName }) => {
         break;
       case 'notComplete':
         data1 = {
-          icon: <PriorityHighRoundedIcon className='icon' />,
+          icon: <PriorityHighRoundedIcon className='product-icon' />,
           title: 'TO BE COMPLETED PERCENTAGE',
           chart: (
             <CircularProgressbar
@@ -60,13 +60,13 @@ const ProductPercentage = ({ type, productName }) => {
   }
 
   return (
-    <div className='percentage'>
-      <div className='top'>
+    <div className='product-percentage'>
+      <div className='percentage-top'>
         {data1.icon}
-        <span className='title'>{data1.title}</span>
+        <span className='percentage-title'>{data1.title}</span>
       </div>
-      <div className='bottom'>
-        <div className='chart'>
+      <div className='percentage-bottom'>
+        <div className='percentage-chart'>
           {data1.chart}
         </div>
       </div>

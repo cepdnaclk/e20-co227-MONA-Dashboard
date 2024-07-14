@@ -1,5 +1,5 @@
 import React from 'react';
-import './SummaryTable.scss';
+import './ProductTable.scss';
 import productData from '../../../product.json';
 
 const ProductTable = ({ productName }) => {
@@ -38,7 +38,7 @@ const ProductTable = ({ productName }) => {
   const keys = Object.keys(keyLabelMap);
 
   return (
-    <div className='summaryTable'>
+    <div className='productTable'>
       <table>
         <tbody>
           {keys.map((key, idx) => (
