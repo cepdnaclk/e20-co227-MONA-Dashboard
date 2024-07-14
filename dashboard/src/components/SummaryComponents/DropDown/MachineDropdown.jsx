@@ -1,28 +1,28 @@
 import React, { useState } from 'react';
 import './MachineDropdown.css';
-import JSONDATA from '../../../production.json';  
+import JSONDATA from '../../../product.json';  
 
 function MachineDropdown({ selected, setSelected }) {
   const [isActive, setIsActive] = useState(false);
 
   return (
-    <div className='mdropdown'>
-      <div className='mdropdown-btn' onClick={() => setIsActive(!isActive)}>
+    <div className='machine-dropdown'>
+      <div className='machine-dropdown-btn' onClick={() => setIsActive(!isActive)}>
         {selected}
         <span className='fas fa-caret-down'></span>
       </div>
       {isActive && (
-        <div className='mdropdown-content'>
+        <div className='machine-dropdown-content'>
           {JSONDATA.map((val, key) => (
             <div
               key={key}  // Unique key for each item
               onClick={() => {
-                setSelected(val.machine_no);  // Use machine_no from JSON data
+                setSelected(val.product_name);  
                 setIsActive(false);
               }}
-              className='mdropdown-item'
+              className='machine-dropdown-item'
             >
-              {val.machine_no}
+              {val.product_name}
             </div>
           ))}
         </div>

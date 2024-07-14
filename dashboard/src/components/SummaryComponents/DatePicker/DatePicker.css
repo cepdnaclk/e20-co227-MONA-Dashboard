@@ -1,0 +1,25 @@
+.date-picker-container {
+  top: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.date-picker-calendar {
+  border: 2px solid rgb(255, 255, 255);
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 6px 10px;
+  background-color: #fdfdfd;
+  box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.06);
+  font-weight: 400;
+  color: #534e4e;
+  font-size: 13px;
+}
+
+.date-picker-range {
+  position: absolute;
+  top: 40px;
+}
