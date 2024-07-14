@@ -1,5 +1,5 @@
-.container {
-  top: -5px;
+.date-picker-container {
+  top: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -7,7 +7,7 @@
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
-.calendar {
+.date-picker-calendar {
   border: 2px solid rgb(255, 255, 255);
   border-radius: 6px;
   cursor: pointer;
@@ -19,7 +19,7 @@
   font-size: 13px;
 }
 
-.dateRange {
+.date-picker-range {
   position: absolute;
   top: 40px;
 }

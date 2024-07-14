@@ -1,5 +1,5 @@
 import React from 'react';
-import './SummaryWidgets.scss';
+import './ProductWidgets.scss';
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
 import FunctionsRoundedIcon from '@mui/icons-material/FunctionsRounded';
