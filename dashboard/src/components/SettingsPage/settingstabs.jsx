@@ -76,7 +76,7 @@ export default function Settingstab({ onclose }) {
     const [isSelected, setIsSelected] = useState(1);
 
     return (
-        <div className='fixed-element' style={{ height: "100%", width: "100%", padding: "9% 25%", border: '1px solid black' }}>
+        <div className='fixed-element' style={{ height: "100%", width: "100%", padding: "9% 25%"}}>
             <button className='xbutton' onClick={onclose}><CloseRoundedIcon sx={{fontSize: 30}}  /></button>
             <div style={{ display: 'flex', marginBottom: "1%", marginLeft: "2%" }}>
                 <SettingsOutlinedIcon /><h1 style={{ marginLeft: '1%' }}>Settings</h1>
