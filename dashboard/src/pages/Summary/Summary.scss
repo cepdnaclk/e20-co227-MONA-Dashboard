@@ -15,7 +15,7 @@
       margin-top: 10px;
       display: grid;
       grid-template-columns: 14% 40% 45%;
-      grid-template-rows: 60% 38%;
+      grid-template-rows: 67% 37%;
       grid-template-areas: 
       "machines table graph"
       "machines percentages widgets3"
@@ -45,7 +45,6 @@
       .widgets3{
         background-color: rgb(228, 236, 236);
         grid-area: widgets3;
-        height: 300px;
   
         display: flex;
         padding: 20px;
