@@ -269,19 +269,23 @@ if inputword in("A","a"):
             
 elif inputword in("S","s"):
     inputnumber=input("Enter the machine number to run ")
-    inputtime=input("Enter the time to run the machine ")
-    inputword=input("Do you want to restart (r) or continue (c)machine ")
-    if inputword in("R","r"):
-                print("Machine restarted and continue to run...")
-                reset_doc_1(inputnumber)
-                run_a_machine(inputnumber,int(inputtime))
-    elif inputword in("C","c"):
-                print("Machine continue to run...")
-                run_a_machine(inputnumber,int(inputtime))
+    if inputnumber not in("1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25"):
+        print("Invalid input. Please enter a valid machine number.")
+        sys.exit()
     else:
-                print("Invalid input. Please enter 'R' or 'C'.")
-                sys.exit()
-    
+        inputtime=input("Enter the time to run the machine ")
+        inputword=input("Do you want to restart (r) or continue (c)machine ")
+        if inputword in("R","r"):
+                    print("Machine restarted and continue to run...")
+                    reset_doc_1(inputnumber)
+                    run_a_machine(inputnumber,int(inputtime))
+        elif inputword in("C","c"):
+                    print("Machine continue to run...")
+                    run_a_machine(inputnumber,int(inputtime))
+        else:
+                    print("Invalid input. Please enter 'R' or 'C'.")
+                    sys.exit()
+        
     
 else:
     print("Invalid input. Please enter 'A' or 'S'.")
