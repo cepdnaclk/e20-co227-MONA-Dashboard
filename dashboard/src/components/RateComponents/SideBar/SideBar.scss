@@ -1,0 +1,194 @@
+.sidebar {
+    background-color: rgb(255, 255, 255);
+    position: fixed;
+    top: 10;
+    left: 0;
+    padding: 2rem 3rem;
+    padding-left: 1rem;
+    width: 15rem;
+    height: 100vh;
+    transition: 0.5s all;
+    flex-shrink: 0;
+    z-index: 1;
+
+    .logoContainer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        h2.title {
+            font-size: 25px;
+            color: black;
+            padding: 0 0 0 1rem;
+        }
+    }
+
+    .menuIconContainer {
+        content: "";
+        background-color: purple;
+        position: absolute;
+        right: calc(-35px / 2);
+        top: calc(9rem / 1.15);
+        width: 35px;
+        height: 35px;
+        border-radius: 2rem;
+        z-index: 1;
+        cursor: pointer;
+
+        .menuIconTrigger {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 2;
+        }
+
+        .menuIcon {
+            content: "";
+            background-color: purple;
+            position: relative;
+            z-index: 1;
+            width: 20px;
+            height: 3px;
+            border-radius: 2rem;
+            left: 0.45rem;
+            bottom: calc(-35px / 2);
+        }
+
+        .menuIcon::after {
+            content: "";
+            background-color: white;
+            position: absolute;
+            width: 20px;
+            height: 3px;
+            border-radius: 2rem;
+            top: 0.4rem;
+            transform: translateY(-0.4rem) rotate(45deg);
+        }
+
+        .menuIcon::before {
+            content: "";
+            background-color: white;
+            position: absolute;
+            width: 20px;
+            height: 3px;
+            border-radius: 2rem;
+            top: -0.4rem;
+            transform: translateY(0.4rem) rotate(-45deg);
+        }
+    }
+
+    .menuIconContainer::after {
+        content: "";
+        position: absolute;
+        right: 35px;
+        top: calc(35px / 2);
+        z-index: 0;
+        width: calc(6rem + 15rem);
+        background-color: lightgrey;
+        height: 2px;
+    }
+
+    .contentContainer {
+        margin: 7rem 0 0 0;
+
+        ul {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-direction: column;
+            list-style: none;
+            padding-left: 1rem;
+            margin: 0;
+
+            li {
+                margin: 1.75rem 0rem;
+                padding: 0.75rem 0rem 0rem -1.0rem;
+                max-width: 14rem;
+                width: max-content;
+                border-radius: 1rem;
+
+                a {
+                    display: flex;
+                    align-items: center;
+                    text-decoration: none;
+                    color: rgb(71, 71, 71);
+                    font-size: 20px;
+                    font-weight: bold;
+                    padding: 0.75rem;
+                    width: 100%;
+                    transition: background-color 0.25s, color 0.25s;
+
+                    &:hover {
+                        background-color: rgb(196, 196, 196);
+                        color: rgb(255, 255, 255);
+                    }
+
+                    img {
+                        margin-right: 1rem;
+                    }
+                }
+
+                &.active a {
+                    background-color: rgb(238, 189, 238);
+                    color: rgb(91, 89, 218);
+                }
+            }
+        }
+    }
+}
+
+.sidebar.active {
+    width: 3rem;
+    transition: 0.5s all;
+
+    .logoContainer.active {
+        transition: 0.5s all;
+
+        h2.title {
+            opacity: 0;
+        }
+
+        img {
+            position: relative;
+            right: 12px;
+            width: 55px;
+            height: 55px;
+        }
+    }
+
+    .menuIconContainer.active {
+        transition: 0.5s all;
+
+        .menuIcon {
+            background-color: white;
+        }
+
+        .menuIcon::after {
+            transform: translateY(0rem) rotate(0deg);
+        }
+
+        .menuIcon::before {
+            transform: translateY(0rem) rotate(0deg);
+        }
+    }
+
+    .contentContainer.active {
+        transition: 0.5s all;
+
+        a {
+            span{
+                display: none;
+            }
+        }
+
+        img {
+            width: 40px;
+            height: 40px;
+            padding: 0 0 0 0;
+            transition: 0.5s all;
+            margin-right: 0;
+        }
+    }
+}
