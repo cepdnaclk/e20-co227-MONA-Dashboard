@@ -3,11 +3,17 @@ import RateImage from "../../../images/graph.svg";
 import ProductImage from "../../../images/production.svg";
 import HourlyImage from "../../../images/hourly.svg";
 import "./SideBar.scss";
-import { useLocation } from "react-router-dom";
+import { useNavigate ,useLocation } from "react-router-dom";
 
 const SideBar = () => {
   const location = useLocation();
   const [closeMenu, setCloseMenu] = useState(true);
+  const navigate = useNavigate(); // Utilize useNavigate hook for navigation
+  
+
+  const handleButtonClick = (path) => {
+    navigate(path); // Navigate to the specified path
+  };
 
   const handleMenu = () => {
     setCloseMenu(!closeMenu);
@@ -43,7 +49,7 @@ const SideBar = () => {
       >
         <ul>
           <li className={location.pathname === "/HourlyRate" ? "active" : ""}>
-            <a href="/HourlyRate">
+            <a onClick={() => handleButtonClick('/HourlyRate')}>
               <img src={HourlyImage} alt="HourlyImage" />
               <span>Hourly Rate</span>
             </a>
@@ -52,14 +58,14 @@ const SideBar = () => {
           <li
             className={location.pathname === "/ProductProgress" ? "active" : ""}
           >
-            <a href="/ProductProgress">
+            <a onClick={() => handleButtonClick('/ProductProgress')}>
               <img src={ProductImage} alt="ProdudctImage" />
               <span>Product Progress</span>
             </a>
           </li>
 
           <li className={location.pathname === "/rate" ? "active" : ""}>
-            <a href="/rate">
+            <a onClick={() => handleButtonClick('/rate')}>
               <img src={RateImage} alt="RateImage" />
               <span>Production Rate</span>
             </a>
