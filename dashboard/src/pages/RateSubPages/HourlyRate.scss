@@ -1,0 +1,212 @@
+.hourly-rate-page {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 10px;
+    padding: 10px;
+    flex-grow: 1;
+    margin-left: 70px;
+    position: relative;
+
+    .machine-block {
+        position: relative;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        transition: background-color 0.3s ease;
+        cursor: pointer;
+
+        &.operating {
+            background-color: #ccffcc; 
+            color: green;
+        }
+
+        &.stuck {
+            background-color: #ffcccc; 
+            color: red;
+        }
+
+        &.stopped {
+            background-color: #d9d9d9; 
+            color: grey;
+        }
+
+        &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .status {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 25%;
+            padding: 5px;
+            text-align: center;
+            border-radius: 3px;
+            margin-right: 10px;
+
+            &.operating {
+                background-color: green;
+                color: white;
+            }
+
+            &.stuck {
+                background-color: red;
+                color: white;
+            }
+
+            &.stopped {
+                background-color: grey;
+                color: white;
+            }
+
+            .machine-number {
+                font-size: 14px;
+            }
+        }
+
+        .chart-container {
+            width: 75%;
+            height: 140px;
+        }
+
+        .popup {
+            display: none;
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-bottom: 10px;
+            padding: 5px;
+            background-color: rgba(0, 0, 0, 0.75);
+            color: white;
+            border-radius: 3px;
+            white-space: nowrap;
+            z-index: 1;
+        }
+
+        &:hover .popup {
+            display: block;
+        }
+    }
+
+    .central-block {
+        position: absolute;
+        top: 10%;
+        left: 30%;
+        transform: translate(-50%, -50%);
+        border: 2px solid #ccc;
+        border-radius: 10px;
+        padding: 20px;
+        background-color: rgb(233, 217, 231);
+        z-index: 100;
+        width: 800px;
+        height: 800px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+
+        &.operating {
+                background-color: #ccffcc; // Light green
+                color: green;
+            }
+        
+            &.stuck {
+                background-color: #ffcccc; // Light red
+                color: red;
+            }
+        
+            &.stopped {
+                background-color: #d9d9d9; // Light grey
+                color: grey;
+            }
+            
+        .status {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 10px;
+            text-align: center;
+            border-radius: 3px;
+            margin-bottom: 10px;
+
+            &.operating {
+                background-color: green;
+                color: white;
+            }
+
+            &.stuck {
+                background-color: red;
+                color: white;
+            }
+
+            &.stopped {
+                background-color: grey;
+                color: white;
+            }
+
+            .machine-number {
+                font-size: 18px;
+                font-weight: bold; 
+                margin-bottom: 10px;
+                text-align: center; 
+            }
+        }
+
+        .chart-container {
+            width: 100%;
+            height: 100%;
+        }
+
+        .additional-info {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: rgb(233, 214, 236);
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease;
+            letter-spacing: 0.8px;
+            line-height: 1.3;
+
+            &:hover {
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                font-weight: bold;
+                transition: 0.2s;
+                letter-spacing: 0.8px;
+                line-height: 1.3;
+            }
+
+            detail-item {
+                margin-bottom: 12px;
+                
+
+                &.product {
+                    font-size: 16px;
+                    color: #333;
+                    margin-bottom: 8px;
+                }
+
+                &.progress {
+                    font-size: 14px;
+                    color: #666;
+                    line-height: 1.5;
+                }
+
+                &.machine-type,
+                &.hours-active {
+                    font-weight: bold; 
+                    font-size: 14px;
+                    color: #777;
+                    line-height: 1.5;
+                }
+            }
+        }
+    }
+}
