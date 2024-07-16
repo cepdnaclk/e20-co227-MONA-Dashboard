@@ -36,7 +36,6 @@ function App() {
             <Route path="/status" element={<Status />} />
             <Route path="/rate" element={<Rate />} />
             <Route path="/history" element={<SummaryPage />} />
-            <Route path="/settings" element={<Settings />} />
             <Route path="*" element={<Page404 />} />
             <Route path="/HourlyRate" element={<HourlyRate />} />
             <Route path="/ProductProgress" element={<ProductProgress />} />
