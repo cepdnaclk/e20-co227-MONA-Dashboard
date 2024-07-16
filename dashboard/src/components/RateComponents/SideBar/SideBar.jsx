@@ -64,12 +64,12 @@ const SideBar = () => {
             </a>
           </li>
 
-          <li className={location.pathname === "/rate" ? "active" : ""}>
+          {/* <li className={location.pathname === "/rate" ? "active" : ""}>
             <a onClick={() => handleButtonClick('/rate')}>
               <img src={RateImage} alt="RateImage" />
               <span>Production Rate</span>
             </a>
-          </li>
+          </li> */}
         </ul>
       </div>
     </div>
