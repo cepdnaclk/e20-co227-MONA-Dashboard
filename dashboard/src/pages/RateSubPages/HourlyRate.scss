@@ -1,0 +1,93 @@
+.hourly-rate-page {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 10px;
+    padding: 10px;
+    flex-grow: 1;
+    margin-left: 70px;
+
+    .machine-block {
+        position: relative;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        transition: background-color 0.3s ease;
+
+        &.operating {
+            background-color: #ccffcc; // Light green
+            color: green;
+        }
+
+        &.stuck {
+            background-color: #ffcccc; // Light red
+            color: red;
+        }
+
+        &.stopped {
+            background-color: #d9d9d9; // Light grey
+            color: grey;
+        }
+
+        &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .status {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 25%;
+            padding: 5px;
+            text-align: center;
+            border-radius: 3px;
+            margin-right: 0px;
+
+            &.operating {
+                background-color: green;
+                color: white;
+            }
+
+            &.stuck {
+                background-color: red;
+                color: white;
+            }
+
+            &.stopped {
+                background-color: grey;
+                color: white;
+            }
+
+            .machine-number {
+                font-size: 14px;
+            }
+        }
+
+        .chart-container {
+            width: 80%;
+            height: 160px;
+        }
+
+        .popup {
+            display: none;
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-bottom: 10px;
+            padding: 5px;
+            background-color: rgba(0, 0, 0, 0.75);
+            color: white;
+            border-radius: 3px;
+            white-space: nowrap;
+            z-index: 1;
+        }
+
+        &:hover .popup {
+            display: block;
+        }
+    }
+}

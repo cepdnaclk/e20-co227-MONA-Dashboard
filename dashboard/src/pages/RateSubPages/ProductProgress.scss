@@ -1,0 +1,50 @@
+.product-progress-page {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    margin-left: 60px;
+}
+
+.product-block {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    /* Add cursor pointer for interaction */
+}
+
+.product-block:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.product-info {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.product-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.product-overall-progress {
+    font-size: 16px;
+    color: #333;
+}
+
+.chart-container {
+    width: 100%;
+    height: 300px;
+    margin-top: 20px;
+    /* Add margin top for spacing */
+}
