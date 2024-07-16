@@ -70,12 +70,12 @@ const HourlyRate = () => {
             onClick={() => handleMachineClick(machine)}
           >
             <motion.div className={`status ${machine.status}`}>
-              <motion.div className="machine-number">
+              <motion.div className="Rmachine-number">
                 Machine <br />
                 {machine.machineNumber}
               </motion.div>
             </motion.div>
-            <motion.div className="chart-container">
+            <motion.div className="Rchart-container">
               <HourlyRateChart data={machine.data} />
             </motion.div>
             <motion.div className="popup">Status: {machine.status}</motion.div>
@@ -91,12 +91,12 @@ const HourlyRate = () => {
             transition={{ duration: 0.5 }}
           >
             <motion.div className={`status ${selectedMachine.status}`}>
-              <motion.div className="machine-number">
+              <motion.div className="Rmachine-number">
                 Machine {selectedMachine.machineNumber} <br />
                 {selectedMachine.status}
               </motion.div>
             </motion.div>
-            <motion.div className="chart-container">
+            <motion.div className="Rchart-container">
               <HourlyRateChart data={selectedMachine.data} />
             </motion.div>
             <motion.div className="additional-info">

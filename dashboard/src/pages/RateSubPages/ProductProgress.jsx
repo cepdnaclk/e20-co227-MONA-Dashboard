@@ -27,7 +27,7 @@ const ProductProgress = () => {
                 Overall Progress: {calculateOverallProgress(product.machines)}%
               </div>
             </div>
-            <div className="chart-container">
+            <div className="Pchart-container">
               <ProductProgressChart data={product.machines} />
             </div>
           </div>
