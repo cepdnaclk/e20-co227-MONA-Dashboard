@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from "react";
 import './settingspage.css'; // Import the CSS file
 import axios from 'axios';
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import Checkpassword from './Checkpassword'; // Import the Checkpassword component
 
 function MachineSettings() {
     const [machines, setMachines] = useState([]); // Array for machine data
     const [selectedMachine, setSelectedMachine] = useState(''); // State for selected machine
     const [selectedMachineDetails, setSelectedMachineDetails] = useState(null); // State for selected machine details
     const [isEditing, setIsEditing] = useState(false); // State for edit mode
+    const [showPassword, setShowPassword] = useState(false); // State for showing password form
 
     useEffect(() => {
         const fetchData = async () => {
@@ -23,15 +30,12 @@ function MachineSettings() {
         return () => { }; // Empty cleanup function for clarity
     }, []); // Empty dependency array ensures data fetching runs only on mount
 
-    const defaultOption = {
-        label: 'Select Machine',
-        value: '', // Empty value for default selection
-    };
 
-    const options = [defaultOption, ...machines.map((machine) => ({
+
+    const options = machines.map((machine) => ({
         label: "Machine " + machine.MachineNumber,
         value: machine.MachineNumber,
-    }))];
+    }));
 
     const handleChange = (event) => {
         setSelectedMachine(event.target.value);
@@ -70,19 +74,27 @@ function MachineSettings() {
         <div className="machinesettings">
             <h2 style={{ marginLeft: '320px' }}>Machines Settings</h2>
 
-
-            <select className="dropbox" aria-label="Machine Selection" value={selectedMachine} onChange={handleChange}>
-                {options.map((option) => (
-                    <option key={option.value} value={option.value}>
-                        {option.label}
-                    </option>
-                ))}
-            </select>
+            <Box className="dropbox">
+                <FormControl fullWidth sx={{height: 30, mt: 1 }}>
+                    <InputLabel id="demo-simple-select-label">Select Machine</InputLabel>
+                    <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={selectedMachine}
+                        label="Select Machine"
+                        onChange={handleChange}
+                    >
+                        {options.map((option) => (
+                        <MenuItem value={option.value}>{option.label}</MenuItem>
+                        ))}
+                    </Select>
+                </FormControl>
+            </Box>
 
 
 
             <div >
-                <h3 style={{ marginLeft: '30px' }}>Machine {selectedMachine} Details</h3>
+                <h3 style={{ marginLeft: '60px', marginBottom: '30px' }}>Machine {selectedMachine} Details</h3>
                 <div className="lablelayer">
                     <label className="lablelable" htmlFor="machineName">Machine Name:</label>
                     <input
@@ -133,24 +145,25 @@ function MachineSettings() {
                 </div>
                 <div className="lablelayer" style={{ width: '450px' }}>
                     <label className="lablelable" htmlFor="info">Informations:</label>
-                    <input
-                        className="inputbox"
-                        style={{ height: "120px", width: "300px",overflow:"visible" }}
+                    <textarea
+                        className="textbox"
+                        style={{}}
                         type="text" // Consider number input type for production
                         id="info"
-                        name="info"
+                        name="Info"
                         value={selectedMachineDetails?.Info || ''}
                         disabled={!isEditing}
                         onChange={handleInputChange}
-                    />
+                    ></textarea>
                 </div>
 
 
-                <button type="buttone" className="buttonedit"  onClick={handleEditClick} >
+                <button type="buttone" className="buttonedit" onClick = {!isEditing ? handleEditClick : () => setShowPassword(true)} >
                     {isEditing ? 'Save' : 'Edit'}
-                    
+
                 </button>
             </div>
+            {showPassword && <Checkpassword onclose1={() => setShowPassword(false)}/>}
 
         </div>
     );

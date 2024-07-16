@@ -13,26 +13,37 @@ const SecondBar = () => {
     navigate(path); // Navigate to the specified path
   };
 
-  //const location = useLocation();
-
-
-
   return (
     <div className='secondbar'>
       <div className='box'>
         <ul>
-                
-          <li  onClick={() => handleButtonClick('/status')} style={{ backgroundColor : location.pathname === '/status'  ? '#201F67' : 'default' }}>
-            <DashboardRoundedIcon className='icon' style={{ color : location.pathname === '/status' ? 'white' : 'default' }}/>
-            <span style={{ color : location.pathname === '/status' ? 'white' : 'default' }} >STATUS</span>
+          <li
+            onClick={() => handleButtonClick('/status')}
+            style={{
+              backgroundColor: location.pathname === '/status' ? '#201F67' : 'default',
+            }}
+          >
+            <DashboardRoundedIcon className='icon' style={{ color: location.pathname === '/status' ? 'white' : 'default' }} />
+            <span style={{ color: location.pathname === '/status' ? 'white' : 'default' }}>STATUS</span>
           </li>
-          <li onClick={() => handleButtonClick('/rate')} style={{ backgroundColor : location.pathname === '/rate' ? '#201F67' : 'default' }}>
-            <QueryStatsRoundedIcon className='icon' style={{ color : location.pathname === '/rate' ? 'white' : 'default' }}/>
-            <span style={{ color : location.pathname === '/rate' ? 'white' : 'default' }}>PRODUCTION RATE</span>
+          {/* Corrected path comparison for Production Rate */}
+          <li
+            onClick={() => handleButtonClick('/rate/HourlyRate')}
+            style={{
+              backgroundColor: location.pathname.startsWith('/rate/') ? '#201F67' : 'inherit',
+            }}
+          >
+            <QueryStatsRoundedIcon className='icon' style={{ color: location.pathname.startsWith('/rate/') ? 'white' : 'inherit' }} />
+            <span style={{ color: location.pathname.startsWith('/rate/') ? 'white' : 'inherit' }}>PRODUCTION RATE</span>
           </li>
-          <li onClick={() => handleButtonClick('/history')} style={{ backgroundColor : location.pathname === '/history' ? '#201F67' : 'default' }}>
-            <DescriptionRoundedIcon className='icon' style={{ color : location.pathname === '/history' ? 'white' : 'default' }}/>
-            <span style={{ color : location.pathname === '/history' ? 'white' : 'default' }}>PRODUCTION HISTORY</span>
+          <li
+            onClick={() => handleButtonClick('/history')}
+            style={{
+              backgroundColor: location.pathname === '/history' ? '#201F67' : 'default',
+            }}
+          >
+            <DescriptionRoundedIcon className='icon' style={{ color: location.pathname === '/history' ? 'white' : 'default' }} />
+            <span style={{ color: location.pathname === '/history' ? 'white' : 'default' }}>PRODUCTION HISTORY</span>
           </li>
         </ul>
       </div>
