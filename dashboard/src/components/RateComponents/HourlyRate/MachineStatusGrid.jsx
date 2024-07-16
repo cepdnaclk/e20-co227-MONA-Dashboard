@@ -1,4 +1,3 @@
-// components/MachineStatusGrid.jsx
 import React from "react";
 import MachineStatus from "./MachineStatus";
 import { machineStatusData } from "../Data/rate_data";

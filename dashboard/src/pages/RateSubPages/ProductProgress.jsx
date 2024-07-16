@@ -1,9 +1,11 @@
 import React from "react";
 import ProductProgressChart from "../../components/RateComponents/ProductProgress/ProductProgressChart";
+
 import {
   productProgressData,
   calculateOverallProgress,
 } from "../../components/RateComponents/Data/product_data";
+
 import Header from "../../layouts/Header";
 import SecondBar from "../../layouts/SecondBar";
 import SideBar from "../../components/RateComponents/SideBar/SideBar";

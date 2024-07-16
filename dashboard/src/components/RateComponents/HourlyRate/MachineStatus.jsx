@@ -1,4 +1,3 @@
-// components/MachineStatus.jsx
 import React from "react";
 import HourlyRateChart from "./HourlyRateChart";
 import "./MachineStatus.scss";

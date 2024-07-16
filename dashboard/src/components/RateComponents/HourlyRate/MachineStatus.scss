@@ -1,10 +1,9 @@
-// components/MachineStatus.scss
 .machine-status {
     border: 2px solid;
     padding: 10px;
     border-radius: 8px;
     margin: 5px;
-    width: calc(20% - 10px); // Adjust this to fit 5 items per row with spacing
+    width: calc(20% - 10px);
     box-sizing: border-box;
 
     .header {

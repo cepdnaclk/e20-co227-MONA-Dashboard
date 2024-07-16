@@ -1,4 +1,3 @@
-// HourlyRateChart.jsx
 import React from "react";
 import {
   LineChart,

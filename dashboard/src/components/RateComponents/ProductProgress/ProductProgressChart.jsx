@@ -1,4 +1,3 @@
-// src/components/ProductComponents/ProductProgressChart/ProductProgressChart.jsx
 import React from "react";
 import {
   BarChart,
