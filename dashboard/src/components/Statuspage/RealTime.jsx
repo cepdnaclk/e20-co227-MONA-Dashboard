@@ -182,6 +182,7 @@ function RealTime() {
 
 
                                 skipAnimation >
+                                <>
                                 <PieChartText
                                     x="25%"
                                     y="45%"
@@ -206,6 +207,8 @@ function RealTime() {
                                     text={realtimeinfo.Status === 'off' ? "" : realtimeinfo.TargetSlots - realtimeinfo.SuccessSlots > 0 ? (realtimeinfo.TargetSlots - realtimeinfo.SuccessSlots) + " slots behind" : " Target Achieved"}
                                     style={{ transform: 'translate(-50%, -50%)', fontSize: '10px' }} // Center the text
                                 />
+                                </>
+                                
 
                                 <PieChartLable
                                     x="60%"
