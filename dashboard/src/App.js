@@ -37,8 +37,8 @@ function App() {
             <Route path="/rate" element={<Rate />} />
             <Route path="/history" element={<SummaryPage />} />
             <Route path="*" element={<Page404 />} />
-            <Route path="/HourlyRate" element={<HourlyRate />} />
-            <Route path="/ProductProgress" element={<ProductProgress />} />
+            <Route path="/rate/HourlyRate" element={<HourlyRate />} />
+            <Route path="/rate/ProductProgress" element={<ProductProgress />} />
           </Routes>
         </BrowserRouter>
       </div>

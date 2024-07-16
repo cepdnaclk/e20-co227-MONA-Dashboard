@@ -48,17 +48,17 @@ const SideBar = () => {
         }
       >
         <ul>
-          <li className={location.pathname === "/HourlyRate" ? "active" : ""}>
-            <a onClick={() => handleButtonClick('/HourlyRate')}>
+          <li className={location.pathname === "/rate/HourlyRate" ? "active" : ""}>
+            <a onClick={() => handleButtonClick('/rate/HourlyRate')}>
               <img src={HourlyImage} alt="HourlyImage" />
               <span>Hourly Rate</span>
             </a>
           </li>
 
           <li
-            className={location.pathname === "/ProductProgress" ? "active" : ""}
+            className={location.pathname === "/rate/ProductProgress" ? "active" : ""}
           >
-            <a onClick={() => handleButtonClick('/ProductProgress')}>
+            <a onClick={() => handleButtonClick('/rate/ProductProgress')}>
               <img src={ProductImage} alt="ProdudctImage" />
               <span>Product Progress</span>
             </a>
