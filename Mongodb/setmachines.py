@@ -10,7 +10,6 @@ client = pymongo.MongoClient("mongodb+srv://bhagya:bhagya123@monadash.v8cvc3k.mo
 
 db = client["test"]  # Replace with your desired database name
 collection1 = db["realtimeinfos"]  # Replace with your desired collection name
-collection2 = db["dayinfos"]
 
 print(" Enter the password to set the collection:")
 if(input() == "1234"):
@@ -26,30 +25,21 @@ if(input() == "1234"):
                 "Status": 0,
                 "StartedTime": None,  # Can be set to datetime.datetime.now() if needed
                 "LastUpdatedTime": None,
+                "StatusChangedTime": None,
                 "SuccessSlots": 0,
                 "FailureSlots": 0,
                 "TotalSlots": 0,
+                "TargetSlots": 20,
                 "Rate": 0,
+                "Info":"This is Machine " + str(i+1) + " with MachineName M#" + str(i+1) ,
         }
         for i in range(25)
         ]
 
-        machine_data1 = {
-                "Doc": 1,
-                "SuccessItems": 0,
-                "FailureItems": 0,
-                "TotalItems": 0,
-                "SuccessRate": 0,
-        }
+
 
         # Insert the documents into the collection
         collection1.insert_many(machine_data)
-
-        print("25 documents successfully inserted into the 'machinesinfos' collection!")
-        collection2.insert_one(machine_data1)
-
-
-        print("1 documents successfully inserted into the 'dayinfos' collection!")
 
         # List of materials
         materials = ["GPPS", "TPR", "SAAS", "MABS", "ABS", "HIP"]

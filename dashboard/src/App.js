@@ -5,8 +5,6 @@ import Rate from './pages/Rate/Rate';
 import Page404 from './pages/page404';
 import Loader from './components/Loader/Loader';
 import SummaryPage from './pages/Summary/SummaryPage';
-import Settings from './pages/Settings';
-
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react';
