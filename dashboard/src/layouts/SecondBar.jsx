@@ -23,8 +23,8 @@ const SecondBar = () => {
               backgroundColor: location.pathname === '/status' ? '#201F67' : 'default',
             }}
           >
-            <DashboardRoundedIcon className='icon' style={{ color: location.pathname === '/status' ? 'white' : 'default' }} />
-            <span style={{ color: location.pathname === '/status' ? 'white' : 'default' }}>STATUS</span>
+            <DashboardRoundedIcon className='icon' style={{ color: location.pathname === '/status' ? 'white' : 'inherit' }} />
+            <span style={{ color: location.pathname === '/status' ? 'white' : 'inherit' }}>STATUS</span>
           </li>
           {/* Corrected path comparison for Production Rate */}
           <li
@@ -39,11 +39,11 @@ const SecondBar = () => {
           <li
             onClick={() => handleButtonClick('/history')}
             style={{
-              backgroundColor: location.pathname === '/history' ? '#201F67' : 'default',
+              backgroundColor: location.pathname === '/history' ? '#201F67' : 'inherit',
             }}
           >
-            <DescriptionRoundedIcon className='icon' style={{ color: location.pathname === '/history' ? 'white' : 'default' }} />
-            <span style={{ color: location.pathname === '/history' ? 'white' : 'default' }}>PRODUCTION HISTORY</span>
+            <DescriptionRoundedIcon className='icon' style={{ color: location.pathname === '/history' ? 'white' : 'inherit' }} />
+            <span style={{ color: location.pathname === '/history' ? 'white' : 'inherit' }}>PRODUCTION HISTORY</span>
           </li>
         </ul>
       </div>
