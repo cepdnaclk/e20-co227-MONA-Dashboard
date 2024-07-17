@@ -134,10 +134,11 @@
 .inputbox{
     width: 150px;
     height: 25px;
-    border: 1px solid #d6d6d6;
+    border: 1px solid #7a7a7a;
     border-radius: 5px;
     padding-left: 10px;
     padding-top: 3px;
+    margin-left: 10px;
     align-self: flex-start;
     font-size: medium;
     overflow-wrap: break-word;

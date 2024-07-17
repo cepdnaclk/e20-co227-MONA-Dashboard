@@ -159,7 +159,7 @@ function MachineSettings() {
 
 
                 <button type="buttone" className="buttonedit" onClick = {!isEditing ? handleEditClick : () => setShowPassword(true)} >
-                    {isEditing ? 'Save' : 'Edit'}
+                    {isEditing ? 'Update' : 'Edit'}
 
                 </button>
             </div>
