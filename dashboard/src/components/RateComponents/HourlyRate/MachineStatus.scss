@@ -1,0 +1,21 @@
+.machine-status {
+    border: 2px solid;
+    padding: 10px;
+    border-radius: 8px;
+    margin: 5px;
+    width: calc(20% - 10px);
+    box-sizing: border-box;
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+
+        .status {
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: white;
+            text-transform: capitalize;
+        }
+    }
+}

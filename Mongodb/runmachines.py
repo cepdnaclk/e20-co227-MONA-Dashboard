@@ -1,7 +1,10 @@
 import pymongo
 from random import choice
+from random import sample
 from time import sleep
 import datetime
+from datetime import datetime, timezone, timedelta
+import sys
 
 # Replace these with your connection details
 # Local database
@@ -12,11 +15,10 @@ client = pymongo.MongoClient("mongodb+srv://bhagya:bhagya123@monadash.v8cvc3k.mo
 
 db = client["test"]  # Replace with your desired database name
 collection1 = db["realtimeinfos"]  # Replace with your desired collection name
-collection2 = db["dayinfos"]
 collection3 = db["rateinfos"]
 
 #setmachine time
-MachineTime = 3
+MachineTime = 1
 
 # Field names
 update_field_0 = "MachineNumber"
@@ -27,133 +29,269 @@ update_field_4 = "TotalSlots"
 update_field_5 = "StartedTime"
 update_field_6 = "LastUpdatedTime"
 update_field_7 = "Rate"
+update_field_8 = "StatusChangedTime"
+update_field_9 = "Production"
 
-update_field_11 = "SuccessItems"
-update_field_12 = "FailureItems"
-update_field_13 = "TotalItems"
-update_field_14 = "SuccessRate"
+def reset_doc():
+        # Update all documents with zero values for specified fields
+        update = {"$set": {update_field_1:"off", update_field_2: 0, update_field_3: 0, update_field_4: 0, update_field_7:0}}
+        collection1.update_many({}, update) 
 
-target_document = {"Doc": 1 }  # Filter for the target document in collection 2
+        # Delete all documents in collection 3
+        collection3.delete_many({})
 
-#sort the documents in ascending order of MachineNumber
-collection1.find().sort("MachineNumber", 1)
+        # Number of documents to set "off" (adjust if needed)
+        documents_to_enable = 23
 
-# Update all documents with zero values for specified fields
-update = {"$set": {update_field_2: 0, update_field_3: 0, update_field_4: 0, update_field_7:0}}
-result = collection1.update_many({}, update) 
+        # Randomly select document IDs to disable
+        disabled_ids = sample(list(collection1.distinct("_id")), documents_to_enable)
 
-# Delete all documents in collection 3
-collection3.delete_many({})
+        # Update documents with selected IDs
+        update_result = collection1.update_many({"_id": {"$in": disabled_ids}}, {"$set": {update_field_1: 0}})
 
-# Capture start time at the beginning
-start_time = datetime.datetime.utcnow()  # Get current UTC time
-
-
-while True:
-    try:
+        # Print results
+        print(f"{update_result.modified_count} documents updated successfully.")
         
+        pass
+    
+def reset_doc_1(machine_number):
+    
+        document=collection1.find_one({update_field_0: int(machine_number)})
         
-        for document in collection1.find():
-            Rnumber = choice([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+        # Update document with zero values for specified fields
+        update = {"$set": {update_field_1:"off", update_field_2: 0, update_field_3: 0, update_field_4: 0, update_field_7:0}}
+        collection1.update_one({update_field_0: document[update_field_0]}, update) 
 
-            update = {"$inc": {},"$set": {}}  # Initialize empty update dictionary
+        # Delete all documents in collection 3
+        collection3.delete_many({update_field_0: document[update_field_0]})
+        
+        pass
+    
+    
+    
+def run_machines():
+    # Capture start time at the beginning
+    start_time = datetime.now(timezone(timedelta(hours=5, minutes=30)))  # Get current UTC time
 
-            if Rnumber > 1:
-                update["$inc"][update_field_2] = 1
-                update["$inc"][update_field_4] = 1
-                update["$set"][update_field_1] = 1  # Update status atomically
-            elif Rnumber == 1:
-                update["$inc"][update_field_3] = 1
-                update["$inc"][update_field_4] = 1
-                update["$set"][update_field_1] = -1  # Update status atomically
-            else:
-                update["$set"][update_field_1] = 0  # Update status atomically
+    while True:
+        try:
+            
+            
+            for document in collection1.find():
+                if document.get(update_field_1)!="off":
+                    
+                        Rnumber = choice([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+
+                        update = {"$inc": {},"$set": {}}  # Initialize empty update dictionary
+                        
+                        if ((Rnumber > 1 and document.get(update_field_1)==1)or (Rnumber == 1 and document.get(update_field_1)==-1) or (Rnumber == 0 and document.get(update_field_1)==0)):
+                            None
+                        else:
+                            update["$set"][update_field_8] = datetime.now(timezone(timedelta(hours=5, minutes=30)))
+                            
+                        collection1.update_one({"_id": document["_id"]}, update)
+                        
+
+                        if Rnumber > 1:
+                            update["$inc"][update_field_2] = 1
+                            update["$inc"][update_field_4] = 1
+                            update["$set"][update_field_1] = 1  # Update status automically
+                        elif Rnumber == 1:
+                            update["$inc"][update_field_3] = 1
+                            update["$inc"][update_field_4] = 1
+                            update["$set"][update_field_1] = -1  # Update status automically
+                        else:
+                            update["$set"][update_field_1] = 0
+                            
+                        # Update LastUpdatedTime and StartedTime
+                        update["$set"][update_field_5] = start_time 
+                        
+                        current_time = datetime.now(timezone(timedelta(hours=5, minutes=30)))
+                        update["$set"][update_field_6] = current_time
+                        
+                        
+                        
+                        # calculate rate
+                        time_delta = current_time - start_time  # Calculate time difference
+                        success_slots = document.get(update_field_2)
+                        if success_slots > 0 and time_delta.total_seconds() > 0:  # Avoid division by zero
+                            update["$set"][update_field_7] = round (success_slots / time_delta.total_seconds(),3)
+                        else:
+                            update["$set"][update_field_7] = 0.0  # Set rate to 0 if no success or no time elapsed
+
+                        collection1.update_one({"_id": document["_id"]}, update)
+                        
+                        rate_info = {
+                                    "MachineNumber": document.get(update_field_0),
+                                    "Status": document.get(update_field_1), 
+                                    "SuccessSlots": document.get(update_field_2),
+                                    "FailureSlots": document.get(update_field_3),
+                                    "LastUpdatedTime": current_time,
+                                    "Rate": document.get(update_field_7),
+                                    "Production": document.get(update_field_9)
+                            }
+                        
+                        # Insert the documents into the collection
+                        collection3.insert_one(rate_info)
+                    
+                    
+                else:
+                    continue
                 
-            # Update LastUpdatedTime and StartedTime
-            update["$set"][update_field_5] = start_time 
-            
-            current_time = datetime.datetime.utcnow()
-            update["$set"][update_field_6] = current_time
-            
-            
-            # calculate rate
-            time_delta = current_time - start_time  # Calculate time difference
-            success_slots = document.get(update_field_2)
-            if success_slots > 0 and time_delta.total_seconds() > 0:  # Avoid division by zero
-                update["$set"][update_field_7] = round (success_slots / time_delta.total_seconds(),3)
+    
+            current_time2 = datetime.now(timezone(timedelta(hours=5, minutes=30)))
+            print("Updated all documents in the 'realtimeinfos','rateinfos' collections!"+current_time2.strftime("%Y-%m-%d %H:%M:%S"))
+            #sleep(MachineTime)
+
+        except Exception as e:
+            print(f"Error updating materials: {e}")
+            break
+        
+        except KeyboardInterrupt:
+            print("** User interrupted!**")
+            # Prompt user for confirmation (optional)
+            confirm = input("Do you want to stop (y/n) or restart (r)? ")
+            if confirm.lower() == 'y':
+                print("Stopping program...")
+                break  # Exit the loop
+            elif confirm.lower() == 'r':
+                print("Restarting program...")
+                reset_doc()
+                
             else:
-                update["$set"][update_field_7] = 0.0  # Set rate to 0 if no success or no time elapsed
+                print("Continuing...")
+                
+                
+def run_a_machine(machine_number,machine_time):
 
-            collection1.update_one({"_id": document["_id"]}, update)
-            
-            rate_info = {
-                        "MachineNumber": document.get(update_field_0),
-                        "Status": document.get(update_field_1), 
-                        "SuccessSlots": document.get(update_field_2),
-                        "FailureSlots": document.get(update_field_3),
-                        "LastUpdatedTime": current_time,
-                        "Rate": document.get(update_field_7),
-                }
-            
-            # Insert the documents into the collection
-            collection3.insert_one(rate_info)
-            
-        # Calculate the total sum using aggregation pipeline
-        pipeline = [
-            {
-                "$group": {
-                    "_id": None,  # Group all documents together
-                    "SuccessItems": {"$sum": f"${update_field_2}"}, # Sum the specified field
-                    "FailureItems": {"$sum": f"${update_field_3}"},  # Sum the specified field
-                }
-            }
+    start_time = datetime.now(timezone(timedelta(hours=5, minutes=30)))  # Get current UTC time
 
-        ]
+    while True:
+        try:
+                        document=collection1.find_one({update_field_0: int(machine_number)})
+                        
+                    
+                        Rnumber = choice([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
 
-        # Execute the aggregation and get the result (should be a list with one document)
-        result = list(collection1.aggregate(pipeline))
+                        update = {"$inc": {},"$set": {}}  # Initialize empty update dictionary
+                        
+                        if ((Rnumber > 1 and document.get(update_field_1)==1)or (Rnumber == 1 and document.get(update_field_1)==-1) or (Rnumber == 0 and document.get(update_field_1)==0)):
+                            None
+                        else:
+                            update["$set"][update_field_8] = datetime.now(timezone(timedelta(hours=5, minutes=30)))
+                            
+                        collection1.update_one({update_field_0: document[update_field_0]}, update)
+                        
 
-        # Check if any documents were found in the source collection
-        if result:
-            SuccessItems = result[0]["SuccessItems"]  # Extract the total sum from the result
-            FaliureItems = result[0]["FailureItems"]  # Extract the total sum from the result
+                        if Rnumber > 1:
+                            update["$inc"][update_field_2] = 1
+                            update["$inc"][update_field_4] = 1
+                            update["$set"][update_field_1] = 1  # Update status automically
+                        elif Rnumber == 1:
+                            update["$inc"][update_field_3] = 1
+                            update["$inc"][update_field_4] = 1
+                            update["$set"][update_field_1] = -1  # Update status automically
+                        else:
+                            update["$set"][update_field_1] = 0
+                            
+                        # Update LastUpdatedTime and StartedTime
+                        update["$set"][update_field_5] = start_time 
+                        
+                        current_time = datetime.now(timezone(timedelta(hours=5, minutes=30)))
+                        update["$set"][update_field_6] = current_time
+                        
+                        
+                        
+                        # calculate rate
+                        time_delta = current_time - start_time  # Calculate time difference
+                        success_slots = document.get(update_field_2)
+                        if success_slots > 0 and time_delta.total_seconds() > 0:  # Avoid division by zero
+                            update["$set"][update_field_7] = round (success_slots / time_delta.total_seconds(),3)
+                        else:
+                            update["$set"][update_field_7] = 0.0  # Set rate to 0 if no success or no time elapsed
 
-            # Update the existing document in the target collection
-            update_document_1 = {"$set": {"SuccessItems": SuccessItems}}  # Update only the total_sum field
-            update_document_2 = {"$set": {"FailureItems": FaliureItems}}  # Update only the total_sum field
+                        collection1.update_one({update_field_0: document[update_field_0]}, update)
+                        
+                        rate_info = {
+                                    "MachineNumber": document.get(update_field_0),
+                                    "Status": document.get(update_field_1), 
+                                    "SuccessSlots": document.get(update_field_2),
+                                    "FailureSlots": document.get(update_field_3),
+                                    "LastUpdatedTime": current_time,
+                                    "Rate": document.get(update_field_7),
+                                    "Production": document.get(update_field_9)
+                            }
+                        
+                        # Insert the documents into the collection
+                        collection3.insert_one(rate_info)
+                    
+                
+    
+                        current_time2 = datetime.now(timezone(timedelta(hours=5, minutes=30)))
+                        print("Updated all documents in the 'realtimeinfos','rateinfos' collections!"+current_time2.strftime("%Y-%m-%d %H:%M:%S"))
+                        
+                        sleep(machine_time)
+                        
+                        
 
-            # Perform update using update_one with upsert=False (don't create new documents)
-            update_result_1 = collection2.update_one(target_document, update_document_1, upsert=False)
-            update_result_2 = collection2.update_one(target_document, update_document_2, upsert=False)
-
-            if update_result_1.matched_count == 1:
-                print("Successfully updated total sum in the target collection.")
+        except Exception as e:
+            print(f"Error updating materials: {e}")
+            break
+        
+        except KeyboardInterrupt:
+            print("** User interrupted!**")
+            # Prompt user for confirmation (optional)
+            confirm = input("Do you want to stop (y/n) or restart (r)? ")
+            if confirm.lower() == 'y':
+                print("Stopping program...")
+                break  # Exit the loop
+            elif confirm.lower() == 'r':
+                print("Restarting program...")
+                reset_doc()
+                
             else:
-                print("No document found in the target collection to update.")
+                print("Continuing...")
+
+    
+inputword=input("Do you want to run all machines (a) or a specific machine (s) ")
+if inputword in("A","a"):
+    inputword=input("Do you want to restart (r) or continue (c) all machines ")
+    if inputword in("R","r"):
+            print("All Machines restarted and continue to run...")
+            reset_doc()
+            run_machines()
+    elif inputword in("C","c"):
+            print("All Machines continue to run...")
+            run_machines()
+    else:
+            print("Invalid input. Please enter 'R' or 'C'.")
+            sys.exit()
+            
+elif inputword in("S","s"):
+    inputnumber=input("Enter the machine number to run ")
+    if inputnumber not in("1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25"):
+        print("Invalid input. Please enter a valid machine number.")
+        sys.exit()
+    else:
+        inputtime=input("Enter the time to run the machine ")
+        inputword=input("Do you want to restart (r) or continue (c)machine ")
+        if inputword in("R","r"):
+                    print("Machine restarted and continue to run...")
+                    reset_doc_1(inputnumber)
+                    run_a_machine(inputnumber,int(inputtime))
+        elif inputword in("C","c"):
+                    print("Machine continue to run...")
+                    run_a_machine(inputnumber,int(inputtime))
         else:
-            print("No documents found in the source collection.")
+                    print("Invalid input. Please enter 'R' or 'C'.")
+                    sys.exit()
+        
+    
+else:
+    print("Invalid input. Please enter 'A' or 'S'.")
+    sys.exit()
 
-        for document in collection2.find():
-            update = {"$set": {}}
-            success_items = document.get(update_field_11)
-            failure_items = document.get(update_field_12)
-            update["$set"][update_field_13] = success_items + failure_items
-            if success_items > 0 and (success_items + failure_items) > 0:
-                update["$set"][update_field_14] = round((success_items / (success_items + failure_items)) * 100, 2)
-            else:
-                update["$set"][update_field_14] = 0.0
-            collection2.update_one({"_id": document["_id"]}, update)
-            
-                        
-                        
-            
-        current_time2 = datetime.datetime.utcnow()
-        print("Updated all documents in the 'realtimeinfos','dayinfos','rateinfos' collection!"+current_time2.strftime("%Y-%m-%d %H:%M:%S"))
-        #sleep(MachineTime)
 
-    except Exception as e:
-        print(f"Error updating materials: {e}")
-        break
 
 # Close connection
 client.close()
