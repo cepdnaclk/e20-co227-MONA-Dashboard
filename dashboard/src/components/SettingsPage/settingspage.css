@@ -38,6 +38,21 @@
 }
   
 
+.xbutton_pw{
+    background: 'none';
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    width:35px;
+    height: 25px;    
+    padding: 0.3%;
+    margin-left: 95%;
+
+}
+.xbutton_pw:hover{
+    color: #ff0000;
+    transform: scale(1.05);
+}
+
 .buttons{
     background-color: #ffffff;
     display: flex;
@@ -168,7 +183,7 @@
     height: 200px;
     background-color: #ffffff;
     border: 1px solid #8f8f8f;
-    border-radius: 0px;
+    border-radius: 10px;
     overflow: hidden;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25), 2px 2px 2px rgba(0, 0, 0, 0.05);
     
