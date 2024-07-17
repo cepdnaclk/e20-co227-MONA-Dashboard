@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './Header.css';
 import imagepath from '../images/logo.png';
 import SettingsSharpIcon from '@mui/icons-material/SettingsSharp';
-import Settings from '../components/SettingsPage/settingstabs';
+import { useNavigate } from 'react-router-dom';
 
 
      
@@ -50,22 +50,24 @@ function Logo() {
 
 function Header() {
 
-    
-    const [showSettings, setShowSettings] = useState(false);
+        
+        const navigate = useNavigate();
+        const handleButtonClick = (path) => {
+                navigate(path);
+        }
         
   return (
-    <>
         <header id="header" className="header" >
                 
                 <Logo/> 
                 
                 <Datenow/>
                 
-                <button  onClick={() => setShowSettings(true)} className="settings"><SettingsSharpIcon /></button>
-                       
+                <button onClick={() => handleButtonClick('/settings')} className="settings"><SettingsSharpIcon /></button>
+                
+                
         </header>
-        {showSettings && <Settings onclose={()=> setShowSettings(false)} />}
-        </>
+        
   );
 }
 export default Header;

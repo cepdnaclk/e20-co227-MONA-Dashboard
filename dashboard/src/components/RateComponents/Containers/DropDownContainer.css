@@ -1,0 +1,10 @@
+.drop-down-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 200px;
+    padding-left: 1800px;
+    position: relative;
+    padding-top: 20px;
+    margin: 20px;
+}

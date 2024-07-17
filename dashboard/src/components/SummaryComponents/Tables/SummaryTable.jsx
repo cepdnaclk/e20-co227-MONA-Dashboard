@@ -6,20 +6,9 @@ const SummaryTable = ({ machineNumber }) => {
   // Find the machine object based on machine number
   const machine = JSONDATA.find(item => item.machine_no === machineNumber);
 
-  // Default values for the table
-  const defaultValues = {
-    machine_no: "N/A",
-    machine_name: "N/A",
-    Success_shots: "N/A",
-    failed_shots: "N/A",
-    total_shots: "N/A",
-    Success_percentage: "N/A",
-    failed_percentage: "N/A",
-    production_rate: "N/A"
-  };
+  // Return null if machine is not found (optional, depending on your use case)
+  if (!machine) return null;
 
-  // Use default values if no machine is found
-  const data = machine || defaultValues;
   // Define keys and their corresponding labels
   const keyLabelMap = {
     machine_no: "MACHINE NUMBER",
@@ -42,7 +31,7 @@ const SummaryTable = ({ machineNumber }) => {
           {keys.map((key, idx) => (
             <tr key={idx}>
               <td className="key-column">{keyLabelMap[key]}</td>
-              <td className="value-column" align='center'>{data[key]}</td>
+              <td className="value-column" align='center'>{machine[key]}</td>
             </tr>
           ))}
         </tbody>

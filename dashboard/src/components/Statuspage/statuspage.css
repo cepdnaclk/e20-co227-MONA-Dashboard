@@ -2,83 +2,67 @@
 .card-grid{
         display: grid;
         grid-template-columns: repeat(5, 1fr);
-        grid-row-gap: 15px;
-        grid-column-gap:10px;
-        
+        grid-gap: 10px;
+        height: 88%;
         width: 99%;
-        padding-top: 5px;
-        padding-left: 30px; 
+        padding-top: 10px;
+        padding-left: 30px;
+        overflow: hidden; ;
 }
 .card{
         display: flex;
         flex-direction: column;
         align-items: center;
+        padding: 5px;
         border: 1px solid #ccc;
-        height: 100%;
+        height: 175px;
         overflow: hidden;
         width: 98%;
-        border: 1px solid #b6b6b6;
-        border-radius: 10px;
+        border: 1px solid #000;
+        border-radius: 5px;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 2px 2px 2px rgba(0, 0, 0, 0.05);
 
 }
 
-.statu{
-        height: 20px;
-        cursor: default;
-        display: flex;
-        justify-content: space-between;
-        width:68%;
-        font-weight:bold;
-        color:#fff;
-        font-size: 14px;
-        margin-top: 5px;
-        padding-right: 10px;
-
-
-
-}
 .headrow{
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
-        padding-left: 10px;
-        width: 100%;/*98%*/
+        padding: 5px;
+        width: 98%;
+        /*color: #012970;*/
 }
-.bodyrow{
+.bodyrow1{
         display: flex;
+        flex-direction: row;
         align-items: center;
         justify-content: space-between;
-        width: 100%;/*98%*/
+        margin-bottom: 5px;
+        border: 1px solid #e6e6e6;
+        /*color: #012970;*/
+
+}
+
+
+.statusdot{
+        width:160px;
+        height: 20px;
         border-radius: 10px;
+        cursor: pointer;
+
+
+}
+.lable{
+        width:80px;
+        height:30px;
+        border: 2px solid #ccc;
+        border-radius: 3px;
+        text-align: center;
         padding-top: 5px;
-
+        cursor: pointer;
+        
 }
-
-.lable {
-        content: ""; /* Hide default content */
-        position: absolute;
-        top: -5px; /* Adjust for padding/margin */
-        left: -5px; /* Adjust for padding/margin */
-        width: calc(100% + 10px); /* Add padding to text width */
-        height: calc(100% + 10px); /* Add padding to text height */
-        background-color: white; /* Set background color (optional) */
-        border: 1px solid black; /* Set border */
-        /* Adjust border color and width using existing props if needed */
-        /* border-color: ${props.borderColor || 'black'}; */
-        /* border-width: ${props.borderWidth || 1}px; */
-        box-sizing: border-box; /* Ensure padding adds to box size */
-        z-index: -1; /* Render behind the text */
-        transition: all 0.2s ease-in-out; /* Optional: Add hover effects */
-      }
-      
-.lable:hover {
-        background-color: #bd3e3e; /* Optional: Hover background color */
-}
-
-
-
 .tooltip{
         background-color: #fff;
 

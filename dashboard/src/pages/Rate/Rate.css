@@ -1,0 +1,182 @@
+/* General styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+/* Rate page container */
+.rate-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+    padding: 1px;
+    box-sizing: border-box;
+}
+
+/* Dashboard container */
+.dash-container {
+    width: 100%;
+    max-width: 1000px; 
+    margin-bottom: 2px; 
+    box-sizing: border-box;
+    margin-left: -500px;
+}
+
+/* ButtonGroup container */
+.button-group-container {
+    position: fixed;
+    top: 120px; 
+    left: 160px;
+    width: 80px; 
+    z-index: 10;
+}
+
+/* Grid layout for the rate blocks */
+.rate-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30px, 1fr)); 
+    gap: 1px; 
+    width: 100%;
+}
+
+/* Chart and stats section */
+.rate-charts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 2px; 
+}
+
+.rate-chart {
+    width: 100%;
+    height: 140px; 
+    margin-top: 2px; 
+}
+
+/* Table for recent stats */
+.rate-table {
+    width: 100%;
+    margin-top: 2px; 
+    box-sizing: border-box;
+}
+
+.rate-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.rate-table th, .rate-table td {
+    border: 1px solid #ddd;
+    padding: 1px; 
+    text-align: center;
+    background-color: #fff;
+    font-size: 8px; 
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .rate-grid {
+        grid-template-columns: repeat(auto-fit, minmax(25px, 1fr)); 
+    }
+
+    .rate-chart {
+        height: 100px; 
+    }
+
+    .dash-container {
+        margin-left: 0; 
+    }
+
+    .button-group-container {
+        position: static;
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .rate-grid {
+        grid-template-columns: repeat(auto-fit, minmax(20px, 1fr)); 
+    }
+
+    .rate-chart {
+        height: 80px; 
+    }
+
+    .rate-table th, .rate-table td {
+        padding: 0.5px; 
+    }
+}
+
+/* ButtonGroup CSS */
+.grid-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.button-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20px, 1fr)); 
+    gap: 1px; 
+    width: 100%;
+}
+
+.grid-button {
+    padding: 2px; 
+    border: none;
+    border-radius: 2px; 
+    cursor: pointer;
+    color: #fff;
+    font-size: 7px; 
+}
+
+.grid-button.running {
+    background-color: #28a745;
+}
+
+.grid-button.stopped {
+    background-color: #dc3545;
+}
+
+.grid-button.stucked {
+    background-color: #ffc107;
+}
+
+.status-legend {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 2px; 
+}
+
+.status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1px; 
+    border-radius: 2px; 
+    color: #fff;
+    font-weight: bold;
+    font-size: 7px; 
+}
+
+.status.running {
+    background-color: #28a745;
+}
+
+.status.stopped {
+    background-color: #dc3545;
+}
+
+.status.stucked {
+    background-color: #ffc107;
+}
