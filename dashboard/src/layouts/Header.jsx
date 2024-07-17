@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import './Header.css';
 import imagepath from '../images/logo.png';
 import SettingsSharpIcon from '@mui/icons-material/SettingsSharp';
-import { useNavigate } from 'react-router-dom';
 import Settings from '../components/SettingsPage/settingstabs';
 
 

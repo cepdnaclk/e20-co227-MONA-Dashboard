@@ -30,11 +30,11 @@ const SecondBar = () => {
           <li
             onClick={() => handleButtonClick('/rate/HourlyRate')}
             style={{
-              backgroundColor: location.pathname.startsWith('/rate/') ? '#201F67' : 'inherit',
+              backgroundColor: location.pathname.startsWith('/rate') ? '#201F67' : 'inherit',
             }}
           >
-            <QueryStatsRoundedIcon className='icon' style={{ color: location.pathname.startsWith('/rate/') ? 'white' : 'inherit' }} />
-            <span style={{ color: location.pathname.startsWith('/rate/') ? 'white' : 'inherit' }}>PRODUCTION RATE</span>
+            <QueryStatsRoundedIcon className='icon' style={{ color: location.pathname.startsWith('/rate') ? 'white' : 'inherit' }} />
+            <span style={{ color: location.pathname.startsWith('/rate') ? 'white' : 'inherit' }}>PRODUCTION RATE</span>
           </li>
           <li
             onClick={() => handleButtonClick('/history')}

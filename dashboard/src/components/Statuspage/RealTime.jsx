@@ -1,23 +1,29 @@
 import { useEffect, useState } from "react";
 import './statuspage.css';
 import axios from 'axios';
-/*import { BiSolidUpArrow } from "react-icons/bi";*/
 import { PieChart } from '@mui/x-charts/PieChart';
 import Tooltip from '@mui/material/Tooltip';
 import videold from './load.mp4';
 
 
 function TimeDifference({ TimeString }) {
-    const [timeDifference, setTimeDifference] = useState({ minutes: 0, seconds: 0 });
+    const [timeDifference, setTimeDifference] = useState({ hours :0 ,minutes: 0, seconds: 0 });
 
     useEffect(() => {
         const updateDifference = () => {
             const now = new Date();
             const backendTime = new Date(TimeString);
             const diffMs = now.getTime() - backendTime.getTime();
-            const minutes = Math.floor(diffMs / (1000 * 60));
+            const hours = Math.floor(diffMs / (1000 * 60 * 60));
+            const minutes = Math.floor((diffMs % (1000 * 60*60))/(1000*60));
             const seconds = Math.floor((diffMs % (1000 * 60)) / 1000);
-            setTimeDifference({ minutes, seconds });
+
+            const formatTime = (time) => (time < 10 ? `0${time}` : time);
+
+            setTimeDifference({
+            hours: formatTime(hours),
+            minutes: formatTime(minutes),
+            seconds: formatTime(seconds)});
         };
 
         updateDifference();
@@ -29,7 +35,8 @@ function TimeDifference({ TimeString }) {
     return (
         <div>
             <p>
-                {timeDifference.minutes} m {timeDifference.seconds} s
+                {timeDifference.hours > 0 ? `${timeDifference.hours} h ${timeDifference.minutes} m ` : (timeDifference.minutes > 0 ? `${timeDifference.minutes} m ${timeDifference.seconds} s`: `${timeDifference.seconds} s`)}
+                
             </p>
         </div>
     );
@@ -125,7 +132,7 @@ function RealTime() {
                                 <span>
                                     {realtimeinfo.Status === "-1" ? 'Emergency !' : realtimeinfo.Status === "off" ? 'Inactive' : realtimeinfo.Status === "1" ? 'Active' : realtimeinfo.Status === "0" ? 'Idle' : '?'}
                                 </span>
-                                <span>
+                                <span style={{width:'28%',display:'flex',flexDirection:'column', alignItems:'flex-end',fontFamily:'serif',textTransform:'lowercase'}}>
                                     <TimeDifference TimeString={realtimeinfo.StatusChangedTime} />
                                 </span>
                             </div>

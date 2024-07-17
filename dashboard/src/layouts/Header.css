@@ -19,17 +19,8 @@ I
         cursor: pointer;
         color: #012970;
 }
+     
 
-.logo {
-        line-height: 1;
-        
-}
-        
-@media (min-width: 1200px) {
-        .logo {
-        width: 240px;
-        }
-}
         
 .logo img {
         max-height: 45px;
@@ -37,18 +28,15 @@ I
         margin-top: 1px;
 }
         
-.logo span {
-        font-size: 26px;
-        font-weight: 700;
-        color: #012970;
-        font-family: 'Nunito', sans-serif;
-}
+
 
 .datetime-container {
         display: flex;
         align-items: center;
         margin-top: 5px;
+        /*
         margin-left: 67%;
+        */
         cursor: default;
         
       }
