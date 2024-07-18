@@ -53,9 +53,6 @@ I
       .datetime-container:hover {
         transform: scale(1.1);
       }
-      .datetime-container::first-line{
-        font-size: 2.5em;
-      }
       
       h1 {
         font-size: 1.5em;
@@ -64,7 +61,8 @@ I
 .settings{
         width: 35px;
         height: 35px;
-        margin-top: 2px;    
+        margin-top: 2px; 
+        margin-left:30px;   
         background-color: #fff;
         box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
 
