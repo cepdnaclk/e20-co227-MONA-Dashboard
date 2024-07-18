@@ -31,21 +31,21 @@
     "completed_percentage": 50,
     "tobe_complete":50,
     "time_taken": "1 week",
-    "total_products_made": 40,
+    "total_products_made": 50,
     "target_products": 100,
-    "left_products": 60
+    "left_products": 50
   },
   {
     "product_id": 4,
     "product_name": "Toy4",
     "Number_of_molds_used": 2,
     "molds_used": ["mold12 ", "mold13 "],
-    "completed_percentage": 60,
-    "tobe_complete":40,
+    "completed_percentage": 65,
+    "tobe_complete":45,
     "time_taken": "1 week",
-    "total_products_made": 60,
+    "total_products_made": 65,
     "target_products": 100,
-    "left_products": 40
+    "left_products": 45
   },
   {
     "product_id": 5,
