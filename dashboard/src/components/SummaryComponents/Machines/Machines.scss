@@ -1,33 +1,40 @@
-/* Machines.scss */
 .machinesContainer {
   display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
+  flex-direction: column;
+  gap: 10px;
+
 }
 
 .machine {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 20px;
-  width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 10px;
 }
 
 .moldsUsed {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-top: 10px;
 }
 
 .moldButton {
+  padding: 10px 15px;
   background-color: #007bff;
   color: white;
   border: none;
-  border-radius: 4px;
-  padding: 5px 10px;
+  border-radius: 5px;
   cursor: pointer;
+  
+  &:hover {
+    background-color: #0056b3;
+  }
 }
 
-.moldButton:hover {
-  background-color: #0056b3;
+.notSelected{
+  font-family: sans-serif;
+  padding: 10px;
+  font-weight: 500;
+  margin-top: 10px;
+  align-items: center;
 }

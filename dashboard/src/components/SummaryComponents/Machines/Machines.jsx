@@ -2,25 +2,30 @@ import React from 'react';
 import './Machines.scss';
 import JSONDATA from '../../../product.json';
 
-const Machines = ({ onMoldClick }) => {
+const Machines = ({ selectedProductName, onMoldClick }) => {
+  // Find the selected product based on the selectedProductName prop
+  const selectedProduct = JSONDATA.find(product => product.product_name === selectedProductName);
+
   return (
     <div className='machinesContainer'>
-      {JSONDATA.map((product) => (
-        <div key={product.product_id} className='machine'>
-          <h3>{product.product_name}</h3>
+      {selectedProduct ? (
+        <div key={selectedProduct.product_id} className='machine'>
+          <h3>{selectedProduct.product_name}</h3>
           <div className='moldsUsed'>
-            {product.molds_used.map((mold, idx) => (
+            {selectedProduct.molds_used.map((mold, idx) => (
               <button
                 key={idx}
                 className='moldButton'
-                onClick={() => onMoldClick(mold, product)}
+                onClick={() => onMoldClick(mold, selectedProduct)}
               >
                 {mold}
               </button>
             ))}
           </div>
         </div>
-      ))}
+      ) : (
+        <div className='notSelected'>No product selected</div>
+      )}
     </div>
   );
 };
