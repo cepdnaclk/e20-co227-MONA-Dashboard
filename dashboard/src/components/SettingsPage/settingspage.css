@@ -180,7 +180,6 @@
     transform: scale(1.05);
 }
 
-
 /* General Container */
 .password-container {
     width: 660px; /* Match the width of .machinesettings */
@@ -217,12 +216,19 @@
 
 /* Form Inputs */
 .form-input {
-    width: 150px; /* Match the width of .inputbox */
-    height: 25px;
+    width: 60%; /* Match the width of .inputbox */
+    height: 35px;
     border: 1px solid #d6d6d6;
     border-radius: 5px;
     padding-left: 10px;
     font-size: medium;
+}
+
+/* Error Messages */
+.error {
+    color: red;
+    font-size: small;
+    margin-top: 5px;
 }
 
 /* Submit Button */
@@ -238,13 +244,15 @@
     cursor: pointer;
     width: 100px; /* Reduced width */
     height: 35px; /* Reduced height */
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.25), 2px 2px 2px rgba(0, 0, 0, 0.05);
-    margin: 20px auto 0; /* Centered button */
+    box-shadow: 2px 2px 10px rgba(63, 11, 105, 0.25), 2px 2px 2px rgba(0, 0, 0, 0.05);
+    margin: 35px auto 0; /* Centered button */
     display: block;
+    margin-left: calc(50% + 30px - 50px); /* Move 10px to the right */
+
 }
 
 .submit-button:hover {
     color: #e9eaef;
-    background-color: #2a0b5a;
+    background-color: #350c86;
     transform: scale(1.05);
 }
