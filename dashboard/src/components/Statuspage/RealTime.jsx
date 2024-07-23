@@ -110,7 +110,7 @@ function RealTime() {
             }
         };
 
-        const intervalId = setInterval(fetchData, 500); // Update every 0.5 seconds
+        const intervalId = setInterval(fetchData, 1000); // Update every 0.5 seconds
 
         // Cleanup function to clear the interval when the component unmounts
         return () => clearInterval(intervalId);
@@ -130,7 +130,7 @@ function RealTime() {
             ) : (
 
                 realtimeinfo.map((realtimeinfo) => (
-                    <div key={realtimeinfo.MachineNumber} className="card " style={{ backgroundColor: realtimeinfo.Status === "off" ? '#dddddd' : '#fff' }}>
+                    <div key={realtimeinfo.MachineNumber} className={realtimeinfo.Status==='-1' /*|| realtimeinfo.ErrorPercentage<=(100*(realtimeinfo.FailureSlots/realtimeinfo.TotalSlots))*/?"carderror " : "card"}  style={{ backgroundColor: realtimeinfo.Status === "off" ? '#dddddd' : '' }}>
                         <div className="headrow" style={{ height: '18%', backgroundColor: realtimeinfo.Status === "-1" ? '#cc6666' : realtimeinfo.Status === "off" ? '#ababab' : realtimeinfo.Status === "1" ? '#99cc33' : realtimeinfo.Status === "0" ? '#77ccee' : '#bbb' }} >
                             <h3 style={{ color: realtimeinfo.Status === "off" ? '#888888' : '#012970', cursor: 'default' }}>Machine {realtimeinfo.MachineNumber}
                             </h3>

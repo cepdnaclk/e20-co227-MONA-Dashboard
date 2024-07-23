@@ -80,7 +80,7 @@ def run_machines():
             for document in collection1.find():
                 if document.get(update_field_1)!="off":
                     
-                        Rnumber = choice([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+                        Rnumber = choice([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,11,12])
 
                         update = {"$inc": {},"$set": {}}  # Initialize empty update dictionary
                         

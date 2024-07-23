@@ -44,6 +44,10 @@ const machineInfoSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    ErrorPercentage:{
+        type: String,
+        required: true
+    },
     Info:{
         type: String,
         required: true

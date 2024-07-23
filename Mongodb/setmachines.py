@@ -30,6 +30,7 @@ if(input() == "1234"):
                 "FailureSlots": 0,
                 "TotalSlots": 0,
                 "TargetSlots": 20,
+                "ErrorPercentage": 0,
                 "Rate": 0,
                 "Info":"This is Machine " + str(i+1) + " with MachineName M#" + str(i+1) ,
         }

@@ -56,11 +56,14 @@ function PasswordPage() {
         <div className="machinesettings password-container">
             <h2 style={{ marginLeft: '320px' }}>Change Password</h2>
             <form name="frmChange" onSubmit={handleSubmit}>
-                <div className="pwbox">
+                <div style={{marginTop:'100px'}}>
                     <div className="form-group">
                         <label className="form-label">Current Password</label>
                         <input
                             type="password"
+                            /*new one added here*/
+                            placeholder={'Enter your current password'}
+                            /**/
                             className="form-input"
                             value={currentPassword}
                             onChange={handleCurrentPasswordChange}
@@ -72,6 +75,9 @@ function PasswordPage() {
                         <label className="form-label">New Password</label>
                         <input
                             type="password"
+                            /*new one added here*/
+                            placeholder='Enter your new password'
+                            /**/
                             className="form-input"
                             value={newPassword}
                             onChange={handleNewPasswordChange}
@@ -83,6 +89,9 @@ function PasswordPage() {
                         <label className="form-label">Repeat New Password</label>
                         <input
                             type="password"
+                            /*new one added here*/
+                            placeholder='Repeat your new password'
+                            /**/
                             className="form-input"
                             value={repeatPassword}
                             onChange={handleRepeatPasswordChange}

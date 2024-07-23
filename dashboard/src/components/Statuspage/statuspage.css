@@ -9,6 +9,33 @@
         padding-top: 5px;
         padding-left: 30px; 
 }
+
+@keyframes blink {
+        0% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 1;
+          background-color: #fa04044b;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+.carderror{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border: 1px solid #ccc;
+        height: 100%;
+        overflow: hidden;
+        width: 98%;
+        border: 1px solid #b6b6b6;
+        border-radius: 10px;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 2px 2px 2px rgba(0, 0, 0, 0.05);
+        animation: blink 1s infinite;
+}  
 .card{
         display: flex;
         flex-direction: column;
@@ -20,7 +47,7 @@
         border: 1px solid #b6b6b6;
         border-radius: 10px;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 2px 2px 2px rgba(0, 0, 0, 0.05);
-
+        
 }
 .card:hover{
     transform: scale(1.01);
