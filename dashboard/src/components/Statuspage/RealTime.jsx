@@ -7,23 +7,26 @@ import videold from './load.mp4';
 
 
 function TimeDifference({ TimeString }) {
-    const [timeDifference, setTimeDifference] = useState({ hours :0 ,minutes: 0, seconds: 0 });
+    const [timeDifference, setTimeDifference] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
     useEffect(() => {
         const updateDifference = () => {
             const now = new Date();
             const backendTime = new Date(TimeString);
             const diffMs = now.getTime() - backendTime.getTime();
-            const hours = Math.floor(diffMs / (1000 * 60 * 60));
-            const minutes = Math.floor((diffMs % (1000 * 60*60))/(1000*60));
+            const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+            const hours = Math.floor(diffMs % (1000 * 60 * 60 * 24) / (1000 * 60 * 60));
+            const minutes = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((diffMs % (1000 * 60)) / 1000);
 
             const formatTime = (time) => (time < 10 ? `0${time}` : time);
 
             setTimeDifference({
-            hours: formatTime(hours),
-            minutes: formatTime(minutes),
-            seconds: formatTime(seconds)});
+                days: formatTime(days),
+                hours: formatTime(hours),
+                minutes: formatTime(minutes),
+                seconds: formatTime(seconds)
+            });
         };
 
         updateDifference();
@@ -35,8 +38,12 @@ function TimeDifference({ TimeString }) {
     return (
         <div>
             <p>
-                {timeDifference.hours > 0 ? `${timeDifference.hours} h ${timeDifference.minutes} m ` : (timeDifference.minutes > 0 ? `${timeDifference.minutes} m ${timeDifference.seconds} s`: `${timeDifference.seconds} s`)}
-                
+                {timeDifference.days >= 100 ? `${timeDifference.days} d `
+                    : (timeDifference.days > 0 ? `${timeDifference.days} d ${timeDifference.hours} h `
+                        : (timeDifference.hours > 0 ? `${timeDifference.hours} h ${timeDifference.minutes} m `
+                            : (timeDifference.minutes > 0 ? `${timeDifference.minutes} m ${timeDifference.seconds} s`
+                                : `${timeDifference.seconds} s`)))}
+
             </p>
         </div>
     );
@@ -53,7 +60,7 @@ const PieChartText = ({ x, y, text, color, size }) => (
     </svg>
 );
 
-const PieChartLable = ({ x, y, xb, yb, text, size, color, boxWidth, boxHeight , title}) => (
+const PieChartLable = ({ x, y, xb, yb, text, size, color, boxWidth, boxHeight, title }) => (
     <Tooltip title={title} placement="top" arrow>
         <svg>
             <rect
@@ -132,7 +139,7 @@ function RealTime() {
                                 <span>
                                     {realtimeinfo.Status === "-1" ? 'Emergency !' : realtimeinfo.Status === "off" ? 'Inactive' : realtimeinfo.Status === "1" ? 'Active' : realtimeinfo.Status === "0" ? 'Idle' : '?'}
                                 </span>
-                                <span style={{width:'28%',display:'flex',flexDirection:'column', alignItems:'flex-end',fontFamily:'serif',textTransform:'lowercase'}}>
+                                <span style={{ width: '28%', display: 'flex', flexDirection: 'column', alignItems: 'flex-end', fontFamily: 'serif', textTransform: 'lowercase' }}>
                                     <TimeDifference TimeString={realtimeinfo.StatusChangedTime} />
                                 </span>
                             </div>
@@ -190,32 +197,32 @@ function RealTime() {
 
                                 skipAnimation >
                                 <>
-                                <PieChartText
-                                    x="25%"
-                                    y="45%"
-                                    size={'18px'}
-                                    color={realtimeinfo.Status === 'off' ? 'none' : (realtimeinfo.TargetSlots - realtimeinfo.SuccessSlots) > 0 ? "#f46c00" : '#99cc33'}
-                                    text={realtimeinfo.Status === 'off' ? '' : (realtimeinfo.SuccessSlots / realtimeinfo.TargetSlots * 100).toFixed(1) + " %"}
-                                    style={{ transform: 'translate(-50%, -50%)', fontSize: '15px' }} // Center the text
-                                />
-                                <PieChartText
-                                    x="25%"
-                                    y="55%"
-                                    size='10px'
-                                    color={realtimeinfo.Status === 'off' ? 'none' : (realtimeinfo.TargetSlots - realtimeinfo.SuccessSlots) > 0 ? "#f46c00" : '#99cc33'}
-                                    text={"SLOTS GOAL"}
-                                    style={{ transform: 'translate(-50%, -50%)', fontSize: '10px' }} // Center the text
-                                />
-                                <PieChartText
-                                    x="25%"
-                                    y="65%"
-                                    size='10px'
-                                    color={realtimeinfo.Status === 'off' ? 'none' : (realtimeinfo.TargetSlots - realtimeinfo.SuccessSlots) > 0 ? "#f46c00" : '#99cc33'}
-                                    text={realtimeinfo.Status === 'off' ? "" : realtimeinfo.TargetSlots - realtimeinfo.SuccessSlots > 0 ? (realtimeinfo.TargetSlots - realtimeinfo.SuccessSlots) + " slots behind" : " Target Achieved"}
-                                    style={{ transform: 'translate(-50%, -50%)', fontSize: '10px' }} // Center the text
-                                />
+                                    <PieChartText
+                                        x="25%"
+                                        y="45%"
+                                        size={'18px'}
+                                        color={realtimeinfo.Status === 'off' ? 'none' : (realtimeinfo.TargetSlots - realtimeinfo.SuccessSlots) > 0 ? "#f46c00" : '#99cc33'}
+                                        text={realtimeinfo.Status === 'off' ? '' : (realtimeinfo.SuccessSlots / realtimeinfo.TargetSlots * 100).toFixed(1) + " %"}
+                                        style={{ transform: 'translate(-50%, -50%)', fontSize: '15px' }} // Center the text
+                                    />
+                                    <PieChartText
+                                        x="25%"
+                                        y="55%"
+                                        size='10px'
+                                        color={realtimeinfo.Status === 'off' ? 'none' : (realtimeinfo.TargetSlots - realtimeinfo.SuccessSlots) > 0 ? "#f46c00" : '#99cc33'}
+                                        text={"SLOTS GOAL"}
+                                        style={{ transform: 'translate(-50%, -50%)', fontSize: '10px' }} // Center the text
+                                    />
+                                    <PieChartText
+                                        x="25%"
+                                        y="65%"
+                                        size='10px'
+                                        color={realtimeinfo.Status === 'off' ? 'none' : (realtimeinfo.TargetSlots - realtimeinfo.SuccessSlots) > 0 ? "#f46c00" : '#99cc33'}
+                                        text={realtimeinfo.Status === 'off' ? "" : realtimeinfo.TargetSlots - realtimeinfo.SuccessSlots > 0 ? (realtimeinfo.TargetSlots - realtimeinfo.SuccessSlots) + " slots behind" : " Target Achieved"}
+                                        style={{ transform: 'translate(-50%, -50%)', fontSize: '10px' }} // Center the text
+                                    />
                                 </>
-                                
+
 
                                 <PieChartLable
                                     x="60%"
