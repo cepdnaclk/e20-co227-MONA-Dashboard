@@ -12,16 +12,10 @@ const MachineStatus = ({ machineNumber, status, data }) => {
   return (
     <div
       className="machine-status"
-      style={{ borderColor: statusColors[status] }}
     >
       <div className="header">
-        <span>Machine {machineNumber}</span>
-        <span
-          className="status"
-          style={{ backgroundColor: statusColors[status] }}
-        >
-          {status}
-        </span>
+        <span>Machin {machineNumber}</span>
+        
       </div>
       <HourlyRateChart data={data} />
     </div>

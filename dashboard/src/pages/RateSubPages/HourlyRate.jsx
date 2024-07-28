@@ -66,12 +66,12 @@ const HourlyRate = () => {
         {machineStatusData.map((machine) => (
           <motion.div
             key={machine.machineNumber}
-            className={`machine-block ${machine.status}`}
+            className={`machine-block`}
             onClick={() => handleMachineClick(machine)}
           >
             <motion.div className={`status ${machine.status}`}>
               <motion.div className="Rmachine-number">
-                Machine <br />
+                M <br />
                 {machine.machineNumber}
               </motion.div>
             </motion.div>

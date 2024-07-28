@@ -1,7 +1,8 @@
 .hourly-rate-page {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    grid-gap: 10px;
+    grid-row-gap: 12px;
+    grid-column-gap:10px;
     padding: 10px;
     flex-grow: 1;
     margin-left: 70px;
@@ -9,11 +10,12 @@
 
     .machine-block {
         position: relative;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        padding: 10px;
+        border: 1px solid #b6b6b6;
+        border-radius: 10px;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 2px 2px 2px rgba(0, 0, 0, 0.05);
+        overflow: hidden;
+        width:98%;
         display: flex;
-        align-items: center;
         transition: background-color 0.3s ease;
         cursor: pointer;
 
@@ -33,20 +35,15 @@
         }
 
         &:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transform: scale(1.01);
         }
 
         .status {
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            width: 25%;
-            padding: 5px;
+            justify-content: center;//to change top to center
+            width: 10%;
             text-align: center;
-            border-radius: 3px;
-            margin-right: -10px;
 
             &.operating {
                 background-color: green;
@@ -69,8 +66,9 @@
         }
 
         .Rchart-container {
-            width: 75%;
-            height: 160px;
+            padding: 10px;
+            width: 98%;
+            height: 180px;
         }
 
         .popup {
