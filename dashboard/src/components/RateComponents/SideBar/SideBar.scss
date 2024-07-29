@@ -1,26 +1,42 @@
 .sidebar {
     background-color: rgb(255, 255, 255);
     position: fixed;
-    top: 10;
+    top: 0;
     left: 0;
-    padding: 2rem 3rem;
-    padding-left: 1rem;
-    width: 15rem;
+    padding: 2rem 1rem;
+    width: 3rem;
     height: 100vh;
-    transition: 0.5s all;
+    transition: width 0.5s;
     flex-shrink: 0;
     z-index: 1;
+
+    &:hover {
+        width: 15rem;
+    }
 
     .logoContainer {
         display: flex;
         align-items: center;
         justify-content: space-between;
+        transition: opacity 0.5s, width 0.5s;
 
         h2.title {
             font-size: 25px;
             color: black;
             padding: 0 0 0 1rem;
+            opacity: 0;
         }
+
+        img {
+            transition: right 0.5s, width 0.5s, height 0.5s;
+            width: 3rem;
+            height: 3rem;
+            left: 1rem;
+        }
+    }
+
+    &:hover .logoContainer h2.title {
+        opacity: 1;
     }
 
     .menuIconContainer {
@@ -46,7 +62,7 @@
 
         .menuIcon {
             content: "";
-            background-color: purple;
+            background-color: rgb(255, 255, 255);
             position: relative;
             z-index: 1;
             width: 20px;
@@ -64,7 +80,7 @@
             height: 3px;
             border-radius: 2rem;
             top: 0.4rem;
-            transform: translateY(-0.4rem) rotate(45deg);
+            // transform: translateY(-0.4rem) rotate(45deg);
         }
 
         .menuIcon::before {
@@ -75,7 +91,7 @@
             height: 3px;
             border-radius: 2rem;
             top: -0.4rem;
-            transform: translateY(0.4rem) rotate(-45deg);
+            // transform: translateY(0.4rem) rotate(-45deg);
         }
     }
 
@@ -92,26 +108,29 @@
 
     .contentContainer {
         margin: 7rem 0 0 0;
+        opacity: 0;
+        transition: opacity 0.5s, width 0.5s;
 
         ul {
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: flex-start;
             flex-direction: column;
             list-style: none;
-            padding-left: 1rem;
+            padding-left: 0;
             margin: 0;
 
             li {
-                margin: 1.75rem 0rem;
-                padding: 0.75rem 0rem 0rem -1.0rem;
+                margin: 1.75rem 0;
+                padding: 0.75rem 0;
                 max-width: 14rem;
-                width: max-content;
-                border-radius: 1rem;
+                width: 100%;
+                text-align: center;
 
                 a {
                     display: flex;
                     align-items: center;
+                    justify-content: center;
                     text-decoration: none;
                     color: rgb(71, 71, 71);
                     font-size: 20px;
@@ -127,6 +146,12 @@
 
                     img {
                         margin-right: 1rem;
+                        transition: margin 0.5s;
+                    }
+
+                    span {
+                        transition: opacity 0.5s;
+                        opacity: 0;
                     }
                 }
 
@@ -137,58 +162,16 @@
             }
         }
     }
-}
 
-.sidebar.active {
-    width: 3rem;
-    transition: 0.5s all;
+    &:hover .contentContainer {
+        opacity: 1;
 
-    .logoContainer.active {
-        transition: 0.5s all;
-
-        h2.title {
-            opacity: 0;
+        ul li a span {
+            opacity: 1;
         }
 
-        img {
-            position: relative;
-            right: 12px;
-            width: 55px;
-            height: 55px;
-        }
-    }
-
-    .menuIconContainer.active {
-        transition: 0.5s all;
-
-        .menuIcon {
-            background-color: white;
-        }
-
-        .menuIcon::after {
-            transform: translateY(0rem) rotate(0deg);
-        }
-
-        .menuIcon::before {
-            transform: translateY(0rem) rotate(0deg);
-        }
-    }
-
-    .contentContainer.active {
-        transition: 0.5s all;
-
-        a {
-            span{
-                display: none;
-            }
-        }
-
-        img {
-            width: 40px;
-            height: 40px;
-            padding: 0 0 0 0;
-            transition: 0.5s all;
-            margin-right: 0;
+        ul li a img {
+            margin-right: 1rem;
         }
     }
 }
