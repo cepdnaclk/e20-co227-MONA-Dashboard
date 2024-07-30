@@ -3,58 +3,46 @@
     grid-template-columns: repeat(5, 1fr);
     grid-row-gap: 12px;
     grid-column-gap:10px;
-    padding: 10px;
-    flex-grow: 1;
+    padding: 5px;
     margin-left: 70px;
-    position: relative;
 
     .machine-block {
-        position: relative;
         border: 1px solid #b6b6b6;
-        border-radius: 10px;
+        border-radius: 15px;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 2px 2px 2px rgba(0, 0, 0, 0.05);
         overflow: hidden;
         width:98%;
-        display: flex;
+        height:180px;
         transition: background-color 0.3s ease;
         cursor: pointer;
-
-        &.operating {
-            background-color: #ccffcc; 
-            color: green;
-        }
-
-        &.stuck {
-            background-color: #ffcccc; 
-            color: red;
-        }
-
-        &.stopped {
-            background-color: #d9d9d9; 
-            color: grey;
-        }
 
         &:hover {
             transform: scale(1.01);
         }
 
         .status {
+            
             display: flex;
+            justify-content: space-between;
             flex-direction: column;
-            justify-content: center;//to change top to center
-            width: 10%;
-            text-align: center;
-            height: 100% !important;
+            width: 98% !important;
+            height: 1% !important;
+            padding-top: 5px ;
+            padding-right: 5px;
+            padding-left: 5px;
 
-            .Rmachine-number {
-                font-size: 14px;
+            .Smachine {
+                height: 20px;
+                width: 20px;
+                border-radius: 10px;
             }
         }
 
         .Rchart-container {
-            padding: 5px;
-            width: 100%;
-            height: 180px;
+           
+            width: 95%;
+            height: 90%;
+            margin-top: 6%;
         }
 
         .popup {

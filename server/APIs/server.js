@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const machineInfo = require('../models/machineInfo');
-const dayInfo = require('../models/dayinfo');
+const rateInfo = require('../models/rateinfo');
 
 const app = express();
 app.use(cors());
@@ -23,10 +23,11 @@ app.get('/machineinfo', async (req, res) => {
         .catch(err => res.json('Error: ' + err))
 })
         
-app.get('/dayinfo', async (req, res) => {
 
-        dayInfo.find()
-        .then(users1 => res.json(users1))
+app.get('/rateinfo', async (req, res) => {
+        
+        rateInfo.find()
+        .then(users3 => res.json(users3))
         .catch(err => res.json('Error: ' + err))
 })
 
