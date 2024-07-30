@@ -220,7 +220,12 @@ function RealTime() {
                                         color={realtimeinfo.Status === 'off' ? 'none' : (realtimeinfo.TargetSlots - realtimeinfo.SuccessSlots) > 0 ? "#f46c00" : '#99cc33'}
                                         text={realtimeinfo.Status === 'off' ? "" : realtimeinfo.TargetSlots - realtimeinfo.SuccessSlots > 0 ? (realtimeinfo.TargetSlots - realtimeinfo.SuccessSlots) + " slots behind" : " Target Achieved"}
                                         style={{ transform: 'translate(-50%, -50%)', fontSize: '10px' }} // Center the text
-                                    />
+                                        
+                                    >
+                                    <div>
+                                    </div>
+                                    </PieChartText>
+
                                 </>
 
 
