@@ -2,13 +2,34 @@ import React, { useState, useEffect, useRef } from "react";
 import HourlyRateChart from "../../components/RateComponents/HourlyRate/HourlyRateChart";
 import { machineStatusData } from "../../components/RateComponents/Data/rate_data";
 import { productProgressData } from "../../components/RateComponents/Data/product_data";
-import "./HourlyRate.scss"; 
+import "./HourlyRate.scss";
 import Header from "../../layouts/Header";
 import SecondBar from "../../layouts/SecondBar";
 import Sidebar from "../../components/RateComponents/SideBar/SideBar";
 import { motion } from "framer-motion";
+import axios from "axios";
 
 const HourlyRate = () => {
+  const [realtimeinfo, setMachines] = useState([]); // Use clear variable name
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://localhost:8000/machineinfo");
+        setMachines(
+          response.data.sort((a, b) => a.MachineNumber - b.MachineNumber)
+        );
+      } catch (error) {
+        console.error("Error fetching machine data:", error);
+      }
+    };
+
+    const intervalId = setInterval(fetchData, 1000); // Update every 0.5 seconds
+
+    // Cleanup function to clear the interval when the component unmounts
+    return () => clearInterval(intervalId);
+  }, []); // Empty dependency array to fetch data only once on mount
+
   const [selectedMachine, setSelectedMachine] = useState(null);
   const [isClosing, setIsClosing] = useState(false);
   const centralBlockRef = useRef(null);
@@ -23,7 +44,7 @@ const HourlyRate = () => {
         setTimeout(() => {
           setSelectedMachine(null);
           setIsClosing(false);
-        }, 100); 
+        }, 100);
       }
     };
 
@@ -62,23 +83,40 @@ const HourlyRate = () => {
       <SecondBar />
       <Sidebar />
 
-      <div className="hourly-rate-page">
-        {machineStatusData.map((machine) => (
+      <div className={`hourly-rate-page ${selectedMachine ? "blurred" : ""}`}>
+        {realtimeinfo.map((realtimeinfo) => (
           <motion.div
-            key={machine.machineNumber}
+            key={realtimeinfo.MachineNumber}
             className={`machine-block`}
-            onClick={() => handleMachineClick(machine)}
+            // onClick={() => handleMachineClick(machine)}
           >
-            <motion.div className={`status ${machine.status}`}>
+            <motion.div
+              className={`status`}
+              style={{
+                height: "18%",
+                backgroundColor:
+                  realtimeinfo.Status === "-1"
+                    ? "#cc6666"
+                    : realtimeinfo.Status === "off"
+                    ? "#ababab"
+                    : realtimeinfo.Status === "1"
+                    ? "#99cc33"
+                    : realtimeinfo.Status === "0"
+                    ? "#77ccee"
+                    : "#bbb",
+              }}
+            >
               <motion.div className="Rmachine-number">
                 M <br />
-                {machine.machineNumber}
+                {realtimeinfo.MachineNumber}
               </motion.div>
             </motion.div>
             <motion.div className="Rchart-container">
-              <HourlyRateChart data={machine.data} />
+              {/* <HourlyRateChart data={machine.data} /> */}
             </motion.div>
-            <motion.div className="popup">Status: {machine.status}</motion.div>
+            <motion.div className="popup">
+              Status: {realtimeinfo.Status}
+            </motion.div>
           </motion.div>
         ))}
 

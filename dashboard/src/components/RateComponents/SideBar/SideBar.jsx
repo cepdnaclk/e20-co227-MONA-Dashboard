@@ -16,8 +16,8 @@ const SideBar = () => {
   return (
     <div className="sidebar">
       <div className="logoContainer">
-        <img src={RateImage} alt="RateImage" className="logo" />
-        <h2 className="title">Production Rate</h2>
+        {/* <img src={RateImage} alt="RateImage" className="logo" />
+        <h2 className="title">Production Rate</h2> */}
       </div>
 
       <div className="menuIconContainer">

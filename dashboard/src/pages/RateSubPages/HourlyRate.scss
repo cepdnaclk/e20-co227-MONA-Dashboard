@@ -44,21 +44,7 @@
             justify-content: center;//to change top to center
             width: 10%;
             text-align: center;
-
-            &.operating {
-                background-color: green;
-                color: white;
-            }
-
-            &.stuck {
-                background-color: red;
-                color: white;
-            }
-
-            &.stopped {
-                background-color: grey;
-                color: white;
-            }
+            height: 100% !important;
 
             .Rmachine-number {
                 font-size: 14px;
@@ -66,8 +52,8 @@
         }
 
         .Rchart-container {
-            padding: 10px;
-            width: 98%;
+            padding: 5px;
+            width: 100%;
             height: 180px;
         }
 
@@ -90,6 +76,8 @@
             display: block;
         }
     }
+
+   
 
     .central-block {
         position: absolute;
@@ -133,6 +121,7 @@
             text-align: center;
             border-radius: 3px;
             margin-bottom: 10px;
+            height:300px;
 
             &.operating {
                 background-color: green;
@@ -208,3 +197,4 @@
         }
     }
 }
+

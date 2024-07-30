@@ -1,50 +1,62 @@
 .sidebar {
     background-color: rgb(255, 255, 255);
     position: fixed;
-    top: 0;
-    left: 0;
+    top: 28%;
+    left: -1%;
     padding: 2rem 1rem;
-    width: 3rem;
-    height: 100vh;
+    width: 4.5rem;
+    height: 60vh;
     transition: width 0.5s;
     flex-shrink: 0;
     z-index: 1;
+    opacity: 0.5;
+    border: 2px solid lightgrey;
+    border-radius: 12px;
 
     &:hover {
-        width: 15rem;
-    }
-
-    .logoContainer {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        transition: opacity 0.5s, width 0.5s;
-
-        h2.title {
-            font-size: 25px;
-            color: black;
-            padding: 0 0 0 1rem;
-            opacity: 0;
-        }
-
-        img {
-            transition: right 0.5s, width 0.5s, height 0.5s;
-            width: 3rem;
-            height: 3rem;
-            left: 1rem;
-        }
-    }
-
-    &:hover .logoContainer h2.title {
+        width: 13rem;
         opacity: 1;
+            padding-left: -3rem;
+
+        ul {
+            padding-right: 3rem;
+
+        }
     }
+
+    //  .logoContainer {
+    //     display: flex;
+    //     align-items: center;
+    //     justify-content: space-between;
+    //     transition: opacity 0.5s, width 0.5s;
+
+
+    // h2.title {
+    //     font-size: 25px;
+    //     color: black;
+    //     padding: 0 0 0 0rem;
+    //     opacity: 1;
+    //         background-color: purple;
+    // }
+
+    //     img {
+    //         transition: right 0.5s, width 0.5s, height 0.5s;
+    //         width: 3rem;
+    //         height: 3rem;
+    //         left: 1rem;
+    //     }
+    // }
+
+    // &:hover .logoContainer h2.title {
+    //     opacity: 1;
+    // }
 
     .menuIconContainer {
         content: "";
         background-color: purple;
         position: absolute;
         right: calc(-35px / 2);
-        top: calc(9rem / 1.15);
+        top: -20px;
         width: 35px;
         height: 35px;
         border-radius: 2rem;
@@ -108,7 +120,7 @@
 
     .contentContainer {
         margin: 7rem 0 0 0;
-        opacity: 0;
+        opacity: 1;
         transition: opacity 0.5s, width 0.5s;
 
         ul {
@@ -117,13 +129,13 @@
             justify-content: flex-start;
             flex-direction: column;
             list-style: none;
-            padding-left: 0;
+            // padding-left: 3rem;
             margin: 0;
 
             li {
-                margin: 1.75rem 0;
-                padding: 0.75rem 0;
-                max-width: 14rem;
+                margin: 0.0rem 0rem;
+                padding: 1.75rem 0;
+                max-width: 15rem;
                 width: 100%;
                 text-align: center;
 
@@ -135,20 +147,23 @@
                     color: rgb(71, 71, 71);
                     font-size: 20px;
                     font-weight: bold;
-                    padding: 0.75rem;
+                    padding: 0rem;
+                    padding-left: 0.5rem;
                     width: 100%;
                     transition: background-color 0.25s, color 0.25s;
 
                     &:hover {
                         background-color: rgb(196, 196, 196);
                         color: rgb(255, 255, 255);
+                        
                     }
 
                     img {
-                        margin-right: 1rem;
+                        margin-right: 0rem;
                         transition: margin 0.5s;
+                        padding-left: 3rem;
+                        size: 30px 30px;
                     }
-
                     span {
                         transition: opacity 0.5s;
                         opacity: 0;

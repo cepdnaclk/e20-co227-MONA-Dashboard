@@ -3,7 +3,7 @@ const generateHourlyRateData = () => {
   for (let i = 1; i <= 24; i++) {
     data.push({
       hour: i.toString().padStart(2, "0"),
-      rate: Math.floor(Math.random() * 100),
+      rate: Math.floor(Math.random() * 50),
     });
   }
   return data;
