@@ -16,6 +16,7 @@ const SideBar = () => {
   return (
     <div className="sidebar">
       <div className="logoContainer">
+        {/* Uncomment and use if needed */}
         {/* <img src={RateImage} alt="RateImage" className="logo" />
         <h2 className="title">Production Rate</h2> */}
       </div>
@@ -29,11 +30,21 @@ const SideBar = () => {
         <ul>
           <li
             className={location.pathname === "/rate/HourlyRate" ? "active" : ""}
+            onMouseEnter={(e) => e.currentTarget.classList.add("hovered")}
+            onMouseLeave={(e) => e.currentTarget.classList.remove("hovered")}
           >
             <a onClick={() => handleButtonClick("/rate/HourlyRate")}>
               <img src={HourlyImage} alt="HourlyImage" />
               <span>Hourly Rate</span>
             </a>
+            <ul className="submenu">
+              <li onClick={() => handleButtonClick("/rate/HourlyRate")}>
+                <a>Hourly Rate</a>
+              </li>
+              <li onClick={() => handleButtonClick("/rate/ProductProgress")}>
+                <a>Production Progress</a>
+              </li>
+            </ul>
           </li>
 
           <li
@@ -46,13 +57,6 @@ const SideBar = () => {
               <span>Product Progress</span>
             </a>
           </li>
-
-          {/* <li className={location.pathname === "/rate" ? "active" : ""}>
-            <a onClick={() => handleButtonClick('/rate')}>
-              <img src={RateImage} alt="RateImage" />
-              <span>Production Rate</span>
-            </a>
-          </li> */}
         </ul>
       </div>
     </div>

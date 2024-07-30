@@ -8,7 +8,7 @@ import {
 
 import Header from "../../layouts/Header";
 import SecondBar from "../../layouts/SecondBar";
-import SideBar from "../../components/RateComponents/SideBar/SideBar";
+// import SideBar from "../../components/RateComponents/SideBar/SideBar";
 import "./ProductProgress.scss";
 
 const ProductProgress = () => {
@@ -16,7 +16,7 @@ const ProductProgress = () => {
     <>
       <Header />
       <SecondBar />
-      <SideBar />
+      {/* <SideBar /> */}
 
       <div className="product-progress-page">
         {productProgressData.map((product) => (

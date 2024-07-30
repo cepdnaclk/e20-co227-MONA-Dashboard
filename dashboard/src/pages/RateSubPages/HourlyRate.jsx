@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import HourlyRateChart from "../../components/RateComponents/HourlyRate/HourlyRateChart";
-import { machineStatusData } from "../../components/RateComponents/Data/rate_data";
 import { productProgressData } from "../../components/RateComponents/Data/product_data";
 import "./HourlyRate.scss";
 import Header from "../../layouts/Header";
 import SecondBar from "../../layouts/SecondBar";
-import Sidebar from "../../components/RateComponents/SideBar/SideBar";
+// import Sidebar from "../../components/RateComponents/SideBar/SideBar";
 import { motion } from "framer-motion";
 import axios from "axios";
 
@@ -81,7 +80,7 @@ const HourlyRate = () => {
     <>
       <Header />
       <SecondBar />
-      <Sidebar />
+      {/* <Sidebar /> */}
 
       <div className={`hourly-rate-page ${selectedMachine ? "blurred" : ""}`}>
         {realtimeinfo.map((realtimeinfo) => (

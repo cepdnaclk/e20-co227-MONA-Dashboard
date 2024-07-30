@@ -5,7 +5,7 @@
     grid-column-gap:10px;
     padding: 10px;
     flex-grow: 1;
-    margin-left: 70px;
+    // margin-left: 70px;
     position: relative;
 
     .machine-block {
@@ -69,7 +69,6 @@
             color: white;
             border-radius: 3px;
             white-space: nowrap;
-            z-index: 1;
         }
 
         &:hover .popup {
