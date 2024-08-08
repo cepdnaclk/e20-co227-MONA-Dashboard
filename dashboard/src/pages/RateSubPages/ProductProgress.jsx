@@ -1,22 +1,20 @@
 import React from "react";
 import ProductProgressChart from "../../components/RateComponents/ProductProgress/ProductProgressChart";
-
 import {
   productProgressData,
   calculateOverallProgress,
 } from "../../components/RateComponents/Data/product_data";
-
 import Header from "../../layouts/Header";
 import SecondBar from "../../layouts/SecondBar";
-// import SideBar from "../../components/RateComponents/SideBar/SideBar";
 import "./ProductProgress.scss";
+import ProductProgressBar from "../../components/RateComponents/ProductProgress/ProgressBar";
+import BarGraph from "../../components/RateComponents/ProductProgress/BarGraph";
 
 const ProductProgress = () => {
   return (
     <>
       <Header />
       <SecondBar />
-      {/* <SideBar /> */}
 
       <div className="product-progress-page">
         {productProgressData.map((product) => (
@@ -24,8 +22,14 @@ const ProductProgress = () => {
             <div className="product-info">
               <div className="product-title">{product.productName}</div>
               <div className="product-overall-progress">
-                Overall Progress: {calculateOverallProgress(product.machines)}%
+                <span>Overall Progress:</span>
+                <div className="progress-bar">
+                  <ProductProgressBar />
+                </div>
               </div>
+            </div>
+            <div className="bar-graph">
+              <BarGraph  />
             </div>
             <div className="Pchart-container">
               <ProductProgressChart data={product.machines} />

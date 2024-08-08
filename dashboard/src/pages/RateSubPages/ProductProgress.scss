@@ -4,20 +4,23 @@
     gap: 20px;
     padding: 20px;
     margin-left: 0px;
+    overflow-y: scroll;
+    height: 980px;
 }
 
 .product-block {
     background-color: #fef6ff;
     border: 1px solid #ddd;
-    padding: 20px;
+    padding: 10px;
     border-radius: 8px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s, box-shadow 0.3s;
     cursor: pointer;
+    height: fit-content;
 }
 
 .product-block:hover {
@@ -37,12 +40,23 @@
 }
 
 .product-overall-progress {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    left: 0;
+    width: 100%;
     font-size: 16px;
     color: #333;
 }
 
+.progress-bar {
+    flex-grow: 1;
+    margin-left: 10px;
+    width: 100%;
+}
+
 .Pchart-container {
     width: 100%;
-    height: 300px;
-    margin-top: 20px;
+    margin-top: 0px;
+    margin-left: -30px;
 }
