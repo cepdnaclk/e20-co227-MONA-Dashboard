@@ -15,8 +15,7 @@
         overflow: hidden;
         width:98%;
         height:180px;
-        transition: background-color 0.3s ease;
-        cursor: pointer;
+        cursor: pointer !important;
 
         &:hover {
             transform: scale(1.01);
@@ -45,6 +44,7 @@
             width: 95%;
             height: 90%;
             margin-top: 6%;
+            cursor: pointer !important;
         }
 
         .popup {
