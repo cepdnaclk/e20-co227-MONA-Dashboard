@@ -1,84 +1,46 @@
-import React, { useState } from "react";
-import { Line } from "react-chartjs-2";
-import { productProgressData } from "../Data/product_data"; // Adjust the import path as needed
+import * as React from "react";
+import { LineChart } from "@mui/x-charts/LineChart";
 
-const ProductProgressChart = ({ productData }) => {
-  const [selectedDataset, setSelectedDataset] = useState(0);
+export default function BasicLineChart() {
+  const seriesData = [
+    [0, 0.5, 0.75, 1.5, 1.25, 2, 2.5, 3, 3.5],
+    [0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2],
+    [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8],
+    [0, 0.9, 1.8, 2.7, 2.8, 2.9, 3.5, 3.6, 3.7],
+  ];
 
-  // Ensure that the selected product and machines are defined before accessing them
-  const selectedProduct = productData[selectedDataset];
-  if (
-    !selectedProduct ||
-    !selectedProduct.machines ||
-    selectedProduct.machines.length === 0
-  ) {
-    return <div>No product data available for the selected part.</div>;
-  }
-
-  const selectedMachines = selectedProduct.machines.filter(
-    (machine) => machine.data && machine.data.length > 0
+  const totalSeries = seriesData[0].map((_, index) =>
+    seriesData.reduce((sum, series) => sum + series[index], 0)
   );
-
-  if (selectedMachines.length === 0) {
-    return <div>No machine data available for the selected part.</div>;
-  }
-
-  // Create totalSeries by summing corresponding elements across all machines
-  const totalSeries = selectedMachines[0].data.map((_, index) =>
-    selectedMachines.reduce(
-      (sum, machine) => sum + (machine.data[index] || 0),
-      0
-    )
-  );
-
-  const datasets = selectedMachines.map((machine, idx) => ({
-    label: `Machine ${idx + 1}`,
-    data: machine.data.map((arr) => arr.reduce((acc, val) => acc + val, 0)),
-    borderColor: ["blue", "green", "orange", "purple"][idx % 4],
-  }));
-
-  datasets.push({
-    label: "Total",
-    data: totalSeries,
-    borderColor: "red",
-  });
-
-  const chartData = {
-    labels: [0, 3, 6, 9, 12, 15, 18, 21, 24],
-    datasets,
-  };
-
-  const chartOptions = {
-    plugins: {
-      legend: {
-        display: true,
-      },
-    },
-    responsive: true,
-    maintainAspectRatio: false,
-  };
 
   return (
-    <div className="progress">
-      <div className="part-buttons">
-        {productData.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setSelectedDataset(index)}
-            style={{ margin: "10px" }}
-          >
-            Part {index + 1}
-          </button>
-        ))}
-      </div>
-      <div
-        className="chart-container"
-        style={{ width: "530px", height: "400px" }}
-      >
-        <Line data={chartData} options={chartOptions} />
-      </div>
-    </div>
+    <LineChart
+      xAxis={[{ data: [0, 3, 6, 9, 12, 15, 18, 21, 24] }]}
+      series={[
+        {
+          data: seriesData[0],
+          label: "Machine 1",
+        },
+        {
+          data: seriesData[1],
+          label: "Machine 2",
+        },
+        {
+          data: seriesData[2],
+          label: "Machine 3",
+        },
+        {
+          data: seriesData[3],
+          label:"Machine 4",
+        },
+        {
+          data: totalSeries,
+          label: "Total",
+          color: "red", // Optional: Specify a color for the total series
+        },
+      ]}
+      width={390}
+      height={350}
+    />
   );
-};
-
-export default ProductProgressChart;
+}

@@ -9,10 +9,9 @@
 }
 
 .product-block {
- 
     background-color: #fef6ff;
     border: 1px solid #ddd;
-    padding: 3px;
+    padding: 10px;
     border-radius: 8px;
     display: flex;
     flex-direction: column;
@@ -30,7 +29,6 @@
 }
 
 .product-info {
-    margin-top: 10px;
     text-align: center;
     margin-bottom: 20px;
 }
@@ -60,5 +58,5 @@
 .Pchart-container {
     width: 100%;
     margin-top: 0px;
-    margin-left: 10px;
+    margin-left: -30px;
 }

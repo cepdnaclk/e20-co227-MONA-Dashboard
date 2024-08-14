@@ -24,18 +24,12 @@ const ProductProgress = () => {
               <div className="product-overall-progress">
                 <span>Overall Progress:</span>
                 <div className="progress-bar">
-                  <ProductProgressBar
-                    progress={calculateOverallProgress(product.machines)}
-                  />
+                  <ProductProgressBar />
                 </div>
               </div>
             </div>
             <div className="bar-graph">
-              <BarGraph
-                data={product.machines.map((machine) =>
-                  calculateOverallProgress([machine])
-                )}
-              />
+              <BarGraph  />
             </div>
             <div className="Pchart-container">
               <ProductProgressChart data={product.machines} />

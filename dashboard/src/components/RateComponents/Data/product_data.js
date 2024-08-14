@@ -1,44 +1,48 @@
-export const generateRandomData = () => {
-  const machines = [
-    { part: "part1", machineCount: 3 },
-    { part: "part2", machineCount: 1 },
-    { part: "part3", machineCount: 1 },
-    { part: "part4", machineCount: 2 },
-    { part: "part5", machineCount: 1 },
-  ];
+export const productProgressData = [
+  {
+    productName: "Product 1",
+    machines: [
+      { machineNumber: 1, progress: 30 },
+      { machineNumber: 2, progress: 50 },
+      { machineNumber: 3, progress: 60 },
+      { machineNumber: 4, progress: 80 },
+    ],
+  },
+  {
+    productName: "Product 2",
+    machines: [
+      { machineNumber: 3, progress: 70 },
+      { machineNumber: 4, progress: 40 },
+    ],
+  },
+  {
+    productName: "Product 3",
+    machines: [
+      { machineNumber: 5, progress: 60 },
+      { machineNumber: 6, progress: 90 },
+    ],
+  },
+  {
+    productName: "Product 4",
+    machines: [
+      { machineNumber: 7, progress: 20 },
+      { machineNumber: 8, progress: 80 },
+    ],
+  },
+  {
+    productName: "Product 5",
+    machines: [
+      { machineNumber: 9, progress: 10 },
+      { machineNumber: 10, progress: 100 },
+    ],
+  },
+];
 
-  const generateDataForPart = (machineCount) => {
-    const data = [];
-    for (let i = 0; i < machineCount; i++) {
-      const machineData = Array.from({ length: 9 }, () => Math.random() * 100); // Generate random progress data between 0 and 100
-      data.push(machineData);
-    }
-    return data;
-  };
-
-  const products = Array.from({ length: 3 }, (_, i) => ({
-    productName: `Product ${i + 1}`,
-    machines: machines.map(({ part, machineCount }) => ({
-      part: `${part}-Product${i + 1}`,
-      data: generateDataForPart(machineCount),
-    })),
-  }));
-
-  console.log("Generated Products Data:", products); // Debug log to check the structure of generated data
-
-  return products;
-};
-
-export const productProgressData = generateRandomData();
-
+// Function to calculate overall progress
 export const calculateOverallProgress = (machines) => {
-  const totalProgress = machines.reduce((total, machine) => {
-    const machineProgress = machine.data.flat();
-    const averageProgress =
-      machineProgress.reduce((sum, value) => sum + value, 0) /
-      machineProgress.length;
-    return total + averageProgress;
-  }, 0);
-
-  return totalProgress / machines.length;
+  const totalProgress = machines.reduce(
+    (sum, machine) => sum + machine.progress,
+    0
+  );
+  return (totalProgress / machines.length).toFixed(2); 
 };

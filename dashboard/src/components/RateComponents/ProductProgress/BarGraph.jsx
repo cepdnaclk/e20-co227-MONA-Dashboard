@@ -4,15 +4,13 @@ import { BarChart } from "@mui/x-charts/BarChart";
 export default function BasicBars() {
   return (
     <BarChart
-      xAxis={[
-        { scaleType: "band", data: ["Part 1", "Part 2", "Part 3", "Part 4","Part 5"] },
-      ]}
+      xAxis={[{ scaleType: "band", data: ["Tower 1", "Tower 2", "Tower 3"] }]}
       series={[
-        { data: [1,3,4,1,1], label: "Machine 2" },
-        { data: [2,2,2,3,3], label: "Machine 1" },
-        { data: [3,4,2,1,4], label: "Machine 3" },
+        { data: [4], label: "Tower 1" },
+        { data: [3], label: "Tower 2" },
+        { data: [6], label: "Tower 3" },
       ]}
-      width={650}
+      width={500}
       height={300}
     />
   );
