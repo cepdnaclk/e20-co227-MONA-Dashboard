@@ -252,7 +252,7 @@ function RealTime() {
                                     size="15px"
                                     title="Material"
                                     color={realtimeinfo.Status === 'off' ? '#888888' : "black"}
-                                    text={realtimeinfo.Material}
+                                    text={realtimeinfo.Part}
                                     borderWidth={1} // Set default border width (optional)
                                     boxWidth={'16%'} // Adjust for desired text box width
                                     boxHeight={"14%"} // Adjust for desired text box height

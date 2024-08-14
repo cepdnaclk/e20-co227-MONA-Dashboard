@@ -16,6 +16,10 @@ const machineInfoSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    Part: {
+        type: String,
+        required: true
+    },
     Status: {
         type: String,
         required: true
