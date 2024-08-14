@@ -1,0 +1,16 @@
+.progress{
+    align-items: center;
+    justify-items: center;
+    .part-buttons{
+        display: flex;
+        flex-direction: row;
+        justify-content:flex-start;
+        align-items: center;
+
+        .buttonss{
+            font-size: smaller;
+            background-color: aquamarine;
+        }
+    }
+
+}
