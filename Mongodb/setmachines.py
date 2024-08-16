@@ -22,6 +22,7 @@ if(input() == "1234"):
                 "MachineName": f"M#{i+1:03d}",
                 "Material": "NA",  # Set to "NA" or your default material
                 "Production": "NA",  # Set to "NA" or your default production
+                "Part": "NA",
                 "Status": 0,
                 "StartedTime": None,  # Can be set to datetime.datetime.now() if needed
                 "LastUpdatedTime": None,
@@ -53,7 +54,7 @@ if(input() == "1234"):
         print("Material field updated with random values for all documents in the 'realtimeinfos' collection!")
         
         # List of materials
-        production = ['Production I','Production II','Production III','Production IV','Production V']
+        production = ['Production I','Production II','Production III']
 
         # Update all documents with random material
         for document in collection1.find():
@@ -61,6 +62,18 @@ if(input() == "1234"):
                 collection1.update_one({"_id": document["_id"]}, update)
 
         print("Production field updated with random values for all documents in the 'realtimeinfos' collection!")
+        
+        # List of materials
+        part = ['Part I', 'Part II', 'Part III', 'Part IV', 'Part V']
+
+        # Update all documents with random material
+        for document in collection1.find():
+                update = {"$set": {"Part": choice(part)}}
+                collection1.update_one({"_id": document["_id"]}, update)
+
+        print("Part field updated with random values for all documents in the 'realtimeinfos' collection!")
+        
+        
 
 else:
         print("You have entered the wrong code")

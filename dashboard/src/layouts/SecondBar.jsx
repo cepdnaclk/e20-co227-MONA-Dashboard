@@ -37,7 +37,7 @@ const SecondBar = () => {
                 color: location.pathname === "/status" ? "white" : "inherit",
               }}
             >
-              STATUS
+              MACHINE STATUS
             </span>
           </li>
           <li
