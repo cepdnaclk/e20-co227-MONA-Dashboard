@@ -73,7 +73,8 @@ const HourlyRate = () => {
                 }
                 acc[timeKey].push({
                     time: lastUpdatedTime,
-                    rate: rate.SuccessSlots
+                    success: rate.SuccessSlots,
+                    faliure: rate.FailureSlots
                 });
     
                 return acc;
@@ -93,12 +94,16 @@ const HourlyRate = () => {
                     const timeDifferenceInMinutes = lastMinute - firstMinute;
     
                     if (timeDifferenceInMinutes !== 0) {  // To avoid division by zero
-                        const rateDifference = lastEntry.rate - firstEntry.rate; // Difference between first and last rate
+                        const rateDifference = lastEntry.success - firstEntry.success; // Difference between first and last rate
                         const adjustedRate =((rateDifference*60) / (timeDifferenceInMinutes)).toFixed(2); // Adjust by time difference
+                        
+                        const rateDifference1 = lastEntry.faliure - firstEntry.faliure; // Difference between first and last rate
+                        const adjustedRate1 =((rateDifference1*60) / (timeDifferenceInMinutes)).toFixed(2); // Adjust by time difference
     
                         data.push({
                             time: `${time}h`, // Time formatted as HH:00
-                            rate: parseFloat(adjustedRate),
+                            success: parseFloat(adjustedRate),
+                            faliure: parseFloat(adjustedRate1),
                         });
                     }
                 }
@@ -114,7 +119,11 @@ const HourlyRate = () => {
                 if (!acc[timeKey]) {
                     acc[timeKey] = [];
                 }
-                acc[timeKey].push(rate.SuccessSlots);
+                acc[timeKey].push({
+                    time: lastUpdatedTime,
+                    success: rate.SuccessSlots,
+                    faliure: rate.FailureSlots
+                });
     
                 return acc;
             }, {});
@@ -127,10 +136,12 @@ const HourlyRate = () => {
             timeKeys.forEach((time) => {
                 const rates = groupedData[time];
                 if (rates.length > 1) {
-                    const rateDifference = rates[rates.length - 1] - rates[0]; // Difference between first and last rate
+                    const successDifference = rates[rates.length - 1].success - rates[0].success; // Difference between first and last rate
+                    const faliureDifference = rates[rates.length - 1].faliure - rates[0].faliure;
                     data.push({
                         time: time, // Time formatted as HH:MM
-                        rate: rateDifference,
+                        success: successDifference,
+                        faliure: faliureDifference,
                     });
                 }
             });
