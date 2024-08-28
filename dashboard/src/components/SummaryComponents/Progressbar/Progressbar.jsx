@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactApexChart from 'react-apexcharts';
 
-const Progressbar = ({ title, value }) => {
+const Progressbar = ({ title, value, gradientFrom, gradientTo }) => {
   const options = {
     series: [value],  // Use the value prop here
     chart: {
-      height: 350,
+      height: '100%', // Set height to 100%
+      width: '100%',  // Set width to 100%
       type: 'radialBar',
       toolbar: {
         show: true,
@@ -29,7 +30,7 @@ const Progressbar = ({ title, value }) => {
           },
         },
         track: {
-          background: '#fff',
+          background: '#e0e0e0',  // Track color
           strokeWidth: '67%',
           dropShadow: {
             enabled: true,
@@ -64,8 +65,8 @@ const Progressbar = ({ title, value }) => {
         shade: 'dark',
         type: 'horizontal',
         shadeIntensity: 0.5,
-        gradientToColors: ['#ABE5A1'],
-        inverseColors: true,
+        gradientToColors: [gradientTo || '#ABE5A1'],  // Use the gradientTo prop
+        inverseColors: false,
         opacityFrom: 1,
         opacityTo: 1,
         stops: [0, 100],
@@ -78,8 +79,8 @@ const Progressbar = ({ title, value }) => {
   };
 
   return (
-    <div id="chart">
-      <ReactApexChart options={options} series={options.series} type="radialBar" height={350} />
+    <div id="chart" style={{ width: '100%', height: '100%' }}> {/* Set container to 100% */}
+      <ReactApexChart options={options} series={options.series} type="radialBar" height="100%" width="100%" /> {/* Set chart height and width to 100% */}
     </div>
   );
 };

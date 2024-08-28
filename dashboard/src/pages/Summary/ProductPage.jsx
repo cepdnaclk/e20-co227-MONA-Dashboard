@@ -4,6 +4,7 @@ import SummaryPage from './SummaryPage';
 import './ProductPage.scss';
 import Barchart from '../../components/SummaryComponents/Barchart/Barchart';
 import Progressbar from '../../components/SummaryComponents/Progressbar/Progressbar';
+import LineChart from '../../components/SummaryComponents/Linechart/LineChar';
 
 const ProductPage = () => {
   const productData = [
@@ -14,6 +15,13 @@ const ProductPage = () => {
     { name: 'Part 5', count: 40 },
   ];
 
+  const productLinechartData = [
+    { name: 'Completed Products', data: [28, 29, 33, 36, 32, 32, 33] },
+    { name: 'To be Made', data: [12, 11, 14, 18, 17, 13, 13] },
+  ];
+
+  const datesRange = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'];
+
   return (
     <div className='productPage'>
       <SummaryPage />
@@ -22,11 +30,17 @@ const ProductPage = () => {
           <Barchart data={productData} />
         </div>
         <div className='progressBar'>
-        <Progressbar title="Success %" value={75} />
-        <Progressbar title="Completed %" value={50} />
+        <Progressbar title="Success %" value={75} gradientFrom="#3357FF" gradientTo="#8E2DE2" />
+        <Progressbar title="Completed %" value={50}  gradientFrom="#3357FF" gradientTo="#8E2DE2"/>
         </div>
         <div className='table'>table</div>
-        <div className='graph'>graph</div>
+        <div className='graph'>
+        <LineChart
+          title="Product Summary Chart"
+          seriesData={productLinechartData}
+          categories={datesRange}
+        />
+        </div>
         <div className='exportButton'>export</div>
       </div>
     </div>
