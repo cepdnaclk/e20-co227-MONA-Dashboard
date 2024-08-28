@@ -23,7 +23,15 @@ const LineChart = ({ title, seriesData, categories }) => {
         show: false,
       },
     },
-    colors: ['#77B6EA', '#545454'],
+    colors: [
+      '#4169E1',
+      '#87CEEB', // Sky Blue
+      '#DC143C', // crimson
+      '#FF7F50', // Coral
+      '#4682B4', // Steel Blue
+      '#4B0082', // Indigo
+      '#FFE4E1'  // Misty Rose
+    ],
     dataLabels: {
       enabled: true,
     },
@@ -32,7 +40,7 @@ const LineChart = ({ title, seriesData, categories }) => {
     },
     title: {
       text: title,  // Use title prop
-      align: 'center',
+      align: 'left',
     },
     grid: {
       borderColor: '#e7e7e7',
