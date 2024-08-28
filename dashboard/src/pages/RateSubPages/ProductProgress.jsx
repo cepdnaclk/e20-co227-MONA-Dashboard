@@ -9,104 +9,99 @@ import axios from "axios";
 
 const ProductProgress = () => {
     const [realtimeinfo, setRealtimeInfo] = useState([]);
-    const [rateinfo, setRateInfo] = useState([]);
+  const [rateinfo, setRateInfo] = useState([]);
 
-    useEffect(() => {
-        const fetchMachineData = async () => {
-            try {
-                const response = await axios.get("http://localhost:8000/machineinfo");
-                setRealtimeInfo(
-                    response.data.sort((a, b) => a.Production - b.Production)
-                );
-            } catch (error) {
-                console.error("Error fetching machine data:", error);
-            }
-        };
-
-        const fetchRateData = async () => {
-            try {
-                const response = await axios.get("http://localhost:8000/rateinfo");
-                setRateInfo(
-                    response.data.sort((a, b) => b.Production - a.Production)
-                );
-            } catch (error) {
-                console.error("Error fetching rate data:", error);
-            }
-        };
-
-        fetchMachineData();
-        fetchRateData();
-
-        const intervalId = setInterval(() => {
-            fetchMachineData();
-            fetchRateData();
-        }, 10000); // Update every 10 seconds
-
-        return () => clearInterval(intervalId);
-    }, []);
-
-    const processDataForBarChart = (data) => {
-        const groupedData = data.reduce(
-            (acc, curr) => {
-                const { Production, Part, SuccessSlots, FailureSlots } = curr;
-
-                if (!acc.success[Production]) {
-                    acc.success[Production] = {};
-                }
-                if (!acc.success[Production][Part]) {
-                    acc.success[Production][Part] = 0;
-                }
-                acc.success[Production][Part] += Number(SuccessSlots); // Sum SuccessSlots
-
-                if (!acc.failure[Production]) {
-                    acc.failure[Production] = {};
-                }
-                if (!acc.failure[Production][Part]) {
-                    acc.failure[Production][Part] = 0;
-                }
-                acc.failure[Production][Part] += Number(FailureSlots); // Sum FailureSlots
-
-                return acc;
-            },
-            { success: {}, failure: {} }
+  useEffect(() => {
+    const fetchMachineData = async () => {
+      try {
+        const response = await axios.get("http://localhost:8000/machineinfo");
+        setRealtimeInfo(
+          response.data.sort((a, b) => a.Production - b.Production)
         );
-
-        // Define specific productions and parts
-        const desiredProductions = ["Production I", "Production II", "Production III"];
-        const parts = ["Part I", "Part II", "Part III", "Part IV", "Part V"];
-
-        // Filter the data to include only the desired productions
-        const seriesData1 = parts.map((part) => ({
-            label: part,
-            data: desiredProductions.map(
-                (production) => groupedData.success[production]?.[part] || 0
-            ),
-        }));
-
-        const seriesData2 = parts.map((part) => ({
-            label: part,
-            data: desiredProductions.map(
-                (production) => groupedData.failure[production]?.[part] || 0
-            ),
-        }));
-
-        return { productions: desiredProductions, seriesData1, seriesData2 };
+      } catch (error) {
+        console.error("Error fetching machine data:", error);
+      }
     };
 
-    const getBarColor1 = (index) => {
-        const colors = ["#99cc33", "#99cc33", "#99cc33", "#99cc33", "#99cc33"];
-        return colors[index % colors.length];
+    const fetchRateData = async () => {
+      try {
+        const response = await axios.get("http://localhost:8000/rateinfo");
+        setRateInfo(
+          response.data.sort((a, b) => b.Production - a.Production)
+        );
+      } catch (error) {
+        console.error("Error fetching rate data:", error);
+      }
     };
 
-    const getBarColor2 = (index) => {
-        const colors = ["#cc6666", "#cc6666", "#cc6666", "#cc6666", "#cc6666"];
-        return colors[index % colors.length];
-    };
+    fetchMachineData();
+    fetchRateData();
 
-    const { productions, seriesData1, seriesData2 } = processDataForBarChart(realtimeinfo);
+    const intervalId = setInterval(() => {
+      fetchMachineData();
+      fetchRateData();
+    }, 10000); // Update every 10 seconds
 
-    const productionsset = ['Production I', 'Production II', 'Production III'];
-    const partsset = ['Part I', 'Part II', 'Part III', 'Part IV', 'Part V'];
+    return () => clearInterval(intervalId);
+  }, []);
+
+  const processDataForBarChart = (data) => {
+    const groupedData = data.reduce(
+      (acc, curr) => {
+        const { Production, Part, SuccessSlots, FailureSlots } = curr;
+
+        if (!acc.success[Production]) {
+          acc.success[Production] = {};
+        }
+        if (!acc.success[Production][Part]) {
+          acc.success[Production][Part] = 0;
+        }
+        acc.success[Production][Part] += Number(SuccessSlots); // Sum SuccessSlots
+
+        if (!acc.failure[Production]) {
+          acc.failure[Production] = {};
+        }
+        if (!acc.failure[Production][Part]) {
+          acc.failure[Production][Part] = 0;
+        }
+        acc.failure[Production][Part] += Number(FailureSlots); // Sum FailureSlots
+
+        return acc;
+      },
+      { success: {}, failure: {} }
+    );
+
+    // Define specific productions and parts
+    const desiredProductions = ["Production I", "Production II", "Production III"];
+    const parts = ["Part I", "Part II", "Part III", "Part IV", "Part V"];
+
+    // Create series data for stacked chart, grouping by each Part
+    const seriesData = parts.flatMap((part) => [
+      {
+        label: part + " Failure",
+        data: desiredProductions.map(
+          (production) => groupedData.failure[production]?.[part] || 0
+        ),
+        stack: part, // Stack by part name to separate stacks for each part
+        color: "#cc6666",
+      },
+      {
+        label: part + " Success",
+        data: desiredProductions.map(
+          (production) => groupedData.success[production]?.[part] || 0
+        ),
+        stack: part, // Stack by part name to separate stacks for each part
+        color: "#99cc33",
+      },
+    ]);
+
+    return { productions: desiredProductions, seriesData };
+  };
+
+  const { productions, seriesData } = processDataForBarChart(realtimeinfo);
+
+  const productionsset = ["Production I", "Production II", "Production III"];
+  const partsset = ["Part I", "Part II", "Part III", "Part IV", "Part V"];
 
 
     const setdata = (production, part) => {
@@ -219,50 +214,31 @@ const ProductProgress = () => {
         <>
             <Header />
             <SecondBar />
-            <div className='container'>
-
-                <div className="total-product">
-                    {/* Success Slots Bar Chart */}
-                    <h3>Success Slots</h3>
-                    <BarChart
-                        xAxis={[{ scaleType: "band", data: productions }]}
-                        series={seriesData1.map((serie, index) => ({
-                            ...serie,
-                            color: getBarColor1(index), // Set color dynamically
-                        }))}
-                        slotProps={{ legend: { hidden: true } }}
-                        width={700}
-                        height={400}
-                        borderRadius={5}
-                        grid={{ vertical: true, horizontal: true }}
-                    />
-
-                    {/* Failure Slots Bar Chart */}
-                    <h3>Failure Slots</h3>
-                    <BarChart
-                        xAxis={[{ scaleType: "band", data: productions }]}
-                        series={seriesData2.map((serie, index) => ({
-                            ...serie,
-                            color: getBarColor2(index), // Set color dynamically
-                        }))}
-                        slotProps={{ legend: { hidden: true } }}
-                        width={700}
-                        height={400}
-                        borderRadius={5}
-                        grid={{ vertical: true, horizontal: true }}
-                    />
-                </div>
-                <div className="product-progress-page">
-                    {productionsset.map((product) => (
-                        <div key={product} className="product-block">
-                            <div className="product-info">
-                                <div className="product-title">{product}</div>
-                            </div>
-                            {partsset.map((part) => {
-                                return (
-                                    <div key={part}>
-                                        <div className="part-title">{part}</div>
-                                        <div className="Pchart-container">
+            <div className="container">
+        <div className="total-product">
+          {/* Combined Stacked Bar Chart */}
+          <h3>Success and Failure Slots by Part</h3>
+          <BarChart
+            xAxis={[{ scaleType: "band", data: productions }]}
+            series={seriesData}
+            slotProps={{ legend: { hidden: true } }}
+            width={700}
+            height={400}
+            borderRadius={10}
+            grid={{ vertical: true, horizontal: true }}
+          />
+        </div>
+        <div className="product-progress-page">
+          {productionsset.map((product) => (
+            <div key={product} className="product-block">
+              <div className="product-info">
+                <div className="product-title">{product}</div>
+              </div>
+              {partsset.map((part) => {
+                return (
+                  <div key={part}>
+                    <div className="part-title">{part}</div>
+                    <div className="Pchart-container">
                                             {/* Assuming ProductProgressChart expects some data format */}
                                             <ProductProgressChart data={setdata(product, part)} />
                                             
