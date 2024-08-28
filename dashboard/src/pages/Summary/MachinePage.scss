@@ -1,4 +1,4 @@
-.productPage{
+.machinePage{
   height: 100vh;
   .container{
     justify-content: center;
@@ -7,15 +7,12 @@
     grid-template-columns: 18% 37% 45%;
     grid-template-rows: 30% 30% 40%;
     grid-template-areas: 
-      "barChart progressBar graph"
+      "progressBar progressBar graph"
       "table table graph"
       "table table exportButton";
     grid-gap: 0.2rem;
     height: 100%;
-    .barChart{
-      background-color: rgb(216, 230, 230);
-      grid-area: barChart;
-    }
+    
     .progressBar{
       background-color: rgb(216, 230, 230);
       grid-area: progressBar;
