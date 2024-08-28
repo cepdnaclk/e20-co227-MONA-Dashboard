@@ -21,8 +21,9 @@ const ProductPage = () => {
         <div className='barChart'>
           <Barchart data={productData} />
         </div>
-        <div className='progressBar'>progressbar
-          <Progressbar/>
+        <div className='progressBar'>
+        <Progressbar title="Success %" value={75} />
+        <Progressbar title="Completed %" value={50} />
         </div>
         <div className='table'>table</div>
         <div className='graph'>graph</div>
