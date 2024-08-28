@@ -5,11 +5,11 @@
     justify-content: center;
     margin-top: 10px;
     display: grid;
-    grid-template-columns:33.33% 33.33% 33.33%;
-    grid-template-rows: 35% 48.5%;
+    grid-template-columns:50% 50%;
+    grid-template-rows: 41.75% 41.75%;
     grid-template-areas: 
-      "table table table"
-      "product1 product2 product3";
+      "table product1"
+      "product2 product3";
     grid-gap: 0.4rem;
     height: 100%;
     
