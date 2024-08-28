@@ -4,7 +4,6 @@ import Header from "../../layouts/Header";
 import SecondBar from "../../layouts/SecondBar";
 import "./ProductProgress.scss";
 import { BarChart } from "@mui/x-charts/BarChart";
-import { LineChart } from "@mui/x-charts/LineChart";
 import axios from "axios";
 
 const ProductProgress = () => {

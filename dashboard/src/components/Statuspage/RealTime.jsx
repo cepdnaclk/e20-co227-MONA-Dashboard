@@ -155,7 +155,7 @@ function RealTime() {
                                         data: [
                                             { value: realtimeinfo.SuccessSlots, color: realtimeinfo.Status === "off" ? 'none' : '#99cc33', label: "Success Slots : " + realtimeinfo.SuccessSlots },
                                             { value: realtimeinfo.FailureSlots, color: realtimeinfo.Status === "off" ? 'none' : '#cc6666', label: 'Failure Slots    : ' + realtimeinfo.FailureSlots },/*alt+0160 */
-                                            { value: ((realtimeinfo.TargetSlots * 2) - realtimeinfo.SuccessSlots - realtimeinfo.FailureSlots) > 0 ? ((realtimeinfo.TargetSlots * 2) - realtimeinfo.SuccessSlots - realtimeinfo.FailureSlots) : 0, color: '#dddddd' },
+                                            { value: ((realtimeinfo.TargetSlots) - realtimeinfo.SuccessSlots - realtimeinfo.FailureSlots) > 0 ? ((realtimeinfo.TargetSlots) - realtimeinfo.SuccessSlots - realtimeinfo.FailureSlots) : 0, color: '#dddddd' },
                                         ],
                                         innerRadius: 50,
                                         outerRadius: 70,
@@ -173,7 +173,7 @@ function RealTime() {
                                             { value: realtimeinfo.TargetSlots*24, color: 'none' },
                                             */
                                             { value: realtimeinfo.TargetSlots, color: realtimeinfo.Status === "off" ? 'none' : '#888888', label: "Target Slots     : " + realtimeinfo.TargetSlots },
-                                            { value: ((realtimeinfo.TargetSlots * 2) - realtimeinfo.SuccessSlots - realtimeinfo.FailureSlots) < 0 ? parseInt(realtimeinfo.SuccessSlots, 10) + parseInt(realtimeinfo.FailureSlots, 10) - parseInt(realtimeinfo.TargetSlots, 10) : realtimeinfo.TargetSlots, color: 'none' },
+                                            { value: ((realtimeinfo.TargetSlots) - realtimeinfo.SuccessSlots - realtimeinfo.FailureSlots) < 0 ? parseInt(realtimeinfo.SuccessSlots, 10) + parseInt(realtimeinfo.FailureSlots, 10) - parseInt(realtimeinfo.TargetSlots, 10) : realtimeinfo.FailureSlots, color: 'none' },
 
 
                                         ],
