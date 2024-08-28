@@ -7,8 +7,8 @@ import {
 import Header from "../../layouts/Header";
 import SecondBar from "../../layouts/SecondBar";
 import "./ProductProgress.scss";
-import ProductProgressBar from "../../components/RateComponents/ProductProgress/ProgressBar";
 import { BarChart } from "@mui/x-charts/BarChart";
+import { LineChart } from "@mui/x-charts/LineChart";
 import axios from "axios";
 
 const ProductProgress = () => {
@@ -20,7 +20,7 @@ const ProductProgress = () => {
             try {
                 const response = await axios.get("http://localhost:8000/machineinfo");
                 setRealtimeInfo(
-                    response.data.sort((a, b) => a.MachineNumber - b.MachineNumber)
+                    response.data.sort((a, b) => a.Production - b.Production)
                 );
             } catch (error) {
                 console.error("Error fetching machine data:", error);
@@ -31,7 +31,7 @@ const ProductProgress = () => {
             try {
                 const response = await axios.get("http://localhost:8000/rateinfo");
                 setRateInfo(
-                    response.data.sort((a, b) => a.MachineNumber - b.MachineNumber)
+                    response.data.sort((a, b) => b.Production - a.Production)
                 );
             } catch (error) {
                 console.error("Error fetching rate data:", error);
@@ -44,12 +44,11 @@ const ProductProgress = () => {
         const intervalId = setInterval(() => {
             fetchMachineData();
             fetchRateData();
-        }, 1000); // Update every 10 seconds
+        }, 10000); // Update every 10 seconds
 
         return () => clearInterval(intervalId);
     }, []);
 
-    // Function to process data for both SuccessSlots and FailureSlots
     const processDataForBarChart = (data) => {
         const groupedData = data.reduce(
             (acc, curr) => {
@@ -76,24 +75,26 @@ const ProductProgress = () => {
             { success: {}, failure: {} }
         );
 
-        const productions = Object.keys(groupedData.success);
+        // Define specific productions and parts
+        const desiredProductions = ["Production I", "Production II", "Production III"];
         const parts = ["Part I", "Part II", "Part III", "Part IV", "Part V"];
 
+        // Filter the data to include only the desired productions
         const seriesData1 = parts.map((part) => ({
             label: part,
-            data: productions.map(
-                (production) => groupedData.success[production][part] || 0
+            data: desiredProductions.map(
+                (production) => groupedData.success[production]?.[part] || 0
             ),
         }));
 
         const seriesData2 = parts.map((part) => ({
             label: part,
-            data: productions.map(
-                (production) => groupedData.failure[production][part] || 0
+            data: desiredProductions.map(
+                (production) => groupedData.failure[production]?.[part] || 0
             ),
         }));
 
-        return { productions, seriesData1, seriesData2 };
+        return { productions: desiredProductions, seriesData1, seriesData2 };
     };
 
     const getBarColor1 = (index) => {
@@ -108,11 +109,15 @@ const ProductProgress = () => {
 
     const { productions, seriesData1, seriesData2 } = processDataForBarChart(realtimeinfo);
 
+    const productionsset = ['Production I', 'Production II', 'Production III'];
+    const partsset = ['Part I', 'Part II', 'Part III', 'Part IV', 'Part V'];
+
     return (
         <>
             <Header />
             <SecondBar />
-            <div style={{ overflowY: "scroll", height: "950px" }}>
+            <div className='container'>
+
                 <div className="total-product">
                     {/* Success Slots Bar Chart */}
                     <h3>Success Slots</h3>
@@ -123,13 +128,11 @@ const ProductProgress = () => {
                             color: getBarColor1(index), // Set color dynamically
                         }))}
                         slotProps={{ legend: { hidden: true } }}
-                        width={800}
+                        width={700}
                         height={400}
                         borderRadius={5}
-
                         grid={{ vertical: true, horizontal: true }}
                     />
-
 
                     {/* Failure Slots Bar Chart */}
                     <h3>Failure Slots</h3>
@@ -140,33 +143,60 @@ const ProductProgress = () => {
                             color: getBarColor2(index), // Set color dynamically
                         }))}
                         slotProps={{ legend: { hidden: true } }}
-                        width={800}
+                        width={700}
                         height={400}
                         borderRadius={5}
                         grid={{ vertical: true, horizontal: true }}
                     />
                 </div>
                 <div className="product-progress-page">
-                    {productProgressData.map((product) => (
+
+                    {productionsset.map((product) => (
                         <div key={product.productName} className="product-block">
                             <div className="product-info">
-                                <div className="product-title">{product.productName}</div>
-                                <div className="product-overall-progress">
-                                    <span>Overall Progress:</span>
-                                    <div className="progress-bar">
-                                        <ProductProgressBar />
+                                <div className="product-title">{product}</div>
+
+                            </div>
+                            {partsset.map((part) => (
+                                <div >
+                                    <div className="part-title">{part}</div>
+                                    <div className="Pchart-container">
+                                        <LineChart
+                                            xAxis={[{ data: [0, 3, 6, 9, 12, 15, 18, 21, 24] }]}
+                                            series={[
+                                                {
+                                                    data: [0, 0.5, 0.75, 1.5, 1.25, 2, 2.5, 3, 3.5],
+                                                    label: "Machine 1",
+                                                },
+                                                {
+                                                    data: [0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2],
+                                                    label: "Machine 2",
+                                                },
+                                                {
+                                                    data: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8],
+                                                    label: "Machine 3",
+                                                },
+                                                {
+                                                    data: [0, 0.9, 1.8, 2.7, 2.8, 2.9, 3.5, 3.6, 3.7],
+                                                    label: "Machine 4",
+                                                },
+                                            ]}
+
+                                            slotProps={{ legend: { hidden: true } }}
+                                            width={380}
+                                            height={200}
+
+                                        />
                                     </div>
+                                    </div>
+                            ))}
                                 </div>
-                            </div>
-                            <div className="Pchart-container">
-                                <ProductProgressChart data={product.machines} />
-                            </div>
+                            ))}
                         </div>
-                    ))}
-                </div>
             </div>
-        </>
-    );
+
+            </>
+            );
 };
 
-export default ProductProgress;
+            export default ProductProgress;
