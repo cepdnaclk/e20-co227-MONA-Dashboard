@@ -4,7 +4,7 @@ import SummaryPage from './SummaryPage';
 import './ProductPage.scss';
 import Barchart from '../../components/SummaryComponents/Barchart/Barchart';
 import Progressbar from '../../components/SummaryComponents/Progressbar/Progressbar';
-import LineChart from '../../components/SummaryComponents/Linechart/LineChar';
+import LineChart from '../../components/SummaryComponents/Linechart/Linechart';
 
 const ProductPage = () => {
   const productData = [
