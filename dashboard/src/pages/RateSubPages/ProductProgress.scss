@@ -61,12 +61,12 @@
 .product-title {
     font-size: 18px;
     font-weight: bold;
-    margin-bottom: 5px;
 }
 .part-title{
     font-size: 16px;
     font-weight: bold;
-    margin-left: 30px;
+    margin-left: 10px;
+    margin-bottom: -10px;
 }
 
 .product-overall-progress {
@@ -79,13 +79,7 @@
     color: #333;
 }
 
-.progress-bar {
-    flex-grow: 1;
-    margin-left: 10px;
-    width: 100%;
-}
-
 .Pchart-container {
     width: 100%;
-    margin-top: -40px;
+    margin-top: 10px;
 }

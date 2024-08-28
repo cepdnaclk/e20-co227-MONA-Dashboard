@@ -8,10 +8,10 @@ import sys
 
 # Replace these with your connection details
 # Local database
-#client = pymongo.MongoClient("mongodb://localhost:27017/")  # Assuming local MongoDB
+client = pymongo.MongoClient("mongodb://localhost:27017/")  # Assuming local MongoDB
 
 # Atlas database
-client = pymongo.MongoClient("mongodb+srv://bhagya:bhagya123@monadash.v8cvc3k.mongodb.net/?retryWrites=true&w=majority&appName=monadash")
+#client = pymongo.MongoClient("mongodb+srv://bhagya:bhagya123@monadash.v8cvc3k.mongodb.net/?retryWrites=true&w=majority&appName=monadash")
 
 db = client["test"]  # Replace with your desired database name
 collection1 = db["realtimeinfos"]  # Replace with your desired collection name
