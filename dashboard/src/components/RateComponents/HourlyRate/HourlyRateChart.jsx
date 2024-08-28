@@ -13,21 +13,15 @@ const HourlyRateChart = ({ data }) => {
   return (
     <ResponsiveContainer width="100%" height="100%">
       <LineChart data={data}>
-        <CartesianGrid strokeDasharray="5 5" />
-        <XAxis dataKey="time" label={{ value: "Time", position: "insideBottomRight", offset: -4 }}/>
-        <YAxis label={{ value: "Slots / Time", angle: -90, position: "insideBottomLeft", offset: 20}}/>
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="time" />
+        <YAxis />
         <Tooltip />
         <Line
           type="monotone"
-          dataKey="success"
-          stroke="#99cc33"
-          activeDot={{ r: 5 }}
-        />
-        <Line
-          type="monotone"
-          dataKey="faliure"
-          stroke="#cc6666"
-          activeDot={{ r: 5 }}
+          dataKey="rate"
+          stroke="#8884d8"
+          activeDot={{ r: 8 }}
         />
       </LineChart>
     </ResponsiveContainer>

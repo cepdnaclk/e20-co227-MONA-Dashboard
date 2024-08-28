@@ -8,17 +8,17 @@ import sys
 
 # Replace these with your connection details
 # Local database
-client = pymongo.MongoClient("mongodb://localhost:27017/")  # Assuming local MongoDB
+#client = pymongo.MongoClient("mongodb://localhost:27017/")  # Assuming local MongoDB
 
 # Atlas database
-#client = pymongo.MongoClient("mongodb+srv://bhagya:bhagya123@monadash.v8cvc3k.mongodb.net/?retryWrites=true&w=majority&appName=monadash")
+client = pymongo.MongoClient("mongodb+srv://bhagya:bhagya123@monadash.v8cvc3k.mongodb.net/?retryWrites=true&w=majority&appName=monadash")
 
 db = client["test"]  # Replace with your desired database name
 collection1 = db["realtimeinfos"]  # Replace with your desired collection name
 collection3 = db["rateinfos"]
 
 #setmachine time
-MachineTime = 10
+MachineTime = 1
 
 # Field names
 update_field_0 = "MachineNumber"
@@ -79,7 +79,6 @@ def run_machines():
             
             
             for document in collection1.find():
-                
                 if document.get(update_field_1)!="off":
                     
                         Rnumber = choice([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,11,12])
@@ -136,18 +135,15 @@ def run_machines():
                         
                         # Insert the documents into the collection
                         collection3.insert_one(rate_info)
-                        
-                        
                     
                     
                 else:
                     continue
-            
                 
     
             current_time2 = datetime.now(timezone(timedelta(hours=5, minutes=30)))
             print("Updated all documents in the 'realtimeinfos','rateinfos' collections!"+current_time2.strftime("%Y-%m-%d %H:%M:%S"))
-            sleep(MachineTime)
+            #sleep(MachineTime)
 
         except Exception as e:
             print(f"Error updating materials: {e}")

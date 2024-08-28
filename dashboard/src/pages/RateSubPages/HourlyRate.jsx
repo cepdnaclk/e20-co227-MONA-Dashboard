@@ -45,120 +45,78 @@ const HourlyRate = () => {
     }, []); // Empty dependency array to fetch data only once on mount
 
 
-    const setdata = (machineNumber) => {
-        const data = [];
-    
-        // Filter and map the rate info for the specific machine number
-        const machineData = rateinfo.filter((rate) => rate.MachineNumber === machineNumber);
-    
-        if (machineData.length === 0) {
-            console.log("No data found for machine number:", machineNumber);
-            return data;
-        }
-    
-        // Get the time difference between the first and last data points
-        const firstTime = new Date(machineData[0].LastUpdatedTime);
-        const lastTime = new Date(machineData[machineData.length - 1].LastUpdatedTime);
-        const timeDifferenceInHours = (lastTime - firstTime) / (1000 * 60 * 60);
-    
-        if (timeDifferenceInHours > 1) {
-            // Group the data by the same hour (HH)
-            const groupedData = machineData.reduce((acc, rate) => {
-                const lastUpdatedTime = new Date(rate.LastUpdatedTime);
-                const hours = lastUpdatedTime.getHours().toString().padStart(2, '0');
-                const timeKey = `${hours}`;
-    
-                if (!acc[timeKey]) {
-                    acc[timeKey] = [];
-                }
-                acc[timeKey].push({
-                    time: lastUpdatedTime,
-                    success: rate.SuccessSlots,
-                    faliure: rate.FailureSlots
+const setdata = (machineNumber) => {
+    const data = [];
+
+    // Filter and map the rate info for the specific machine number
+    const machineData = rateinfo.filter((rate) => rate.MachineNumber === machineNumber);
+
+    if (machineData.length === 0) return data;
+
+    // Get the time difference between the first and last data points
+    const firstTime = new Date(machineData[0].LastUpdatedTime);
+    const lastTime = new Date(machineData[machineData.length - 1].LastUpdatedTime);
+    const timeDifferenceInHour = (lastTime - firstTime) / (1000 * 60 * 60);
+
+    if (timeDifferenceInHour > 1) {
+        // Group the data by the same hour rate ( HH )
+        const groupedData = machineData.reduce((acc, rate) => {
+            const lastUpdatedTime = new Date(rate.LastUpdatedTime);
+            const hours = lastUpdatedTime.getHours().toString().padStart(2, '0');
+            const timeKey = `${hours}`;
+
+            if (!acc[timeKey]) {
+                acc[timeKey] = [];
+            }
+            acc[timeKey].push(rate.SuccessSlots);
+
+            return acc;
+        }, {});
+    } else {
+        // Group the data by the same minute (HH:MM)
+        const groupedData = machineData.reduce((acc, rate) => {
+            const lastUpdatedTime = new Date(rate.LastUpdatedTime);
+            const hours = lastUpdatedTime.getHours().toString().padStart(2, '0');
+            const minutes = lastUpdatedTime.getMinutes().toString().padStart(2, '0');
+            const timeKey = `${hours}:${minutes}`;
+
+            if (!acc[timeKey]) {
+                acc[timeKey] = [];
+            }
+            acc[timeKey].push(rate.SuccessSlots);
+
+            return acc;
+        }, {});
+
+        // Get all keys (time entries) and remove the last one
+        const timeKeys = Object.keys(groupedData);
+        timeKeys.pop(); // Remove the last time entry
+
+        // Calculate the rate difference and format the time
+        timeKeys.forEach((time) => {
+            const rates = groupedData[time];
+            if (rates.length > 1) {
+                const rateDifference = rates[rates.length - 1] - rates[0]; // Difference between first and last rate
+                data.push({
+                    time: time, // Time formatted as HH:MM
+                    rate: rateDifference,
                 });
+            }
+        });
+    }
+
+    return data;
+};
+
     
-                return acc;
-            }, {});
     
-            const timeKeys = Object.keys(groupedData);
-    
-            // Calculate the rate difference for each hour and adjust by time difference in minutes
-            timeKeys.forEach((time) => {
-                const rateData = groupedData[time];
-                if (rateData.length > 1) {
-                    const firstEntry = rateData[0];
-                    const lastEntry = rateData[rateData.length - 1];
-    
-                    const firstMinute = firstEntry.time.getMinutes();
-                    const lastMinute = lastEntry.time.getMinutes();
-                    const timeDifferenceInMinutes = lastMinute - firstMinute;
-    
-                    if (timeDifferenceInMinutes !== 0) {  // To avoid division by zero
-                        const rateDifference = lastEntry.success - firstEntry.success; // Difference between first and last rate
-                        const adjustedRate =((rateDifference*60) / (timeDifferenceInMinutes)).toFixed(2); // Adjust by time difference
-                        
-                        const rateDifference1 = lastEntry.faliure - firstEntry.faliure; // Difference between first and last rate
-                        const adjustedRate1 =((rateDifference1*60) / (timeDifferenceInMinutes)).toFixed(2); // Adjust by time difference
-    
-                        data.push({
-                            time: `${time}h`, // Time formatted as HH:00
-                            success: parseFloat(adjustedRate),
-                            faliure: parseFloat(adjustedRate1),
-                        });
-                    }
-                }
-            });
-        } else {
-            // Group the data by the same minute (HH:MM)
-            const groupedData = machineData.reduce((acc, rate) => {
-                const lastUpdatedTime = new Date(rate.LastUpdatedTime);
-                const hours = lastUpdatedTime.getHours().toString().padStart(2, '0');
-                const minutes = lastUpdatedTime.getMinutes().toString().padStart(2, '0');
-                const timeKey = `${hours}:${minutes}`;
-    
-                if (!acc[timeKey]) {
-                    acc[timeKey] = [];
-                }
-                acc[timeKey].push({
-                    time: lastUpdatedTime,
-                    success: rate.SuccessSlots,
-                    faliure: rate.FailureSlots
-                });
-    
-                return acc;
-            }, {});
-    
-            // Get all keys (time entries) and remove the last one
-            const timeKeys = Object.keys(groupedData);
-            timeKeys.pop(); // Remove the last time entry
-    
-            // Calculate the rate difference and format the time
-            timeKeys.forEach((time) => {
-                const rates = groupedData[time];
-                if (rates.length > 1) {
-                    const successDifference = rates[rates.length - 1].success - rates[0].success; // Difference between first and last rate
-                    const faliureDifference = rates[rates.length - 1].faliure - rates[0].faliure;
-                    data.push({
-                        time: time, // Time formatted as HH:MM
-                        success: successDifference,
-                        faliure: faliureDifference,
-                    });
-                }
-            });
-        }
-    
-        return data;
-    };
 
 
 
-
-
-
-    return (
-        <>
-            <Header />
-            <SecondBar />
+  return (
+    <>
+      <Header />
+      <SecondBar />
 
             <div className="hourly-rate-page ">
                 {realtimeinfo.map((realtimeinfo) => (
@@ -171,7 +129,7 @@ const HourlyRate = () => {
                         <div
                             className="status"
                         >
-                            <div style={{ display: "flex", justifyContent: 'space-between' }}>
+                            <div style={{ display: "flex" ,justifyContent:'space-between'}}>
 
                                 <div
                                     className="Smachine"

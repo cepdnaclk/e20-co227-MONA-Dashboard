@@ -1,34 +1,34 @@
-import * as React from 'react';
-import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
-import { LocalizationProvider } from '@mui/x-date-pickers-pro/LocalizationProvider';
-import { AdapterDayjs } from '@mui/x-date-pickers-pro/AdapterDayjs';
-import { DateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker';
-import { styled } from '@mui/system';
+import React, { useState } from 'react';
+import './DurationDropdown.css';
 
-// Define custom styles for the DateRangePicker component
-const CustomDateRangePicker = styled(DateRangePicker)(({ theme }) => ({
-  // Adjust box size
-  '.MuiInputBase-root': {
-    height: '40px', // Height of the input box
-    width: '200px', // Width of the input box
-  },
-  
-  // Specifically target the input labels
-  '.MuiInputLabel-root': {
-    color: 'black', // Label color
-    fontSize: '15px', // Label font size
-    fontWeight: 400, // Label font weight
-  },
-}));
+function DurationDropdown({ selected, setSelected }) {
+  const [isActive, setIsActive] = useState(false);
+  const options = ['1 week', '2 weeks', '1 month', '3 months'];
 
-export default function DurationDropdown() {
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DemoContainer components={['DateRangePicker']}>
-        <CustomDateRangePicker 
-          localeText={{ start: 'Start-date', end: 'End-date' }}
-        />
-      </DemoContainer>
-    </LocalizationProvider>
+    <div className='dropdown'>
+      <div className='dropdown-btn' onClick={() => setIsActive(!isActive)}>
+        {selected}
+        <span className='fas fa-caret-down'></span>
+      </div>
+      {isActive && (
+        <div className='dropdown-content'>
+          {options.map(option => (
+            <div
+              key={option}
+              onClick={() => {
+                setSelected(option);
+                setIsActive(false);
+              }}
+              className='dropdown-item'
+            >
+              {option}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
   );
 }
+
+export default DurationDropdown;
