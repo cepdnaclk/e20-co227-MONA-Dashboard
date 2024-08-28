@@ -22,7 +22,11 @@
     .progressBar{
       background-color: rgb(255, 255, 255);
       grid-area: progressBar;
+      display: flex;
+      justify-content: center;
+      padding-top: 15px;
     }
+
     .table{
       background-color: rgb(255, 255, 255);
       grid-area: table;

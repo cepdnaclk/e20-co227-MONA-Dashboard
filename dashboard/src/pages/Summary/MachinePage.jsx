@@ -1,6 +1,7 @@
 import * as React from 'react';
 import SummaryPage from './SummaryPage';
 import './MachinePage.scss';
+import Progressbar from '../../components/SummaryComponents/Progressbar/Progressbar';
 
 
 const MachinePage = () => {
@@ -10,7 +11,9 @@ const MachinePage = () => {
       <SummaryPage/>
       <div className='container'>
         <div className='progressBar'>
-          progressbar
+        <Progressbar title="Success %" value={75} />
+        <Progressbar title="Completed %" value={50} />
+        <Progressbar title="Production Rate %" value={70} />
         </div>
         <div className='table'>
           table
