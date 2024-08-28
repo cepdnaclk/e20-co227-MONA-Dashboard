@@ -190,7 +190,7 @@ const HourlyRate = () => {
                                 >
 
                                 </div>
-                                <div style={{ color: realtimeinfo.Status === "off" ? '#ababab' : '' }}>
+                                <div>
                                     <h3> Machine {realtimeinfo.MachineNumber}
 
                                     </h3>
