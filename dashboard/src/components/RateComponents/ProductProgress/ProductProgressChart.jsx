@@ -12,7 +12,7 @@ import {
 const ProductProgressChart = ({ data }) => {
   return (
     <ResponsiveContainer width={340} height={160}>
-      <LineChart data={data} margin={{ top: 0, right: 30, left: 5, bottom: 10 }}>
+      <LineChart data={data} margin={{ top: 5, right: 30, left: 5, bottom: 10 }}>
         <CartesianGrid strokeDasharray="5 5" />
         <XAxis
           dataKey="time"
