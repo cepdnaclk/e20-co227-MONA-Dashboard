@@ -1,6 +1,7 @@
 .productPage{
   height: 100vh;
   .container{
+    background-color: rgb(229, 232, 232);
     justify-content: center;
     margin-top: 10px;
     display: grid;
@@ -10,26 +11,28 @@
       "barChart progressBar graph"
       "table table graph"
       "table table exportButton";
-    grid-gap: 0.2rem;
+    grid-gap: 0.4rem;
     height: 100%;
     .barChart{
-      background-color: rgb(216, 230, 230);
+      justify-content: center;
+      padding-top: 20px;
+      background-color: rgb(255, 255, 255);
       grid-area: barChart;
     }
     .progressBar{
-      background-color: rgb(216, 230, 230);
+      background-color: rgb(255, 255, 255);
       grid-area: progressBar;
     }
     .table{
-      background-color: rgb(216, 230, 230);
+      background-color: rgb(255, 255, 255);
       grid-area: table;
     }
     .graph{
-      background-color: rgb(216, 230, 230);
+      background-color: rgb(255, 255, 255);
       grid-area: graph;
     }
     .exportButton{
-      background-color: rgb(216, 230, 230);
+      background-color: rgb(255, 255, 255);
       grid-area: exportButton;
     }
   }
