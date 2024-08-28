@@ -6,7 +6,7 @@
     margin-top: 10px;
     display: grid;
     grid-template-columns: 18% 37% 45%;
-    grid-template-rows: 30% 30% 40%;
+    grid-template-rows: 30% 30% 23%;
     grid-template-areas: 
       "barChart progressBar graph"
       "table table graph"
@@ -24,7 +24,7 @@
       grid-area: progressBar;
       display: flex;
       justify-content: center;
-      padding-top: 15px;
+      padding-top: 20px;
     }
 
     .table{
