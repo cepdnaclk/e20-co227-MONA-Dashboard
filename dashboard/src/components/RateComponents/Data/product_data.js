@@ -22,20 +22,7 @@ export const productProgressData = [
       { machineNumber: 6, progress: 90 },
     ],
   },
-  {
-    productName: "Product 4",
-    machines: [
-      { machineNumber: 7, progress: 20 },
-      { machineNumber: 8, progress: 80 },
-    ],
-  },
-  {
-    productName: "Product 5",
-    machines: [
-      { machineNumber: 9, progress: 10 },
-      { machineNumber: 10, progress: 100 },
-    ],
-  },
+
 ];
 
 // Function to calculate overall progress
