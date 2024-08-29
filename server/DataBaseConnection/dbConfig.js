@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const connectToDatabase = () => {
         // url
 const DB_URI = "mongodb+srv://bhagya:bhagya123@monadash.v8cvc3k.mongodb.net/test?retryWrites=true&w=majority";
+//const DB_URI = "mongodb://localhost:27017/"
 
 
 mongoose.connect(DB_URI)
