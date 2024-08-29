@@ -6,6 +6,7 @@ import Barchart from '../../components/SummaryComponents/Barchart/Barchart';
 import Progressbar from '../../components/SummaryComponents/Progressbar/Progressbar';
 import LineChart from '../../components/SummaryComponents/Linechart/Linechart';
 import Table from '../../components/SummaryComponents/Tables/Table';
+import GeneratePDFButton from '../../components/SummaryComponents/GeneratePDF/GeneratePDFButton';
 
 const ProductPage = () => {
   const productData = [
@@ -58,7 +59,7 @@ const ProductPage = () => {
   return (
     <div className='productPage'>
       <SummaryPage />
-      <div className='container'>
+      <div id='pdfContent' className='container'>
         <div className='barChart'>
           <Barchart data={productData} />
         </div>
@@ -79,7 +80,9 @@ const ProductPage = () => {
           categories={datesRange}
         />
         </div>
-        <div className='exportButton'>export</div>
+        <div className='exportButton'>
+        <GeneratePDFButton targetId='pdfContent' filename='product_page.pdf' />
+        </div>
       </div>
     </div>
   );

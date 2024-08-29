@@ -44,6 +44,9 @@
     .exportButton{
       background-color: rgb(255, 255, 255);
       grid-area: exportButton;
+      align-items: center;
+      padding: 50px;
+      padding-left: 350px;
     }
   }
 }

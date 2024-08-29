@@ -27,6 +27,8 @@
     "dayjs": "^1.11.12",
     "echarts": "^5.5.0",
     "framer-motion": "^11.2.12",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^2.5.1",
     "lucide-react": "^0.407.0",
     "mui": "^0.0.1",
     "nth-check": "^2.1.1",
