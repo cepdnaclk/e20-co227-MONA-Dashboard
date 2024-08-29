@@ -41,11 +41,11 @@ const ProductPage = () => {
 
   const columnstable2 = [
     { label: 'Part Detail', field: 'detailName' },
-    { label: 'Part1', field: 'part1' },
-    { label: 'Part2', field: 'part2' },
-    { label: 'Part3', field: 'part3' },
-    { label: 'Part4', field: 'part4' },
-    { label: 'Part5', field: 'part5' },
+    { label: 'Part 1', field: 'part1' },
+    { label: 'Part 2', field: 'part2' },
+    { label: 'Part 3', field: 'part3' },
+    { label: 'Part 4', field: 'part4' },
+    { label: 'Part 5', field: 'part5' },
   ];
 
   const datatable2 = [

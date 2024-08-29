@@ -5,6 +5,7 @@ import './PartPage.scss';
 import Barchart from '../../components/SummaryComponents/Barchart/Barchart';
 import Progressbar from '../../components/SummaryComponents/Progressbar/Progressbar';
 import LineChart from '../../components/SummaryComponents/Linechart/Linechart';
+import Table from '../../components/SummaryComponents/Tables/Table';
 
 const PartPage = () => {
   const partData = [
@@ -25,6 +26,23 @@ const PartPage = () => {
 
   const datesRange = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'];
 
+  const columnstable1 = [
+    { label: 'Part Detail', field: 'detailName' },
+    { label: 'Value', field: 'value' },
+  ];
+
+  const datatable1 = [
+    { detailName: 'Part ID', value: 'PP001'},
+    { detailName: 'Part Name', value: 'Part 1'},
+    { detailName: 'Target Part Count', value: 32},
+    { detailName: 'Completed Part Count', value: 28},
+    { detailName: 'Parts to be Made', value: 2},
+    { detailName: 'Completed Parts Percentage', value: '90%'},
+    { detailName: 'Product made by the Part', value: 'PR001'},
+    { detailName: 'Material', value: 'APX67800'},
+    
+    
+  ];
 
   return (
     <div className='partPage'>
@@ -37,7 +55,9 @@ const PartPage = () => {
           <Progressbar title="Success %" value={75} />
           <Progressbar title="Completed %" value={50} />
         </div>
-        <div className='table'>table</div>
+        <div className='table'>
+        <Table columns={columnstable1} data={datatable1} />
+        </div>
         <div className='graph'>
         <LineChart
           title="Parts Summary Chart"
