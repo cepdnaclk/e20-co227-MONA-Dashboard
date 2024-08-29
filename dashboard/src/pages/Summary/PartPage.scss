@@ -6,11 +6,11 @@
     margin-top: 10px;
     display: grid;
     grid-template-columns: 18% 37% 45%;
-    grid-template-rows: 30% 30% 23%;
+    grid-template-rows: 30% 35% 18%;
     grid-template-areas: 
       "barChart progressBar graph"
       "table table graph"
-      "table table exportButton";
+      "table2 table2 exportButton";
     grid-gap: 0.4rem;
     height: 100%;
     .barChart{
@@ -31,6 +31,11 @@
       background-color: rgb(255, 255, 255);
       grid-area: table;
     }
+    .table2{
+      background-color: rgb(255, 255, 255);
+      grid-area: table2;
+    }
+    
     .graph{
       padding: 20px;
       background-color: rgb(255, 255, 255);
