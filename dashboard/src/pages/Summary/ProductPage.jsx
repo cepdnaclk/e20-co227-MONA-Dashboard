@@ -5,6 +5,7 @@ import './ProductPage.scss';
 import Barchart from '../../components/SummaryComponents/Barchart/Barchart';
 import Progressbar from '../../components/SummaryComponents/Progressbar/Progressbar';
 import LineChart from '../../components/SummaryComponents/Linechart/Linechart';
+import Table from '../../components/SummaryComponents/Tables/Table';
 
 const ProductPage = () => {
   const productData = [
@@ -22,6 +23,38 @@ const ProductPage = () => {
 
   const datesRange = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'];
 
+  const columnstable1 = [
+    { label: 'Product Detail', field: 'detailName' },
+    { label: 'Value', field: 'value' },
+  ];
+
+  const datatable1 = [
+    { detailName: 'Product ID', value: 'PR001'},
+    { detailName: 'Product Name', value: 'TOY 1'},
+    { detailName: 'Target Product Count', value: 32},
+    { detailName: 'Completed Product Count', value: 28},
+    { detailName: 'Products to be Made', value: 2},
+    { detailName: 'Completed Product Percentage', value: '90%'},
+    
+    
+  ];
+
+  const columnstable2 = [
+    { label: 'Part Detail', field: 'detailName' },
+    { label: 'Part1', field: 'part1' },
+    { label: 'Part2', field: 'part2' },
+    { label: 'Part3', field: 'part3' },
+    { label: 'Part4', field: 'part4' },
+    { label: 'Part5', field: 'part5' },
+  ];
+
+  const datatable2 = [
+    { detailName: 'Target Count', part1: 32, part2: 32,part3:32, part4: 32, part5:32},
+    { detailName: 'Completed Count', part1: 30, part2: 29,part3:32, part4: 31, part5:28},
+    
+    
+  ];
+
   return (
     <div className='productPage'>
       <SummaryPage />
@@ -33,7 +66,12 @@ const ProductPage = () => {
         <Progressbar title="Success %" value={75} gradientFrom="#3357FF" gradientTo="#8E2DE2" />
         <Progressbar title="Completed %" value={50}  gradientFrom="#3357FF" gradientTo="#8E2DE2"/>
         </div>
-        <div className='table'>table</div>
+        <div className='table'>
+        <Table columns={columnstable1} data={datatable1} />
+        </div>
+        <div className='table2'>
+        <Table columns={columnstable2} data={datatable2} />
+        </div>
         <div className='graph'>
         <LineChart
           title="Product Summary Chart"
