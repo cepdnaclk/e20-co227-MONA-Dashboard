@@ -44,6 +44,23 @@ const PartPage = () => {
     
   ];
 
+  const columnstable2 = [
+    { label: 'Used Machines Detail', field: 'detailName' },
+    { label: 'M101', field: 'm1' },
+    { label: 'M239', field: 'm2' },
+    { label: 'M023', field: 'm3' },
+    { label: 'M109', field: 'm4' },
+    { label: 'M440', field: 'm5' },
+  ];
+
+  const datatable2 = [
+    { detailName: 'Target Count', m1: 15, m2: 20,m3:25, m4: 15, m5:20},
+    { detailName: 'Completed Count', m1: 12, m2: 18,m3:22, m4: 10, m5:18},
+    { detailName: 'Failed Count', m1: 3, m2: 2,m3:3, m4: 5, m5:2},
+    
+    
+  ];
+
   return (
     <div className='partPage'>
       <SummaryPage />
@@ -57,6 +74,9 @@ const PartPage = () => {
         </div>
         <div className='table'>
         <Table columns={columnstable1} data={datatable1} />
+        </div>
+        <div className='table2'>
+        <Table columns={columnstable2} data={datatable2} />
         </div>
         <div className='graph'>
         <LineChart
