@@ -4,6 +4,7 @@ import './MachinePage.scss';
 import Progressbar from '../../components/SummaryComponents/Progressbar/Progressbar';
 import LineChart from '../../components/SummaryComponents/Linechart/Linechart';
 import Table from '../../components/SummaryComponents/Tables/Table';
+import GeneratePDFButton from '../../components/SummaryComponents/GeneratePDF/GeneratePDFButton';
 
 
 const MachinePage = () => {
@@ -63,7 +64,7 @@ const MachinePage = () => {
         />
         </div>
         <div className='exportButton'>
-          export
+        <GeneratePDFButton targetId='pdfContent' filename='pmachine_page.pdf' />
         </div>
 
       </div>
