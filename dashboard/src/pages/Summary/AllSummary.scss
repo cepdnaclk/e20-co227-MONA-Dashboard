@@ -145,7 +145,73 @@
       }
     }
 
-    .product1,
+    .product1 {
+      background-color: rgb(255, 255, 255);
+      padding: 1rem;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      overflow-x: auto;
+      grid-area: product1;
+
+      .product-details {
+        background-color: RGB(181, 194, 198);
+        padding: 10px;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        font-weight: bold;
+        color: #333;
+        text-align: center;
+      }
+
+      .product-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0 10px;
+        text-align: center;
+
+        th, td {
+          padding: 10px 5px;
+          word-wrap: break-word;
+          font-family: Arial, sans-serif;
+          font-size: 16px;
+          color: #fff;
+        }
+
+        th {
+          background-color: RGB(65, 143, 126);
+        }
+
+        td {
+          background-color: RGB(146, 206, 193);
+        }
+
+        /* Adjust the button size in the machine numbers column */
+        td:nth-child(3) .button-group {
+          display: flex;
+          justify-content: center;
+          gap: 5px;
+
+          button {
+            background-color: RGB(15, 74, 96);
+            color: #b287db;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 5px; /* Adjust padding to change button size */
+            cursor: pointer;
+            width: 40px; /* Set button width */
+            height: 30px; /* Set button height */
+
+            &:hover {
+              background-color: RGB(74, 123, 143);
+            }
+          }
+        }
+      }
+    }
+
+
     .product2,
     .product3 {
       background-color: rgb(255, 255, 255);
