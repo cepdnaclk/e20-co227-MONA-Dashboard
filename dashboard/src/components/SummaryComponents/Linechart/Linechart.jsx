@@ -24,13 +24,14 @@ const LineChart = ({ title, seriesData, categories }) => {
       },
     },
     colors: [
+      '#4B0082', // Indigo
       '#4169E1',
       '#87CEEB', // Sky Blue
       '#DC143C', // crimson
-      '#FF7F50', // Coral
       '#4682B4', // Steel Blue
-      '#4B0082', // Indigo
-      '#FFE4E1'  // Misty Rose
+      '#00B2A9',  // syan
+      '#FF7F50', // Coral
+
     ],
     dataLabels: {
       enabled: true,

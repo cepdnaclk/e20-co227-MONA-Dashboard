@@ -10,7 +10,7 @@
     grid-template-areas: 
       "barChart progressBar graph"
       "table table graph"
-      "table table exportButton";
+      "table2 table2 exportButton";
     grid-gap: 0.4rem;
     height: 100%;
     .barChart{
@@ -30,6 +30,10 @@
     .table{
       background-color: rgb(255, 255, 255);
       grid-area: table;
+    }
+    .table2{
+      background-color: rgb(255, 255, 255);
+      grid-area: table2;
     }
     .graph{
       padding: 20px;
