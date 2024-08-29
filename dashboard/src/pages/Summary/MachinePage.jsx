@@ -3,6 +3,7 @@ import SummaryPage from './SummaryPage';
 import './MachinePage.scss';
 import Progressbar from '../../components/SummaryComponents/Progressbar/Progressbar';
 import LineChart from '../../components/SummaryComponents/Linechart/Linechart';
+import Table from '../../components/SummaryComponents/Tables/Table';
 
 
 const MachinePage = () => {
@@ -17,6 +18,30 @@ const MachinePage = () => {
 
   const datesRange = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'];
 
+  const columnstable1 = [
+    { label: 'Machine Detail', field: 'detailName' },
+    { label: 'Value', field: 'value' },
+  ];
+
+  const datatable1 = [
+    { detailName: 'Machine ID', value: 'm001'},
+    { detailName: 'Machine Name', value: 'M401'},
+    { detailName: 'Target Shot Count', value: 35},
+    { detailName: 'Total Shot Count', value: 30},
+    { detailName: 'Succesive Shot Count', value: 25},
+    { detailName: 'Failed Shot Count', value: 5},
+    { detailName: 'Succesive Percentage', value: '75%'},
+    { detailName: 'Completed Percentage', value: '50%'},
+    { detailName: 'Relevent Part', value: 'PP001'},
+    { detailName: 'Product made by the Part', value: 'PR001'},
+    { detailName: 'Material', value: 'APX67800'},
+    { detailName: 'Working hours per Range', value: '36hours'},
+    { detailName: 'Production Rate (Shots per hour)', value: '70%'},
+
+
+    
+    
+  ];
   
   return (
     <div className='machinePage'>
@@ -28,7 +53,7 @@ const MachinePage = () => {
         <Progressbar title="Completed %" value={50}  gradientFrom="#3357FF" gradientTo="#8E2DE2"/>
         </div>
         <div className='table'>
-          table
+        <Table columns={columnstable1} data={datatable1} />
         </div>
         <div className='graph'>
         <LineChart
