@@ -130,7 +130,7 @@ function RealTime() {
             ) : (
 
                 realtimeinfo.map((realtimeinfo) => (
-                    <div key={realtimeinfo.MachineNumber} className={realtimeinfo.Status==='-1' /*|| realtimeinfo.ErrorPercentage<=(100*(realtimeinfo.FailureSlots/realtimeinfo.TotalSlots))*/?"carderror " : "card"}  style={{ backgroundColor: realtimeinfo.Status === "off" ? '#dddddd' : '' }}>
+                    <div key={realtimeinfo.MachineNumber} className={realtimeinfo.Status==='-1' ?"carderror " : "card"}  style={{ backgroundColor: realtimeinfo.Status === "off" ? '#dddddd' : '' }}>
                         <div className="headrow" style={{ height: '18%', backgroundColor: realtimeinfo.Status === "-1" ? '#cc6666' : realtimeinfo.Status === "off" ? '#ababab' : realtimeinfo.Status === "1" ? '#99cc33' : realtimeinfo.Status === "0" ? '#77ccee' : '#bbb' }} >
                             <h3 style={{ color: realtimeinfo.Status === "off" ? '#888888' : '#012970', cursor: 'default' }}>Machine {realtimeinfo.MachineNumber}
                             </h3>
@@ -250,7 +250,7 @@ function RealTime() {
                                     xb={"81%"}
                                     yb={"2%"}
                                     size="15px"
-                                    title="Material"
+                                    title="Part"
                                     color={realtimeinfo.Status === 'off' ? '#888888' : "black"}
                                     text={realtimeinfo.Part}
                                     borderWidth={1} // Set default border width (optional)

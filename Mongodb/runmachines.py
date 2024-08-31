@@ -18,7 +18,7 @@ collection1 = db["realtimeinfos"]  # Replace with your desired collection name
 collection3 = db["rateinfos"]
 
 #setmachine time
-MachineTime = 10
+MachineTime = 30
 
 # Field names
 update_field_0 = "MachineNumber"

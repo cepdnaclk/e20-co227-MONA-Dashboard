@@ -3,6 +3,7 @@ import HourlyRateChart from "../../components/RateComponents/HourlyRate/HourlyRa
 import "./HourlyRate.scss";
 import Header from "../../layouts/Header";
 import SecondBar from "../../layouts/SecondBar";
+import ThirdBar from "../../layouts/ThirdBar"
 import axios from "axios";
 
 const HourlyRate = () => {
@@ -159,6 +160,7 @@ const HourlyRate = () => {
         <>
             <Header />
             <SecondBar />
+            <ThirdBar/>
 
             <div className="hourly-rate-page ">
                 {realtimeinfo.map((realtimeinfo) => (
@@ -174,7 +176,7 @@ const HourlyRate = () => {
                             <div style={{ display: "flex", justifyContent: 'space-between' }}>
 
                                 <div
-                                    className="Smachine"
+                                    className={realtimeinfo.Status==='-1' ?"ESmachine" : "Smachine"}
                                     style={{
                                         backgroundColor:
                                             realtimeinfo.Status === "-1"

@@ -8,7 +8,7 @@
     background-color: #fef6ff;
     border: 1px solid #ddd;
     width:40%;
-    height: 940px;
+    height: 900px;
     margin-left: 30px;
     margin-top: 10px;
     padding: 30px;
@@ -16,9 +16,9 @@
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 2px 2px 2px rgba(0, 0, 0, 0.05);
     transition: transform 0.3s, box-shadow 0.3s;
     
-    &:hover {
-        transform: scale(1.01);
-    }
+    // &:hover {
+    //     transform: scale(1.01);
+    // }
 }
 
 .product-progress-page {
@@ -44,11 +44,11 @@
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 2px 2px 2px rgba(0, 0, 0, 0.05);
     transition: transform 0.3s, box-shadow 0.3s;
     cursor: pointer;
-    height: 940px;
+    height: 900px;
     
-    &:hover {
-        transform: scale(1.01);
-    }
+    // &:hover {
+    //     transform: scale(1.01);
+    // }
 }
 
 
@@ -68,6 +68,18 @@
     margin-left: 10px;
     margin-bottom: -10px;
 }
+.g-product-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+.g-part-title{
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: 25px;
+    margin-top: 10px;
+}
 
 .product-overall-progress {
     display: flex;
@@ -82,4 +94,12 @@
 .Pchart-container {
     width: 100%;
     margin-top: 10px;
+}
+
+.gauge-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    
 }

@@ -11,7 +11,7 @@ import {
 
 const ProductProgressChart = ({ data }) => {
   return (
-    <ResponsiveContainer width={340} height={160}>
+    <ResponsiveContainer width={340} height={150}>
       <LineChart data={data} margin={{ top: 5, right: 30, left: 5, bottom: 10 }}>
         <CartesianGrid strokeDasharray="5 5" />
         <XAxis
@@ -35,7 +35,7 @@ const ProductProgressChart = ({ data }) => {
         />
         <Line
           type="monotone"
-          dataKey="faliure"
+          dataKey="failure"
           stroke="#cc6666"
           activeDot={{ r: 5 }}
         />
