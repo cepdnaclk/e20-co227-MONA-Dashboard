@@ -1,15 +1,4 @@
-@keyframes blink {
-    0% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0;
-    //   background-color: #fa04044b;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
+
 
 .hourly-rate-page {
     display: grid;
@@ -50,11 +39,22 @@
                 width: 20px;
                 border-radius: 10px;
             }
+            @keyframes blink-p {
+                0% {
+                  opacity: 1;
+                }
+                50% {
+                  opacity: 0;
+                }
+                100% {
+                  opacity: 1;
+                }
+              }
             .ESmachine{
                 height: 20px;
                 width: 20px;
                 border-radius: 10px;
-                animation: blink 1s infinite;
+                animation: blink-p 1s infinite;
 
             }
         }

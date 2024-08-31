@@ -10,7 +10,7 @@
         padding-left: 30px; 
 }
 
-@keyframes blink {
+@keyframes blink-s {
         0% {
           opacity: 1;
         }
@@ -34,7 +34,7 @@
         border: 1px solid #b6b6b6;
         border-radius: 10px;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 2px 2px 2px rgba(0, 0, 0, 0.05);
-        animation: blink 1s infinite;
+        animation: blink-s 1s infinite;
 }  
 .card{
         display: flex;
