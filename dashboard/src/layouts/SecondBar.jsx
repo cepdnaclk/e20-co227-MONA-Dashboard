@@ -41,6 +41,7 @@ const SecondBar = () => {
             </span>
           </li>
           <li
+          onClick={() => handleButtonClick("/rate/HourlyRate")}
             style={{
               backgroundColor: location.pathname.startsWith("/rate")
                 ? "#201F67"
@@ -65,7 +66,7 @@ const SecondBar = () => {
             >
               PRODUCTION RATE
             </span>
-            <ul className="submenu">
+            {/* <ul className="submenu">
               <li
                 onClick={() => handleButtonClick("/rate/HourlyRate")}
                 style={{
@@ -123,7 +124,7 @@ const SecondBar = () => {
                     PRODUCT PROGRESS
                 </a>
               </li>
-            </ul>
+            </ul> */}
           </li>
           <li
             onClick={() => handleButtonClick("/history")}

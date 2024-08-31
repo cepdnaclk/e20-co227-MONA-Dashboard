@@ -107,18 +107,7 @@ function MachineSettings() {
                         onChange={handleInputChange}
                     />
                 </div>
-                <div className="lablelayer" >
-                    <label className="lablelable" htmlFor="material">Material:</label>
-                    <input
-                        className="inputbox"
-                        type="text"
-                        id="material"
-                        name="Material"
-                        value={selectedMachineDetails?.Material || ''}
-                        disabled={!isEditing}
-                        onChange={handleInputChange}
-                    />
-                </div>
+                
                 <div className="lablelayer">
                     <label className="lablelable" htmlFor="production">Production:</label>
                     <input
@@ -127,6 +116,18 @@ function MachineSettings() {
                         id="production"
                         name="Production"
                         value={selectedMachineDetails?.Production || ''}
+                        disabled={!isEditing}
+                        onChange={handleInputChange}
+                    />
+                </div>
+                <div className="lablelayer" >
+                    <label className="lablelable" htmlFor="material">Part:</label>
+                    <input
+                        className="inputbox"
+                        type="text"
+                        id="material"
+                        name="Material"
+                        value={selectedMachineDetails?.Part || ''}
                         disabled={!isEditing}
                         onChange={handleInputChange}
                     />
