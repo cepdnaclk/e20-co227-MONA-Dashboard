@@ -154,39 +154,100 @@ const ProductProgress = () => {
             const timeKeys = Object.keys(groupedData);
 
             // Calculate the rate difference for each hour and adjust by time difference in minutes
-            timeKeys.forEach((time, machine) => {
-                const rateData = groupedData[time];
-                if (rateData.length > 1) {
-                    const firstEntry = rateData[0];
-                    const lastEntry = rateData[rateData.length - 1];
+            // timeKeys.forEach((time) => {
+            //     const rateData = groupedData[time];
+            //     if (rateData.length > 1) {
+            //         const firstEntry = rateData[0];
+            //         const lastEntry = rateData[rateData.length - 1];
 
-                    const firstMinute = firstEntry.time.getMinutes();
-                    const lastMinute = lastEntry.time.getMinutes();
-                    const timeDifferenceInMinutes = lastMinute - firstMinute;
+            //         const firstMinute = firstEntry.time.getMinutes();
+            //         const lastMinute = lastEntry.time.getMinutes();
+            //         const timeDifferenceInMinutes = lastMinute - firstMinute;
 
-                    if (timeDifferenceInMinutes !== 0) {
-                        // To avoid division by zero
-                        const rateDifference = lastEntry.success - firstEntry.success; // Difference between first and last rate
-                        const adjustedRate = (
-                            (rateDifference * 60) /
-                            timeDifferenceInMinutes
-                        ).toFixed(2); // Adjust by time difference
+            //         if (timeDifferenceInMinutes !== 0) {
+            //             // To avoid division by zero
+            //             const rateDifference = lastEntry.success - firstEntry.success; // Difference between first and last rate
+            //             const adjustedRate = (
+            //                 (rateDifference * 60) /
+            //                 timeDifferenceInMinutes
+            //             ).toFixed(2); // Adjust by time difference
 
-                        const rateDifference1 = lastEntry.faliure - firstEntry.faliure; // Difference between first and last rate
-                        const adjustedRate1 = (
-                            (rateDifference1 * 60) /
-                            timeDifferenceInMinutes
-                        ).toFixed(2); // Adjust by time difference
+            //             const rateDifference1 = lastEntry.failure - firstEntry.failure; // Difference between first and last rate
+            //             const adjustedRate1 = (
+            //                 (rateDifference1 * 60) /
+            //                 timeDifferenceInMinutes
+            //             ).toFixed(2); // Adjust by time difference
 
-                        data.push({
-                            time: `${time}h`, // Time formatted as HH:00
-                            machine: machine,
-                            success: parseFloat(adjustedRate),
-                            failure: parseFloat(adjustedRate1),
-                        });
+            //             data.push({
+            //                 time: `${time}h`, // Time formatted as HH:00
+            //                 machine: machine,
+            //                 success: parseFloat(adjustedRate),
+            //                 failure: parseFloat(adjustedRate1),
+            //             });
+            //         }
+            //     }
+            // });
+
+            timeKeys.forEach((time) => {
+                const rates = groupedData[time];
+            
+                // Group data by machine number
+                const machineGroups = rates.reduce((acc, rate) => {
+                    const machine = rate.machine;
+                    if (!acc[machine]) {
+                        acc[machine] = [];
                     }
-                }
+                    acc[machine].push(rate);
+                    return acc;
+                }, {});
+            
+                // Initialize sums for success and failure differences
+                let totalSuccessDifference = 0;
+                let totalFailureDifference = 0;
+            
+                // Calculate success and failure differences for each machine group
+                Object.values(machineGroups).forEach((machineRates) => {
+                    const successValues = machineRates.map((rate) => rate.success);
+                    const failureValues = machineRates.map((rate) => rate.failure); // Ensure 'failure' matches key
+            
+                    const timeValues = machineRates.map((rate) => rate.time.getTime()); // Convert date objects to milliseconds
+            
+                    // Calculate max-min differences for success and failure
+                    const maxSuccess = Math.max(...successValues);
+                    const minSuccess = Math.min(...successValues);
+                    const maxTime = Math.max(...timeValues);
+                    const minTime = Math.min(...timeValues);
+                    const timeDifference = (maxTime - minTime) / (1000*60*60); // Convert time difference to minutes
+            
+                    // Ensure time difference is not zero to avoid division by zero
+                    const successDifference =
+                        timeDifference !== 0
+                            ? parseFloat(((maxSuccess - minSuccess) / timeDifference).toFixed(2))
+                            : 0;
+            
+                    const maxFailure = Math.max(...failureValues);
+                    const minFailure = Math.min(...failureValues);
+                    const failureDifference =
+                        timeDifference !== 0
+                            ? parseFloat(((maxFailure - minFailure) / timeDifference).toFixed(2))
+                            : 0;
+            
+                    // Add to the total sums
+                    totalSuccessDifference += successDifference;
+                    totalFailureDifference += failureDifference;
+                });
+            
+                // Push the aggregated data for the current time period
+                data.push({
+                    time: `${time}h`, // Time formatted as HH:MM or HH:00
+                    success: parseFloat(totalSuccessDifference.toFixed(2)), // Round to 2 decimal places
+                    failure: parseFloat(totalFailureDifference.toFixed(2)), // Correct spelling and round to 2 decimal places
+                });
             });
+            
+            
+
+
         } else {
             // Group the data by the same minute (HH:MM)
             const groupedData = machineData.reduce((acc, rate) => {
@@ -257,6 +318,7 @@ const ProductProgress = () => {
                     failure: totalFailureDifference,
                 });
             });
+            
 
         }
 

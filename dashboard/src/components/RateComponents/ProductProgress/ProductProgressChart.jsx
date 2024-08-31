@@ -31,12 +31,14 @@ const ProductProgressChart = ({ data }) => {
           type="monotone"
           dataKey="success"
           stroke="#99cc33"
+          strokeWidth={2}
           activeDot={{ r: 5 }}
         />
         <Line
           type="monotone"
-          dataKey="failure"
+          dataKey="failure" 
           stroke="#cc6666"
+          strokeWidth={2}
           activeDot={{ r: 5 }}
         />
       </LineChart>

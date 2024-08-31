@@ -23,7 +23,7 @@ const SecondBar = () => {
             onClick={() => handleButtonClick("/status")}
             style={{
               backgroundColor:
-                location.pathname === "/status" ? "#201F67" : "inherit",
+                location.pathname === "/status" ? "#201F67" : "white",
             }}
           >
             <DashboardRoundedIcon
@@ -45,7 +45,7 @@ const SecondBar = () => {
             style={{
               backgroundColor: location.pathname.startsWith("/rate")
                 ? "#201F67"
-                : "inherit",
+                : "white",
               position: "relative",
             }}
           >
@@ -130,7 +130,7 @@ const SecondBar = () => {
             onClick={() => handleButtonClick("/history")}
             style={{
               backgroundColor:
-                location.pathname === "/history" ? "#201F67" : "inherit",
+                location.pathname === "/history" ? "#201F67" : "white",
             }}
           >
             <DescriptionRoundedIcon
