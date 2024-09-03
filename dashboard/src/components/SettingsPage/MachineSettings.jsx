@@ -30,8 +30,6 @@ function MachineSettings() {
         return () => { }; // Empty cleanup function for clarity
     }, []); // Empty dependency array ensures data fetching runs only on mount
 
-
-
     const options = machines.map((machine) => ({
         label: "Machine " + machine.MachineNumber,
         value: machine.MachineNumber,
@@ -47,10 +45,6 @@ function MachineSettings() {
         setIsEditing(false); // Reset editing mode on selection change
     };
 
-    const handleEditClick = () => {
-        setIsEditing(!isEditing); // Toggle editing mode
-    };
-
     const handleInputChange = (event) => {
         // Update a copy of selectedMachineDetails to avoid mutating state directly
         const updatedDetails = { ...selectedMachineDetails };
@@ -59,14 +53,21 @@ function MachineSettings() {
     };
 
     const handleSave = async () => {
-        // Send updated details to your backend to save changes (replace with your API call)
         try {
-            const response = await axios.put(`http://localhost:8000/machine/${selectedMachine}`, selectedMachineDetails);
+            const response = await axios.put(`http://localhost:8000/machineinfo/${selectedMachine}`, selectedMachineDetails);
             console.log('Machine details saved:', response.data);
-            // Update machines array locally if needed (depending on your data fetching strategy)
             setIsEditing(false); // Exit editing mode
         } catch (error) {
             console.error('Error saving machine details:', error);
+        }
+    };
+    
+
+    const handleEditClick = () => {
+        if (isEditing) {
+            setShowPassword(true); // Show password check if already in editing mode
+        } else {
+            setIsEditing(true); // Enter editing mode
         }
     };
 
@@ -75,7 +76,7 @@ function MachineSettings() {
             <h2 style={{ marginLeft: '320px' }}>Machines Settings</h2>
 
             <Box className="dropbox">
-                <FormControl fullWidth sx={{height: 30, mt: 1 }}>
+                <FormControl fullWidth sx={{ height: 30, mt: 1 }}>
                     <InputLabel id="demo-simple-select-label">Select Machine</InputLabel>
                     <Select
                         labelId="demo-simple-select-label"
@@ -85,15 +86,13 @@ function MachineSettings() {
                         onChange={handleChange}
                     >
                         {options.map((option) => (
-                        <MenuItem value={option.value}>{option.label}</MenuItem>
+                            <MenuItem key={option.value} value={option.value}>{option.label}</MenuItem>
                         ))}
                     </Select>
                 </FormControl>
             </Box>
 
-
-
-            <div >
+            <div>
                 <h3 style={{ marginLeft: '60px', marginBottom: '30px' }}>Machine {selectedMachine} Details</h3>
                 <div className="lablelayer">
                     <label className="lablelable" htmlFor="machineName">Machine Name:</label>
@@ -107,7 +106,7 @@ function MachineSettings() {
                         onChange={handleInputChange}
                     />
                 </div>
-                
+
                 <div className="lablelayer">
                     <label className="lablelable" htmlFor="production">Production:</label>
                     <input
@@ -120,13 +119,13 @@ function MachineSettings() {
                         onChange={handleInputChange}
                     />
                 </div>
-                <div className="lablelayer" >
-                    <label className="lablelable" htmlFor="material">Part:</label>
+                <div className="lablelayer">
+                    <label className="lablelable" htmlFor="part">Part:</label>
                     <input
                         className="inputbox"
                         type="text"
-                        id="material"
-                        name="Material"
+                        id="part"
+                        name="Part"
                         value={selectedMachineDetails?.Part || ''}
                         disabled={!isEditing}
                         onChange={handleInputChange}
@@ -148,8 +147,6 @@ function MachineSettings() {
                     <label className="lablelable" htmlFor="info">Informations:</label>
                     <textarea
                         className="textbox"
-                        style={{}}
-                        type="text" // Consider number input type for production
                         id="info"
                         name="Info"
                         value={selectedMachineDetails?.Info || ''}
@@ -158,19 +155,26 @@ function MachineSettings() {
                     ></textarea>
                 </div>
 
-
-                <button type="buttone" className="buttonedit" onClick = {!isEditing ? handleEditClick : () => setShowPassword(true)} >
+                <button
+                    type="button"
+                    className="buttonedit"
+                    onClick={handleEditClick}
+                >
                     {isEditing ? 'Update' : 'Edit'}
-
                 </button>
             </div>
-            {showPassword && <Checkpassword onclose1={() => setShowPassword(false)}/>}
-
+            {showPassword && (
+                <Checkpassword
+                    onclose1={() => setShowPassword(false)}
+                    onPasswordCorrect={() => {
+                        handleSave(); // Save the data to the database
+                        setShowPassword(false); // Close the password modal
+                        setIsEditing(false); // Exit editing mode and revert button to "Edit"
+                    }}
+                />
+            )}
         </div>
     );
 }
 
 export default MachineSettings;
-
-
-
