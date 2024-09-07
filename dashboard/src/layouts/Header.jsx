@@ -49,7 +49,7 @@ function Datenow() {
     return (
         <div className="datetime-container">
             <h2>
-                {formattedDate}   {formattedTime}
+                {formattedDate}   {formattedTime}    
             </h2>
             {nightShift &&
                 <>

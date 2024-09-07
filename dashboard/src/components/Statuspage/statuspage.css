@@ -104,6 +104,10 @@
     transform: scale(1.01);
 }
 
+.carderror:hover {
+    transform: scale(1.01);
+}
+
 .statu {
     height: 20px;
     cursor: default;

@@ -174,7 +174,7 @@ function RealTime() {
                                 </div>
                                 <div>
                                     <h1>
-                                        {formattedDate}
+                                        {formattedDate}  
                                     </h1>
                                 </div>
                                 <div className="shift-container-status" >                             
