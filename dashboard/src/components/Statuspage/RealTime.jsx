@@ -5,6 +5,9 @@ import { PieChart } from '@mui/x-charts/PieChart';
 import Tooltip from '@mui/material/Tooltip';
 import videold from './load.mp4';
 
+import LightModeIcon from '@mui/icons-material/LightModeOutlined';
+import NightsStayIcon from '@mui/icons-material/NightsStayOutlined';
+
 
 function TimeDifference({ TimeString }) {
     const [timeDifference, setTimeDifference] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
@@ -94,13 +97,14 @@ const PieChartLable = ({ x, y, xb, yb, text, size, color, boxWidth, boxHeight, t
 
 
 function RealTime() {
-
-    const [realtimeinfo, setMachines] = useState([]); // Use clear variable name
-
+    const [realtimeinfo, setMachines] = useState([]);
+    const [dateTime, setDateTime] = useState(new Date());
+    const [dayShift, setDayShift] = useState(false);
+    const [nightShift, setNightShift] = useState(false);
+    const [overShift, setoverShift] = useState(false);
 
     useEffect(() => {
-
-
+        // Fetch machine data every second
         const fetchData = async () => {
             try {
                 const response = await axios.get('http://localhost:8000/machineinfo');
@@ -110,167 +114,218 @@ function RealTime() {
             }
         };
 
-        const intervalId = setInterval(fetchData, 1000); // Update every 0.5 seconds
+        // Start interval to fetch data every second
+        const fetchIntervalId = setInterval(fetchData, 1000);
 
-        // Cleanup function to clear the interval when the component unmounts
-        return () => clearInterval(intervalId);
-    }, []); // Empty dependency array to fetch data only once on mount
+        // Start interval to update time and shift status every second
+        const shiftIntervalId = setInterval(() => {
+            setDateTime(new Date());
+            const now = new Date();
+            const hour = now.getHours();
+
+            const dayshiftbegin = 7;
+            const dayshiftend = 15;
+            const nightshiftbegin = 15;
+            const nightshiftend = 23;
+
+            setDayShift(hour >= dayshiftbegin && hour < dayshiftend);
+            setNightShift(hour >= nightshiftbegin && hour < nightshiftend);
+            setoverShift((hour >= nightshiftend && hour < 24) || (hour >= 0 && hour < dayshiftbegin));
+        }, 1000);
+
+        // Cleanup function to clear intervals when the component unmounts
+        return () => {
+            clearInterval(fetchIntervalId);
+            clearInterval(shiftIntervalId);
+        };
+    }, []);
 
 
+    const formattedDate = dateTime.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: '2-digit',
+    });
 
+    const formattedTime = dateTime.toLocaleTimeString('en-US', {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+    });
 
-
-
-
+    // Create an array with the first element empty to create the empty first tile
+    const gridItems = [null, ...realtimeinfo.slice(0, 24)]; // Adds an empty first tile and limits data to 24 items
 
     return (
-        <div className="card-grid " >
-            {realtimeinfo.length === 0 ? (
+        <div className="card-grid">
+            {gridItems.length === 1 ? (
                 <video src={videold} autoPlay loop muted></video>
             ) : (
+                gridItems.map((info, index) => (
+                    info === null ? (
+                        // Render the first empty tile
+                        <div key={index} className="card-first-tile" >
+                            {/* Optional content for empty tile */}
+                            <div className="datetime-container-status">
+                                <div className="time-container-status">
 
-                realtimeinfo.map((realtimeinfo) => (
-                    <div key={realtimeinfo.MachineNumber} className={realtimeinfo.Status==='-1' ?"carderror " : "card"}  style={{ backgroundColor: realtimeinfo.Status === "off" ? '#dddddd' : '' }}>
-                        <div className="headrow" style={{ height: '18%', backgroundColor: realtimeinfo.Status === "-1" ? '#cc6666' : realtimeinfo.Status === "off" ? '#ababab' : realtimeinfo.Status === "1" ? '#99cc33' : realtimeinfo.Status === "0" ? '#77ccee' : '#bbb' }} >
-                            <h3 style={{ color: realtimeinfo.Status === "off" ? '#888888' : '#012970', cursor: 'default' }}>Machine {realtimeinfo.MachineNumber}
-                            </h3>
-                            <div className='statu' style={{}}>
-                                <span>{realtimeinfo.MachineName}</span>
-                                <span>
-                                    {realtimeinfo.Status === "-1" ? 'Emergency !' : realtimeinfo.Status === "off" ? 'Inactive' : realtimeinfo.Status === "1" ? 'Active' : realtimeinfo.Status === "0" ? 'Idle' : '?'}
-                                </span>
-                                <span style={{ width: '28%', display: 'flex', flexDirection: 'column', alignItems: 'flex-end', fontFamily: 'serif', textTransform: 'lowercase' }}>
-                                    <TimeDifference TimeString={realtimeinfo.StatusChangedTime} />
-                                </span>
+                                    {formattedTime}
+
+                                </div>
+                                <div>
+                                    <h1>
+                                        {formattedDate}
+                                    </h1>
+                                </div>
+                                <div className="shift-container-status" >                             
+                                    {nightShift &&
+                                        <div style={{display:"flex", flexDirection:'row', marginTop:"10px"}}>
+                                            <NightsStayIcon sx={{ fontSize: 30 }}></NightsStayIcon>
+                                            <h2>
+                                                Night Shift
+                                            </h2>
+                                        </div>
+                                    }
+
+                                    {dayShift &&
+                                        <div style={{display:"flex", flexDirection:'row', marginTop:"10px"}}>
+                                            <LightModeIcon sx={{ fontSize: 30 }} ></LightModeIcon>
+                                            <h2>
+                                                Day Shift
+                                            </h2>
+                                        </div>
+                                    }
+                                    {overShift &&
+                                        <div style={{display:"flex", flexDirection:'row', marginTop:"10px"}}>
+                                            <NightsStayIcon sx={{ fontSize: 30 }} ></NightsStayIcon>
+                                            <h2>
+                                                Overtime Shift
+                                            </h2>
+                                        </div>
+                                    }
+                                </div>
+
+
                             </div>
 
                         </div>
+                    ) : (
+                        <div
+                            key={info.MachineNumber}
+                            className={info.Status === '-1' ? "carderror" : "card"}
+                            style={{ backgroundColor: info.Status === "off" ? '#dddddd' : '' }}
+                        >
+                            <div className="headrow" style={{ height: '18%', backgroundColor: info.Status === "-1" ? '#cc6666' : info.Status === "off" ? '#ababab' : info.Status === "1" ? '#99cc33' : info.Status === "0" ? '#77ccee' : '#bbb' }}>
+                                <h3 style={{ color: info.Status === "off" ? '#888888' : '#012970', cursor: 'default' }}>
+                                    Machine {info.MachineNumber}
+                                </h3>
+                                <div className='statu'>
+                                    <span>{info.MachineName}</span>
+                                    <span>
+                                        {info.Status === "-1" ? 'Emergency !' : info.Status === "off" ? 'Inactive' : info.Status === "1" ? 'Active' : info.Status === "0" ? 'Idle' : '?'}
+                                    </span>
+                                    <span style={{ width: '28%', display: 'flex', flexDirection: 'column', alignItems: 'flex-end', fontFamily: 'serif', textTransform: 'lowercase' }}>
+                                        <TimeDifference TimeString={info.StatusChangedTime} />
+                                    </span>
+                                </div>
+                            </div>
 
-                        <div className="headrow" style={{ cursor: 'default', height: '150px' }}>
+                            <div className="headrow" style={{ cursor: 'default', height: '150px' }}>
+                                <PieChart
+                                    series={[
+                                        {
+                                            data: [
+                                                { value: info.SuccessSlots, color: info.Status === "off" ? 'none' : '#99cc33', label: "Success Slots : " + info.SuccessSlots },
+                                                { value: info.FailureSlots, color: info.Status === "off" ? 'none' : '#cc6666', label: 'Failure Slots    : ' + info.FailureSlots },
+                                                { value: ((info.TargetSlots) - info.SuccessSlots - info.FailureSlots) > 0 ? ((info.TargetSlots) - info.SuccessSlots - info.FailureSlots) : 0, color: '#dddddd' },
+                                            ],
+                                            innerRadius: 50,
+                                            outerRadius: 70,
+                                            cornerRadius: 7,
+                                            startAngle: 0,
+                                            endAngle: 360,
+                                            cx: 100,
+                                            cy: 80,
+                                        },
+                                        {
+                                            data: [
+                                                { value: info.TargetSlots, color: info.Status === "off" ? 'none' : '#888888', label: "Target Slots     : " + info.TargetSlots },
+                                                { value: ((info.TargetSlots) - info.SuccessSlots - info.FailureSlots) < 0 ? parseInt(info.SuccessSlots, 10) + parseInt(info.FailureSlots, 10) - parseInt(info.TargetSlots, 10) : info.FailureSlots, color: 'none' },
+                                            ],
+                                            innerRadius: 71,
+                                            outerRadius: 76,
+                                            startAngle: 0,
+                                            endAngle: 360,
+                                            cornerRadius: 2,
+                                            cx: 100,
+                                            cy: 80,
+                                        },
+                                    ]}
+                                    width={420}
+                                    height={160}
+                                    skipAnimation
+                                >
+                                    <>
+                                        <PieChartText
+                                            x="25%"
+                                            y="45%"
+                                            size={'18px'}
+                                            color={info.Status === 'off' ? 'none' : (info.TargetSlots - info.SuccessSlots) > 0 ? "#f46c00" : '#99cc33'}
+                                            text={info.Status === 'off' ? '' : (info.SuccessSlots / info.TargetSlots * 100).toFixed(1) + " %"}
+                                            style={{ transform: 'translate(-50%, -50%)', fontSize: '15px' }}
+                                        />
+                                        <PieChartText
+                                            x="25%"
+                                            y="55%"
+                                            size='10px'
+                                            color={info.Status === 'off' ? 'none' : (info.TargetSlots - info.SuccessSlots) > 0 ? "#f46c00" : '#99cc33'}
+                                            text={"SLOTS GOAL"}
+                                            style={{ transform: 'translate(-50%, -50%)', fontSize: '10px' }}
+                                        />
+                                        <PieChartText
+                                            x="25%"
+                                            y="65%"
+                                            size='10px'
+                                            color={info.Status === 'off' ? 'none' : (info.TargetSlots - info.SuccessSlots) > 0 ? "#f46c00" : '#99cc33'}
+                                            text={info.Status === 'off' ? "" : info.TargetSlots - info.SuccessSlots > 0 ? (info.TargetSlots - info.SuccessSlots) + " slots behind" : " Target Achieved"}
+                                            style={{ transform: 'translate(-50%, -50%)', fontSize: '10px' }}
+                                        />
+                                    </>
 
-
-                            <PieChart
-                                series={[
-                                    {
-                                        data: [
-                                            { value: realtimeinfo.SuccessSlots, color: realtimeinfo.Status === "off" ? 'none' : '#99cc33', label: "Success Slots : " + realtimeinfo.SuccessSlots },
-                                            { value: realtimeinfo.FailureSlots, color: realtimeinfo.Status === "off" ? 'none' : '#cc6666', label: 'Failure Slots    : ' + realtimeinfo.FailureSlots },/*alt+0160 */
-                                            { value: ((realtimeinfo.TargetSlots) - realtimeinfo.SuccessSlots - realtimeinfo.FailureSlots) > 0 ? ((realtimeinfo.TargetSlots) - realtimeinfo.SuccessSlots - realtimeinfo.FailureSlots) : 0, color: '#dddddd' },
-                                        ],
-                                        innerRadius: 50,
-                                        outerRadius: 70,
-                                        cornerRadius: 7,
-                                        startAngle: 0,
-                                        endAngle: 360,
-                                        cx: 100,
-                                        cy: 80,
-                                    },
-                                    {
-                                        data: [
-                                            /*
-                                            { value: realtimeinfo.TargetSlots*24, color: 'none' },
-                                            { value: realtimeinfo.TargetSlots, color:  realtimeinfo.Status === "off" ? 'none' :'black' ,label:"Target Slots     : " + realtimeinfo.TargetSlots},
-                                            { value: realtimeinfo.TargetSlots*24, color: 'none' },
-                                            */
-                                            { value: realtimeinfo.TargetSlots, color: realtimeinfo.Status === "off" ? 'none' : '#888888', label: "Target Slots     : " + realtimeinfo.TargetSlots },
-                                            { value: ((realtimeinfo.TargetSlots) - realtimeinfo.SuccessSlots - realtimeinfo.FailureSlots) < 0 ? parseInt(realtimeinfo.SuccessSlots, 10) + parseInt(realtimeinfo.FailureSlots, 10) - parseInt(realtimeinfo.TargetSlots, 10) : realtimeinfo.FailureSlots, color: 'none' },
-
-
-                                        ],
-                                        innerRadius: 71,
-                                        outerRadius: 76,
-                                        startAngle: 0,
-                                        endAngle: 360,
-                                        cornerRadius: 2,
-                                        cx: 100,
-                                        cy: 80,
-
-
-
-                                    },
-                                ]}
-
-
-                                width={420}
-                                height={160}
-
-
-                                skipAnimation >
-                                <>
-                                    <PieChartText
-                                        x="25%"
-                                        y="45%"
-                                        size={'18px'}
-                                        color={realtimeinfo.Status === 'off' ? 'none' : (realtimeinfo.TargetSlots - realtimeinfo.SuccessSlots) > 0 ? "#f46c00" : '#99cc33'}
-                                        text={realtimeinfo.Status === 'off' ? '' : (realtimeinfo.SuccessSlots / realtimeinfo.TargetSlots * 100).toFixed(1) + " %"}
-                                        style={{ transform: 'translate(-50%, -50%)', fontSize: '15px' }} // Center the text
+                                    <PieChartLable
+                                        x="60%"
+                                        y="10%"
+                                        xb={"47%"}
+                                        yb={"2%"}
+                                        size="15px"
+                                        title="Production"
+                                        color={info.Status === 'off' ? '#888888' : "black"}
+                                        text={info.Production}
+                                        boxWidth={'26%'}
+                                        boxHeight={"14%"}
+                                        style={{ transform: 'translate(-50%, -50%)', fontSize: '15px' }}
                                     />
-                                    <PieChartText
-                                        x="25%"
-                                        y="55%"
-                                        size='10px'
-                                        color={realtimeinfo.Status === 'off' ? 'none' : (realtimeinfo.TargetSlots - realtimeinfo.SuccessSlots) > 0 ? "#f46c00" : '#99cc33'}
-                                        text={"SLOTS GOAL"}
-                                        style={{ transform: 'translate(-50%, -50%)', fontSize: '10px' }} // Center the text
+
+                                    <PieChartLable
+                                        x="89%"
+                                        y="10%"
+                                        xb={"81%"}
+                                        yb={"2%"}
+                                        size="15px"
+                                        title="Part"
+                                        color={info.Status === 'off' ? '#888888' : "black"}
+                                        text={info.Part}
+                                        boxWidth={'16%'}
+                                        boxHeight={"14%"}
                                     />
-                                    <PieChartText
-                                        x="25%"
-                                        y="65%"
-                                        size='10px'
-                                        color={realtimeinfo.Status === 'off' ? 'none' : (realtimeinfo.TargetSlots - realtimeinfo.SuccessSlots) > 0 ? "#f46c00" : '#99cc33'}
-                                        text={realtimeinfo.Status === 'off' ? "" : realtimeinfo.TargetSlots - realtimeinfo.SuccessSlots > 0 ? (realtimeinfo.TargetSlots - realtimeinfo.SuccessSlots) + " slots behind" : " Target Achieved"}
-                                        style={{ transform: 'translate(-50%, -50%)', fontSize: '10px' }} // Center the text
-                                        
-                                    >
-                                    <div>
-                                    </div>
-                                    </PieChartText>
-
-                                </>
-
-
-                                <PieChartLable
-                                    x="60%"
-                                    y="10%"
-                                    xb={"47%"}
-                                    yb={"2%"}
-                                    size="15px"
-                                    title="Production"
-                                    color={realtimeinfo.Status === 'off' ? '#888888' : "black"}
-                                    text={realtimeinfo.Production}
-                                    borderWidth={1} // Set default border width (optional)
-                                    boxWidth={'26%'} // Adjust for desired text box width
-                                    boxHeight={"14%"} // Adjust for desired text box height
-                                    style={{ transform: 'translate(-50%, -50%)', fontSize: '15px' }} // Center the text
-                                />
-
-                                <PieChartLable
-                                    x="89%"
-                                    y="10%"
-                                    xb={"81%"}
-                                    yb={"2%"}
-                                    size="15px"
-                                    title="Part"
-                                    color={realtimeinfo.Status === 'off' ? '#888888' : "black"}
-                                    text={realtimeinfo.Part}
-                                    borderWidth={1} // Set default border width (optional)
-                                    boxWidth={'16%'} // Adjust for desired text box width
-                                    boxHeight={"14%"} // Adjust for desired text box height
-                                />
-                            </PieChart>
-
+                                </PieChart>
+                            </div>
                         </div>
-
-
-
-
-                    </div>
+                    )
                 ))
             )}
         </div>
     )
-
-
-
 }
+
 export default RealTime;
