@@ -1,116 +1,182 @@
 /*RealTime*/
-.card-grid{
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        grid-row-gap: 15px;
-        grid-column-gap:10px;
-        
-        width: 99%;
-        padding-top: 5px;
-        padding-left: 30px; 
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-row-gap: 15px;
+    grid-column-gap: 10px;
+
+    width: 99%;
+    padding-top: 5px;
+    padding-left: 30px;
+}
+
+.datetime-container-status {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 20px;
+    padding: 15px;
+    cursor: pointer;
+    color: #888888;
+    /*
+    padding-top: 5px;
+    color: #fff;
+    border: '1px solid black';
+    width:300px;
+    height: 30px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
+
+    */
+
+}
+
+.time-container-status {
+    font-size: 50px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #888888;
+    font-weight: bold;
+
+}
+
+.shift-container-status {
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #888888;
+    font-weight: bold;
 }
 
 @keyframes blink-s {
-        0% {
-          opacity: 1;
-        }
-        50% {
-          opacity: 1;
-          background-color: #fa04044b;
-        }
-        100% {
-          opacity: 1;
-        }
-      }
+    0% {
+        opacity: 1;
+    }
 
-.carderror{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        border: 1px solid #ccc;
-        height: 100%;
-        overflow: hidden;
-        width: 98%;
-        border: 1px solid #b6b6b6;
-        border-radius: 10px;
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 2px 2px 2px rgba(0, 0, 0, 0.05);
-        animation: blink-s 1s infinite;
-}  
-.card{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        border: 1px solid #ccc;
-        height: 100%;
-        overflow: hidden;
-        width: 98%;
-        border: 1px solid #b6b6b6;
-        border-radius: 10px;
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 2px 2px 2px rgba(0, 0, 0, 0.05);
-        
+    50% {
+        opacity: 1;
+        background-color: #fa04044b;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
-.card:hover{
+
+.carderror {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    overflow: hidden;
+    width: 98%;
+    border: 1px solid #b6b6b6;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 2px 2px 2px rgba(0, 0, 0, 0.05);
+    animation: blink-s 1s infinite;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    overflow: hidden;
+    width: 98%;
+    border: 1px solid #b6b6b6;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 2px 2px 2px rgba(0, 0, 0, 0.05);
+}
+
+.card-first-tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    overflow: hidden;
+    width: 98%;
+    border: 1px solid #b6b6b6;
+    background-color: #b6b6b63a;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 2px 2px 2px rgba(0, 0, 0, 0.05);
+}
+
+
+.card:hover {
     transform: scale(1.01);
 }
 
-.statu{
-        height: 20px;
-        cursor: default;
-        display: flex;
-        justify-content: space-between;
-        width:68%;
-        font-weight:bold;
-        color:#fff;
-        font-size: 14px;
-        margin-top: 5px;
-        padding-right: 10px;
+.statu {
+    height: 20px;
+    cursor: default;
+    display: flex;
+    justify-content: space-between;
+    width: 68%;
+    font-weight: bold;
+    color: #fff;
+    font-size: 14px;
+    margin-top: 5px;
+    padding-right: 10px;
 
 
 
 }
-.headrow{
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        padding-left: 10px;
-        width: 100%;/*98%*/
+
+.headrow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 10px;
+    width: 100%;
+    /*98%*/
 }
-.bodyrow{
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 100%;/*98%*/
-        border-radius: 10px;
-        padding-top: 5px;
+
+.bodyrow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    /*98%*/
+    border-radius: 10px;
+    padding-top: 5px;
 
 }
 
 .lable {
-        content: ""; /* Hide default content */
-        position: absolute;
-        top: -5px; /* Adjust for padding/margin */
-        left: -5px; /* Adjust for padding/margin */
-        width: calc(100% + 10px); /* Add padding to text width */
-        height: calc(100% + 10px); /* Add padding to text height */
-        background-color: white; /* Set background color (optional) */
-        border: 1px solid black; /* Set border */
-        /* Adjust border color and width using existing props if needed */
-        /* border-color: ${props.borderColor || 'black'}; */
-        /* border-width: ${props.borderWidth || 1}px; */
-        box-sizing: border-box; /* Ensure padding adds to box size */
-        z-index: -1; /* Render behind the text */
-        transition: all 0.2s ease-in-out; /* Optional: Add hover effects */
-      }
-      
+    content: "";
+    /* Hide default content */
+    position: absolute;
+    top: -5px;
+    /* Adjust for padding/margin */
+    left: -5px;
+    /* Adjust for padding/margin */
+    width: calc(100% + 10px);
+    /* Add padding to text width */
+    height: calc(100% + 10px);
+    /* Add padding to text height */
+    background-color: white;
+    /* Set background color (optional) */
+    border: 1px solid black;
+    /* Set border */
+    /* Adjust border color and width using existing props if needed */
+    /* border-color: ${props.borderColor || 'black'}; */
+    /* border-width: ${props.borderWidth || 1}px; */
+    box-sizing: border-box;
+    /* Ensure padding adds to box size */
+    z-index: -1;
+    /* Render behind the text */
+    transition: all 0.2s ease-in-out;
+    /* Optional: Add hover effects */
+}
+
 .lable:hover {
-        background-color: #bd3e3e; /* Optional: Hover background color */
+    background-color: #bd3e3e;
+    /* Optional: Hover background color */
 }
 
 
 
-.tooltip{
-        background-color: #fff;
+.tooltip {
+    background-color: #fff;
 
 
 
@@ -118,31 +184,32 @@
 
 
 /*Machine Status*/
-.machine-status{
-        justify-content: space-between;
-        justify-content: center;
-        align-items: center;
-        margin: auto;
-        border: 1px solid #ccc;
-        height: 950px;
-        width: 625px;
+.machine-status {
+    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    border: 1px solid #ccc;
+    height: 950px;
+    width: 625px;
 
 }
+
 button {
-        display: flex;
-        border: none;
-        padding: 7px 1px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        cursor: pointer;
-        border-radius: 8px; /* Round corners */
-        margin-top: 15px;
-        margin: 5px;
-        width: 191px;
-        height: 50px;
-        font-size: 25px;
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 2px 2px 2px rgba(0, 0, 0, 0.05);
+    display: flex;
+    border: none;
+    padding: 7px 1px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    /* Round corners */
+    margin-top: 15px;
+    margin: 5px;
+    width: 191px;
+    height: 50px;
+    font-size: 25px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 2px 2px 2px rgba(0, 0, 0, 0.05);
 }
-
