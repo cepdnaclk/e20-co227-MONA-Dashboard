@@ -7,6 +7,7 @@ import "./ProductProgress.scss";
 import { BarChart } from "@mui/x-charts/BarChart";
 import { Gauge, gaugeClasses } from "@mui/x-charts/Gauge";
 import axios from "axios";
+import Expanded from "../../components/RateComponents/ProductProgress/ExpandedCard";
 
 const ProductProgress = () => {
     const [realtimeinfo, setRealtimeInfo] = useState([]);
@@ -422,6 +423,7 @@ const ProductProgress = () => {
                             })}
                         </div>
                     ))}
+                    <Expanded/>
                 </div>
             </div>
         </>
