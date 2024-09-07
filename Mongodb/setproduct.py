@@ -33,7 +33,7 @@ products_collection.insert_many(products)
 
 # Step 2: Create 24 machines, each with either 5, 10, or 15 parts capacity
 machine_ids = [f'M{i+1}' for i in range(24)]
-machine_capacities = [2, 3] * 12  # Ensures enough capacities for 24 machines
+machine_capacities = [4, 6] * 12  # Ensures enough capacities for 24 machines
 machines = [{'machine_id': machine_ids[i], 'capacity': machine_capacities[i]} for i in range(24)]
 machines_collection.insert_many(machines)
 
