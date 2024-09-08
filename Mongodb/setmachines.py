@@ -52,7 +52,7 @@ if input() == "1234":
             "TotalSlots": 0,
             "ErrorPercentage": 0,
             "Rate": 0,
-            "Info": f"This is Machine {i+1} with MachineName M#{i+1}",
+            "Info": f"This is Machine {i+1} with MachineName M#{i+1:03d}",
         }
         for i in range(24)
     ]
