@@ -1,7 +1,6 @@
 import './App.css';
 
 import Status from './pages/Status';
-import Rate from './pages/Rate/Rate';
 import Page404 from './pages/page404';
 import Loader from './components/Loader/Loader';
 import ProductPage from './pages/Summary/ProductPage';
@@ -34,7 +33,6 @@ function App() {
           <Routes>
             <Route index element={<Status />} />
             <Route path="/status" element={<Status />} />
-            <Route path="/rate" element={<Rate />} />
             <Route path="/history" element={<AllSummary />} />
             <Route path="/product" element={<ProductPage />} />
             <Route path="/part" element={<PartPage />} />
