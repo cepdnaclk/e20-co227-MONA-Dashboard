@@ -22,7 +22,7 @@ if input() == "1234":
     # Step 1: Create 10 products with random parts
     total_parts = 120
     num_products = 10
-    product_ids = [f'{i+1}' for i in range(num_products)]
+    product_ids = [(i+1) for i in range(num_products)]
     parts_distribution = [total_parts // num_products] * num_products
 
     # Distribute remaining parts to make the total 120
@@ -35,7 +35,7 @@ if input() == "1234":
     products_collection.insert_many(products)
 
     # Step 2: Create 24 machines
-    machine_ids = [f'{i+1}' for i in range(24)]
+    machine_ids = [(i+1) for i in range(24)]
     machine_capacities = [4, 6] * 12  # Ensures enough capacities for 24 machines
 
     machine_data = [
@@ -88,8 +88,8 @@ if input() == "1234":
 
             # Create the part document
             part_doc = {
-                'PartNumber': f'{part_counter}',
                 'ProductNumber': product['ProductNumber'],
+                'PartNumber': part_counter,
                 'MachineNumber': machine_id
             }
             parts_collection.insert_one(part_doc)
