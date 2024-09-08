@@ -174,12 +174,12 @@ function RealTime() {
                                 </div>
                                 <div>
                                     <h1>
-                                        {formattedDate}  
+                                        {formattedDate}
                                     </h1>
                                 </div>
-                                <div className="shift-container-status" >                             
+                                <div className="shift-container-status" >
                                     {nightShift &&
-                                        <div style={{display:"flex", flexDirection:'row', marginTop:"10px"}}>
+                                        <div style={{ display: "flex", flexDirection: 'row', marginTop: "10px" }}>
                                             <NightsStayIcon sx={{ fontSize: 30 }}></NightsStayIcon>
                                             <h2>
                                                 Night Shift
@@ -188,7 +188,7 @@ function RealTime() {
                                     }
 
                                     {dayShift &&
-                                        <div style={{display:"flex", flexDirection:'row', marginTop:"10px"}}>
+                                        <div style={{ display: "flex", flexDirection: 'row', marginTop: "10px" }}>
                                             <LightModeIcon sx={{ fontSize: 30 }} ></LightModeIcon>
                                             <h2>
                                                 Day Shift
@@ -196,13 +196,16 @@ function RealTime() {
                                         </div>
                                     }
                                     {overShift &&
-                                        <div style={{display:"flex", flexDirection:'row', marginTop:"10px"}}>
+                                        <div style={{ display: "flex", flexDirection: 'row', marginTop: "10px" }}>
                                             <NightsStayIcon sx={{ fontSize: 30 }} ></NightsStayIcon>
                                             <h2>
                                                 Overtime Shift
                                             </h2>
                                         </div>
                                     }
+                                </div>
+                                <div>
+
                                 </div>
 
 
@@ -230,43 +233,46 @@ function RealTime() {
                                 </div>
                             </div>
 
-                            <div className="headrow" style={{ cursor: 'default', height: '150px' }}>
-                                <PieChart
-                                    series={[
-                                        {
-                                            data: [
-                                                { value: info.SuccessSlots, color: info.Status === "off" ? 'none' : '#99cc33', label: "Success Slots : " + info.SuccessSlots },
-                                                { value: info.FailureSlots, color: info.Status === "off" ? 'none' : '#cc6666', label: 'Failure Slots    : ' + info.FailureSlots },
-                                                { value: ((info.TargetSlots) - info.SuccessSlots - info.FailureSlots) > 0 ? ((info.TargetSlots) - info.SuccessSlots - info.FailureSlots) : 0, color: '#dddddd' },
-                                            ],
-                                            innerRadius: 50,
-                                            outerRadius: 70,
-                                            cornerRadius: 7,
-                                            startAngle: 0,
-                                            endAngle: 360,
-                                            cx: 100,
-                                            cy: 80,
-                                        },
-                                        {
-                                            data: [
-                                                { value: info.TargetSlots, color: info.Status === "off" ? 'none' : '#888888', label: "Target Slots     : " + info.TargetSlots },
-                                                { value: ((info.TargetSlots) - info.SuccessSlots - info.FailureSlots) < 0 ? parseInt(info.SuccessSlots, 10) + parseInt(info.FailureSlots, 10) - parseInt(info.TargetSlots, 10) : info.FailureSlots, color: 'none' },
-                                            ],
-                                            innerRadius: 71,
-                                            outerRadius: 76,
-                                            startAngle: 0,
-                                            endAngle: 360,
-                                            cornerRadius: 2,
-                                            cx: 100,
-                                            cy: 80,
-                                        },
-                                    ]}
-                                    width={420}
-                                    height={160}
-                                    skipAnimation
-                                >
-                                    <>
-                                        <PieChartText
+                            <div className="headrow" style={{ cursor: 'default', height: '150px', display: "flex", flexDirection: 'row' }}>
+                                <div className="headrow" style={{ width: '160px', marginLeft: '-30px' }}>
+                                    <PieChart
+                                        series={[
+                                            {
+                                                data: [
+                                                    { value: info.SuccessSlots, color: info.Status === "off" ? 'none' : '#99cc33', label: "Success Slots : " + info.SuccessSlots },
+                                                    { value: info.FailureSlots, color: info.Status === "off" ? 'none' : '#cc6666', label: 'Failure Slots    : ' + info.FailureSlots },
+                                                    { value: ((info.TargetSlots) - info.SuccessSlots - info.FailureSlots) > 0 ? ((info.TargetSlots) - info.SuccessSlots - info.FailureSlots) : 0, color: '#dddddd' },
+                                                ],
+                                                innerRadius: 45,
+                                                outerRadius: 70,
+                                                cornerRadius: 7,
+                                                startAngle: 0,
+                                                endAngle: 360,
+                                                cx: 100,
+                                                cy: 80,
+                                                legend: { hidden: true }
+                                            },
+                                            // {
+                                            //     data: [
+                                            //         { value: info.TargetSlots, color: info.Status === "off" ? 'none' : '#888888', label: "Target Slots     : " + info.TargetSlots },
+                                            //         { value: ((info.TargetSlots) - info.SuccessSlots - info.FailureSlots) < 0 ? parseInt(info.SuccessSlots, 10) + parseInt(info.FailureSlots, 10) - parseInt(info.TargetSlots, 10) : info.FailureSlots, color: 'none' },
+                                            //     ],
+                                            //     innerRadius: 71,
+                                            //     outerRadius: 76,
+                                            //     startAngle: 0,
+                                            //     endAngle: 360,
+                                            //     cornerRadius: 2,
+                                            //     cx: 100,
+                                            //     cy: 80,
+                                            // },
+                                        ]}
+                                        width={180}
+                                        height={170}
+                                        slotProps={{ legend: { hidden: true }, }}
+                                        skipAnimation
+                                    >
+                                        <>
+                                            {/* <PieChartText
                                             x="25%"
                                             y="45%"
                                             size={'18px'}
@@ -289,36 +295,60 @@ function RealTime() {
                                             color={info.Status === 'off' ? 'none' : (info.TargetSlots - info.SuccessSlots) > 0 ? "#f46c00" : '#99cc33'}
                                             text={info.Status === 'off' ? "" : info.TargetSlots - info.SuccessSlots > 0 ? (info.TargetSlots - info.SuccessSlots) + " slots behind" : " Target Achieved"}
                                             style={{ transform: 'translate(-50%, -50%)', fontSize: '10px' }}
+                                        /> */}
+                                        </>
+
+                                        {/* <PieChartLable
+                                            x="60%"
+                                            y="10%"
+                                            xb={"47%"}
+                                            yb={"2%"}
+                                            size="15px"
+                                            title="Production"
+                                            color={info.Status === 'off' ? '#888888' : "black"}
+                                            text={info.Production}
+                                            boxWidth={'26%'}
+                                            boxHeight={"14%"}
+                                            style={{ transform: 'translate(-50%, -50%)', fontSize: '15px' }}
                                         />
-                                    </>
 
-                                    <PieChartLable
-                                        x="60%"
-                                        y="10%"
-                                        xb={"47%"}
-                                        yb={"2%"}
-                                        size="15px"
-                                        title="Production"
-                                        color={info.Status === 'off' ? '#888888' : "black"}
-                                        text={info.Production}
-                                        boxWidth={'26%'}
-                                        boxHeight={"14%"}
-                                        style={{ transform: 'translate(-50%, -50%)', fontSize: '15px' }}
-                                    />
+                                        <PieChartLable
+                                            x="89%"
+                                            y="10%"
+                                            xb={"81%"}
+                                            yb={"2%"}
+                                            size="15px"
+                                            title="Part"
+                                            color={info.Status === 'off' ? '#888888' : "black"}
+                                            text={info.Part}
+                                            boxWidth={'16%'}
+                                            boxHeight={"14%"}
+                                        /> */}
+                                    </PieChart>
+                                </div>
+                                <div className="bodyrow" style={{ width: '200px' ,height:'100px'}}>
+                                    <div style={{ display: 'flex', flexDirection: 'row', width: '200px' , margin:"2px"}}>
+                                        <div style={{height:'14px',width:'14px', borderRadius:'7px',backgroundColor:'#99cc33',marginRight:'5px'}}>
+                                            </div>
+                                        <h5 style={{}}>
+                                            Success Slots : 
+                                        </h5>
+                                        <h5>
+                                            {info.SuccessSlots}
+                                        </h5>
+                                    </div>
+                                    <div style={{ display: 'flex', flexDirection: 'row', width: '200px' , margin:"2px"}}>
+                                    <div style={{height:'14px',width:'14px', borderRadius:'7px',backgroundColor:'#cc6666',marginRight:'5px'}}>
+                                    </div>
+                                        <h5 style={{}}>
+                                            Failure Slots    : 
+                                        </h5>
+                                        <h5>
+                                            {info.FailureSlots}
+                                        </h5>
+                                    </div>
 
-                                    <PieChartLable
-                                        x="89%"
-                                        y="10%"
-                                        xb={"81%"}
-                                        yb={"2%"}
-                                        size="15px"
-                                        title="Part"
-                                        color={info.Status === 'off' ? '#888888' : "black"}
-                                        text={info.Part}
-                                        boxWidth={'16%'}
-                                        boxHeight={"14%"}
-                                    />
-                                </PieChart>
+                                </div>
                             </div>
                         </div>
                     )
