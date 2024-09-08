@@ -16,6 +16,7 @@ client = pymongo.MongoClient("mongodb://localhost:27017/")  # Assuming local Mon
 db = client["test"]  # Replace with your desired database name
 collection1 = db["realtimeinfos"]  # Replace with your desired collection name
 collection3 = db["rateinfos"]
+collection2 = db["partinfos"]  # Replace with your desired collection name
 
 #setmachine time
 MachineTime = 30
@@ -33,6 +34,10 @@ update_field_8 = "StatusChangedTime"
 # update_field_9 = "Production"
 # update_field_10 = "Part"
 
+update_field_11 = "ProductNumber"
+update_field_12 = "PartNumber"
+
+
 def reset_doc():
         # Update all documents with zero values for specified fields
         update = {"$set": {update_field_1:"off", update_field_2: 0, update_field_3: 0, update_field_4: 0, update_field_7:0}}
@@ -42,7 +47,7 @@ def reset_doc():
         collection3.delete_many({})
 
         # Number of documents to set "off" (adjust if needed)
-        documents_to_enable = 23
+        documents_to_enable = 22
 
         # Randomly select document IDs to disable
         disabled_ids = sample(list(collection1.distinct("_id")), documents_to_enable)
