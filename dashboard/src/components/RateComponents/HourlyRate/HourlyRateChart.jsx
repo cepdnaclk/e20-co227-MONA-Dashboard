@@ -14,7 +14,7 @@ const HourlyRateChart = ({ data }) => {
     <ResponsiveContainer width="100%" height="100%">
       <LineChart data={data}>
         <CartesianGrid strokeDasharray="5 5" />
-        <XAxis dataKey="time" label={{ value: "Time", position: "insideBottomRight", offset: -4 }}/>
+        <XAxis dataKey="time" label={{ value: "", position: "insideBottomRight", offset: -4 }}/>
         <YAxis label={{ value: "Slots/Time", angle: -90, position: "insideBottomLeft", offset: 20}}/>
         <Tooltip />
         <Line
