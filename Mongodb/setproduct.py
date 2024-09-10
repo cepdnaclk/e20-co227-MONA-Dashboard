@@ -19,7 +19,7 @@ machines_collection.delete_many({})
 # Step 1: Create 10 products with random parts
 total_parts = 120
 num_products = 10
-product_ids = [f'P{i+1}' for i in range(num_products)]
+product_ids = [f'{i+1}' for i in range(num_products)]
 parts_distribution = [total_parts // num_products] * num_products
 
 # Distribute remaining parts to make the total 100
