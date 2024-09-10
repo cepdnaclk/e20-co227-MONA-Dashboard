@@ -50,6 +50,7 @@ if input() == "1234":
             "SuccessSlots": 0,
             "FailureSlots": 0,
             "TotalSlots": 0,
+            "TargetSlots": 500,
             "ErrorPercentage": 0,
             "Rate": 0,
             "Info": f"This is Machine {i+1} with MachineName M#{i+1:03d}",

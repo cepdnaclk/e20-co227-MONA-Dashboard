@@ -234,7 +234,7 @@ function RealTime() {
                             </div>
 
                             <div className="headrow" style={{ cursor: 'default', height: '150px', display: "flex", flexDirection: 'row' }}>
-                                <div className="headrow" style={{ width: '160px', marginLeft: '-30px' }}>
+                                <div className={((info.SuccessSlots>20) && (info.FailureSlots/info.SuccessSlots>0.11))?"gauage-s-error":"gauage-s"} style={{ width:"135px", marginLeft: '0px' }}>
                                     <PieChart
                                         series={[
                                             {
@@ -248,54 +248,54 @@ function RealTime() {
                                                 cornerRadius: 7,
                                                 startAngle: 0,
                                                 endAngle: 360,
-                                                cx: 100,
+                                                cx: 70,
                                                 cy: 80,
                                                 legend: { hidden: true }
                                             },
-                                            // {
-                                            //     data: [
-                                            //         { value: info.TargetSlots, color: info.Status === "off" ? 'none' : '#888888', label: "Target Slots     : " + info.TargetSlots },
-                                            //         { value: ((info.TargetSlots) - info.SuccessSlots - info.FailureSlots) < 0 ? parseInt(info.SuccessSlots, 10) + parseInt(info.FailureSlots, 10) - parseInt(info.TargetSlots, 10) : info.FailureSlots, color: 'none' },
-                                            //     ],
-                                            //     innerRadius: 71,
-                                            //     outerRadius: 76,
-                                            //     startAngle: 0,
-                                            //     endAngle: 360,
-                                            //     cornerRadius: 2,
-                                            //     cx: 100,
-                                            //     cy: 80,
-                                            // },
+                                            {
+                                                data: [
+                                                    { value: info.TargetSlots, color: info.Status === "off" ? 'none' : '#888888', label: "Target Slots     : " + info.TargetSlots },
+                                                    { value: ((info.TargetSlots) - info.SuccessSlots - info.FailureSlots) < 0 ? parseInt(info.SuccessSlots, 10) + parseInt(info.FailureSlots, 10) - parseInt(info.TargetSlots, 10) : info.FailureSlots, color: 'none' },
+                                                ],
+                                                innerRadius: 71,
+                                                outerRadius: 76,
+                                                startAngle: 0,
+                                                endAngle: 360,
+                                                cornerRadius: 2,
+                                                cx: 70,
+                                                cy: 80,
+                                            },
                                         ]}
-                                        width={180}
+                                        width={150}
                                         height={170}
                                         slotProps={{ legend: { hidden: true }, }}
                                         skipAnimation
                                     >
                                         <>
-                                            {/* <PieChartText
-                                            x="25%"
-                                            y="45%"
+                                            <PieChartText
+                                            x="50%"
+                                            y="40%"
                                             size={'18px'}
                                             color={info.Status === 'off' ? 'none' : (info.TargetSlots - info.SuccessSlots) > 0 ? "#f46c00" : '#99cc33'}
                                             text={info.Status === 'off' ? '' : (info.SuccessSlots / info.TargetSlots * 100).toFixed(1) + " %"}
                                             style={{ transform: 'translate(-50%, -50%)', fontSize: '15px' }}
                                         />
                                         <PieChartText
-                                            x="25%"
-                                            y="55%"
+                                            x="50%"
+                                            y="50%"
                                             size='10px'
                                             color={info.Status === 'off' ? 'none' : (info.TargetSlots - info.SuccessSlots) > 0 ? "#f46c00" : '#99cc33'}
                                             text={"SLOTS GOAL"}
                                             style={{ transform: 'translate(-50%, -50%)', fontSize: '10px' }}
                                         />
                                         <PieChartText
-                                            x="25%"
-                                            y="65%"
+                                            x="50%"
+                                            y="60%"
                                             size='10px'
                                             color={info.Status === 'off' ? 'none' : (info.TargetSlots - info.SuccessSlots) > 0 ? "#f46c00" : '#99cc33'}
                                             text={info.Status === 'off' ? "" : info.TargetSlots - info.SuccessSlots > 0 ? (info.TargetSlots - info.SuccessSlots) + " slots behind" : " Target Achieved"}
                                             style={{ transform: 'translate(-50%, -50%)', fontSize: '10px' }}
-                                        /> */}
+                                        />
                                         </>
 
                                         {/* <PieChartLable
@@ -327,8 +327,8 @@ function RealTime() {
                                     </PieChart>
                                 </div>
                                 <div className="bodyrow" style={{ width: '200px' ,height:'100px'}}>
-                                    <div style={{ display: 'flex', flexDirection: 'row', width: '200px' , margin:"2px"}}>
-                                        <div style={{height:'14px',width:'14px', borderRadius:'7px',backgroundColor:'#99cc33',marginRight:'5px'}}>
+                                    <div style={{ display: 'flex', flexDirection: 'row', width: '200px' , margin:"2px",marginLeft:"20%"}}>
+                                        <div style={{height:'14px',width:'14px', borderRadius:'7px',backgroundColor:info.Status === 'off' ? '#none' :'#99cc33',marginRight:'5px'}}>
                                             </div>
                                         <h5 style={{}}>
                                             Success Slots : 
@@ -337,14 +337,24 @@ function RealTime() {
                                             {info.SuccessSlots}
                                         </h5>
                                     </div>
-                                    <div style={{ display: 'flex', flexDirection: 'row', width: '200px' , margin:"2px"}}>
-                                    <div style={{height:'14px',width:'14px', borderRadius:'7px',backgroundColor:'#cc6666',marginRight:'5px'}}>
+                                    <div style={{ display: 'flex', flexDirection: 'row', width: '200px' , margin:"2px",marginLeft:"20%"}}>
+                                    <div style={{height:'14px',width:'14px', borderRadius:'7px',backgroundColor:info.Status === 'off' ? '#none' :'#cc6666',marginRight:'5px'}}>
                                     </div>
                                         <h5 style={{}}>
                                             Failure Slots    : 
                                         </h5>
                                         <h5>
                                             {info.FailureSlots}
+                                        </h5>
+                                    </div>
+                                    <div style={{ display: 'flex', flexDirection: 'row', width: '200px' , margin:"2px",marginLeft:"20%"}}>
+                                    <div style={{height:'14px',width:'14px', borderRadius:'7px',backgroundColor:info.Status === 'off' ? '#none' :'#888888',marginRight:'5px'}}>
+                                    </div>
+                                        <h5 style={{}}>
+                                            Target Slots     : 
+                                        </h5>
+                                        <h5>
+                                            {info.TargetSlots}
                                         </h5>
                                     </div>
 

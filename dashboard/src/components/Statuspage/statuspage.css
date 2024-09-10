@@ -54,6 +54,8 @@
     50% {
         opacity: 1;
         background-color: #fa04044b;
+
+        border: 2px solid #fc0000;
     }
 
     100% {
@@ -135,11 +137,37 @@
     /*98%*/
 }
 
+.gauage-s {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 90%;
+    padding: 10px;
+    width: 70%;
+    margin-left: 10%;
+    border-radius: 70px;
+}
+
+.gauage-s-error {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 90%;
+    padding: 10px;
+    width: 70%;
+    margin-left: 10%;
+    border-radius: 70px;
+    /*98%*/
+    animation: blink-s 1s infinite;
+}
+
 .bodyrow {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content:flex-start;
+    justify-content: flex-start;
     width: 100%;
     /*98%*/
     padding: 10px;
