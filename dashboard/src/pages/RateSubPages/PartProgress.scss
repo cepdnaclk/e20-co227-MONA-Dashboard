@@ -1,8 +1,9 @@
 // Container for progress blocks
 .progress-page {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(92px, 1fr)); // Ensures responsive grid layout
-    gap: 6px; // Space between blocks
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); // Ensures responsive grid layout
+    row-gap: 5px; // Space between blocks
+    column-gap: 5px;
     padding: 20px;
     height: calc(100vh - 150px); // Subtract header heights from total view height
     overflow-y: auto; // Allow vertical scrolling if necessary
@@ -12,14 +13,14 @@
 // Individual progress block
 .progress-block {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
+    background-color: #ffffff;
+    border: 1px solid #858585;
     border-radius: 10px;
-    padding: 10px;
     text-align: center;
+    height: 80px;
 }
 
 // Text inside the progress block

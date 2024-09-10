@@ -27,8 +27,10 @@ const PartProgress = () => {
       <div className="progress-page">
         {progressData.map((progress, index) => (
           <div key={index} className="progress-block">
-            <CircularProgressbar value={progress} text={`${progress}%`} />
             <p>Block {index + 1}</p>
+            <div style={{width:"60px", height:"60px",marginLeft:"10%"}}>
+            <CircularProgressbar value={progress} text={`${progress}%`}  />
+            </div>
           </div>
         ))}
       </div>

@@ -172,91 +172,97 @@ const HourlyRate = () => {
     //   };
 
     return (
-      <>
-        <Header />
-        <SecondBar />
-        <ThirdBar />
+        <>
+            <Header />
+            <SecondBar />
+            <ThirdBar />
 
-        <div className="hourly-rate-page ">
-          {realtimeinfo.map((realtimeinfo) => (
-            <div
-              key={realtimeinfo.MachineNumber}
-              className="machine-block"
-              style={{
-                backgroundColor: realtimeinfo.Status === "off" ? "#dddddd" : "",
-              }}
-            >
-              <div className="status">
-                <div
-                  style={{ display: "flex", justifyContent: "space-between" }}
-                >
-                  <div
-                    className={
-                      realtimeinfo.Status === "-1" ? "ESmachine" : "Smachine"
-                    }
-                    style={{
-                      backgroundColor:
-                        realtimeinfo.Status === "-1"
-                          ? "#cc6666"
-                          : realtimeinfo.Status === "off"
-                          ? "#ababab"
-                          : realtimeinfo.Status === "1"
-                          ? "#99cc33"
-                          : realtimeinfo.Status === "0"
-                          ? "#77ccee"
-                          : "#bbb",
-                    }}
-                  ></div>
-                  <div
-                    style={{
-                      color: realtimeinfo.Status === "off" ? "#ababab" : "",
-                    }}
-                  >
-                    <h3> Machine {realtimeinfo.MachineNumber}</h3>
-                  </div>
-                </div>
-              </div>
-              <div
-                style={{ display: "flex", flexDirection: "row", height: "80%" }}
-              >
-                <div className="Rchart-container">
-                  <HourlyRateChart data={setdata(realtimeinfo.MachineNumber)} />
-                </div>
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    marginTop: "9%",
-                    height: "80%",
-                  }}
-                >
-                  <div
-                    className="rate-rate"
-                    style={{ backgroundColor: "#99cc33" }}
-                  >
-                    <div>
-                      <h4>Current Rate</h4>
-                      <h4>10</h4>
+            <div className="hourly-rate-page ">
+                {realtimeinfo.map((realtimeinfo) => (
+                    <div
+                        key={realtimeinfo.MachineNumber}
+                        className="machine-block"
+                        style={{
+                            backgroundColor: realtimeinfo.Status === "off" ? "#dddddd" : "",
+                        }}
+                    >
+                        <div className="status">
+                            <div
+                                style={{ display: "flex", justifyContent: "space-between" }}
+                            >
+                                <div
+                                    className={
+                                        realtimeinfo.Status === "-1" ? "ESmachine" : "Smachine"
+                                    }
+                                    style={{
+                                        backgroundColor:
+                                            realtimeinfo.Status === "-1"
+                                                ? "#cc6666"
+                                                : realtimeinfo.Status === "off"
+                                                    ? "#ababab"
+                                                    : realtimeinfo.Status === "1"
+                                                        ? "#99cc33"
+                                                        : realtimeinfo.Status === "0"
+                                                            ? "#77ccee"
+                                                            : "#bbb",
+                                    }}
+                                ></div>
+
+                                <div className="progress-bar-container">
+                                    <ProgressBar
+                                        SuccessSlots={realtimeinfo.SuccessSlots}
+                                        TargetSlots={realtimeinfo.TargetSlots} />
+                                </div>
+
+
+                                <div
+                                    style={{
+                                        color: realtimeinfo.Status === "off" ? "#ababab" : "",
+                                    }}
+                                >
+                                    <h3> Machine {realtimeinfo.MachineNumber}</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            style={{ display: "flex", flexDirection: "row", height: "90%" }}
+                        >
+                            <div className="Rchart-container">
+                                <HourlyRateChart data={setdata(realtimeinfo.MachineNumber)} />
+                            </div>
+                            <div
+                                style={{
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    marginTop: "9%",
+                                    height: "80%",
+                                }}
+                            >
+                                <div
+                                    className="rate-rate"
+                                    style={{ backgroundColor: "#99cc33" }}
+                                >
+                                    <div>
+                                        <h4>Current Rate</h4>
+                                        <h4>10</h4>
+                                    </div>
+                                </div>
+                                <div
+                                    className="rate-rate"
+                                    style={{ backgroundColor: "yellow" }}
+                                >
+                                    <div>
+                                        <h4>Previous Rate</h4>
+                                        <h4>15</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
-                  </div>
-                  <div
-                    className="rate-rate"
-                    style={{ backgroundColor: "yellow" }}
-                  >
-                    <div>
-                      <h4>Previous Rate</h4>
-                      <h4>15</h4>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="progress-bar-container">
-                <ProgressBar />
-              </div>
+                ))}
             </div>
-          ))}
-        </div>
-      </>
+        </>
     );
 };
 
