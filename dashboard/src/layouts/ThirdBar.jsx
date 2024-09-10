@@ -85,7 +85,7 @@ const ThirdBar = () => {
               onClick={() => handleButtonClick("/rate/PartProgress")}
               style={{
                 backgroundColor:
-                  location.pathname === "/rate/ProductProgress"
+                  location.pathname === "/rate/PartProgress"
                     ? "#201F67"
                     : "white",
               }}
