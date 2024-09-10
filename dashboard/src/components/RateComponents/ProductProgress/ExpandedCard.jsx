@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./ExpandableCard.scss"; // You can create a new SCSS file for styling
+// import "./ExpandableCard.scss"; // You can create a new SCSS file for styling
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 
