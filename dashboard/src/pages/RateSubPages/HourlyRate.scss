@@ -1,10 +1,8 @@
-
-
 .hourly-rate-page {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-row-gap: 12px;
-    grid-column-gap:10px;
+    grid-column-gap: 10px;
     padding: 10px;
     flex-grow: 1;
     // margin-left: 70px;
@@ -15,8 +13,8 @@
         border-radius: 15px;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 2px 2px 2px rgba(0, 0, 0, 0.05);
         overflow: hidden;
-        width:98%;
-        height:170px;
+        width: 98%;
+        height: 170px;
         cursor: pointer !important;
 
         &:hover {
@@ -24,13 +22,13 @@
         }
 
         .status {
-            
+
             display: flex;
             justify-content: space-between;
             flex-direction: column;
             width: 98% !important;
             height: 1% !important;
-            padding-top: 5px ;
+            padding-top: 5px;
             padding-right: 5px;
             padding-left: 5px;
 
@@ -39,18 +37,22 @@
                 width: 20px;
                 border-radius: 10px;
             }
+
             @keyframes blink-p {
                 0% {
-                  opacity: 1;
+                    opacity: 1;
                 }
+
                 50% {
-                  opacity: 0;
+                    opacity: 0;
                 }
+
                 100% {
-                  opacity: 1;
+                    opacity: 1;
                 }
-              }
-            .ESmachine{
+            }
+
+            .ESmachine {
                 height: 20px;
                 width: 20px;
                 border-radius: 10px;
@@ -60,13 +62,22 @@
         }
 
         .Rchart-container {
-           
-            width: 100%;
-            height: 84%;
-            margin-top: 5%;
+
+            width: 78%;
+            height: 80%;
+            margin-top: 9%;
             margin-left: -2%;
             cursor: pointer !important;
         }
+
+        .rate-rate {
+            font-size: 11px;
+            margin-left: 10%;
+            text-align: center;
+            padding: 2px 0 4px 4px;
+    
+        }
+
 
         .popup {
             display: none;
@@ -85,126 +96,16 @@
         &:hover .popup {
             display: block;
         }
-    }
 
-   
-
-    .central-block {
-        position: absolute;
-        top: 10%;
-        left: 30%;
-        transform: translate(-50%, -50%);
-        border: 2px solid #ccc;
-        border-radius: 10px;
-        padding: 20px;
-        background-color: rgb(233, 217, 231);
-        z-index: 100;
-        width: 800px;
-        height: 800px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-
-        &.operating {
-                background-color: #ccffcc; // Light green
-                color: green;
-            }
-        
-            &.stuck {
-                background-color: #ffcccc; // Light red
-                color: red;
-            }
-        
-            &.stopped {
-                background-color: #d9d9d9; // Light grey
-                color: grey;
-            }
-            
-        .status {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            padding: 10px;
-            text-align: center;
-            border-radius: 3px;
-            margin-bottom: 10px;
-            height:300px;
-
-            &.operating {
-                background-color: green;
-                color: white;
-            }
-
-            &.stuck {
-                background-color: red;
-                color: white;
-            }
-
-            &.stopped {
-                background-color: grey;
-                color: white;
-            }
-
-            .Rmachine-number {
-                font-size: 18px;
-                font-weight: bold; 
-                margin-bottom: 10px;
-                text-align: center; 
-            }
+        .progress-bar-container {
+            margin-top: 6px;
+            margin-left: 3px;
         }
 
-        .Rchart-container {
-            width: 100%;
-            height: 100%;
-        }
 
-        .additional-info {
-            margin-top: 20px;
-            padding: 10px;
-            background-color: rgb(233, 214, 236);
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            transition: box-shadow 0.3s ease;
-            letter-spacing: 0.8px;
-            line-height: 1.3;
 
-            &:hover {
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-                font-weight: bold;
-                transition: 0.2s;
-                letter-spacing: 0.8px;
-                line-height: 1.3;
-            }
-
-            detail-item {
-                margin-bottom: 12px;
-                
-
-                &.product {
-                    font-size: 16px;
-                    color: #333;
-                    margin-bottom: 8px;
-                }
-
-                &.progress {
-                    font-size: 14px;
-                    color: #666;
-                    line-height: 1.5;
-                }
-
-                &.machine-type,
-                &.hours-active {
-                    font-weight: bold; 
-                    font-size: 14px;
-                    color: #777;
-                    line-height: 1.5;
-                }
-            }
-        }
     }
 }
 
+
+    

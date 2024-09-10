@@ -8,7 +8,7 @@ import PartPage from './pages/Summary/PartPage';
 import MachinePage from './pages/Summary/MachinePage';
 import ProductProgress from './pages/RateSubPages/ProductProgress';
 import HourlyRate from './pages/RateSubPages/HourlyRate';
-
+import PartProgress from './pages/RateSubPages/PartProgress';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import AllSummary from './pages/Summary/AllSummary';
@@ -40,6 +40,7 @@ function App() {
             <Route path="*" element={<Page404 />} />
             <Route path="/rate/HourlyRate" element={<HourlyRate />} />
             <Route path="/rate/ProductProgress" element={<ProductProgress />} />
+            <Route path="/rate/PartProgress" element={<PartProgress />} />
           </Routes>
         </BrowserRouter>
       </div>

@@ -64,7 +64,7 @@ const SecondBar = () => {
                   : "inherit",
               }}
             >
-              PRODUCTION RATE
+              PRODUCTION PROGRESS
             </span>
             {/* <ul className="submenu">
               <li
