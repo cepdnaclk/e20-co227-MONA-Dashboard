@@ -6,6 +6,8 @@ import SecondBar from "../../layouts/SecondBar";
 import ThirdBar from "../../layouts/ThirdBar";
 import axios from "axios";
 import ProgressBar from "../../components/RateComponents/HourlyRate/Progress";
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import Tooltip from '@mui/material/Tooltip';
 
 const HourlyRate = () => {
     const [realtimeinfo, setRealtimeInfo] = useState([]); // Use clear variable name
@@ -167,6 +169,12 @@ const HourlyRate = () => {
         return data;
     };
 
+    // const lastItem = data[data.length - 1]; // Get the last item
+    // const lastItem2 = data[data.length - 2]; // Get the last item
+    // const lastSuccessValue = data[data.length - 1] // Check if it exists and get the success value
+    // const lastSuccessValue2 = lastItem2 ? lastItem2.success : null; // Check if it exists and get the success value
+
+
     //   const getRandomProgress = () => {
     //     return Math.floor(Math.random() * 101); // Generate random progress percentage between 0 and 100
     //   };
@@ -178,89 +186,135 @@ const HourlyRate = () => {
             <ThirdBar />
 
             <div className="hourly-rate-page ">
-                {realtimeinfo.map((realtimeinfo) => (
-                    <div
-                        key={realtimeinfo.MachineNumber}
-                        className="machine-block"
-                        style={{
-                            backgroundColor: realtimeinfo.Status === "off" ? "#dddddd" : "",
-                        }}
-                    >
-                        <div className="status">
-                            <div
-                                style={{ display: "flex", justifyContent: "space-between" }}
-                            >
-                                <div
-                                    className={
-                                        realtimeinfo.Status === "-1" ? "ESmachine" : "Smachine"
-                                    }
-                                    style={{
-                                        backgroundColor:
-                                            realtimeinfo.Status === "-1"
-                                                ? "#cc6666"
-                                                : realtimeinfo.Status === "off"
-                                                    ? "#ababab"
-                                                    : realtimeinfo.Status === "1"
-                                                        ? "#99cc33"
-                                                        : realtimeinfo.Status === "0"
-                                                            ? "#77ccee"
-                                                            : "#bbb",
-                                    }}
-                                ></div>
+                {realtimeinfo.map((realtimeinfo) => {
+                    const machineData = setdata(realtimeinfo.MachineNumber);
+                    const lastSuccess1 = machineData.length > 0 ? machineData[machineData.length - 1].success.toFixed(2) : '-';
+                    const lastSuccess2 = machineData.length > 1 ? machineData[machineData.length - 2].success.toFixed(2) : '-';
+                    const lastSuccess3 = machineData.length > 2 ? machineData[machineData.length - 3].success.toFixed(2) : '-';
 
-                                <div className="progress-bar-container">
-                                    <ProgressBar
-                                        SuccessSlots={realtimeinfo.SuccessSlots}
-                                        TargetSlots={realtimeinfo.TargetSlots} />
-                                </div>
+                    const lastdiff1 = (lastSuccess1 - lastSuccess2) || (lastSuccess1 - lastSuccess2) == 0 ? (lastSuccess1 - lastSuccess2).toFixed(2) : "-";
+                    const lastdiff2 = (lastSuccess2 - lastSuccess3) || (lastSuccess1 - lastSuccess2) == 0 ? (lastSuccess2 - lastSuccess3).toFixed(2) : "-";
 
 
-                                <div
-                                    style={{
-                                        color: realtimeinfo.Status === "off" ? "#ababab" : "",
-                                    }}
-                                >
-                                    <h3> Machine {realtimeinfo.MachineNumber}</h3>
-                                </div>
-                            </div>
-                        </div>
+                    return (
+
                         <div
-                            style={{ display: "flex", flexDirection: "row", height: "90%" }}
+                            key={realtimeinfo.MachineNumber}
+                            className="machine-block"
+                            style={{
+                                backgroundColor: realtimeinfo.Status === "off" ? "#dddddd" : "",
+                            }}
                         >
-                            <div className="Rchart-container">
-                                <HourlyRateChart data={setdata(realtimeinfo.MachineNumber)} />
+                            <div className="status">
+                                <div
+                                    style={{ display: "flex", justifyContent: "space-between" }}
+                                >
+                                    <div
+                                        className={
+                                            realtimeinfo.Status === "-1" ? "ESmachine" : "Smachine"
+                                        }
+                                        style={{
+                                            backgroundColor:
+                                                realtimeinfo.Status === "-1"
+                                                    ? "#cc6666"
+                                                    : realtimeinfo.Status === "off"
+                                                        ? "#ababab"
+                                                        : realtimeinfo.Status === "1"
+                                                            ? "#99cc33"
+                                                            : realtimeinfo.Status === "0"
+                                                                ? "#77ccee"
+                                                                : "#bbb",
+                                        }}
+                                    ></div>
+
+                                    <div className="progress-bar-container">
+                                        <ProgressBar
+                                            SuccessSlots={realtimeinfo.SuccessSlots}
+                                            TargetSlots={realtimeinfo.TargetSlots} />
+                                    </div>
+
+
+                                    <div
+                                        style={{
+                                            color: realtimeinfo.Status === "off" ? "#ababab" : "",
+                                        }}
+                                    >
+                                        <h3> Machine {realtimeinfo.MachineNumber}</h3>
+                                    </div>
+                                </div>
                             </div>
                             <div
-                                style={{
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    marginTop: "9%",
-                                    height: "80%",
-                                }}
+                                style={{ display: "flex", flexDirection: "row", height: "90%" }}
                             >
-                                <div
-                                    className="rate-rate"
-                                    style={{ backgroundColor: "#99cc33" }}
-                                >
-                                    <div>
-                                        <h4>Current Rate</h4>
-                                        <h4>10</h4>
-                                    </div>
+                                <div className="Rchart-container">
+                                    <HourlyRateChart data={setdata(realtimeinfo.MachineNumber)} />
                                 </div>
                                 <div
-                                    className="rate-rate"
-                                    style={{ backgroundColor: "yellow" }}
+                                    style={{
+                                        display: "flex",
+                                        flexDirection: "column",
+                                        marginTop: "9%",
+                                        height: "80%",
+                                    }}
                                 >
-                                    <div>
-                                        <h4>Previous Rate</h4>
-                                        <h4>15</h4>
+                                    <div
+                                        className="rate-rate-p"
+                                    >
+                                        <Tooltip title="Previous Rate" placement="top" arrow>
+                                            {realtimeinfo.Status !== 'off' && (
+                                                <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
+                                                    <div>
+                                                        <h4>{lastSuccess2}</h4>
+                                                    </div>
+                                                    <div>
+                                                        {lastdiff2 !== 0 && (
+                                                            <PlayArrowIcon
+                                                                style={{
+                                                                    color: lastdiff2 > 0 ? '#99cc33' : lastdiff1 < 0 ? 'red' : lastdiff1 === 0 ? 'yellow' : 'none',
+                                                                    transform: lastdiff2 > 0 ? 'rotate(270deg)' : lastdiff1 < 0 ? 'rotate(90deg)' : 'rotate(270deg)',
+                                                                    marginTop: lastdiff2 > 0 ? '-3px' : lastdiff1 < 0 ? '-6px' : '-5px',
+                                                                    fontSize: '10px'
+                                                                }}
+                                                            />
+                                                        )}
+                                                    </div>
+                                                </div>
+                                            )}</Tooltip>
+                                        <div>
+
+                                        </div>
+                                    </div>
+                                    <div
+                                        className="rate-rate-c"
+                                    >
+                                        <Tooltip title="Current Rate" placement="top" arrow>
+                                            {realtimeinfo.Status !== 'off' && (
+                                                <div>
+                                                    <h4>{lastSuccess1}</h4>
+                                                    <div style={{ display: 'flex', flexDirection: 'column',justifyContent: 'center' }}>
+                                                        <div style={{ display: 'flex', flexDirection: 'row' }}>
+                                                            {lastdiff1 !== 0 && (
+
+                                                                <PlayArrowIcon style={{
+                                                                    color: lastdiff1 > 0 ? '#99cc33' : lastdiff1 < 0 ? 'red' : lastdiff1 === 0 ? 'yellow' : 'none',
+                                                                    transform: lastdiff1 > 0 ? 'rotate(270deg)' : lastdiff1 < 0 ? 'rotate(90deg)' : 'rotate(270deg)',
+                                                                    marginTop: lastdiff1 > 0 ? '-3px' : lastdiff1 < 0 ? '-6px' : '-5px',
+                                                                }} />)}
+                                                            <h6 style={{ color: lastdiff1 > 0 ? '#99cc33' : lastdiff1 < 0 ? 'red' : 'black' }}>{lastdiff1}
+                                                            </h6>
+
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            )}</Tooltip>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                    </div>
-                ))}
+                        </div>
+                    )
+                })};
             </div>
         </>
     );
