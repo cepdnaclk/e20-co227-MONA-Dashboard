@@ -322,7 +322,7 @@ const HourlyRate = () => {
 
                         </div>
                     )
-                })};
+                })}
             </div>
         </>
     );
