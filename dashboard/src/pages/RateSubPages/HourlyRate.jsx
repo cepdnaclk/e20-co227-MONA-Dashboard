@@ -270,7 +270,7 @@ const HourlyRate = () => {
                                                         {lastdiff2 !== 0 && (
                                                             <PlayArrowIcon
                                                                 style={{
-                                                                    color: lastdiff2 > 0 ? '#99cc33' : lastdiff1 < 0 ? 'red' : lastdiff1 === 0 ? 'yellow' : 'none',
+                                                                    color: lastdiff2 == 0.00 ? 'orange' :lastdiff2 > 0 ? '#99cc33' : lastdiff1 < 0 ? 'red' : 'orange',
                                                                     transform: lastdiff2 > 0 ? 'rotate(270deg)' : lastdiff1 < 0 ? 'rotate(90deg)' : 'rotate(270deg)',
                                                                     marginTop: lastdiff2 > 0 ? '-3px' : lastdiff1 < 0 ? '-6px' : '-5px',
                                                                     fontSize: '10px'
@@ -291,24 +291,32 @@ const HourlyRate = () => {
                                             {realtimeinfo.Status !== 'off' && (
                                                 <div>
                                                     <h4>{lastSuccess1}</h4>
-                                                    <div style={{ display: 'flex', flexDirection: 'column',justifyContent: 'center' }}>
+                                                    <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                                                         <div style={{ display: 'flex', flexDirection: 'row' }}>
-                                                            {lastdiff1 !== 0 && (
+                                                            {lastdiff1 !== 0.00 && (
 
                                                                 <PlayArrowIcon style={{
-                                                                    color: lastdiff1 > 0 ? '#99cc33' : lastdiff1 < 0 ? 'red' : lastdiff1 === 0 ? 'yellow' : 'none',
+                                                                    color: lastdiff1 == 0.00 ? 'orange' : lastdiff1 > 0.00 ? '#99cc33' : lastdiff1 < 0 ? 'red' :  'none',
                                                                     transform: lastdiff1 > 0 ? 'rotate(270deg)' : lastdiff1 < 0 ? 'rotate(90deg)' : 'rotate(270deg)',
                                                                     marginTop: lastdiff1 > 0 ? '-3px' : lastdiff1 < 0 ? '-6px' : '-5px',
+                                                                    marginLeft:"10%"
                                                                 }} />)}
-                                                            <h6 style={{ color: lastdiff1 > 0 ? '#99cc33' : lastdiff1 < 0 ? 'red' : 'black' }}>{lastdiff1}
+                                                            <h6 style={{ color: lastdiff1 == 0.00 ? 'orange' :lastdiff1 > 0 ? '#99cc33' : lastdiff1 < 0 ? 'red' : 'black' }}>{lastdiff1}
                                                             </h6>
 
 
                                                         </div>
                                                     </div>
+                                                    <div
+                                                        style={{ color: "#888888", marginTop: '10%' , marginLeft: '-30%' ,fontWeight:'normal',fontSize:'16px'}}
+                                                    >
+                                                        Time
+                                                    </div>  
                                                 </div>
+
                                             )}</Tooltip>
                                     </div>
+
                                 </div>
                             </div>
 
