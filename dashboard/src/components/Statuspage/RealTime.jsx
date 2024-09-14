@@ -5,6 +5,7 @@ import { PieChart } from '@mui/x-charts/PieChart';
 import Tooltip from '@mui/material/Tooltip';
 import videold from './load.mp4';
 
+import { BarChart } from '@mui/x-charts/BarChart';
 import LightModeIcon from '@mui/icons-material/LightModeOutlined';
 import NightsStayIcon from '@mui/icons-material/NightsStayOutlined';
 
@@ -156,6 +157,8 @@ function RealTime() {
     // Create an array with the first element empty to create the empty first tile
     const gridItems = [null, ...realtimeinfo.slice(0, 24)]; // Adds an empty first tile and limits data to 24 items
 
+    const currentHour = new Date().getHours() + ((new Date().getMinutes()) / 60);
+
     return (
         <div className="card-grid">
             {gridItems.length === 1 ? (
@@ -179,16 +182,17 @@ function RealTime() {
                                 </div>
                                 <div className="shift-container-status" >
                                     {nightShift &&
-                                        <div style={{ display: "flex", flexDirection: 'row', marginTop: "10px" }}>
+                                        <div style={{ display: "flex", flexDirection: 'row', marginTop: "5px" }}>
                                             <NightsStayIcon sx={{ fontSize: 30 }}></NightsStayIcon>
                                             <h2>
                                                 Night Shift
                                             </h2>
+
                                         </div>
                                     }
 
                                     {dayShift &&
-                                        <div style={{ display: "flex", flexDirection: 'row', marginTop: "10px" }}>
+                                        <div style={{ display: "flex", flexDirection: 'row', marginTop: "5px" }}>
                                             <LightModeIcon sx={{ fontSize: 30 }} ></LightModeIcon>
                                             <h2>
                                                 Day Shift
@@ -196,7 +200,7 @@ function RealTime() {
                                         </div>
                                     }
                                     {overShift &&
-                                        <div style={{ display: "flex", flexDirection: 'row', marginTop: "10px" }}>
+                                        <div style={{ display: "flex", flexDirection: 'row', marginTop: "5px" }}>
                                             <NightsStayIcon sx={{ fontSize: 30 }} ></NightsStayIcon>
                                             <h2>
                                                 Overtime Shift
@@ -204,7 +208,28 @@ function RealTime() {
                                         </div>
                                     }
                                 </div>
-                                <div>
+                                <div style={{ marginTop: "-65px", marginBottom: "-70px", cursor: "default" }}>
+                                    <BarChart
+                                        series={[{
+                                            data: [currentHour],
+                                            color: '#888888',
+                                            tooltipComponent: () => null,
+                                        }]}
+                                        yAxis={[{ scaleType: 'band', data: ['Time'], hideTooltip: true }]}
+                                        xAxis={[nightShift
+                                            ? { min: 15, max: 23, hideTooltip: true, valueFormatter: (value) => `${value < 10 ? '0' : ''}${value}h` }
+                                            : dayShift
+                                                ? { min: 7, max: 15, valueFormatter: (value) => `${value < 10 ? '0' : ''}${value}h` }
+                                                : { min: 0, max: 7, valueFormatter: (value) => `${value < 10 ? '0' : ''}${value}h` }
+                                        ]}
+                                        height={100}
+                                        width={320}
+                                        margin={{ top: 70, left: 10, right: 10, bottom: 20 }}
+                                        leftAxis={null}
+                                        layout="horizontal"
+                                        tooltip={false}
+                                    />
+
 
                                 </div>
 
@@ -234,7 +259,7 @@ function RealTime() {
                             </div>
 
                             <div className="headrow" style={{ cursor: 'default', height: '150px', display: "flex", flexDirection: 'row' }}>
-                                <div className={((info.SuccessSlots>20) && (info.FailureSlots/info.SuccessSlots>0.12))?"gauage-s-error":"gauage-s"} style={{ width:"135px", marginLeft: '0px' }}>
+                                <div className={((info.SuccessSlots > 20) && (info.FailureSlots / info.SuccessSlots > 0.12)) ? "gauage-s-error" : "gauage-s"} style={{ width: "135px", marginLeft: '0px' }}>
                                     <PieChart
                                         series={[
                                             {
@@ -273,29 +298,29 @@ function RealTime() {
                                     >
                                         <>
                                             <PieChartText
-                                            x="50%"
-                                            y="40%"
-                                            size={'18px'}
-                                            color={info.Status === 'off' ? 'none' : (info.TargetSlots - info.SuccessSlots) > 0 ? "#f46c00" : '#99cc33'}
-                                            text={info.Status === 'off' ? '' : (info.SuccessSlots / info.TargetSlots * 100).toFixed(1) + " %"}
-                                            style={{ transform: 'translate(-50%, -50%)', fontSize: '15px' }}
-                                        />
-                                        <PieChartText
-                                            x="50%"
-                                            y="50%"
-                                            size='10px'
-                                            color={info.Status === 'off' ? 'none' : (info.TargetSlots - info.SuccessSlots) > 0 ? "#f46c00" : '#99cc33'}
-                                            text={"SLOTS GOAL"}
-                                            style={{ transform: 'translate(-50%, -50%)', fontSize: '10px' }}
-                                        />
-                                        <PieChartText
-                                            x="50%"
-                                            y="60%"
-                                            size='10px'
-                                            color={info.Status === 'off' ? 'none' : (info.TargetSlots - info.SuccessSlots) > 0 ? "#f46c00" : '#99cc33'}
-                                            text={info.Status === 'off' ? "" : info.TargetSlots - info.SuccessSlots > 0 ? (info.TargetSlots - info.SuccessSlots) + " slots behind" : " Target Achieved"}
-                                            style={{ transform: 'translate(-50%, -50%)', fontSize: '10px' }}
-                                        />
+                                                x="50%"
+                                                y="40%"
+                                                size={'18px'}
+                                                color={info.Status === 'off' ? 'none' : (info.TargetSlots - info.SuccessSlots) > 0 ? "#f46c00" : '#99cc33'}
+                                                text={info.Status === 'off' ? '' : (info.SuccessSlots / info.TargetSlots * 100).toFixed(1) + " %"}
+                                                style={{ transform: 'translate(-50%, -50%)', fontSize: '15px' }}
+                                            />
+                                            <PieChartText
+                                                x="50%"
+                                                y="50%"
+                                                size='10px'
+                                                color={info.Status === 'off' ? 'none' : (info.TargetSlots - info.SuccessSlots) > 0 ? "#f46c00" : '#99cc33'}
+                                                text={"SLOTS GOAL"}
+                                                style={{ transform: 'translate(-50%, -50%)', fontSize: '10px' }}
+                                            />
+                                            <PieChartText
+                                                x="50%"
+                                                y="60%"
+                                                size='10px'
+                                                color={info.Status === 'off' ? 'none' : (info.TargetSlots - info.SuccessSlots) > 0 ? "#f46c00" : '#99cc33'}
+                                                text={info.Status === 'off' ? "" : info.TargetSlots - info.SuccessSlots > 0 ? (info.TargetSlots - info.SuccessSlots) + " slots behind" : " Target Achieved"}
+                                                style={{ transform: 'translate(-50%, -50%)', fontSize: '10px' }}
+                                            />
                                         </>
 
                                         {/* <PieChartLable
@@ -326,36 +351,42 @@ function RealTime() {
                                         /> */}
                                     </PieChart>
                                 </div>
-                                <div className="bodyrow" style={{ width: '200px' ,height:'100px'}}>
-                                    <div style={{ display: 'flex', flexDirection: 'row', width: '200px' , margin:"2px",marginLeft:"20%"}}>
-                                        <div style={{height:'14px',width:'14px', borderRadius:'7px',backgroundColor:info.Status === 'off' ? '#none' :'#99cc33',marginRight:'5px'}}>
-                                            </div>
+                                <div className="bodyrow" style={{ width: '200px', height: '100px' }}>
+                                    <div style={{ display: 'flex', flexDirection: 'row', width: '200px', margin: "2px", marginLeft: "20%" }}>
+                                        <div style={{ height: '14px', width: '14px', borderRadius: '7px', backgroundColor: info.Status === 'off' ? '#none' : '#99cc33', marginRight: '5px' }}>
+                                        </div>
                                         <h5 style={{}}>
-                                            Success Slots : 
+                                            Success Slots :
                                         </h5>
                                         <h5>
                                             {info.SuccessSlots}
                                         </h5>
                                     </div>
-                                    <div style={{ display: 'flex', flexDirection: 'row', width: '200px' , margin:"2px",marginLeft:"20%"}}>
-                                    <div style={{height:'14px',width:'14px', borderRadius:'7px',backgroundColor:info.Status === 'off' ? '#none' :'#cc6666',marginRight:'5px'}}>
-                                    </div>
+                                    <div style={{ display: 'flex', flexDirection: 'row', width: '200px', margin: "2px", marginLeft: "20%" }}>
+                                        <div style={{ height: '14px', width: '14px', borderRadius: '7px', backgroundColor: info.Status === 'off' ? '#none' : '#cc6666', marginRight: '5px' }}>
+                                        </div>
                                         <h5 style={{}}>
-                                            Failure Slots    : 
+                                            Failure Slots    :
                                         </h5>
                                         <h5>
                                             {info.FailureSlots}
                                         </h5>
                                     </div>
-                                    <div style={{ display: 'flex', flexDirection: 'row', width: '200px' , margin:"2px",marginLeft:"20%"}}>
-                                    <div style={{height:'14px',width:'14px', borderRadius:'7px',backgroundColor:info.Status === 'off' ? '#none' :'#888888',marginRight:'5px'}}>
-                                    </div>
+                                    <div style={{ display: 'flex', flexDirection: 'row', width: '200px', margin: "2px", marginLeft: "20%" }}>
+                                        <div style={{ height: '14px', width: '14px', borderRadius: '7px', backgroundColor: info.Status === 'off' ? '#none' : '#888888', marginRight: '5px' }}>
+                                        </div>
                                         <h5 style={{}}>
-                                            Target Slots     : 
+                                            Target Slots     :
                                         </h5>
                                         <h5>
                                             {info.TargetSlots}
                                         </h5>
+                                    </div>
+
+                                    <div>
+
+
+
                                     </div>
 
                                 </div>
