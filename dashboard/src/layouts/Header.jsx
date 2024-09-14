@@ -105,7 +105,7 @@ function Header() {
 
                 <Datenow />
 
-                <button on={() => setShowSettings(true)} className="settings"><SettingsSharpIcon /></button>
+                <button onClick={() => setShowSettings(true)} className="settings"><SettingsSharpIcon /></button>
 
             </header>
             {showSettings && <Settings onclose={() => setShowSettings(false)} />}
