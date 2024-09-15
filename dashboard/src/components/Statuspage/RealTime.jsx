@@ -395,48 +395,65 @@ function RealTime() {
                                         /> */}
                                     </PieChart>
                                 </div>
-                                <div className="bodyrow" style={{ width: '200px', height: '100px' }}>
-                                    <div style={{ display: 'flex', flexDirection: 'row', width: '200px', margin: "2px", marginLeft: "20%" }}>
+                                <div className="bodyrow" style={{ width: '200px', height: '100px' ,marginBottom: '10px',marginTop: '-10px'}}>
+                                    <div style={{ display: 'flex', flexDirection: 'row', width: '200px', margin: "2px", marginLeft: "-10%" }}>
                                         <div style={{ height: '14px', width: '14px', borderRadius: '7px', backgroundColor: info.Status === 'off' ? '#none' : '#99cc33', marginRight: '5px' }}>
                                         </div>
                                         <h5 style={{}}>
-                                            Success Slots :
+                                            Success Slots  
                                         </h5>
-                                        <h5>
+                                        <h5 >
                                             {info.SuccessSlots}
                                         </h5>
                                     </div>
-                                    <div style={{ display: 'flex', flexDirection: 'row', width: '200px', margin: "2px", marginLeft: "20%" }}>
+                                    <div style={{ display: 'flex', flexDirection: 'row', width: '200px', margin: "2px", marginLeft: "-10%" }}>
                                         <div style={{ height: '14px', width: '14px', borderRadius: '7px', backgroundColor: info.Status === 'off' ? '#none' : '#cc6666', marginRight: '5px' }}>
                                         </div>
                                         <h5 style={{}}>
-                                            Failure Slots    :
+                                            Failure Slots     
                                         </h5>
-                                        <h5>
+                                        <h5 >
                                             {info.FailureSlots}
                                         </h5>
                                     </div>
-                                    <div style={{ display: 'flex', flexDirection: 'row', width: '200px', margin: "2px", marginLeft: "20%" }}>
+                                    <div style={{ display: 'flex', flexDirection: 'row', width: '200px', margin: "2px", marginLeft: "-10%" }}>
                                         <div style={{ height: '14px', width: '14px', borderRadius: '7px', backgroundColor: info.Status === 'off' ? '#none' : '#888888', marginRight: '5px' }}>
                                         </div>
                                         <h5 style={{}}>
-                                            Target Slots     :
+                                            Target Slots      
                                         </h5>
-                                        <h5>
+                                        <h5 >
                                             {info.TargetSlots}
                                         </h5>
                                     </div>
 
-                                    <div>
-                                        <div style={{ display: 'flex', flexDirection: 'column', cursor: 'default' }}>
-                                            
-                                            {setProduct(info.MachineNumber).map(product => (
-                                                <div key={product.Product} style={{display:'flex', flexDirection:'row'}}>
-                                                    <div>Product: {product.Product}</div>
-                                                    <div>Parts: {product.Part.join(', ')}</div>
+
+                                    <div style={{ display: 'flex', flexDirection: 'column', cursor: 'default', fontSize: '12px', fontWeight: 'bold' , marginTop: '10px',marginLeft:"-45%"}}>
+
+                                        {setProduct(info.MachineNumber).map(product => (
+                                            <div key={product.Product} style={{ display: 'flex', flexDirection: 'row' ,marginBottom: '5px'}}>
+                                                <div style={{ border: '1px solid #888888', width: '78px', height: '16px',marginRight: '10px',margin: '1px', padding: '1px', borderRadius: '3px' ,backgroundColor:"#dadada"}}>
+                                                PRODUCT  {String(product.Product).padStart(2, '0')}
                                                 </div>
-                                            ))}
-                                        </div>
+                                                {/* <div style={{ border: '1px solid #888888', width: '35px', height: '16px', marginLeft:'10px', margin: '1px', padding: '1px', borderRadius: '3px' ,backgroundColor:"#dadada"}}>PART </div> */}
+                                                <div style={{ width: '50px', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)' }}>
+                                                    {product.Part.map((part, index) => (
+
+                                                        <div
+                                                            key={index}  // Add a key for each part
+                                                            style={{ border: '1px solid #888888', width: '18px', height: '16px', margin: '1px', padding: '1px', borderRadius: '3px',backgroundColor:"#dadada" }}
+                                                        >
+
+
+                                                            {String(part).padStart(2, '0')}
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        ))}
+
+
+
 
 
 
