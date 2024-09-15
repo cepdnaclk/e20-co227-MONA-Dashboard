@@ -62,15 +62,14 @@ if input() == "1234":
     collection1.insert_many(machine_data)
 
     # Step 3: Distribute the parts among the products and assign them to machines sequentially
-    part_counter = 0
     machine_index = 0
     machine_parts = {machine_id: 0 for machine_id in machine_ids}  # Track how many parts each machine has
 
     # Loop through products to assign parts
     for i, product in enumerate(products):
+        part_counter = 1  # Reset part counter for each product
         for _ in range(product['#Parts']):
-            part_counter += 1
-
+            
             # Fill the current machine to capacity before moving to the next
             while True:
                 machine = collection1.find_one({'MachineNumber': int(machine_ids[machine_index])})
@@ -90,10 +89,12 @@ if input() == "1234":
             # Create the part document
             part_doc = {
                 'ProductNumber': product['ProductNumber'],
-                'PartNumber': part_counter,
+                'PartNumber': part_counter,  # Start from 1 for each product
                 'MachineNumber': machine_id
             }
             parts_collection.insert_one(part_doc)
+
+            part_counter += 1  # Increment part counter for the current product
 
     print("Part field updated with random values for all documents in the 'realtimeinfos' collection!")
 
