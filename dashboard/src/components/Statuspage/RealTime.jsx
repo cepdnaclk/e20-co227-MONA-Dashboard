@@ -97,8 +97,10 @@ const PieChartLable = ({ x, y, xb, yb, text, size, color, boxWidth, boxHeight, t
 
 
 
+
 function RealTime() {
     const [realtimeinfo, setMachines] = useState([]);
+    const [partinfo, setpartInfo] = useState([]);
     const [dateTime, setDateTime] = useState(new Date());
     const [dayShift, setDayShift] = useState(false);
     const [nightShift, setNightShift] = useState(false);
@@ -115,8 +117,22 @@ function RealTime() {
             }
         };
 
+        const fetchPartData = async () => {
+            try {
+                const response = await axios.get('http://localhost:8000/partinfo');
+                setpartInfo(response.data.sort((a, b) => a.MachineNumber - b.MachineNumber));
+            } catch (error) {
+                console.error('Error fetching machine data:', error);
+            }
+        };
+        fetchData();
+        fetchPartData();
+
         // Start interval to fetch data every second
-        const fetchIntervalId = setInterval(fetchData, 1000);
+        const fetchIntervalId = setInterval(() => {
+            fetchData();
+            fetchPartData();
+        }, 1000);
 
         // Start interval to update time and shift status every second
         const shiftIntervalId = setInterval(() => {
@@ -158,6 +174,34 @@ function RealTime() {
     const gridItems = [null, ...realtimeinfo.slice(0, 24)]; // Adds an empty first tile and limits data to 24 items
 
     const currentHour = new Date().getHours() + ((new Date().getMinutes()) / 60);
+
+
+    const setProduct = (machineNumber) => {
+        // Assuming partinfo is your dataset
+
+
+        // Filter the data by MachineNumber
+        const partData = partinfo.filter(part => part.MachineNumber === machineNumber);
+
+        // Group by ProductNumber and collect PartNumbers
+        const groupedData = partData.reduce((acc, part) => {
+            const product = acc.find(item => item.Product === part.ProductNumber);
+
+            if (product) {
+                // If the product already exists, push the PartNumber into the Part array
+                product.Part.push(part.PartNumber);
+            } else {
+                // If the product doesn't exist, create a new entry
+                acc.push({ Product: part.ProductNumber, Part: [part.PartNumber] });
+            }
+
+            return acc;
+        }, []);
+
+        return groupedData;
+    };
+
+    // Example usage
 
     return (
         <div className="card-grid">
@@ -384,6 +428,16 @@ function RealTime() {
                                     </div>
 
                                     <div>
+                                        <div style={{ display: 'flex', flexDirection: 'column', cursor: 'default' }}>
+                                            
+                                            {setProduct(info.MachineNumber).map(product => (
+                                                <div key={product.Product} style={{display:'flex', flexDirection:'row'}}>
+                                                    <div>Product: {product.Product}</div>
+                                                    <div>Parts: {product.Part.join(', ')}</div>
+                                                </div>
+                                            ))}
+                                        </div>
+
 
 
 
