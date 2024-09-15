@@ -396,7 +396,7 @@ function RealTime() {
                                     </PieChart>
                                 </div>
                                 <div className="bodyrow" style={{ width: '200px', height: '100px' ,marginBottom: '10px',marginTop: '-10px'}}>
-                                    <div style={{ display: 'flex', flexDirection: 'row', width: '200px', margin: "2px", marginLeft: "-10%" }}>
+                                    <div style={{ display: 'flex', flexDirection: 'row', width: '200px', margin: "2px", marginLeft: "0%" }}>
                                         <div style={{ height: '14px', width: '14px', borderRadius: '7px', backgroundColor: info.Status === 'off' ? '#none' : '#99cc33', marginRight: '5px' }}>
                                         </div>
                                         <h5 style={{}}>
@@ -406,7 +406,7 @@ function RealTime() {
                                             {info.SuccessSlots}
                                         </h5>
                                     </div>
-                                    <div style={{ display: 'flex', flexDirection: 'row', width: '200px', margin: "2px", marginLeft: "-10%" }}>
+                                    <div style={{ display: 'flex', flexDirection: 'row', width: '200px', margin: "2px", marginLeft: "0%" }}>
                                         <div style={{ height: '14px', width: '14px', borderRadius: '7px', backgroundColor: info.Status === 'off' ? '#none' : '#cc6666', marginRight: '5px' }}>
                                         </div>
                                         <h5 style={{}}>
@@ -416,7 +416,7 @@ function RealTime() {
                                             {info.FailureSlots}
                                         </h5>
                                     </div>
-                                    <div style={{ display: 'flex', flexDirection: 'row', width: '200px', margin: "2px", marginLeft: "-10%" }}>
+                                    <div style={{ display: 'flex', flexDirection: 'row', width: '200px', margin: "2px", marginLeft: "0%" }}>
                                         <div style={{ height: '14px', width: '14px', borderRadius: '7px', backgroundColor: info.Status === 'off' ? '#none' : '#888888', marginRight: '5px' }}>
                                         </div>
                                         <h5 style={{}}>
@@ -428,11 +428,11 @@ function RealTime() {
                                     </div>
 
 
-                                    <div style={{ display: 'flex', flexDirection: 'column', cursor: 'default', fontSize: '12px', fontWeight: 'bold' , marginTop: '10px',marginLeft:"-45%"}}>
+                                    <div style={{ display: 'flex', flexDirection: 'column', cursor: 'default', fontSize: '12px', fontWeight: 'bold' , marginTop: '10px',marginLeft:"-30%"}}>
 
                                         {setProduct(info.MachineNumber).map(product => (
                                             <div key={product.Product} style={{ display: 'flex', flexDirection: 'row' ,marginBottom: '5px'}}>
-                                                <div style={{ border: '1px solid #888888', width: '78px', height: '16px',marginRight: '10px',margin: '1px', padding: '1px', borderRadius: '3px' ,backgroundColor:"#dadada"}}>
+                                                <div style={{ border: '1px solid #888888', width: '80px', height: '16px' ,marginRight: '10px' ,marginTop: '1px', padding: '1px', borderRadius: '3px' ,backgroundColor:"#dadada"}}>
                                                 PRODUCT  {String(product.Product).padStart(2, '0')}
                                                 </div>
                                                 {/* <div style={{ border: '1px solid #888888', width: '35px', height: '16px', marginLeft:'10px', margin: '1px', padding: '1px', borderRadius: '3px' ,backgroundColor:"#dadada"}}>PART </div> */}

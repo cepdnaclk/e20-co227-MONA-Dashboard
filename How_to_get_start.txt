@@ -1,0 +1,14 @@
+
+ReactApp startup*****
+npx create-react-app <filename>
+
+cd testreactapp
+nmp start
+
+
+How to get start*****
+
+1.cd server
+    npm start
+2.cd dashboard
+    npm start
