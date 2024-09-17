@@ -5,6 +5,7 @@ import { PieChart } from '@mui/x-charts/PieChart';
 import Tooltip from '@mui/material/Tooltip';
 import videold from './load.mp4';
 
+import { BarChart } from '@mui/x-charts/BarChart';
 import LightModeIcon from '@mui/icons-material/LightModeOutlined';
 import NightsStayIcon from '@mui/icons-material/NightsStayOutlined';
 
@@ -156,6 +157,7 @@ function RealTime() {
     // Create an array with the first element empty to create the empty first tile
     const gridItems = [null, ...realtimeinfo.slice(0, 24)]; // Adds an empty first tile and limits data to 24 items
 
+    const currentHour = new Date().getHours() + ((new Date().getMinutes()) / 60);
     return (
         <div className="card-grid">
             {gridItems.length === 1 ? (
@@ -174,21 +176,22 @@ function RealTime() {
                                 </div>
                                 <div>
                                     <h1>
-                                        {formattedDate}  
+                                        {formattedDate}
                                     </h1>
                                 </div>
-                                <div className="shift-container-status" >                             
+                                <div className="shift-container-status" >
                                     {nightShift &&
-                                        <div style={{display:"flex", flexDirection:'row', marginTop:"10px"}}>
+                                        <div style={{ display: "flex", flexDirection: 'row', marginTop: "5px" }}>
                                             <NightsStayIcon sx={{ fontSize: 30 }}></NightsStayIcon>
                                             <h2>
                                                 Night Shift
                                             </h2>
+
                                         </div>
                                     }
 
                                     {dayShift &&
-                                        <div style={{display:"flex", flexDirection:'row', marginTop:"10px"}}>
+                                        <div style={{ display: "flex", flexDirection: 'row', marginTop: "5px" }}>
                                             <LightModeIcon sx={{ fontSize: 30 }} ></LightModeIcon>
                                             <h2>
                                                 Day Shift
@@ -196,13 +199,37 @@ function RealTime() {
                                         </div>
                                     }
                                     {overShift &&
-                                        <div style={{display:"flex", flexDirection:'row', marginTop:"10px"}}>
+                                        <div style={{ display: "flex", flexDirection: 'row', marginTop: "5px" }}>
                                             <NightsStayIcon sx={{ fontSize: 30 }} ></NightsStayIcon>
                                             <h2>
                                                 Overtime Shift
                                             </h2>
                                         </div>
                                     }
+                                </div>
+                                <div style={{ marginTop: "-65px", marginBottom: "-70px", cursor: "default" }}>
+                                    <BarChart
+                                        series={[{
+                                            data: [currentHour],
+                                            color: '#888888',
+                                            tooltipComponent: () => null,
+                                        }]}
+                                        yAxis={[{ scaleType: 'band', data: ['Time'], hideTooltip: true }]}
+                                        xAxis={[nightShift
+                                            ? { min: 15, max: 23, hideTooltip: true, valueFormatter: (value) => `${value < 10 ? '0' : ''}${value}h` }
+                                            : dayShift
+                                                ? { min: 7, max: 15, valueFormatter: (value) => `${value < 10 ? '0' : ''}${value}h` }
+                                                : { min: 0, max: 7, valueFormatter: (value) => `${value < 10 ? '0' : ''}${value}h` }
+                                        ]}
+                                        height={100}
+                                        width={320}
+                                        margin={{ top: 70, left: 10, right: 10, bottom: 20 }}
+                                        leftAxis={null}
+                                        layout="horizontal"
+                                        tooltip={false}
+                                    />
+
+
                                 </div>
 
 
