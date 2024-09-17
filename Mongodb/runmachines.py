@@ -31,8 +31,8 @@ update_field_5 = "StartedTime"
 update_field_6 = "LastUpdatedTime"
 update_field_7 = "Rate"
 update_field_8 = "StatusChangedTime"
-# update_field_9 = "Production"
-# update_field_10 = "Part"
+update_field_9 = "Production"
+update_field_10 = "Part"
 
 update_field_11 = "ProductNumber"
 update_field_12 = "PartNumber"
@@ -135,8 +135,8 @@ def run_machines():
                                     "FailureSlots": document.get(update_field_3),
                                     "LastUpdatedTime": current_time,
                                     "Rate": document.get(update_field_7),
-                                    # "Production": document.get(update_field_9),
-                                    # "Part": document.get(update_field_10)
+                                    "Production": document.get(update_field_9),
+                                    "Part": document.get(update_field_10)
                             }
                         
                         # Insert the documents into the collection
@@ -230,8 +230,8 @@ def run_a_machine(machine_number,machine_time):
                                     "FailureSlots": document.get(update_field_3),
                                     "LastUpdatedTime": current_time,
                                     "Rate": document.get(update_field_7),
-                                    # "Production": document.get(update_field_9),
-                                    # "Part": document.get(update_field_10)
+                                    "Production": document.get(update_field_9),
+                                    "Part": document.get(update_field_10)
                             }
                         
                         # Insert the documents into the collection
