@@ -423,7 +423,7 @@ const ProductProgress = () => {
                             })}
                         </div>
                     ))}
-                    <Expanded/>
+                    
                 </div>
             </div>
         </>
