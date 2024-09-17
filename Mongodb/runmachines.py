@@ -19,7 +19,7 @@ collection3 = db["rateinfos"]
 collection2 = db["partinfos"]  # Replace with your desired collection name
 
 #setmachine time
-MachineTime = 5
+MachineTime = 30
 
 # Field names
 update_field_0 = "MachineNumber"
