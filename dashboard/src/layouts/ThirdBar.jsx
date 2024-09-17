@@ -45,7 +45,7 @@ const ThirdBar = () => {
                                         : "#201F67",
                             }}
                         >
-                              MACHINE PROGRESS
+                              BY MACHINE
                         </a>
                     </li>
                     <li
@@ -77,7 +77,7 @@ const ThirdBar = () => {
                                         : "#201F67",
                             }}
                         >
-                              PRODUCT PROGRESS
+                              BY PRODUCT
                         </a>
                     </li>
                 </ul>
