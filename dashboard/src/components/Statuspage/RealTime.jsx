@@ -303,7 +303,7 @@ function RealTime() {
                             </div>
 
                             <div className="headrow" style={{ cursor: 'default', height: '150px', display: "flex", flexDirection: 'row' }}>
-                                <div className={((info.SuccessSlots > 20) && (info.FailureSlots / info.SuccessSlots > 0.10)) ? "gauage-s-error" : "gauage-s"} style={{ width: "135px", marginLeft: '0px' }}>
+                                <div className={((info.SuccessSlots > 20) && (info.FailureSlots / info.SuccessSlots > 0.11)) ? "gauage-s-error" : "gauage-s"} style={{ width: "135px", marginLeft: '0px' }}>
                                     <PieChart
                                         series={[
                                             {
