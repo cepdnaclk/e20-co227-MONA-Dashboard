@@ -130,18 +130,18 @@ const SecondBar = () => {
             onClick={() => handleButtonClick("/history")}
             style={{
               backgroundColor:
-                location.pathname === "/history" ? "#201F67" : "white",
+                location.pathname.startsWith("/history") ? "#201F67" : "white",
             }}
           >
             <DescriptionRoundedIcon
               className="icon"
               style={{
-                color: location.pathname === "/history" ? "white" : "inherit",
+                color: location.pathname.startsWith("/history") ? "white" : "inherit",
               }}
             />
             <span
               style={{
-                color: location.pathname === "/history" ? "white" : "inherit",
+                color: location.pathname.startsWith("/history") ? "white" : "inherit",
               }}
             >
               PRODUCTION HISTORY
