@@ -4,7 +4,7 @@ import "react-circular-progressbar/dist/styles.css";
 import "./PartProgress.scss"; // Ensure your styles are in this file
 import Header from "../../layouts/Header";
 import SecondBar from "../../layouts/SecondBar";
-import ThirdBar from "../../layouts/ThirdBar";
+import ThirdbarRate from "../../layouts/ThirdbarRate";
 
 const PartProgress = () => {
   // Function to generate random progress values between 0 and 100
@@ -23,7 +23,7 @@ const PartProgress = () => {
     <>
       <Header />
       <SecondBar />
-      <ThirdBar />
+      <ThirdbarRate />
       <div className="progress-page">
         {progressData.map((progress, index) => (
           <div key={index} className="progress-block">

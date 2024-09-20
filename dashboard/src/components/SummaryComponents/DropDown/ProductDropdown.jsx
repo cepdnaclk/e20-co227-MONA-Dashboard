@@ -8,7 +8,7 @@ import Select from '@mui/material/Select';
 import { useNavigate } from 'react-router-dom';
 
 const ITEM_HEIGHT = 40;
-const ITEM_PADDING_TOP = 8;
+const ITEM_PADDING_TOP = 10;
 const MenuProps = {
   PaperProps: {
     style: {
