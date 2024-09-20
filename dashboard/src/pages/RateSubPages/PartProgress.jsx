@@ -4,7 +4,7 @@ import "react-circular-progressbar/dist/styles.css";
 import "./PartProgress.scss"; // Ensure your styles are in this file
 import Header from "../../layouts/Header";
 import SecondBar from "../../layouts/SecondBar";
-import ThirdBar from "../../layouts/ThirdBar";
+import ThirdbarRate from "../../layouts/ThirdbarRate";
 
 // List of product names (10 products)
 const products = [
@@ -44,7 +44,7 @@ const PartProgress = () => {
     <>
       <Header />
       <SecondBar />
-      <ThirdBar />
+      <ThirdbarRate />
       <div className="progress-page">
         {progressData.map((item, index) => (
           <div key={index} className="progress-block">

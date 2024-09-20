@@ -3,11 +3,13 @@ import HourlyRateChart from "../../components/RateComponents/HourlyRate/HourlyRa
 import "./HourlyRate.scss";
 import Header from "../../layouts/Header";
 import SecondBar from "../../layouts/SecondBar";
-import ThirdBar from "../../layouts/ThirdBar";
 import axios from "axios";
 import ProgressBar from "../../components/RateComponents/HourlyRate/Progress";
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import Tooltip from '@mui/material/Tooltip';
+
+import ThirdbarRate from "../../layouts/ThirdbarRate";
+
 
 const HourlyRate = () => {
     const [realtimeinfo, setRealtimeInfo] = useState([]); // Use clear variable name
@@ -183,7 +185,7 @@ const HourlyRate = () => {
         <>
             <Header />
             <SecondBar />
-            <ThirdBar />
+            <ThirdbarRate/>
 
             <div className="hourly-rate-page ">
                 {realtimeinfo.map((realtimeinfo) => {

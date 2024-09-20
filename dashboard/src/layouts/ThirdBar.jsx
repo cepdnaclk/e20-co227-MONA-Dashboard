@@ -2,37 +2,31 @@ import React from "react";
 import "./thirdbar.scss";
 import { useNavigate, useLocation } from "react-router-dom";
 
-import QueryBuilderIcon from "@mui/icons-material/WatchLaterOutlined";
-import PrecisionManufacturingOutlinedIcon from "@mui/icons-material/PrecisionManufacturingOutlined";
-import MediationIcon from "@mui/icons-material/Mediation";
+const ThirdBar = ({ items }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
 
-const ThirdBar = () => {
-    const navigate = useNavigate();
-    const location = useLocation();
+  const handleButtonClick = (path) => {
+    navigate(path);
+  };
 
-    const handleButtonClick = (path) => {
-        navigate(path);
-    };
-
-    return (
-      <div className="thirdbar">
-        <div className="box">
-          <ul>
+  return (
+    <div className="thirdbar">
+      <div className="box">
+        <ul>
+          {items.map((item, index) => (
             <li
-              onClick={() => handleButtonClick("/rate/HourlyRate")}
+              key={index}
+              onClick={() => handleButtonClick(item.path)}
               style={{
                 backgroundColor:
-                  location.pathname === "/rate/HourlyRate"
-                    ? "#201F67"
-                    : "white",
+                  location.pathname === item.path ? "#201F67" : "white",
               }}
             >
-              <QueryBuilderIcon
+              <item.icon
                 style={{
                   color:
-                    location.pathname === "/rate/HourlyRate"
-                      ? "white"
-                      : "#201F67",
+                    location.pathname === item.path ? "white" : "#201F67",
                 }}
               />
               <a
@@ -41,86 +35,17 @@ const ThirdBar = () => {
                   fontSize: "15px",
                   fontFamily: "Trebuchet MS",
                   color:
-                    location.pathname === "/rate/HourlyRate"
-                      ? "white"
-                      : "#201F67",
+                    location.pathname === item.path ? "white" : "#201F67",
                 }}
               >
-                  BY MOLD
+                  {item.label}
               </a>
             </li>
-            <li
-              onClick={() => handleButtonClick("/rate/ProductProgress")}
-              style={{
-                backgroundColor:
-                  location.pathname === "/rate/ProductProgress"
-                    ? "#201F67"
-                    : "white",
-              }}
-            >
-              {" "}
-              <PrecisionManufacturingOutlinedIcon
-                style={{
-                  color:
-                    location.pathname === "/rate/ProductProgress"
-                      ? "white"
-                      : "#201F67",
-                }}
-              />
-              <a
-                style={{
-                  fontWeight: "bold",
-                  fontSize: "15px",
-                  fontFamily: "Trebuchet MS",
-                  color:
-                    location.pathname === "/rate/ProductProgress"
-                      ? "white"
-                      : "#201F67",
-                }}
-              >
-                  BY PRODUCT
-              </a>
-            </li>
-            <li
-              onClick={() => handleButtonClick("/rate/PartProgress")}
-              style={{
-                backgroundColor:
-                  location.pathname === "/rate/PartProgress"
-                    ? "#201F67"
-                    : "white",
-              }}
-            >
-              {" "}
-              <MediationIcon
-                style={{
-                  color:
-                    location.pathname === "/rate/PartProgress"
-                      ? "white"
-                      : "#201F67",
-                }}
-              />
-              <a
-                style={{
-                  fontWeight: "bold",
-                  fontSize: "15px",
-                  fontFamily: "Trebuchet MS",
-                  color:
-                    location.pathname === "/rate/PartProgress"
-                      ? "white"
-                      : "#201F67",
-                }}
-              >
-                  BY PART
-              </a>
-            </li>
-          </ul>
-        </div>
+          ))}
+        </ul>
       </div>
-    );
-
-
-
-
+    </div>
+  );
 };
 
 export default ThirdBar;

@@ -7,12 +7,14 @@ import PartDropdown from '../../components/SummaryComponents/DropDown/PartDropdo
 import MachinesDropdown from '../../components/SummaryComponents/DropDown/MachinesDropdown';
 import DurationDropdown from '../../components/SummaryComponents/DropDown/DurationDropdown';
 import './Summary.scss';
+import ThirdbarSummary from '../../layouts/ThirdbarSummary';
 
 const SummaryPage = () => {
   return (
     <div className='summary'>
       <Header />
       <SecondBar />
+      <ThirdbarSummary />
       <div className='summaryContainer'>
         <div className='box'>
           <Dropdownbox />
