@@ -10,7 +10,7 @@ import GeneratePDFButton from '../../components/SummaryComponents/GeneratePDF/Ge
 import FourthbarSummary from '../../layouts/FourthbarSummary';
 
 const ProductPage = () => {
-  const productDrop = ['Product 1', 'Product 2','Product 3','Product 4','Product 5','Product 6','Product 7','Product 8','Product 9','Product 10',];
+  const productDrop = ['All Products','Product 1', 'Product 2','Product 3','Product 4','Product 5','Product 6','Product 7','Product 8','Product 9','Product 10',];
   const productData = [
     { name: 'Part 1', count: 50 },
     { name: 'Part 2', count: 30 },
