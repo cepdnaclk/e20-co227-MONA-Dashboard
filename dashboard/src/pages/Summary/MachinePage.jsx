@@ -5,9 +5,11 @@ import Progressbar from '../../components/SummaryComponents/Progressbar/Progress
 import LineChart from '../../components/SummaryComponents/Linechart/Linechart';
 import Table from '../../components/SummaryComponents/Tables/Table';
 import GeneratePDFButton from '../../components/SummaryComponents/GeneratePDF/GeneratePDFButton';
+import FourthbarSummary from '../../layouts/FourthbarSummary';
 
 
 const MachinePage = () => {
+  const machineDrop = ['Machine 1', 'Machine 2', 'Machine 3', 'Machine 4', 'Machine 5', 'Machine 6', 'Machine 7', 'Machine 8', 'Machine 9', 'Machine 10', 'Machine 11', 'Machine 12', 'Machine 13', 'Machine 14', 'Machine 15', 'Machine 16', 'Machine 17', 'Machine 18', 'Machine 19', 'Machine 20'];
 
   const machineLinechartData = [
     { name: 'Target Shots', data: [40, 30, 32, 36, 40, 35, 38] },
@@ -47,6 +49,7 @@ const MachinePage = () => {
   return (
     <div className='machinePage'>
       <SummaryPage/>
+      <FourthbarSummary dropdownData={machineDrop} dropdownLabel="Select Machine" />
       <div className='container'>
         <div className='progressBar'>
         <Progressbar title="Production Rate %" value={70} gradientFrom="#FF5733" gradientTo="#FFC300"/>

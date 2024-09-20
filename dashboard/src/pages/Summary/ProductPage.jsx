@@ -7,8 +7,10 @@ import Progressbar from '../../components/SummaryComponents/Progressbar/Progress
 import LineChart from '../../components/SummaryComponents/Linechart/Linechart';
 import Table from '../../components/SummaryComponents/Tables/Table';
 import GeneratePDFButton from '../../components/SummaryComponents/GeneratePDF/GeneratePDFButton';
+import FourthbarSummary from '../../layouts/FourthbarSummary';
 
 const ProductPage = () => {
+  const productDrop = ['Product 1', 'Product 2','Product 3','Product 4','Product 5','Product 6','Product 7','Product 8','Product 9','Product 10',];
   const productData = [
     { name: 'Part 1', count: 50 },
     { name: 'Part 2', count: 30 },
@@ -59,6 +61,7 @@ const ProductPage = () => {
   return (
     <div className='productPage'>
       <SummaryPage />
+      <FourthbarSummary dropdownData={productDrop} dropdownLabel="Select Product" />
       <div id='pdfContent' className='container'>
         <div className='barChart'>
           <Barchart data={productData} />
