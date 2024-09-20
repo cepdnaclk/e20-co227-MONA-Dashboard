@@ -7,8 +7,12 @@ import Progressbar from '../../components/SummaryComponents/Progressbar/Progress
 import LineChart from '../../components/SummaryComponents/Linechart/Linechart';
 import Table from '../../components/SummaryComponents/Tables/Table';
 import GeneratePDFButton from '../../components/SummaryComponents/GeneratePDF/GeneratePDFButton';
+import FourthbarSummary from '../../layouts/FourthbarSummary';
 
 const PartPage = () => {
+
+  const partDrop = ['Part 1', 'Part 2', 'Part 3', 'Part 4', 'Part 5', 'Part 6', 'Part 7', 'Part 8'];
+
   const partData = [
     { name: 'M101', count: 15 },
     { name: 'M239', count: 25 },
@@ -65,6 +69,8 @@ const PartPage = () => {
   return (
     <div className='partPage'>
       <SummaryPage />
+      <FourthbarSummary dropdownData={partDrop} dropdownLabel="Select Part" />
+
       <div className='container'>
         <div className='barChart'>
           <Barchart data={partData} />
