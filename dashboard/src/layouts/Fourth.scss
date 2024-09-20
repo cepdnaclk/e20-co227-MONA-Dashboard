@@ -1,15 +1,26 @@
 .summaryContainer {
-
-    .box {
-        width: 99%;
+    .box1{
+        width: 98%;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        height: 60px;
-        z-index:160;
+        height: 56px;
+    }
+
+    .box {
+        width: 98%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        height: 56px;
+        background-color: #fff;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.534),
+            0px 1px 2px rgba(0, 0, 0, 0.05);
+        border-radius: 8px;
+
 
         .pickers {
-            top: 2px;
+            // top: 2px;
             left: 25px;
             display: flex;
             position: relative;
@@ -19,7 +30,7 @@
         .date {
             // right:1%;
             display: flex;
-            top: 2px;
+            // top: 2px;
             border: '1px solid #000000';
             width: '200px';
             height: '50px';

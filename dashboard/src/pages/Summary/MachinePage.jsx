@@ -49,8 +49,8 @@ const MachinePage = () => {
   return (
     <div className='machinePage'>
       <SummaryPage/>
-      <FourthbarSummary dropdownData={machineDrop} dropdownLabel="Select Machine" />
-      <div className='container'>
+      <FourthbarSummary dropdownData={machineDrop} dropdownLabel="Select Machine" pdfname={'machine_page.pdf'}/>
+      <div id='pdfContent' className='container'>
         <div className='progressBar'>
         <Progressbar title="Production Rate %" value={70} gradientFrom="#FF5733" gradientTo="#FFC300"/>
         <Progressbar title="Success %" value={75} gradientFrom="#3357FF" gradientTo="#8E2DE2" />

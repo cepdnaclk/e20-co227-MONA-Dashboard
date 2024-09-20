@@ -75,9 +75,10 @@ const PartPage = () => {
                 dropdownLabel="Select Product"
                 dropdownData2={partDrop}
                 dropdownLabel2={"Select Part"}
+                pdfname={'part_page.pdf'}
                 />
 
-            <div className='container'>
+            <div id='pdfContent' className='container'>
                 <div className='barChart'>
                     <Barchart data={partData} />
                 </div>

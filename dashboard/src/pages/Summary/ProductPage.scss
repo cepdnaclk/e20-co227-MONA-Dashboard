@@ -1,16 +1,17 @@
 .productPage{
-  height: 100vh;
+  height: 1080px;
+  overflow: hidden;
   .container{
     background-color: rgb(229, 232, 232);
-    justify-content: center;
+    // justify-content: center;
     margin-top: 10px;
     display: grid;
-    grid-template-columns: 18% 37% 45%;
-    grid-template-rows: 30% 30% 23%;
+    grid-template-columns: 25% 30% 44%;
+    grid-template-rows: 30% 30% 20%;
     grid-template-areas: 
       "barChart progressBar graph"
       "table table graph"
-      "table2 table2 exportButton";
+      "table2 table2 table2";
     grid-gap: 0.4rem;
     height: 100%;
     .barChart{
