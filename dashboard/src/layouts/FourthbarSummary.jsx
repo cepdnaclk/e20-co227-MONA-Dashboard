@@ -9,9 +9,9 @@ const FourthbarSummary = ({ dropdownData, dropdownLabel, dropdownData2, dropdown
     return (
         <div>
             <div className='summaryContainer'>
-                <div className='box' style={{marginTop:'10px',marginLeft:"1%"}}>
+                <div className='box' style={{marginTop:'10px'}}>
                     {/* <Dropdownbox /> */}
-                    <div className='box1' style={{width:'96%'}}>
+                    <div className='box1' style={{width:'97%'}}>
                         <div className='pickers'>
                             <Dropdown data={dropdownData} label={dropdownLabel} />
 
@@ -21,7 +21,7 @@ const FourthbarSummary = ({ dropdownData, dropdownLabel, dropdownData2, dropdown
                             <DurationDropdown />
                         </div>
                     </div>
-                    <div style={{ cursor: 'pointer', marginRight:'0.5%'}}>
+                    <div style={{ cursor: 'pointer', margin:'0.2%'}}>
                         <GeneratePDFButton targetId='pdfContent' filename={pdfname} />
                     </div>
                 </div>

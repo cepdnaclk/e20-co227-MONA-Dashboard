@@ -76,7 +76,7 @@ const PartPage = () => {
                 dropdownData2={partDrop}
                 dropdownLabel2={"Select Part"}
                 pdfname={'part_page.pdf'}
-                />
+            />
 
             <div id='pdfContent' className='container'>
                 <div className='barChart'>
