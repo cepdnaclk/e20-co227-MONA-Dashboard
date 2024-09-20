@@ -18,6 +18,13 @@ const ProductPage = () => {
         { name: 'Part 3', count: 20 },
         { name: 'Part 4', count: 70 },
         { name: 'Part 5', count: 40 },
+        { name: 'Part 6', count: 60 },
+        { name: 'Part 7', count: 30 },
+        { name: 'Part 8', count: 40 },
+        { name: 'Part 9', count: 60 },
+        { name: 'Part 10', count: 50 },
+        { name: 'Part 11', count: 30 },
+        { name: 'Part 12', count: 20 },
     ];
 
     const productLinechartData = [
@@ -62,14 +69,14 @@ const ProductPage = () => {
     return (
         <div className='productPage'>
             <SummaryPage />
-            <FourthbarSummary dropdownData={productDrop} dropdownLabel="Select Product" pdfname={'product_page.pdf'}/>
+            <FourthbarSummary dropdownData={productDrop} dropdownLabel="Select Product" pdfname={'product_page.pdf'} />
             <div id='pdfContent' className='container'>
                 <div className='barChart'>
                     <Barchart data={productData} />
                 </div>
                 <div className='progressBar'>
-                    <Progressbar title="Success %" value={75} gradientFrom="#3357FF" gradientTo="#8E2DE2" />
-                    <Progressbar title="Completed %" value={50} gradientFrom="#3357FF" gradientTo="#8E2DE2" />
+                    <Progressbar title="Success %" value={75} gradientFrom="#99cc33" gradientTo="#99CC33" />
+                    <Progressbar title="Completed %" value={50} gradientFrom="#99CC33" gradientTo="#99CC33" />
                 </div>
                 <div className='table'>
                     <Table columns={columnstable1} data={datatable1} />

@@ -83,8 +83,8 @@ const PartPage = () => {
                     <Barchart data={partData} />
                 </div>
                 <div className='progressBar'>
-                    <Progressbar title="Success %" value={75} />
-                    <Progressbar title="Completed %" value={50} />
+                    <Progressbar title="Success %" value={75} gradientFrom="#99cc33" gradientTo="#99CC33"/>
+                    <Progressbar title="Completed %" value={50} gradientFrom="#99cc33" gradientTo="#99CC33"/>
                 </div>
                 <div className='table'>
                     <Table columns={columnstable1} data={datatable1} />

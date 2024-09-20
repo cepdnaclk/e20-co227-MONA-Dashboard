@@ -50,9 +50,9 @@ const MachinePage = () => {
             <FourthbarSummary dropdownData={machineDrop} dropdownLabel="Select Machine" pdfname={'machine_page.pdf'} />
             <div id='pdfContent' className='container'>
                 <div className='progressBar'>
-                    <Progressbar title="Production Rate %" value={70} gradientFrom="#FF5733" gradientTo="#FFC300" />
-                    <Progressbar title="Success %" value={75} gradientFrom="#3357FF" gradientTo="#8E2DE2" />
-                    <Progressbar title="Completed %" value={50} gradientFrom="#3357FF" gradientTo="#8E2DE2" />
+                    <Progressbar title="Production Rate %" value={70} gradientFrom="#99cc33" gradientTo="#99CC33" />
+                    <Progressbar title="Success %" value={75} gradientFrom="#99cc33" gradientTo="#99CC33" />
+                    <Progressbar title="Completed %" value={50} gradientFrom="#99cc33" gradientTo="#99CC33" />
                 </div>
                 <div className='table'>
                     <Table columns={columnstable1} data={datatable1} />

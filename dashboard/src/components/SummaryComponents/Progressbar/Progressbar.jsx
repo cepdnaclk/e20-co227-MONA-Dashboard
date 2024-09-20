@@ -1,9 +1,11 @@
+import { colors } from '@mui/material';
 import React from 'react';
 import ReactApexChart from 'react-apexcharts';
 
 const Progressbar = ({ title, value, gradientFrom, gradientTo }) => {
   const options = {
-    series: [value],  // Use the value prop here
+    series: [value],
+    colors: ["#5662cc"],
     chart: {
       height: '100%', // Set height to 100%
       width: '100%',  // Set width to 100%
@@ -65,7 +67,8 @@ const Progressbar = ({ title, value, gradientFrom, gradientTo }) => {
         shade: 'dark',
         type: 'horizontal',
         shadeIntensity: 0.5,
-        gradientToColors: [gradientTo || '#ABE5A1'],  // Use the gradientTo prop
+        gradientFromColors: ['#201F67'],  // Use the gradientFrom prop
+        gradientToColors: ['#99cc33' ],  // Use the gradientTo prop
         inverseColors: false,
         opacityFrom: 1,
         opacityTo: 1,

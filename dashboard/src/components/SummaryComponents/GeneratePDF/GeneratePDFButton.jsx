@@ -3,6 +3,7 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
 import './GeneratePDFButton.scss';
+import Tooltip from '@mui/material/Tooltip';
 
 const GeneratePDFButton = ({ targetId, filename = 'document.pdf' }) => {
     const handleGeneratePDF = () => {
@@ -27,12 +28,16 @@ const GeneratePDFButton = ({ targetId, filename = 'document.pdf' }) => {
     };
 
     return (
-        <button className='pdfbutton' onClick={handleGeneratePDF} >
-            <FileDownloadOutlinedIcon
-                className='pdficon'
-                fontSize='25px'
-            />
-        </button>
+        <Tooltip title="Download PDF" placement="left" arrow>
+            <button className='pdfbutton' onClick={handleGeneratePDF} >
+
+                <FileDownloadOutlinedIcon
+                    className='pdficon'
+                    fontSize='25px'
+                />
+
+            </button>
+        </Tooltip>
     );
 };
 

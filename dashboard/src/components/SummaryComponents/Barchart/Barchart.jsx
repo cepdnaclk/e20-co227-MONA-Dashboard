@@ -20,7 +20,7 @@ const Barchart = ({ data }) => {
         <Tooltip />
         <Legend />
         <CartesianGrid strokeDasharray="3 3" />
-        <Bar dataKey="count" fill="#8884d8" background={{ fill: '#eee' }} />
+        <Bar dataKey="count" fill="#99cc33" background={{ fill: '#eee' }} />
       </BarChart>
     </ResponsiveContainer>
   );
