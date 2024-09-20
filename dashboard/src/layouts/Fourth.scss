@@ -1,23 +1,33 @@
-.summaryContainer{
-    
-  .box{
-    
-    .pickers{
-      top:2px;
-      left:25px;
-      display: flex;
-      position: relative;
-      gap: 60px;
+.summaryContainer {
 
-      .date{
-        left:59%;
+    .box {
+        width: 99%;
         display: flex;
-        position: relative;
-        gap: 60px;
-      }
-    }
-  }
+        flex-direction: row;
+        justify-content: space-between;
+        height: 60px;
+        z-index:160;
 
-  
-    
+        .pickers {
+            top: 2px;
+            left: 25px;
+            display: flex;
+            position: relative;
+            //   gap: 60px;
+        }
+
+        .date {
+            // right:1%;
+            display: flex;
+            top: 2px;
+            border: '1px solid #000000';
+            width: '200px';
+            height: '50px';
+            // gap: 60px;
+        }
+
+    }
+
+
+
 }

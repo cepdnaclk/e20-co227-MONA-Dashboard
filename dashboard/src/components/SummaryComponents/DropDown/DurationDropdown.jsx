@@ -17,7 +17,8 @@ const CustomDateRangePicker = styled(DateRangePicker)(({ theme }) => ({
   '.MuiInputLabel-root': {
     color: 'black', // Label color
     fontSize: '15px', // Label font size
-    fontWeight: 400, // Label font weight
+    fontWeight: 350, // Label font weight
+    width :'350px',
   },
 }));
 
@@ -27,8 +28,13 @@ export default function DurationDropdown() {
       <DemoContainer components={['DateRangePicker']}>
         <CustomDateRangePicker 
           localeText={{ start: 'Start-date', end: 'End-date' }}
+          calendars={2}
+          
         />
       </DemoContainer>
     </LocalizationProvider>
   );
 }
+
+
+
