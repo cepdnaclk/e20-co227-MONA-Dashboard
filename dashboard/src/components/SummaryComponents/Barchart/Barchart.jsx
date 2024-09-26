@@ -2,6 +2,7 @@
 import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
+// Barchart component
 const Barchart = ({ data }) => {
     return (
         <ResponsiveContainer width="100%" height="95%">
@@ -23,7 +24,6 @@ const Barchart = ({ data }) => {
                     angle={270}
                     textAnchor="end "
                     height={50}
-                    orientation='bottom'
                     
                 />
                 <YAxis
