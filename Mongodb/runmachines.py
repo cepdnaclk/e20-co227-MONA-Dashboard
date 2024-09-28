@@ -13,10 +13,11 @@ client = pymongo.MongoClient("mongodb://localhost:27017/")  # Assuming local Mon
 # Atlas database
 #client = pymongo.MongoClient("mongodb+srv://bhagya:bhagya123@monadash.v8cvc3k.mongodb.net/?retryWrites=true&w=majority&appName=monadash")
 
-db = client["test"]  # Replace with your desired database name
-collection1 = db["realtimeinfos"]  # Replace with your desired collection name
+# Database and collection names
+db = client["test"]  
+collection1 = db["realtimeinfos"]  
 collection3 = db["rateinfos"]
-collection2 = db["partinfos"]  # Replace with your desired collection name
+collection2 = db["partinfos"]  
 
 #setmachine time
 MachineTime = 30
