@@ -1,3 +1,4 @@
+# Imports and setup
 import pymongo
 from random import choice
 from random import sample
