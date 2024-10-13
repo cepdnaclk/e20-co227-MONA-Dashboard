@@ -1,12 +1,14 @@
 // Container for progress blocks
 .progress-page {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(92px, 1fr)); // Ensures responsive grid layout
-    gap: 6px; // Space between blocks
-    padding: 20px;
-    height: calc(100vh - 150px); // Subtract header heights from total view height
-    overflow-y: auto; // Allow vertical scrolling if necessary
+    grid-template-columns: repeat(12, minmax(100px, 1fr)); // Use 100px minimum to fit more columns
+    row-gap: 8px; // Reduce row gap to fit more rows
+    column-gap: 5px; // Reduce column gap to make better use of space
+    padding: 10px; // Reduced padding to free up vertical space
+    height: calc(100vh - 150px); // Fit within viewport height
+    overflow-y: auto; // Allow scrolling if necessary
     box-sizing: border-box;
+    background-color: #f4f4f4; // Light background for contrast
 }
 
 // Individual progress block
@@ -15,16 +17,48 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 10px;
+    background-color: #ffffff;
+    border: 1px solid #d3d3d3;
+    border-radius: 8px; // Slightly smaller radius
     text-align: center;
+    height: 83px; // Reduced block height to fit more rows
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); // Subtle shadow for depth
+    transition: transform 0.2s ease;
+    cursor: pointer;
+}
+
+// Add hover effect to make blocks interactive
+.progress-block:hover {
+    transform: scale(1.05); // Slightly enlarge on hover
 }
 
 // Text inside the progress block
 .progress-block p {
-    margin-top: 10px;
-    font-size: 14px;
+    margin-top: 5px; // Smaller margin to fit text
+    font-size: 12px; // Reduced font size to fit more text
+    font-weight: bold;
     color: #333;
+    margin-bottom: 5px; // Smaller spacing between text and progress bar
+}
+
+// Circular progress bar customization
+.progress-block .CircularProgressbar {
+    width: 48x !important; // Reduced size for the progress circle
+    height: 48px !important;
+}
+
+// Text inside CircularProgressbar (percentage)
+.CircularProgressbar-text {
+    fill: #4a90e2;
+    font-weight: bold;
+    font-size: 10px; // Smaller percentage text to fit the reduced size
+}
+
+// Custom styles for progress path
+.CircularProgressbar-path {
+    stroke: #4a90e2; // Blue color for the progress path
+}
+
+.CircularProgressbar-trail {
+    stroke: #d3d3d3; // Light gray for the progress trail
 }

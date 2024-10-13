@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import ProductProgressChart from "../../components/RateComponents/ProductProgress/ProductProgressChart";
 import Header from "../../layouts/Header";
 import SecondBar from "../../layouts/SecondBar";
-import ThirdBar from "../../layouts/ThirdBar";
 import "./ProductProgress.scss";
 import { BarChart } from "@mui/x-charts/BarChart";
 import { Gauge, gaugeClasses } from "@mui/x-charts/Gauge";
 import axios from "axios";
 import Expanded from "../../components/RateComponents/ProductProgress/ExpandedCard";
+import ThirdbarRate from "../../layouts/ThirdbarRate";
 
 const ProductProgress = () => {
     const [realtimeinfo, setRealtimeInfo] = useState([]);
@@ -337,7 +337,7 @@ const ProductProgress = () => {
         <>
             <Header />
             <SecondBar />
-            <ThirdBar />
+            <ThirdbarRate />
             <div className="container">
                 <div className="total-product">
                     {/* Combined Stacked Bar Chart */}
@@ -423,7 +423,7 @@ const ProductProgress = () => {
                             })}
                         </div>
                     ))}
-                    <Expanded/>
+                    
                 </div>
             </div>
         </>

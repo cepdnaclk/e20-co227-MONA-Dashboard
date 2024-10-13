@@ -1,16 +1,16 @@
 .partPage{
-  height: 100vh;
+  height: 1080px;
+  overflow: hidden;
   .container{
     background-color: rgb(229, 232, 232);
-    justify-content: center;
     margin-top: 10px;
     display: grid;
-    grid-template-columns: 18% 37% 45%;
-    grid-template-rows: 30% 35% 18%;
+    grid-template-columns: 18% 37% 44%;
+    grid-template-rows: 18% 20% 38%;
     grid-template-areas: 
+      "barChart progressBar table2"
       "barChart progressBar graph"
-      "table table graph"
-      "table2 table2 exportButton";
+      "table table graph";
     grid-gap: 0.4rem;
     height: 100%;
     .barChart{

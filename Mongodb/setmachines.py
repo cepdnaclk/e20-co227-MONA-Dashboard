@@ -7,7 +7,7 @@ client = pymongo.MongoClient("mongodb://localhost:27017/")  # Assuming local Mon
 # Uncomment and adjust this line if using MongoDB Atlas
 # client = pymongo.MongoClient("mongodb+srv://bhagya:bhagya123@monadash.v8cvc3k.mongodb.net/?retryWrites=true&w=majority&appName=monadash")
 
-db = client["test_1"]  # Replace with your desired database name
+db = client["test"]  # Replace with your desired database name
 collection1 = db["realtimeinfos"]  # Replace with your desired collection name
 products_collection = db['productinfos']
 parts_collection = db['partinfos']
@@ -22,7 +22,7 @@ if input() == "1234":
     # Step 1: Create 10 products with random parts
     total_parts = 120
     num_products = 10
-    product_ids = [f'{i+1}' for i in range(num_products)]
+    product_ids = [(i+1) for i in range(num_products)]
     parts_distribution = [total_parts // num_products] * num_products
 
     # Distribute remaining parts to make the total 120
@@ -35,7 +35,7 @@ if input() == "1234":
     products_collection.insert_many(products)
 
     # Step 2: Create 24 machines
-    machine_ids = [f'{i+1}' for i in range(24)]
+    machine_ids = [(i+1) for i in range(24)]
     machine_capacities = [4, 6] * 12  # Ensures enough capacities for 24 machines
 
     machine_data = [
@@ -50,9 +50,10 @@ if input() == "1234":
             "SuccessSlots": 0,
             "FailureSlots": 0,
             "TotalSlots": 0,
+            "TargetSlots": 500,
             "ErrorPercentage": 0,
             "Rate": 0,
-            "Info": f"This is Machine {i+1} with MachineName M#{i+1}",
+            "Info": f"This is Machine {i+1} with MachineName M#{i+1:03d}",
         }
         for i in range(24)
     ]
@@ -61,15 +62,14 @@ if input() == "1234":
     collection1.insert_many(machine_data)
 
     # Step 3: Distribute the parts among the products and assign them to machines sequentially
-    part_counter = 0
     machine_index = 0
     machine_parts = {machine_id: 0 for machine_id in machine_ids}  # Track how many parts each machine has
 
     # Loop through products to assign parts
     for i, product in enumerate(products):
+        part_counter = 1  # Reset part counter for each product
         for _ in range(product['#Parts']):
-            part_counter += 1
-
+            
             # Fill the current machine to capacity before moving to the next
             while True:
                 machine = collection1.find_one({'MachineNumber': int(machine_ids[machine_index])})
@@ -88,11 +88,13 @@ if input() == "1234":
 
             # Create the part document
             part_doc = {
-                'PartNumber': f'{part_counter}',
                 'ProductNumber': product['ProductNumber'],
+                'PartNumber': part_counter,  # Start from 1 for each product
                 'MachineNumber': machine_id
             }
             parts_collection.insert_one(part_doc)
+
+            part_counter += 1  # Increment part counter for the current product
 
     print("Part field updated with random values for all documents in the 'realtimeinfos' collection!")
 

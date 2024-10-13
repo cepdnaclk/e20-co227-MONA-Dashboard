@@ -5,6 +5,7 @@ import { PieChart } from '@mui/x-charts/PieChart';
 import Tooltip from '@mui/material/Tooltip';
 import videold from './load.mp4';
 
+import { BarChart } from '@mui/x-charts/BarChart';
 import LightModeIcon from '@mui/icons-material/LightModeOutlined';
 import NightsStayIcon from '@mui/icons-material/NightsStayOutlined';
 
@@ -96,8 +97,10 @@ const PieChartLable = ({ x, y, xb, yb, text, size, color, boxWidth, boxHeight, t
 
 
 
+
 function RealTime() {
     const [realtimeinfo, setMachines] = useState([]);
+    const [partinfo, setpartInfo] = useState([]);
     const [dateTime, setDateTime] = useState(new Date());
     const [dayShift, setDayShift] = useState(false);
     const [nightShift, setNightShift] = useState(false);
@@ -114,8 +117,22 @@ function RealTime() {
             }
         };
 
+        const fetchPartData = async () => {
+            try {
+                const response = await axios.get('http://localhost:8000/partinfo');
+                setpartInfo(response.data.sort((a, b) => a.MachineNumber - b.MachineNumber));
+            } catch (error) {
+                console.error('Error fetching machine data:', error);
+            }
+        };
+        fetchData();
+        fetchPartData();
+
         // Start interval to fetch data every second
-        const fetchIntervalId = setInterval(fetchData, 1000);
+        const fetchIntervalId = setInterval(() => {
+            fetchData();
+            fetchPartData();
+        }, 1000);
 
         // Start interval to update time and shift status every second
         const shiftIntervalId = setInterval(() => {
@@ -156,6 +173,36 @@ function RealTime() {
     // Create an array with the first element empty to create the empty first tile
     const gridItems = [null, ...realtimeinfo.slice(0, 24)]; // Adds an empty first tile and limits data to 24 items
 
+    const currentHour = new Date().getHours() + ((new Date().getMinutes()) / 60);
+
+
+    const setProduct = (machineNumber) => {
+        // Assuming partinfo is your dataset
+
+
+        // Filter the data by MachineNumber
+        const partData = partinfo.filter(part => part.MachineNumber === machineNumber);
+
+        // Group by ProductNumber and collect PartNumbers
+        const groupedData = partData.reduce((acc, part) => {
+            const product = acc.find(item => item.Product === part.ProductNumber);
+
+            if (product) {
+                // If the product already exists, push the PartNumber into the Part array
+                product.Part.push(part.PartNumber);
+            } else {
+                // If the product doesn't exist, create a new entry
+                acc.push({ Product: part.ProductNumber, Part: [part.PartNumber] });
+            }
+
+            return acc;
+        }, []);
+
+        return groupedData;
+    };
+
+    // Example usage
+
     return (
         <div className="card-grid">
             {gridItems.length === 1 ? (
@@ -174,21 +221,22 @@ function RealTime() {
                                 </div>
                                 <div>
                                     <h1>
-                                        {formattedDate}  
+                                        {formattedDate}
                                     </h1>
                                 </div>
-                                <div className="shift-container-status" >                             
+                                <div className="shift-container-status" >
                                     {nightShift &&
-                                        <div style={{display:"flex", flexDirection:'row', marginTop:"10px"}}>
+                                        <div style={{ display: "flex", flexDirection: 'row', marginTop: "5px" }}>
                                             <NightsStayIcon sx={{ fontSize: 30 }}></NightsStayIcon>
                                             <h2>
                                                 Night Shift
                                             </h2>
+
                                         </div>
                                     }
 
                                     {dayShift &&
-                                        <div style={{display:"flex", flexDirection:'row', marginTop:"10px"}}>
+                                        <div style={{ display: "flex", flexDirection: 'row', marginTop: "5px" }}>
                                             <LightModeIcon sx={{ fontSize: 30 }} ></LightModeIcon>
                                             <h2>
                                                 Day Shift
@@ -196,13 +244,37 @@ function RealTime() {
                                         </div>
                                     }
                                     {overShift &&
-                                        <div style={{display:"flex", flexDirection:'row', marginTop:"10px"}}>
+                                        <div style={{ display: "flex", flexDirection: 'row', marginTop: "5px" }}>
                                             <NightsStayIcon sx={{ fontSize: 30 }} ></NightsStayIcon>
                                             <h2>
                                                 Overtime Shift
                                             </h2>
                                         </div>
                                     }
+                                </div>
+                                <div style={{ marginTop: "-65px", marginBottom: "-70px", cursor: "default" }}>
+                                    <BarChart
+                                        series={[{
+                                            data: [currentHour],
+                                            color: '#888888',
+                                            tooltipComponent: () => null,
+                                        }]}
+                                        yAxis={[{ scaleType: 'band', data: ['Time'], hideTooltip: true }]}
+                                        xAxis={[nightShift
+                                            ? { min: 15, max: 23, hideTooltip: true, valueFormatter: (value) => `${value < 10 ? '0' : ''}${value}h` }
+                                            : dayShift
+                                                ? { min: 7, max: 15, valueFormatter: (value) => `${value < 10 ? '0' : ''}${value}h` }
+                                                : { min: 0, max: 7, valueFormatter: (value) => `${value < 10 ? '0' : ''}${value}h` }
+                                        ]}
+                                        height={100}
+                                        width={320}
+                                        margin={{ top: 70, left: 10, right: 10, bottom: 20 }}
+                                        leftAxis={null}
+                                        layout="horizontal"
+                                        tooltip={false}
+                                    />
+
+
                                 </div>
 
 
@@ -230,95 +302,165 @@ function RealTime() {
                                 </div>
                             </div>
 
-                            <div className="headrow" style={{ cursor: 'default', height: '150px' }}>
-                                <PieChart
-                                    series={[
-                                        {
-                                            data: [
-                                                { value: info.SuccessSlots, color: info.Status === "off" ? 'none' : '#99cc33', label: "Success Slots : " + info.SuccessSlots },
-                                                { value: info.FailureSlots, color: info.Status === "off" ? 'none' : '#cc6666', label: 'Failure Slots    : ' + info.FailureSlots },
-                                                { value: ((info.TargetSlots) - info.SuccessSlots - info.FailureSlots) > 0 ? ((info.TargetSlots) - info.SuccessSlots - info.FailureSlots) : 0, color: '#dddddd' },
-                                            ],
-                                            innerRadius: 50,
-                                            outerRadius: 70,
-                                            cornerRadius: 7,
-                                            startAngle: 0,
-                                            endAngle: 360,
-                                            cx: 100,
-                                            cy: 80,
-                                        },
-                                        {
-                                            data: [
-                                                { value: info.TargetSlots, color: info.Status === "off" ? 'none' : '#888888', label: "Target Slots     : " + info.TargetSlots },
-                                                { value: ((info.TargetSlots) - info.SuccessSlots - info.FailureSlots) < 0 ? parseInt(info.SuccessSlots, 10) + parseInt(info.FailureSlots, 10) - parseInt(info.TargetSlots, 10) : info.FailureSlots, color: 'none' },
-                                            ],
-                                            innerRadius: 71,
-                                            outerRadius: 76,
-                                            startAngle: 0,
-                                            endAngle: 360,
-                                            cornerRadius: 2,
-                                            cx: 100,
-                                            cy: 80,
-                                        },
-                                    ]}
-                                    width={420}
-                                    height={160}
-                                    skipAnimation
-                                >
-                                    <>
-                                        <PieChartText
-                                            x="25%"
-                                            y="45%"
-                                            size={'18px'}
-                                            color={info.Status === 'off' ? 'none' : (info.TargetSlots - info.SuccessSlots) > 0 ? "#f46c00" : '#99cc33'}
-                                            text={info.Status === 'off' ? '' : (info.SuccessSlots / info.TargetSlots * 100).toFixed(1) + " %"}
+                            <div className="headrow" style={{ cursor: 'default', height: '150px', display: "flex", flexDirection: 'row' }}>
+                                <div className={((info.SuccessSlots > 20) && (info.FailureSlots / info.SuccessSlots > 0.11)) ? "gauage-s-error" : "gauage-s"} style={{ width: "135px", marginLeft: '0px' }}>
+                                    <PieChart
+                                        series={[
+                                            {
+                                                data: [
+                                                    { value: info.SuccessSlots, color: info.Status === "off" ? 'none' : '#99cc33', label: "Success Slots : " + info.SuccessSlots },
+                                                    { value: info.FailureSlots, color: info.Status === "off" ? 'none' : '#cc6666', label: 'Failure Slots    : ' + info.FailureSlots },
+                                                    { value: ((info.TargetSlots) - info.SuccessSlots - info.FailureSlots) > 0 ? ((info.TargetSlots) - info.SuccessSlots - info.FailureSlots) : 0, color: '#dddddd' },
+                                                ],
+                                                innerRadius: 45,
+                                                outerRadius: 70,
+                                                cornerRadius: 7,
+                                                startAngle: 0,
+                                                endAngle: 360,
+                                                cx: 70,
+                                                cy: 80,
+                                                legend: { hidden: true }
+                                            },
+                                            {
+                                                data: [
+                                                    { value: info.TargetSlots, color: info.Status === "off" ? 'none' : '#888888', label: "Target Slots     : " + info.TargetSlots },
+                                                    { value: ((info.TargetSlots) - info.SuccessSlots - info.FailureSlots) < 0 ? parseInt(info.SuccessSlots, 10) + parseInt(info.FailureSlots, 10) - parseInt(info.TargetSlots, 10) : info.FailureSlots, color: 'none' },
+                                                ],
+                                                innerRadius: 71,
+                                                outerRadius: 76,
+                                                startAngle: 0,
+                                                endAngle: 360,
+                                                cornerRadius: 2,
+                                                cx: 70,
+                                                cy: 80,
+                                            },
+                                        ]}
+                                        width={150}
+                                        height={170}
+                                        slotProps={{ legend: { hidden: true }, }}
+                                        skipAnimation
+                                    >
+                                        <>
+                                            <PieChartText
+                                                x="50%"
+                                                y="40%"
+                                                size={'18px'}
+                                                color={info.Status === 'off' ? 'none' : (info.TargetSlots - info.SuccessSlots) > 0 ? "#f46c00" : '#99cc33'}
+                                                text={info.Status === 'off' ? '' : (info.SuccessSlots / info.TargetSlots * 100).toFixed(1) + " %"}
+                                                style={{ transform: 'translate(-50%, -50%)', fontSize: '15px' }}
+                                            />
+                                            <PieChartText
+                                                x="50%"
+                                                y="50%"
+                                                size='10px'
+                                                color={info.Status === 'off' ? 'none' : (info.TargetSlots - info.SuccessSlots) > 0 ? "#f46c00" : '#99cc33'}
+                                                text={"SLOTS GOAL"}
+                                                style={{ transform: 'translate(-50%, -50%)', fontSize: '10px' }}
+                                            />
+                                            <PieChartText
+                                                x="50%"
+                                                y="60%"
+                                                size='10px'
+                                                color={info.Status === 'off' ? 'none' : (info.TargetSlots - info.SuccessSlots) > 0 ? "#f46c00" : '#99cc33'}
+                                                text={info.Status === 'off' ? "" : info.TargetSlots - info.SuccessSlots > 0 ? (info.TargetSlots - info.SuccessSlots) + " slots behind" : " Target Achieved"}
+                                                style={{ transform: 'translate(-50%, -50%)', fontSize: '10px' }}
+                                            />
+                                        </>
+
+                                        {/* <PieChartLable
+                                            x="60%"
+                                            y="10%"
+                                            xb={"47%"}
+                                            yb={"2%"}
+                                            size="15px"
+                                            title="Production"
+                                            color={info.Status === 'off' ? '#888888' : "black"}
+                                            text={info.Production}
+                                            boxWidth={'26%'}
+                                            boxHeight={"14%"}
                                             style={{ transform: 'translate(-50%, -50%)', fontSize: '15px' }}
                                         />
-                                        <PieChartText
-                                            x="25%"
-                                            y="55%"
-                                            size='10px'
-                                            color={info.Status === 'off' ? 'none' : (info.TargetSlots - info.SuccessSlots) > 0 ? "#f46c00" : '#99cc33'}
-                                            text={"SLOTS GOAL"}
-                                            style={{ transform: 'translate(-50%, -50%)', fontSize: '10px' }}
-                                        />
-                                        <PieChartText
-                                            x="25%"
-                                            y="65%"
-                                            size='10px'
-                                            color={info.Status === 'off' ? 'none' : (info.TargetSlots - info.SuccessSlots) > 0 ? "#f46c00" : '#99cc33'}
-                                            text={info.Status === 'off' ? "" : info.TargetSlots - info.SuccessSlots > 0 ? (info.TargetSlots - info.SuccessSlots) + " slots behind" : " Target Achieved"}
-                                            style={{ transform: 'translate(-50%, -50%)', fontSize: '10px' }}
-                                        />
-                                    </>
 
-                                    <PieChartLable
-                                        x="60%"
-                                        y="10%"
-                                        xb={"47%"}
-                                        yb={"2%"}
-                                        size="15px"
-                                        title="Production"
-                                        color={info.Status === 'off' ? '#888888' : "black"}
-                                        text={info.Production}
-                                        boxWidth={'26%'}
-                                        boxHeight={"14%"}
-                                        style={{ transform: 'translate(-50%, -50%)', fontSize: '15px' }}
-                                    />
+                                        <PieChartLable
+                                            x="89%"
+                                            y="10%"
+                                            xb={"81%"}
+                                            yb={"2%"}
+                                            size="15px"
+                                            title="Part"
+                                            color={info.Status === 'off' ? '#888888' : "black"}
+                                            text={info.Part}
+                                            boxWidth={'16%'}
+                                            boxHeight={"14%"}
+                                        /> */}
+                                    </PieChart>
+                                </div>
+                                <div className="bodyrow" style={{ width: '200px', height: '100px' ,marginBottom: '10px',marginTop: '-10px'}}>
+                                    <div style={{ display: 'flex', flexDirection: 'row', width: '200px', margin: "2px", marginLeft: "0%" }}>
+                                        <div style={{ height: '14px', width: '14px', borderRadius: '7px', backgroundColor: info.Status === 'off' ? '#none' : '#99cc33', marginRight: '5px' }}>
+                                        </div>
+                                        <h5 style={{}}>
+                                            Success Slots  
+                                        </h5>
+                                        <h5 >
+                                            {info.SuccessSlots}
+                                        </h5>
+                                    </div>
+                                    <div style={{ display: 'flex', flexDirection: 'row', width: '200px', margin: "2px", marginLeft: "0%" }}>
+                                        <div style={{ height: '14px', width: '14px', borderRadius: '7px', backgroundColor: info.Status === 'off' ? '#none' : '#cc6666', marginRight: '5px' }}>
+                                        </div>
+                                        <h5 style={{}}>
+                                            Failure Slots     
+                                        </h5>
+                                        <h5 >
+                                            {info.FailureSlots}
+                                        </h5>
+                                    </div>
+                                    <div style={{ display: 'flex', flexDirection: 'row', width: '200px', margin: "2px", marginLeft: "0%" }}>
+                                        <div style={{ height: '14px', width: '14px', borderRadius: '7px', backgroundColor: info.Status === 'off' ? '#none' : '#888888', marginRight: '5px' }}>
+                                        </div>
+                                        <h5 style={{}}>
+                                            Target Slots      
+                                        </h5>
+                                        <h5 >
+                                            {info.TargetSlots}
+                                        </h5>
+                                    </div>
 
-                                    <PieChartLable
-                                        x="89%"
-                                        y="10%"
-                                        xb={"81%"}
-                                        yb={"2%"}
-                                        size="15px"
-                                        title="Part"
-                                        color={info.Status === 'off' ? '#888888' : "black"}
-                                        text={info.Part}
-                                        boxWidth={'16%'}
-                                        boxHeight={"14%"}
-                                    />
-                                </PieChart>
+
+                                    <div style={{ display: 'flex', flexDirection: 'column', cursor: 'default', fontSize: '12px', fontWeight: 'bold' , marginTop: '10px',marginLeft:"-30%"}}>
+
+                                        {setProduct(info.MachineNumber).map(product => (
+                                            <div key={product.Product} style={{ display: 'flex', flexDirection: 'row' ,marginBottom: '5px'}}>
+                                                <div style={{ border: '1px solid #888888', width: '80px', height: '16px' ,marginRight: '10px' ,marginTop: '1px', padding: '1px', borderRadius: '3px' ,backgroundColor:"#dadada"}}>
+                                                PRODUCT  {String(product.Product).padStart(2, '0')}
+                                                </div>
+                                                {/* <div style={{ border: '1px solid #888888', width: '35px', height: '16px', marginLeft:'10px', margin: '1px', padding: '1px', borderRadius: '3px' ,backgroundColor:"#dadada"}}>PART </div> */}
+                                                <div style={{ width: '50px', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)' }}>
+                                                    {product.Part.map((part, index) => (
+
+                                                        <div
+                                                            key={index}  // Add a key for each part
+                                                            style={{ border: '1px solid #888888', width: '18px', height: '16px', margin: '1px', padding: '1px', borderRadius: '3px',backgroundColor:"#dadada" }}
+                                                        >
+
+
+                                                            {String(part).padStart(2, '0')}
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        ))}
+
+
+
+
+
+
+
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
                     )

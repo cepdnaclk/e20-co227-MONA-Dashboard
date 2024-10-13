@@ -1,0 +1,28 @@
+.pdfbutton{
+    width: 35px;
+    height: 35px;
+    background-color: #fff;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.534);
+
+    
+    &:hover {
+        transform: scale(1.05);
+        z-index: 170;
+    }
+    &:active {
+        background-color: #201F67;
+        transform: scale(1.02);
+        z-index: 170;
+    }
+    .pdficon{
+        
+        fill: #201F67;
+
+        &:hover {
+            fill: #5662cc;
+        }
+        &:active {
+            fill: #fff;
+        }
+    }
+}

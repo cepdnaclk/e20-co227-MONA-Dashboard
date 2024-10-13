@@ -1,41 +1,44 @@
-.machinePage{
-  height: 100vh;
-  .container{
-    background-color: rgb(229, 232, 232);
-    justify-content: center;
-    margin-top: 10px;
-    display: grid;
-    grid-template-columns: 18% 37% 45%;
-    grid-template-rows: 30% 30% 23%;
-    grid-template-areas: 
-      "progressBar progressBar graph"
-      "table table graph"
-      "table table exportButton";
-    grid-gap: 0.4rem;
-    height: 100%;
-    
-    .progressBar{
-      background-color: rgb(255, 255, 255);
-      grid-area: progressBar;
-      display: flex;
-      justify-content: center;
-      padding-top: 15px;
+.machinePage {
+    height: 1080px;
+    overflow: hidden;
+
+    .container {
+        background-color: rgb(229, 232, 232);
+        margin-top: 10px;
+        display: grid;
+        grid-template-columns: 55% 44%;
+        grid-template-rows: 30% 47%;
+        grid-template-areas:
+            "progressBar graph"
+            "table  graph";
+        grid-gap: 0.4rem;
+        height: 100%;
+
+        .progressBar {
+            background-color: rgb(255, 255, 255);
+            grid-area: progressBar;
+            display: flex;
+            justify-content: center;
+            padding-top: 15px;
+        }
+
+        .table {
+            background-color: rgb(255, 255, 255);
+            grid-area: table;
+        }
+
+        .graph {
+            padding: 20px;
+            background-color: rgb(255, 255, 255);
+            grid-area: graph;
+        }
+
+        .exportButton {
+            background-color: rgb(255, 255, 255);
+            grid-area: exportButton;
+            align-items: center;
+            padding: 100px;
+            padding-left: 300px;
+        }
     }
-    .table{
-      background-color: rgb(255, 255, 255);
-      grid-area: table;
-    }
-    .graph{
-      padding: 20px;
-      background-color: rgb(255, 255, 255);
-      grid-area: graph;
-    }
-    .exportButton{
-      background-color: rgb(255, 255, 255);
-      grid-area: exportButton;
-      align-items: center;
-      padding: 100px;
-      padding-left: 300px;
-    }
-  }
 }

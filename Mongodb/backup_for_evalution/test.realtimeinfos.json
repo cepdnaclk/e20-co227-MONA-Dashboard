@@ -1,0 +1,675 @@
+[{
+  "_id": {
+    "$oid": "66b49fba150f7fb71b7481e6"
+  },
+  "MachineNumber": 1,
+  "MachineName": "M#001",
+  "Material": "ABS",
+  "Production": "Production III",
+  "Part": "Part IV",
+  "Status": 1,
+  "StartedTime": {
+    "$date": "2024-09-05T09:17:33.583Z"
+  },
+  "LastUpdatedTime": {
+    "$date": "2024-09-05T10:05:44.088Z"
+  },
+  "StatusChangedTime": {
+    "$date": "2024-09-05T10:03:34.144Z"
+  },
+  "SuccessSlots": 59,
+  "FailureSlots": 6,
+  "TotalSlots": 65,
+  "TargetSlots": 20,
+  "ErrorPercentage": 0,
+  "Rate": 0.02,
+  "Info": "This is Machine 1 with MachineName M#1"
+},
+{
+  "_id": {
+    "$oid": "66b49fba150f7fb71b7481e7"
+  },
+  "MachineNumber": 2,
+  "MachineName": "M#002",
+  "Material": "SAAS",
+  "Production": "Production II",
+  "Part": "Part III",
+  "Status": 1,
+  "StartedTime": {
+    "$date": "2024-09-05T09:17:33.583Z"
+  },
+  "LastUpdatedTime": {
+    "$date": "2024-09-05T10:05:44.702Z"
+  },
+  "StatusChangedTime": {
+    "$date": "2024-09-05T10:00:03.703Z"
+  },
+  "SuccessSlots": 59,
+  "FailureSlots": 2,
+  "TotalSlots": 61,
+  "TargetSlots": 20,
+  "ErrorPercentage": 0,
+  "Rate": 0.02,
+  "Info": "This is Machine 2 with MachineName M#2"
+},
+{
+  "_id": {
+    "$oid": "66b49fba150f7fb71b7481e8"
+  },
+  "MachineNumber": 3,
+  "MachineName": "M#003",
+  "Material": "ABS",
+  "Production": "Production II",
+  "Part": "Part I",
+  "Status": 1,
+  "StartedTime": {
+    "$date": "2024-09-05T09:17:33.583Z"
+  },
+  "LastUpdatedTime": {
+    "$date": "2024-09-05T10:05:45.018Z"
+  },
+  "StatusChangedTime": {
+    "$date": "2024-09-05T10:03:35.371Z"
+  },
+  "SuccessSlots": 60,
+  "FailureSlots": 2,
+  "TotalSlots": 62,
+  "TargetSlots": 20,
+  "ErrorPercentage": 0,
+  "Rate": 0.02,
+  "Info": "This is Machine 3 with MachineName M#3"
+},
+{
+  "_id": {
+    "$oid": "66b49fba150f7fb71b7481e9"
+  },
+  "MachineNumber": 4,
+  "MachineName": "M#004",
+  "Material": "GPPS",
+  "Production": "Production I",
+  "Part": "Part III",
+  "Status": 1,
+  "StartedTime": {
+    "$date": "2024-09-05T09:17:33.583Z"
+  },
+  "LastUpdatedTime": {
+    "$date": "2024-09-05T10:06:57.895Z"
+  },
+  "StatusChangedTime": {
+    "$date": "2024-09-05T09:39:50.187Z"
+  },
+  "SuccessSlots": 64,
+  "FailureSlots": 4,
+  "TotalSlots": 68,
+  "TargetSlots": 20,
+  "ErrorPercentage": 0,
+  "Rate": 0.021,
+  "Info": "This is Machine 4 with MachineName M#4"
+},
+{
+  "_id": {
+    "$oid": "66b49fba150f7fb71b7481ea"
+  },
+  "MachineNumber": 5,
+  "MachineName": "M#005",
+  "Material": "ABS",
+  "Production": "Production II",
+  "Part": "Part IV",
+  "Status": 1,
+  "StartedTime": {
+    "$date": "2024-09-05T09:17:33.583Z"
+  },
+  "LastUpdatedTime": {
+    "$date": "2024-09-05T10:06:58.589Z"
+  },
+  "StatusChangedTime": {
+    "$date": "2024-09-05T10:01:27.366Z"
+  },
+  "SuccessSlots": 58,
+  "FailureSlots": 6,
+  "TotalSlots": 64,
+  "TargetSlots": 20,
+  "ErrorPercentage": 0,
+  "Rate": 0.019,
+  "Info": "This is Machine 5 with MachineName M#5"
+},
+{
+  "_id": {
+    "$oid": "66b49fba150f7fb71b7481eb"
+  },
+  "MachineNumber": 6,
+  "MachineName": "M#006",
+  "Material": "HIP",
+  "Production": "Production II",
+  "Part": "Part IV",
+  "Status": 1,
+  "StartedTime": {
+    "$date": "2024-09-05T09:17:33.583Z"
+  },
+  "LastUpdatedTime": {
+    "$date": "2024-09-05T10:06:59.303Z"
+  },
+  "StatusChangedTime": {
+    "$date": "2024-09-05T09:53:32.527Z"
+  },
+  "SuccessSlots": 60,
+  "FailureSlots": 4,
+  "TotalSlots": 64,
+  "TargetSlots": 20,
+  "ErrorPercentage": 0,
+  "Rate": 0.02,
+  "Info": "This is Machine 6 with MachineName M#6"
+},
+{
+  "_id": {
+    "$oid": "66b49fba150f7fb71b7481ec"
+  },
+  "MachineNumber": 7,
+  "MachineName": "M#007",
+  "Material": "SAAS",
+  "Production": "Production III",
+  "Part": "Part I",
+  "Status": 0,
+  "StartedTime": {
+    "$date": "2024-09-05T09:17:33.583Z"
+  },
+  "LastUpdatedTime": {
+    "$date": "2024-09-05T10:07:00.668Z"
+  },
+  "StatusChangedTime": {
+    "$date": "2024-09-05T10:05:03.947Z"
+  },
+  "SuccessSlots": 60,
+  "FailureSlots": 4,
+  "TotalSlots": 64,
+  "TargetSlots": 20,
+  "ErrorPercentage": 0,
+  "Rate": 0.02,
+  "Info": "This is Machine 7 with MachineName M#7"
+},
+{
+  "_id": {
+    "$oid": "66b49fba150f7fb71b7481ed"
+  },
+  "MachineNumber": 8,
+  "MachineName": "M#008",
+  "Material": "GPPS",
+  "Production": "Production II",
+  "Part": "Part I",
+  "Status": 1,
+  "StartedTime": {
+    "$date": "2024-09-05T09:17:33.583Z"
+  },
+  "LastUpdatedTime": {
+    "$date": "2024-09-05T10:07:01.727Z"
+  },
+  "StatusChangedTime": {
+    "$date": "2024-09-05T10:07:01.516Z"
+  },
+  "SuccessSlots": 54,
+  "FailureSlots": 13,
+  "TotalSlots": 67,
+  "TargetSlots": 20,
+  "ErrorPercentage": 0,
+  "Rate": 0.018,
+  "Info": "This is Machine 8 with MachineName M#8"
+},
+{
+  "_id": {
+    "$oid": "66b49fba150f7fb71b7481ee"
+  },
+  "MachineNumber": 9,
+  "MachineName": "M#009",
+  "Material": "GPPS",
+  "Production": "Production II",
+  "Part": "Part III",
+  "Status": 1,
+  "StartedTime": {
+    "$date": "2024-09-05T09:17:33.583Z"
+  },
+  "LastUpdatedTime": {
+    "$date": "2024-09-05T10:07:02.465Z"
+  },
+  "StatusChangedTime": {
+    "$date": "2024-09-05T10:07:02.120Z"
+  },
+  "SuccessSlots": 55,
+  "FailureSlots": 6,
+  "TotalSlots": 61,
+  "TargetSlots": 20,
+  "ErrorPercentage": 0,
+  "Rate": 0.018,
+  "Info": "This is Machine 9 with MachineName M#9"
+},
+{
+  "_id": {
+    "$oid": "66b49fba150f7fb71b7481ef"
+  },
+  "MachineNumber": 10,
+  "MachineName": "M#010",
+  "Material": "HIP",
+  "Production": "Production III",
+  "Part": "Part II",
+  "Status": 1,
+  "StartedTime": {
+    "$date": "2024-09-05T09:17:33.583Z"
+  },
+  "LastUpdatedTime": {
+    "$date": "2024-09-05T10:07:03.751Z"
+  },
+  "StatusChangedTime": {
+    "$date": "2024-09-05T10:03:38.441Z"
+  },
+  "SuccessSlots": 53,
+  "FailureSlots": 7,
+  "TotalSlots": 60,
+  "TargetSlots": 20,
+  "ErrorPercentage": 0,
+  "Rate": 0.018,
+  "Info": "This is Machine 10 with MachineName M#10"
+},
+{
+  "_id": {
+    "$oid": "66b49fba150f7fb71b7481f0"
+  },
+  "MachineNumber": 11,
+  "MachineName": "M#011",
+  "Material": "HIP",
+  "Production": "Production III",
+  "Part": "Part III",
+  "Status": "off",
+  "StartedTime": {
+    "$date": "2024-09-03T05:32:17.389Z"
+  },
+  "LastUpdatedTime": {
+    "$date": "2024-09-03T06:00:41.394Z"
+  },
+  "StatusChangedTime": {
+    "$date": "2024-09-03T05:56:20.065Z"
+  },
+  "SuccessSlots": 0,
+  "FailureSlots": 0,
+  "TotalSlots": 0,
+  "TargetSlots": 20,
+  "ErrorPercentage": 0,
+  "Rate": 0,
+  "Info": "This is Machine 11 with MachineName M#11"
+},
+{
+  "_id": {
+    "$oid": "66b49fba150f7fb71b7481f1"
+  },
+  "MachineNumber": 12,
+  "MachineName": "M#012",
+  "Material": "GPPS",
+  "Production": "Production II",
+  "Part": "Part II",
+  "Status": 1,
+  "StartedTime": {
+    "$date": "2024-09-05T09:17:33.583Z"
+  },
+  "LastUpdatedTime": {
+    "$date": "2024-09-05T10:07:05.652Z"
+  },
+  "StatusChangedTime": {
+    "$date": "2024-09-05T10:02:13.856Z"
+  },
+  "SuccessSlots": 62,
+  "FailureSlots": 6,
+  "TotalSlots": 68,
+  "TargetSlots": 20,
+  "ErrorPercentage": 0,
+  "Rate": 0.021,
+  "Info": "This is Machine 12 with MachineName M#12"
+},
+{
+  "_id": {
+    "$oid": "66b49fba150f7fb71b7481f2"
+  },
+  "MachineNumber": 13,
+  "MachineName": "M#013",
+  "Material": "SAAS",
+  "Production": "Production I",
+  "Part": "Part V",
+  "Status": -1,
+  "StartedTime": {
+    "$date": "2024-09-05T09:17:33.583Z"
+  },
+  "LastUpdatedTime": {
+    "$date": "2024-09-05T10:05:06.815Z"
+  },
+  "StatusChangedTime": {
+    "$date": "2024-09-05T10:05:06.609Z"
+  },
+  "SuccessSlots": 57,
+  "FailureSlots": 7,
+  "TotalSlots": 64,
+  "TargetSlots": 20,
+  "ErrorPercentage": 0,
+  "Rate": 0.02,
+  "Info": "This is Machine 13 with MachineName M#13"
+},
+{
+  "_id": {
+    "$oid": "66b49fba150f7fb71b7481f3"
+  },
+  "MachineNumber": 14,
+  "MachineName": "M#014",
+  "Material": "SAAS",
+  "Production": "Production I",
+  "Part": "Part I",
+  "Status": 1,
+  "StartedTime": {
+    "$date": "2024-09-05T09:17:33.583Z"
+  },
+  "LastUpdatedTime": {
+    "$date": "2024-09-05T10:05:07.429Z"
+  },
+  "StatusChangedTime": {
+    "$date": "2024-09-05T09:52:53.102Z"
+  },
+  "SuccessSlots": 62,
+  "FailureSlots": 2,
+  "TotalSlots": 64,
+  "TargetSlots": 20,
+  "ErrorPercentage": 0,
+  "Rate": 0.021,
+  "Info": "This is Machine 14 with MachineName M#14"
+},
+{
+  "_id": {
+    "$oid": "66b49fba150f7fb71b7481f4"
+  },
+  "MachineNumber": 15,
+  "MachineName": "M#015",
+  "Material": "TPR",
+  "Production": "Production I",
+  "Part": "Part II",
+  "Status": 1,
+  "StartedTime": {
+    "$date": "2024-09-05T09:17:33.583Z"
+  },
+  "LastUpdatedTime": {
+    "$date": "2024-09-05T10:05:08.052Z"
+  },
+  "StatusChangedTime": {
+    "$date": "2024-09-05T09:59:26.973Z"
+  },
+  "SuccessSlots": 57,
+  "FailureSlots": 5,
+  "TotalSlots": 62,
+  "TargetSlots": 20,
+  "ErrorPercentage": 0,
+  "Rate": 0.02,
+  "Info": "This is Machine 15 with MachineName M#15"
+},
+{
+  "_id": {
+    "$oid": "66b49fba150f7fb71b7481f5"
+  },
+  "MachineNumber": 16,
+  "MachineName": "M#016",
+  "Material": "SAAS",
+  "Production": "Production II",
+  "Part": "Part V",
+  "Status": 1,
+  "StartedTime": {
+    "$date": "2024-09-05T09:17:33.583Z"
+  },
+  "LastUpdatedTime": {
+    "$date": "2024-09-05T10:05:08.657Z"
+  },
+  "StatusChangedTime": {
+    "$date": "2024-09-05T10:04:25.238Z"
+  },
+  "SuccessSlots": 56,
+  "FailureSlots": 3,
+  "TotalSlots": 59,
+  "TargetSlots": 20,
+  "ErrorPercentage": 0,
+  "Rate": 0.019,
+  "Info": "This is Machine 16 with MachineName M#16"
+},
+{
+  "_id": {
+    "$oid": "66b49fba150f7fb71b7481f6"
+  },
+  "MachineNumber": 17,
+  "MachineName": "M#017",
+  "Material": "GPPS",
+  "Production": "Production III",
+  "Part": "Part V",
+  "Status": 1,
+  "StartedTime": {
+    "$date": "2024-09-05T09:17:33.583Z"
+  },
+  "LastUpdatedTime": {
+    "$date": "2024-09-05T10:05:09.271Z"
+  },
+  "StatusChangedTime": {
+    "$date": "2024-09-05T10:01:33.920Z"
+  },
+  "SuccessSlots": 60,
+  "FailureSlots": 1,
+  "TotalSlots": 61,
+  "TargetSlots": 20,
+  "ErrorPercentage": 0,
+  "Rate": 0.021,
+  "Info": "This is Machine 17 with MachineName M#17"
+},
+{
+  "_id": {
+    "$oid": "66b49fba150f7fb71b7481f7"
+  },
+  "MachineNumber": 18,
+  "MachineName": "M#018",
+  "Material": "HIP",
+  "Production": "Production III",
+  "Part": "Part III",
+  "Status": 1,
+  "StartedTime": {
+    "$date": "2024-09-05T09:17:33.583Z"
+  },
+  "LastUpdatedTime": {
+    "$date": "2024-09-05T10:05:09.784Z"
+  },
+  "StatusChangedTime": {
+    "$date": "2024-09-05T10:00:12.817Z"
+  },
+  "SuccessSlots": 60,
+  "FailureSlots": 6,
+  "TotalSlots": 66,
+  "TargetSlots": 20,
+  "ErrorPercentage": 0,
+  "Rate": 0.021,
+  "Info": "This is Machine 18 with MachineName M#18"
+},
+{
+  "_id": {
+    "$oid": "66b49fba150f7fb71b7481f8"
+  },
+  "MachineNumber": 19,
+  "MachineName": "M#019",
+  "Material": "TPR",
+  "Production": "Production III",
+  "Part": "Part IV",
+  "Status": 1,
+  "StartedTime": {
+    "$date": "2024-09-05T09:17:33.583Z"
+  },
+  "LastUpdatedTime": {
+    "$date": "2024-09-05T10:05:10.398Z"
+  },
+  "StatusChangedTime": {
+    "$date": "2024-09-05T09:57:17.215Z"
+  },
+  "SuccessSlots": 61,
+  "FailureSlots": 4,
+  "TotalSlots": 65,
+  "TargetSlots": 20,
+  "ErrorPercentage": 0,
+  "Rate": 0.021,
+  "Info": "This is Machine 19 with MachineName M#19"
+},
+{
+  "_id": {
+    "$oid": "66b49fba150f7fb71b7481f9"
+  },
+  "MachineNumber": 20,
+  "MachineName": "M#020",
+  "Material": "GPPS",
+  "Production": "Production I",
+  "Part": "Part V",
+  "Status": "off",
+  "StartedTime": {
+    "$date": "2024-09-03T05:32:17.389Z"
+  },
+  "LastUpdatedTime": {
+    "$date": "2024-09-03T06:00:06.238Z"
+  },
+  "StatusChangedTime": {
+    "$date": "2024-09-03T05:53:17.003Z"
+  },
+  "SuccessSlots": 0,
+  "FailureSlots": 0,
+  "TotalSlots": 0,
+  "TargetSlots": 20,
+  "ErrorPercentage": 0,
+  "Rate": 0,
+  "Info": "This is Machine 20 with MachineName M#20"
+},
+{
+  "_id": {
+    "$oid": "66b49fba150f7fb71b7481fa"
+  },
+  "MachineNumber": 21,
+  "MachineName": "M#021",
+  "Material": "GPPS",
+  "Production": "Production II",
+  "Part": "Part I",
+  "Status": 1,
+  "StartedTime": {
+    "$date": "2024-09-05T09:17:33.583Z"
+  },
+  "LastUpdatedTime": {
+    "$date": "2024-09-05T10:05:11.012Z"
+  },
+  "StatusChangedTime": {
+    "$date": "2024-09-05T10:00:53.239Z"
+  },
+  "SuccessSlots": 61,
+  "FailureSlots": 5,
+  "TotalSlots": 66,
+  "TargetSlots": 20,
+  "ErrorPercentage": 0,
+  "Rate": 0.021,
+  "Info": "This is Machine 21 with MachineName M#21"
+},
+{
+  "_id": {
+    "$oid": "66b49fba150f7fb71b7481fb"
+  },
+  "MachineNumber": 22,
+  "MachineName": "M#022",
+  "Material": "MABS",
+  "Production": "Production II",
+  "Part": "Part I",
+  "Status": 0,
+  "StartedTime": {
+    "$date": "2024-09-05T09:17:33.583Z"
+  },
+  "LastUpdatedTime": {
+    "$date": "2024-09-05T10:05:11.626Z"
+  },
+  "StatusChangedTime": {
+    "$date": "2024-09-05T10:05:11.422Z"
+  },
+  "SuccessSlots": 53,
+  "FailureSlots": 4,
+  "TotalSlots": 57,
+  "TargetSlots": 20,
+  "ErrorPercentage": 0,
+  "Rate": 0.019,
+  "Info": "This is Machine 22 with MachineName M#22"
+},
+{
+  "_id": {
+    "$oid": "66b49fba150f7fb71b7481fc"
+  },
+  "MachineNumber": 23,
+  "MachineName": "M#023",
+  "Material": "GPPS",
+  "Production": "Production I",
+  "Part": "Part IV",
+  "Status": -1,
+  "StartedTime": {
+    "$date": "2024-09-05T09:17:33.583Z"
+  },
+  "LastUpdatedTime": {
+    "$date": "2024-09-05T10:05:12.240Z"
+  },
+  "StatusChangedTime": {
+    "$date": "2024-09-05T10:05:12.035Z"
+  },
+  "SuccessSlots": 59,
+  "FailureSlots": 7,
+  "TotalSlots": 66,
+  "TargetSlots": 20,
+  "ErrorPercentage": 0,
+  "Rate": 0.021,
+  "Info": "This is Machine 23 with MachineName M#23"
+},
+{
+  "_id": {
+    "$oid": "66b49fba150f7fb71b7481fd"
+  },
+  "MachineNumber": 24,
+  "MachineName": "M#024",
+  "Material": "GPPS",
+  "Production": "Production I",
+  "Part": "Part I",
+  "Status": 1,
+  "StartedTime": {
+    "$date": "2024-09-05T09:17:33.583Z"
+  },
+  "LastUpdatedTime": {
+    "$date": "2024-09-05T10:05:12.856Z"
+  },
+  "StatusChangedTime": {
+    "$date": "2024-09-05T10:04:29.030Z"
+  },
+  "SuccessSlots": 54,
+  "FailureSlots": 8,
+  "TotalSlots": 62,
+  "TargetSlots": 20,
+  "ErrorPercentage": 0,
+  "Rate": 0.019,
+  "Info": "This is Machine 24 with MachineName M#24"
+},
+{
+  "_id": {
+    "$oid": "66b49fba150f7fb71b7481fe"
+  },
+  "MachineNumber": 25,
+  "MachineName": "M#025",
+  "Material": "ABS",
+  "Production": "Production I",
+  "Part": "Part I",
+  "Status": 1,
+  "StartedTime": {
+    "$date": "2024-09-05T09:17:33.583Z"
+  },
+  "LastUpdatedTime": {
+    "$date": "2024-09-05T10:05:13.367Z"
+  },
+  "StatusChangedTime": {
+    "$date": "2024-09-05T10:02:20.615Z"
+  },
+  "SuccessSlots": 62,
+  "FailureSlots": 1,
+  "TotalSlots": 63,
+  "TargetSlots": 20,
+  "ErrorPercentage": 0,
+  "Rate": 0.021,
+  "Info": "This is Machine 25 with MachineName M#25"
+}]

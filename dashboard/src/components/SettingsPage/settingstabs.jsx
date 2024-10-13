@@ -24,16 +24,16 @@ const buttongroup = [
             </>
         )
     },
-    {
-        id: 2,
-        name: (
-            <>
-                <ExtensionIcon style={{ paddingBottom: "2%" }} />
-                <div style={{ marginLeft: "3%" }}>Pruductions & Materials</div>
+    // {
+    //     id: 2,
+    //     name: (
+    //         <>
+    //             <ExtensionIcon style={{ paddingBottom: "2%" }} />
+    //             <div style={{ marginLeft: "3%" }}>Pruductions & Materials</div>
 
-            </>
-        )
-    },
+    //         </>
+    //     )
+    // },
     {
         id: 3,
         name: (
@@ -44,16 +44,16 @@ const buttongroup = [
             </>
         )
     },
-    {
-        id: 4,
-        name: (
-            <>
-                <InfoOutlinedIcon style={{ paddingBottom: "3%" }} />
-                <div style={{ marginLeft: "3%" }}>About</div>
+    // {
+    //     id: 4,
+    //     name: (
+    //         <>
+    //             <InfoOutlinedIcon style={{ paddingBottom: "3%" }} />
+    //             <div style={{ marginLeft: "3%" }}>About</div>
 
-            </>
-        )
-    }
+    //         </>
+    //     )
+    // }
 ]
 
 const ButtonComponent = ({ index }) => {

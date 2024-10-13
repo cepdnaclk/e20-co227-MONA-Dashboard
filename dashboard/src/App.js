@@ -34,9 +34,9 @@ function App() {
             <Route index element={<Status />} />
             <Route path="/status" element={<Status />} />
             <Route path="/history" element={<AllSummary />} />
-            <Route path="/product" element={<ProductPage />} />
-            <Route path="/part" element={<PartPage />} />
-            <Route path="/machine" element={<MachinePage />} />
+            <Route path="/history/product" element={<ProductPage />} />
+            <Route path="/history/part" element={<PartPage />} />
+            <Route path="/history/machine" element={<MachinePage />} />
             <Route path="*" element={<Page404 />} />
             <Route path="/rate/HourlyRate" element={<HourlyRate />} />
             <Route path="/rate/ProductProgress" element={<ProductProgress />} />
