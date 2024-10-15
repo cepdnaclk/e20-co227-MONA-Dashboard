@@ -1,105 +1,78 @@
-.container{
-    width:100%;
-    display: flex;
-    flex-direction: row;
-}
-.total-product{
-    
-    background-color: #fef6ff;
-    border: 1px solid #ddd;
-    width:40%;
-    height: 900px;
-    margin-left: 30px;
-    margin-top: 10px;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 2px 2px 2px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s, box-shadow 0.3s;
-    
-    // &:hover {
-    //     transform: scale(1.01);
-    // }
+.production-page {
+    padding: 20px;
+    background-color: #f4f4f4; // Light background for contrast
+    height: calc(100vh - 150px); // Adjust height based on your layout
+    overflow-y: auto; // Allow scrolling if necessary
 }
 
-.product-progress-page {
+.product-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(5, 1fr); // 5 equal columns for 10 products (2 rows)
     gap: 20px;
-    padding-left: 20px;
-    margin-right: 30px;
-    margin-left: 0px;
-    margin-top: 10px;
-    width: 60%;
-}
-
-.product-block {
-    background-color: #fef6ff;
-    border: 1px solid #ddd;
     padding: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    border-radius: 15px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 2px 2px 2px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s, box-shadow 0.3s;
-    cursor: pointer;
-    height: 900px;
-    
-    // &:hover {
-    //     transform: scale(1.01);
-    // }
 }
 
-
-
-.product-info {
+.product-card {
+    background-color: #ffffff;
+    border: 1px solid #d3d3d3;
+    border-radius: 8px;
+    padding: 40px; // Increased padding to enlarge the cards
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease; // Smooth transition for scaling
     text-align: center;
-    margin-bottom: 10px;
-}
-
-.product-title {
-    font-size: 18px;
-    font-weight: bold;
-}
-.part-title{
-    font-size: 16px;
-    font-weight: bold;
-    margin-left: 10px;
-    margin-bottom: -10px;
-}
-.g-product-title {
-    font-size: 18px;
-    font-weight: bold;
-    margin-top: 10px;
-    margin-left: 10px;
-}
-.g-part-title{
-    font-size: 16px;
-    font-weight: bold;
-    margin-left: 25px;
-    margin-top: 10px;
-}
-
-.product-overall-progress {
+    cursor: pointer;
+    height: 400px; // Increased height for the product cards
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    justify-content: center; // Center content vertically
+
+    // Add hover effect
+    &:hover {
+        transform: scale(1.05);
+    }
+}
+
+.overlay {
+    position: fixed; // Position overlay to cover entire screen
+    top: 0;
     left: 0;
-    width: 100%;
-    font-size: 16px;
-    color: #333;
-}
-
-.Pchart-container {
-    width: 100%;
-    margin-top: 10px;
-}
-
-.gauge-container {
-    width: 100%;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7); // Semi-transparent background
     display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; // Ensure it is above other elements
+}
+
+.expanded-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    width: 80%; // Adjust the width of the expanded card
+    max-width: 600px; // Set a max width for better readability
+    text-align: center;
+
+    h2 {
+        margin: 0;
+    }
+
+    h3 {
+        margin: 10px 0;
+    }
+
+    button {
+        margin-top: 20px;
+        padding: 10px 15px;
+        background-color: #4a90e2; // Button color
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #357ab7; // Darker shade on hover
+        }
+    }
 }
