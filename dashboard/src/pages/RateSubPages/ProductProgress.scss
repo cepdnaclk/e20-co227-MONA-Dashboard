@@ -1,78 +1,131 @@
 .production-page {
     padding: 20px;
-    background-color: #f4f4f4; // Light background for contrast
-    height: calc(100vh - 150px); // Adjust height based on your layout
-    overflow-y: auto; // Allow scrolling if necessary
+    background-color: #EAEFF3;
+    height: calc(100vh - 150px);
+    overflow-y: auto;
 }
 
 .product-list {
     display: grid;
-    grid-template-columns: repeat(5, 1fr); // 5 equal columns for 10 products (2 rows)
+    grid-template-columns: repeat(5, 1fr);
     gap: 20px;
     padding: 10px;
 }
 
 .product-card {
-    background-color: #ffffff;
-    border: 1px solid #d3d3d3;
+    background-color: #fff;
+    border: 1px solid #B0BEC5;
     border-radius: 8px;
-    padding: 40px; // Increased padding to enlarge the cards
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease; // Smooth transition for scaling
+    padding: 40px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s ease;
     text-align: center;
     cursor: pointer;
-    height: 400px; // Increased height for the product cards
+    height: 380px;
     display: flex;
     flex-direction: column;
-    justify-content: center; // Center content vertically
+    justify-content: center;
+    font-family: 'Roboto', sans-serif;
 
-    // Add hover effect
     &:hover {
         transform: scale(1.05);
+        box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.25);
+    }
+
+    h2 {
+        font-size: 1.4rem;
+        color: #37474F;
+        margin-bottom: 15px;
+    }
+
+    .progress {
+        margin-top: 20px;
+        font-size: 2rem;
+        color: #4CAF50;
+    }
+
+    &.emergency {
+        border-color: #FF5252;
+        background-color: #FFEBEE;
     }
 }
 
 .overlay {
-    position: fixed; // Position overlay to cover entire screen
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.7); // Semi-transparent background
+    background-color: rgba(0, 0, 0, 0.7);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000; // Ensure it is above other elements
+    z-index: 1000;
 }
 
 .expanded-card {
-    background-color: #ffffff;
+    background-color: #fff;
     border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    width: 80%; // Adjust the width of the expanded card
-    max-width: 600px; // Set a max width for better readability
+    padding: 30px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.25);
+    width: 75%;
+    max-width: 600px;
     text-align: center;
 
     h2 {
-        margin: 0;
+        font-size: 1.8rem;
+        color: #37474F;
     }
 
     h3 {
-        margin: 10px 0;
+        font-size: 1.2rem;
+        color: #607D8B;
+        margin-bottom: 20px;
+    }
+
+    .parts-mold-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 15px;
+
+        .part-mold-item {
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            border: 1px solid #B0BEC5;
+            border-radius: 5px;
+            background-color: #F1F8E9;
+            transition: background-color 0.3s ease;
+
+            &:hover {
+                background-color: #C8E6C9;
+            }
+
+            .part-name {
+                font-weight: bold;
+                color: #388E3C;
+            }
+
+            .mold-name {
+                font-style: italic;
+                color: #616161;
+            }
+        }
     }
 
     button {
         margin-top: 20px;
-        padding: 10px 15px;
-        background-color: #4a90e2; // Button color
-        color: white;
+        padding: 10px 20px;
         border: none;
         border-radius: 5px;
+        background-color: #4CAF50;
+        color: white;
+        font-size: 1rem;
         cursor: pointer;
+        transition: background-color 0.3s ease;
 
         &:hover {
-            background-color: #357ab7; // Darker shade on hover
+            background-color: #388E3C;
         }
     }
 }
