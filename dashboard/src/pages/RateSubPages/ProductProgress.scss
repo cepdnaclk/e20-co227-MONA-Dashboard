@@ -38,10 +38,28 @@
         margin-bottom: 15px;
     }
 
-    .progress {
-        margin-top: 20px;
-        font-size: 2rem;
-        color: #4CAF50;
+    .progress-container {
+        margin-top: 18px;
+        width: 100%;
+        background-color: #E0E0E0;
+        border-radius: 4px;
+        // overflow: hidden;
+        position: relative;
+
+        .progress-bar {
+            height: 13px;
+            background-color: #4CAF50;
+            transition: width 0.3s ease;
+        }
+
+        .progress-percentage {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
     }
 
     &.emergency {
@@ -73,59 +91,59 @@
     text-align: center;
 
     h2 {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
         color: #37474F;
+        margin-bottom: 10px;
     }
 
     h3 {
+        margin-top: 20px;
         font-size: 1.2rem;
-        color: #607D8B;
-        margin-bottom: 20px;
+        color: #616161;
     }
 
     .parts-mold-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-        gap: 15px;
-
-        .part-mold-item {
-            display: flex;
-            flex-direction: column;
-            padding: 10px;
-            border: 1px solid #B0BEC5;
-            border-radius: 5px;
-            background-color: #F1F8E9;
-            transition: background-color 0.3s ease;
-
-            &:hover {
-                background-color: #C8E6C9;
-            }
-
-            .part-name {
-                font-weight: bold;
-                color: #388E3C;
-            }
-
-            .mold-name {
-                font-style: italic;
-                color: #616161;
-            }
-        }
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin-top: 10px;
     }
 
-    button {
-        margin-top: 20px;
-        padding: 10px 20px;
-        border: none;
+    .part-mold-item {
+        padding: 10px;
+        border: 1px solid #B0BEC5;
         border-radius: 5px;
-        background-color: #4CAF50;
-        color: white;
-        font-size: 1rem;
-        cursor: pointer;
+        background-color: #F1F8E9;
         transition: background-color 0.3s ease;
 
         &:hover {
-            background-color: #388E3C;
+            background-color: #C8E6C9;
         }
+
+        .part-name {
+            font-weight: bold;
+            color: #388E3C;
+        }
+
+        .mold-name {
+            font-style: italic;
+            color: #616161;
+        }
+    }
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: #388E3C;
     }
 }
