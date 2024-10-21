@@ -4,115 +4,28 @@ import SecondBar from "../../layouts/SecondBar";
 import ThirdbarRate from "../../layouts/ThirdbarRate";
 import "./ProductProgress.scss";
 
-// Sample product data with target count
-const products = [
-  {
-    id: 1,
-    name: "Product 01",
-    totalProduced: 100,
-    targetCount: 150,
-    parts: Array.from({ length: 12 }, (_, index) => ({
-      name: `Part ${index + 1}`,
-      mold: `Mold ${(index % 24) + 1}`,
+const products = Array.from({ length: 10 }, (_, index) => {
+  const productId = index + 1;
+  const targetCount = 250 + index * 50; // Increment target count for variety
+  return {
+    id: productId,
+    name: `Product ${productId}`,
+    totalProduced: Math.floor(Math.random() * (targetCount + 1)), // Random produced count
+    targetCount: targetCount,
+    parts: Array.from({ length: 12 }, (_, partIndex) => ({
+      name: `Part ${partIndex + 1}`,
+      mold: `Mold 0${partIndex + 1}`,
+      productionTime: `${Math.floor(Math.random() * 4) + 1} hours`,
+      progress: Math.floor(Math.random() * 101), // Random progress from 0 to 100
     })),
-  },
-  {
-    id: 2,
-    name: "Product 02",
-    totalProduced: 150,
-    targetCount: 200,
-    parts: Array.from({ length: 12 }, (_, index) => ({
-      name: `Part ${index + 1}`,
-      mold: `Mold ${((index + 12) % 24) + 1}`,
-    })),
-  },
-  {
-    id: 3,
-    name: "Product 03",
-    totalProduced: 200,
-    targetCount: 250,
-    parts: Array.from({ length: 12 }, (_, index) => ({
-      name: `Part ${index + 1}`,
-      mold: `Mold ${((index + 24) % 24) + 1}`,
-    })),
-  },
-  {
-    id: 4,
-    name: "Product 04",
-    totalProduced: 250,
-    targetCount: 300,
-    parts: Array.from({ length: 12 }, (_, index) => ({
-      name: `Part ${index + 1}`,
-      mold: `Mold ${((index + 36) % 24) + 1}`,
-    })),
-  },
-  {
-    id: 5,
-    name: "Product 05",
-    totalProduced: 300,
-    targetCount: 350,
-    parts: Array.from({ length: 12 }, (_, index) => ({
-      name: `Part ${index + 1}`,
-      mold: `Mold ${((index + 48) % 24) + 1}`,
-    })),
-  },
-  {
-    id: 6,
-    name: "Product 06",
-    totalProduced: 350,
-    targetCount: 400,
-    parts: Array.from({ length: 12 }, (_, index) => ({
-      name: `Part ${index + 1}`,
-      mold: `Mold ${((index + 60) % 24) + 1}`,
-    })),
-  },
-  {
-    id: 7,
-    name: "Product 07",
-    totalProduced: 400,
-    targetCount: 450,
-    parts: Array.from({ length: 12 }, (_, index) => ({
-      name: `Part ${index + 1}`,
-      mold: `Mold ${((index + 72) % 24) + 1}`,
-    })),
-  },
-  {
-    id: 8,
-    name: "Product 08",
-    totalProduced: 450,
-    targetCount: 500,
-    parts: Array.from({ length: 12 }, (_, index) => ({
-      name: `Part ${index + 1}`,
-      mold: `Mold ${((index + 84) % 24) + 1}`,
-    })),
-  },
-  {
-    id: 9,
-    name: "Product 09",
-    totalProduced: 500,
-    targetCount: 550,
-    parts: Array.from({ length: 12 }, (_, index) => ({
-      name: `Part ${index + 1}`,
-      mold: `Mold ${((index + 96) % 24) + 1}`,
-    })),
-  },
-  {
-    id: 10,
-    name: "Product 10",
-    totalProduced: 550,
-    targetCount: 600,
-    parts: Array.from({ length: 12 }, (_, index) => ({
-      name: `Part ${index + 1}`,
-      mold: `Mold ${((index + 108) % 24) + 1}`,
-    })),
-  },
-];
+  };
+});
 
 const ProductProgress = () => {
-  const [expandedProduct, setExpandedProduct] = useState(null);
+  const [expandedProduct, setExpandedProduct] = useState(null); // Track the expanded product
 
-  const handleExpand = (productId) => {
-    setExpandedProduct(expandedProduct === productId ? null : productId);
+  const toggleExpand = (productId) => {
+    setExpandedProduct(expandedProduct === productId ? null : productId); // Toggle expansion
   };
 
   return (
@@ -125,52 +38,102 @@ const ProductProgress = () => {
           {products.map((product) => {
             const progressPercentage =
               (product.totalProduced / product.targetCount) * 100;
+            const isExpanded = expandedProduct === product.id; // Check if this product is expanded
 
             return (
-              <div
-                key={product.id}
-                className={`product-card ${
-                  expandedProduct === product.id ? "active" : ""
-                }`}
-                onClick={() => handleExpand(product.id)}
-              >
-                <h2>{product.name}</h2>
-                <p>Total Produced: {product.totalProduced}</p>
-                <p>Target Count: {product.targetCount}</p>
-                <div className="progress-container">
-                  <div className="progress-bar" style={{ width: `${progressPercentage}%` }}>
-                    <span className="progress-percentage">
-                      {progressPercentage.toFixed(0)}%
-                    </span>
+              <React.Fragment key={product.id}>
+                {/* Small product card */}
+                <div
+                  className={`product-card ${isExpanded ? "expanded" : ""}`}
+                  onClick={() => toggleExpand(product.id)} // Make the whole card clickable
+                >
+                  <h2>{product.name}</h2>
+                  <div className="product-stats">
+                    <div className="stat-item">
+                      <span className="label">Total Produced:</span>
+                      <span className="value">{product.totalProduced}</span>
+                    </div>
+                    <div className="stat-item">
+                      <span className="label">Target Count:</span>
+                      <span className="value">{product.targetCount}</span>
+                    </div>
+                  </div>
+                  <div className="progress-container">
+                    <div
+                      className="progress-bar"
+                      style={{ width: `${progressPercentage}%` }}
+                    >
+                      <span className="progress-percentage">
+                        {progressPercentage.toFixed(0)}%
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
+
+                {/* Expanded Block - only appears when clicked */}
+                {isExpanded && (
+                  <div
+                    className="overlay"
+                    onClick={() => toggleExpand(null)} // Close modal on overlay click
+                  >
+                    <div
+                      className="expanded-modal"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <h2>{product.name}</h2>
+                      <div className="product-stats-expanded">
+                        <div className="stat-item">
+                          <span className="label">Total Produced:</span>
+                          <span className="value">{product.totalProduced}</span>
+                        </div>
+                        <div className="stat-item">
+                          <span className="label">Target Count:</span>
+                          <span className="value">{product.targetCount}</span>
+                        </div>
+                      </div>
+                      <div className="progress-container-expanded">
+                        <div
+                          className="progress-bar-expanded"
+                          style={{ width: `${progressPercentage}%` }}
+                        >
+                          <span className="progress-percentage-expanded">
+                            {progressPercentage.toFixed(0)}%
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Displaying part details with progress bars in expanded view */}
+                      <div className="parts-mold-grid">
+                        {product.parts.map((part, index) => (
+                          <div key={index} className="part-mold-item">
+                            <div className="part-name">{part.name}</div>
+                            <div className="mold-name">Mold: {part.mold}</div>
+                            <div className="production-time">
+                              Production Time: {part.productionTime}
+                            </div>
+                            <div className="current-progress">
+                              Current Progress: {part.progress}%
+                            </div>
+                            <div className="part-progress-container">
+                              <div
+                                className="part-progress-bar"
+                                style={{ width: `${part.progress}%` }}
+                              >
+                                <span className="progress-percentage">
+                                  {part.progress}%
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </React.Fragment>
             );
           })}
         </div>
-        {expandedProduct && (
-          <div className="overlay" onClick={() => handleExpand(null)}>
-            <div className="expanded-card" onClick={(e) => e.stopPropagation()}>
-              <h2>{products.find((p) => p.id === expandedProduct).name}</h2>
-              <p>
-                Total Produced:{" "}
-                {products.find((p) => p.id === expandedProduct).totalProduced}
-              </p>
-              <h3>Parts & Molds Produced:</h3>
-              <div className="parts-mold-grid">
-                {products
-                  .find((p) => p.id === expandedProduct)
-                  .parts.map((part, index) => (
-                    <div key={index} className="part-mold-item">
-                      <div className="part-name">{part.name}</div>
-                      <div className="mold-name">Mold: {part.mold}</div>
-                    </div>
-                  ))}
-              </div>
-              <button onClick={() => handleExpand(null)}>Close</button>
-            </div>
-          </div>
-        )}
       </div>
     </>
   );
