@@ -7,9 +7,9 @@ client = MongoClient('mongodb://localhost:27017/')
 db = client['history']  # Database
 
 # Create collections
-machine_data_collection = db['Machines_data']
-product_data_collection = db['Products_data']
-part_data_collection = db['Parts_data']
+machine_data_collection = db['Machines']
+product_data_collection = db['Products']
+part_data_collection = db['Parts']
 
 # Clear previous data
 machine_data_collection.delete_many({})
