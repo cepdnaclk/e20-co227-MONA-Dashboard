@@ -69,7 +69,7 @@ const SecondBar = () => {
 
                     </li>
                     <li
-                        onClick={() => handleButtonClick("/history")}
+                        onClick={() => handleButtonClick("/history/product")}
                         style={{
                             backgroundColor:
                                 location.pathname.startsWith("/history") ? "#201F67" : "white",
