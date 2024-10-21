@@ -1,28 +1,62 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../../layouts/Header";
 import SecondBar from "../../layouts/SecondBar";
 import ThirdbarRate from "../../layouts/ThirdbarRate";
 import "./ProductProgress.scss";
 
-const products = Array.from({ length: 10 }, (_, index) => {
-  const productId = index + 1;
-  const targetCount = 250 + index * 50; // Increment target count for variety
-  return {
-    id: productId,
-    name: `Product ${productId}`,
-    totalProduced: Math.floor(Math.random() * (targetCount + 1)), // Random produced count
-    targetCount: targetCount,
-    parts: Array.from({ length: 12 }, (_, partIndex) => ({
-      name: `Part ${partIndex + 1}`,
-      mold: `Mold 0${partIndex + 1}`,
-      productionTime: `${Math.floor(Math.random() * 4) + 1} hours`,
-      progress: Math.floor(Math.random() * 101), // Random progress from 0 to 100
-    })),
-  };
-});
+// Generate initial products with random target counts and initial zero progress
+const generateInitialProducts = () =>
+  Array.from({ length: 10 }, (_, index) => {
+    const productId = index + 1;
+    const targetCount = 250 + Math.floor(Math.random() * 200); // Random target count between 250 and 450
+    return {
+      id: productId,
+      name: `Product ${productId}`,
+      totalProduced: 0, // Start production at 0
+      targetCount: targetCount,
+      parts: Array.from({ length: 12 }, (_, partIndex) => ({
+        name: `Part ${partIndex + 1}`,
+        mold: `Mold 0${partIndex + 1}`,
+        productionTime: `${Math.floor(Math.random() * 4) + 1} hours`,
+        progress: 0, // Start progress at 0
+      })),
+    };
+  });
 
 const ProductProgress = () => {
+  const [products, setProducts] = useState(generateInitialProducts()); // Initialize products with fixed random target counts
   const [expandedProduct, setExpandedProduct] = useState(null); // Track the expanded product
+
+  useEffect(() => {
+    // Increment the production and part progress every 10 seconds
+    const interval = setInterval(() => {
+      setProducts((prevProducts) =>
+        prevProducts.map((product) => {
+          // Increment totalProduced and parts progress gradually
+          const totalProduced = Math.min(
+            product.totalProduced + Math.floor(Math.random() * 10) + 5, // Increment by 5-15 units
+            product.targetCount // Ensure it does not exceed the target count
+          );
+
+          const parts = product.parts.map((part) => ({
+            ...part,
+            progress: Math.min(
+              part.progress + Math.floor(Math.random() * 10) + 5,
+              100
+            ), // Increment part progress by 5-15%, max 100%
+          }));
+
+          return {
+            ...product,
+            totalProduced,
+            parts,
+          };
+        })
+      );
+    }, 10000); // Update every 10 seconds
+
+    return () => clearInterval(interval); // Cleanup interval on component unmount
+  }, []);
 
   const toggleExpand = (productId) => {
     setExpandedProduct(expandedProduct === productId ? null : productId); // Toggle expansion
