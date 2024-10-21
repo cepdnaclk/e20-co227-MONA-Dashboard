@@ -5,78 +5,96 @@ import random
 # Connect to MongoDB
 client = MongoClient('mongodb://localhost:27017/')
 
-# Create the database
-db = client['machine_data_db']
+# Create the databases
+db = client['production_db']
 
-# Create the collection
-machine_data_collection = db['machine_data']
+# Create collections
+machine_collection = db['machines']
+product_collection = db['products']
+part_collection = db['parts']
 
-# Delete previous data in the collection
-machine_data_collection.delete_many({})
+# Delete previous data in the collections
+machine_collection.delete_many({})
+product_collection.delete_many({})
+part_collection.delete_many({})
 
-# Define materials and production types
+# Define materials and the machine to product-part mapping
 materials = ["GPPS", "TPR", "SAAS", "MABS", "ABS", "HIP"]
-production_types = ['Production I', 'Production II', 'Production III', 'Production IV', 'Production V']
 
-def insert_machine_data(machine_id, machine_name, date, shift, total_slots, target_slots, success_slots, failed_slots, daily_production_rate, production_type, material, total_working_time_per_shift):
+machine_product_part_mapping = {
+    1: {"product": 1, "parts": [1, 2, 3, 4]},
+    2: {"product": 1, "parts": [5, 6, 7, 8, 9, 10]},
+    3: {"product": [1, 2], "parts": [11, 12, 13, 14]},
+    4: {"product": 2, "parts": [15, 16, 17, 18, 19, 20]},
+    5: {"product": 2, "parts": [21, 22, 23, 24]},
+    6: {"product": 3, "parts": [25, 26, 27, 28, 29, 30]},
+    7: {"product": 3, "parts": [31, 32, 33, 34]},
+    8: {"product": [3, 4], "parts": [35, 36, 37, 38, 39, 40]},
+    9: {"product": 4, "parts": [41, 42, 43, 44]},
+    10: {"product": [4, 5], "parts": [45, 46, 47, 48, 49, 50]},
+    11: {"product": 5, "parts": [51, 52, 53, 54]},
+    12: {"product": 5, "parts": [55, 56, 57, 58, 59, 60]},
+    13: {"product": 6, "parts": [61, 62, 63, 64]},
+    14: {"product": 6, "parts": [65, 66, 67, 68, 69, 70]},
+    15: {"product": [6, 7], "parts": [71, 72, 73, 74]},
+    16: {"product": 7, "parts": [75, 76, 77, 78, 79, 80]},
+    17: {"product": 7, "parts": [81, 82, 83, 84]},
+    18: {"product": 8, "parts": [85, 86, 87, 88, 89, 90]},
+    19: {"product": 8, "parts": [91, 92, 93, 94]},
+    20: {"product": [8, 9], "parts": [95, 96, 97, 98, 99, 100]},
+    21: {"product": 9, "parts": [101, 102, 103, 104]},
+    22: {"product": [9, 10], "parts": [105, 106, 107, 108, 109, 110]},
+    23: {"product": 10, "parts": [111, 112, 113, 114]},
+    24: {"product": 10, "parts": [115, 116, 117, 118, 119, 120]},
+}
+
+# Insert data into the machine collection
+def insert_machine_data(machine_id, machine_name, material):
     document = {
         "machine_id": machine_id,
         "machine_name": machine_name,
-        "date": datetime.strptime(date, '%Y-%m-%d'),
-        "shift": shift,
-        "total_slots": total_slots,
-        "target_slots": target_slots,
-        "success_slots": success_slots,
-        "failed_slots": failed_slots,
-        "daily_production_rate": round(daily_production_rate, 3),
-        "production_type": production_type,
-        "material": material,
-        "total_working_time_per_shift": total_working_time_per_shift
+        "material": material
     }
-    machine_data_collection.insert_one(document)
+    machine_collection.insert_one(document)
 
-# Get today's date
-end_date = datetime.today()
+# Insert data into the product collection
+def insert_product_data(product_id, product_name):
+    document = {
+        "product_id": product_id,
+        "product_name": f"Product {product_name}"
+    }
+    product_collection.insert_one(document)
 
-# Get the date 365 days before yesterday
-start_date = end_date - timedelta(days=365 + 1)
+# Insert data into the part collection
+def insert_part_data(part_id, product_id, machine_id):
+    document = {
+        "part_id": part_id,
+        "product_id": product_id,
+        "machine_id": machine_id
+    }
+    part_collection.insert_one(document)
 
-for i in range(25):
-    machine_id = i + 1
+# Insert machine, product, and part data
+for machine_id in range(1, 25):
     machine_name = f"M#{machine_id:03d}"
-    current_date = start_date
-    assigned_production_type = random.choice(production_types)
-    while current_date <= end_date:
-        # Select one material for the day
-        assigned_material = random.choice(materials)
-        for shift in ['day', 'night']:
-            # Generate random data for the shift
-            total_slots = random.randint(80, 120)
-            target_slots = random.randint(90, 110)
-            success_slots = random.randint(70, total_slots)
-            failed_slots = total_slots - success_slots
-            daily_production_rate = round(random.uniform(0.5, 1.5), 3)  # Set daily production rate to a random value between 0.5 and 1.5
+    assigned_material = random.choice(materials)
 
-            # Generate total working time in hours and minutes
-            total_working_hours = random.randint(8, 12)
-            total_working_minutes = random.randint(0, 59)
-            total_working_time_per_shift = f"{total_working_hours}h {total_working_minutes}m"
+    # Insert machine data
+    insert_machine_data(machine_id, machine_name, assigned_material)
 
-            insert_machine_data(
-                machine_id=machine_id,
-                machine_name=machine_name,
-                date=current_date.strftime('%Y-%m-%d'),
-                shift=shift,
-                total_slots=total_slots,
-                target_slots=target_slots,
-                success_slots=success_slots,
-                failed_slots=failed_slots,
-                daily_production_rate=daily_production_rate,
-                production_type=assigned_production_type,
-                material=assigned_material,
-                total_working_time_per_shift=total_working_time_per_shift
-            )
+    # Get product and part info for this machine
+    machine_info = machine_product_part_mapping[machine_id]
+    products = machine_info["product"]
+    parts = machine_info["parts"]
+
+    if isinstance(products, int):
+        products = [products]
+
+    # Insert product and part data
+    for product_id in products:
+        insert_product_data(product_id, product_id)  # Insert product data
         
-        current_date += timedelta(days=1)
+        for part_id in parts:
+            insert_part_data(part_id, product_id, machine_id)  # Insert part data
 
-print("Data for all 25 machines over one year inserted.")
+print("Machines, products, and parts data inserted into their respective databases.")
