@@ -34,7 +34,7 @@ const GeneratePDFButton = ({ targetId, filename = 'document.pdf' }) => {
                 <FileDownloadOutlinedIcon
                     className='pdficon'
                     fontSize='30px'
-                    style={{marginLeft:'-8px'}}
+                    // style={{marginLeft:'-0px'}}
                 />
 
             </button>
