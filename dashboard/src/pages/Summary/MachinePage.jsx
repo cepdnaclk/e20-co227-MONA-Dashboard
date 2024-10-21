@@ -14,13 +14,12 @@ const MachinePage = () => {
     const [duration, setDuration] = useState('1_week');
     const [machineData, setMachineData] = useState(null);
     const [machineLinechartData, setMachineLinechartData] = useState(null);
-    const [datesRange, setDatesRange] = useState([]);
 
-    const dateRangeDrop = ['1 week', '2 weeks', '1 month', '3 months', '1 year'];
+    const dateRangeDrop = ['1_week', '2_weeks', '1_month', '3_months', '1_year']; // Corrected the duration values
 
     // Fetch the machines for the dropdown
     useEffect(() => {
-        axios.get('http://localhost:5000/api/machinesdropdown')
+        axios.get('http://localhost:5000/api/machines/dropdown')
             .then(response => {
                 setMachines(response.data);
                 if (response.data.length > 0) {
@@ -112,7 +111,6 @@ const MachinePage = () => {
                                     { name: "Success Slots", data: machineLinechartData.success_slots },
                                     { name: "Failed Slots", data: machineLinechartData.failed_slots }
                                 ]}
-                                categories={datesRange}
                             />
                         ) : (
                             <p>Loading chart data...</p>

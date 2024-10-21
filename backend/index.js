@@ -16,8 +16,8 @@ app.use(cors()); // Allow CORS
 app.use(express.json()); // Parse incoming JSON requests
 
 // Import Routes for Machines
-const machineRoutes = require('./routes/machineRoutes');
-app.use('/api/machines', machineRoutes); // API route for machine data
+const machineRoutes = require('./routes/machineRoutes'); // Adjust the path as necessary
+app.use('/api/machines', machineRoutes);
 
 // Start server
 const PORT = process.env.PORT || 5000;
