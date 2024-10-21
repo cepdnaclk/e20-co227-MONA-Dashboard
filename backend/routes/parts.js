@@ -1,15 +1,26 @@
-// backend/routes/parts.js
 const express = require('express');
 const router = express.Router();
 const Part = require('../models/Part');
 
-// Get all parts
+// Get parts by product ID, part ID, and optional date range
 router.get('/', async (req, res) => {
     try {
-        const parts = await Part.find();
+        const { productId, partId, startDate, endDate } = req.query;
+
+        // Create query filters
+        const query = {};
+        if (productId) query.productMadeByPart = productId;
+        if (partId) query.partID = partId;
+
+        // Optionally filter by date range if startDate and endDate are provided
+        if (startDate && endDate) {
+            query.createdAt = { $gte: new Date(startDate), $lte: new Date(endDate) };
+        }
+
+        const parts = await Part.find(query);
         res.json(parts);
-    } catch (error) {
-        res.status(500).json({ message: error.message });
+    } catch (err) {
+        res.status(500).json({ message: err.message });
     }
 });
 
@@ -24,6 +35,5 @@ router.post('/', async (req, res) => {
     }
 });
 
-// Additional CRUD operations can be added here (update, delete)
 
 module.exports = router;

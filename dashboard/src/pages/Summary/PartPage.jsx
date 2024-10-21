@@ -13,6 +13,8 @@ const PartPage = () => {
 
     const partDrop = ['Part 1', 'Part 2', 'Part 3', 'Part 4', 'Part 5', 'Part 6', 'Part 7', 'Part 8', 'Part 9', 'Part 10', 'Part 10', 'Part 11', 'Part 12'];
     const productDrop = ['Product 1', 'Product 2', 'Product 3', 'Product 4', 'Product 5', 'Product 6', 'Product 7', 'Product 8', 'Product 9', 'Product 10',];
+    const dateRangeDrop = ['1 week', '2 weeks', '1 month', '3 months', '1 year'];
+
 
     const partData = [
         { name: 'M101', count: 15 },
@@ -75,6 +77,8 @@ const PartPage = () => {
                 dropdownLabel="Select Product"
                 dropdownData2={partDrop}
                 dropdownLabel2={"Select Part"}
+                dropdownData3={dateRangeDrop}
+                dropdownLabel3={"Select Duration"}
                 pdfname={'part_page.pdf'}
             />
 

@@ -1,74 +1,128 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import SummaryPage from './SummaryPage';
-import './MachinePage.scss';
+import FourthbarSummary from '../../layouts/FourthbarSummary';
 import Progressbar from '../../components/SummaryComponents/Progressbar/Progressbar';
 import LineChart from '../../components/SummaryComponents/Linechart/Linechart';
 import Table from '../../components/SummaryComponents/Tables/Table';
 import GeneratePDFButton from '../../components/SummaryComponents/GeneratePDF/GeneratePDFButton';
-import FourthbarSummary from '../../layouts/FourthbarSummary';
-
+import './MachinePage.scss';
 
 const MachinePage = () => {
-    const machineDrop = ['Machine 1', 'Machine 2', 'Machine 3', 'Machine 4', 'Machine 5', 'Machine 6', 'Machine 7', 'Machine 8', 'Machine 9', 'Machine 10', 'Machine 11', 'Machine 12', 'Machine 13', 'Machine 14', 'Machine 15', 'Machine 16', 'Machine 17', 'Machine 18', 'Machine 19', 'Machine 20'];
+    const [machines, setMachines] = useState([]);
+    const [selectedMachine, setSelectedMachine] = useState('');
+    const [duration, setDuration] = useState('1_week');
+    const [machineData, setMachineData] = useState(null);
+    const [machineLinechartData, setMachineLinechartData] = useState(null);
+    const [datesRange, setDatesRange] = useState([]);
 
-    const machineLinechartData = [
-        { name: 'Target Shots', data: [40, 30, 32, 36, 40, 35, 38] },
-        { name: 'total Completed Shots', data: [31, 25, 26, 35, 33, 27, 31] },
-        { name: 'Success Shots', data: [25, 20, 22, 32, 28, 25, 27] },
-        { name: 'Failed Shots', data: [6, 5, 4, 1, 5, 2, 4] },
+    const dateRangeDrop = ['1 week', '2 weeks', '1 month', '3 months', '1 year'];
 
-    ];
+    // Fetch the machines for the dropdown
+    useEffect(() => {
+        axios.get('http://localhost:5000/api/machinesdropdown')
+            .then(response => {
+                setMachines(response.data);
+                if (response.data.length > 0) {
+                    setSelectedMachine(response.data[0]?.machine_id || '');
+                }
+            })
+            .catch(error => {
+                console.error("Error fetching machines:", error);
+            });
+    }, []);
 
-    const datesRange = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'];
+    useEffect(() => {
+        if (selectedMachine) {
+            axios.get(`http://localhost:5000/api/machines/${selectedMachine}`, {
+                params: { duration },
+                timeout: 5000 
+            })
+            .then(response => {
+                setMachineData(response.data[0]);  // Assuming the latest data
+            })
+            .catch(error => {
+                console.error("Error fetching machine data:", error);
+                setMachineData(null);
+            });
+
+            axios.get(`http://localhost:5000/api/machines/${selectedMachine}/linechart`, {
+                params: { duration },
+                timeout: 5000
+            })
+            .then(response => {
+                setMachineLinechartData(response.data);
+            })
+            .catch(error => {
+                console.error("Error fetching machine line chart data:", error);
+                setMachineLinechartData(null);
+            });
+        }
+    }, [selectedMachine, duration]);
+
+    const handleMachineChange = (event) => {
+        setSelectedMachine(event.target.value);
+    };
+
+    const handleDurationChange = (event) => {
+        setDuration(event.target.value);
+    };
 
     const columnstable1 = [
-        { label: 'Machine Detail', field: 'detailName' },
-        { label: 'Value', field: 'value' },
+        { Header: 'Machine Name', accessor: 'machine_name' },
+        { Header: 'Target Slots', accessor: 'target_slots_count' },
+        { Header: 'Total Slots', accessor: 'total_slots_count' },
+        { Header: 'Success Slots', accessor: 'success_slot_count' },
+        { Header: 'Failed Slots', accessor: 'failed_slot_count' },
+        { Header: 'Production Rate', accessor: 'production_rate' }
     ];
 
-    const datatable1 = [
-        { detailName: 'Machine ID', value: 'm001' },
-        { detailName: 'Machine Name', value: 'M401' },
-        { detailName: 'Target Shot Count', value: 35 },
-        { detailName: 'Total Shot Count', value: 30 },
-        { detailName: 'Succesive Shot Count', value: 25 },
-        { detailName: 'Failed Shot Count', value: 5 },
-        { detailName: 'Succesive Percentage', value: '75%' },
-        { detailName: 'Completed Percentage', value: '50%' },
-        { detailName: 'Relevent Part', value: 'PP001' },
-        { detailName: 'Material', value: 'APX67800' },
-        { detailName: 'Working hours per Range', value: '36hours' },
-
-
-
-
-    ];
+    const datatable1 = machineData ? [machineData] : [];
 
     return (
         <div className='machinePage'>
             <SummaryPage />
-            <FourthbarSummary dropdownData={machineDrop} dropdownLabel="Select Machine" pdfname={'machine_page.pdf'} />
-            <div id='pdfContent' className='container'>
-                <div className='progressBar'>
-                    <Progressbar title="Production Rate %" value={70} gradientFrom="#99cc33" gradientTo="#99CC33" />
-                    <Progressbar title="Success %" value={75} gradientFrom="#99cc33" gradientTo="#99CC33" />
-                    <Progressbar title="Completed %" value={50} gradientFrom="#99cc33" gradientTo="#99CC33" />
+            <FourthbarSummary 
+                dropdownData={machines.map(machine => ({ label: machine.machine_name, value: machine.machine_id }))} 
+                dropdownLabel="Select Machine" 
+                onMachineChange={handleMachineChange}
+                dropdownData3={dateRangeDrop}
+                dropdownLabel3="Select Duration"
+                onDurationChange={handleDurationChange} 
+                pdfname='machine_page.pdf'
+            />
+            {!machineData ? (
+                <p>Loading machine data...</p>
+            ) : (
+                <div id='pdfContent' className='container'>
+                    <div className='progressBar'>
+                        <Progressbar title="Production Rate %" value={machineData.production_rate} gradientFrom="#99cc33" gradientTo="#99CC33" />
+                        <Progressbar title="Success %" value={machineData.success_percentage} gradientFrom="#99cc33" gradientTo="#99CC33" />
+                        <Progressbar title="Completed %" value={machineData.completed_percentage} gradientFrom="#99cc33" gradientTo="#99CC33" />
+                    </div>
+                    <div className='table'>
+                        <Table columns={columnstable1} data={datatable1} />
+                    </div>
+                    <div className='graph'>
+                        {machineLinechartData ? (
+                            <LineChart
+                                title="Machine Summary Chart"
+                                seriesData={[
+                                    { name: "Total Slots", data: machineLinechartData.total_slots },
+                                    { name: "Success Slots", data: machineLinechartData.success_slots },
+                                    { name: "Failed Slots", data: machineLinechartData.failed_slots }
+                                ]}
+                                categories={datesRange}
+                            />
+                        ) : (
+                            <p>Loading chart data...</p>
+                        )}
+                    </div>
+                    <div className='exportButton'>
+                        <GeneratePDFButton targetId='pdfContent' filename='machine_page.pdf' />
+                    </div>
                 </div>
-                <div className='table'>
-                    <Table columns={columnstable1} data={datatable1} />
-                </div>
-                <div className='graph'>
-                    <LineChart
-                        title="Machine Summary Chart"
-                        seriesData={machineLinechartData}
-                        categories={datesRange}
-                    />
-                </div>
-                <div className='exportButton'>
-                    <GeneratePDFButton targetId='pdfContent' filename='pmachine_page.pdf' />
-                </div>
-
-            </div>
+            )}
         </div>
     );
 };

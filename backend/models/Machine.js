@@ -1,63 +1,21 @@
-// backend/models/Machine.js
 const mongoose = require('mongoose');
 
 const machineSchema = new mongoose.Schema({
-    MachineID: {
-        type: String,
-        required: true
-    },
-    MachienName: {
-        type: String,
-        required: true
-    },
-    Material: {
-        type: String,
-        required: true
-    },
-    ProductionRate:{
-        type: String,
-        required: true
-    },
-    
-    TotalShots: {
-        type: Number,
-        required: true
-    },
-    SuccessShots: {
-        type: Number,
-        required: true
-    },
-    TargetShots: {
-        type: Number,
-        required: true
-    },
-    FailedShots: {
-        type: Number,
-        required: true
-    },
-    SuccesivePercentage: {
-        type: String,
-        required: true
-    },
-    CompletedPercentage:{
-        type: String,
-        required: true
-    },
-    Material:{
-        type: String,
-        required: true
-    },
-    WorkingHours:{
-        type: String,
-        required: true
-    },
-    RelevantPart:{
-        type: String,
-        required: true
-    
-    }
+    machine_id: { type: String, required: true },
+    machine_name: { type: String, required: true },
+    target_slots_count: { type: Number, required: true },
+    total_slots_count: { type: Number, required: true },
+    success_slot_count: { type: Number, required: true },
+    failed_slot_count: { type: Number, required: true },
+    completed_slot_count: { type: Number, required: true },
+    success_percentage: { type: Number, required: true },
+    completed_percentage: { type: Number, required: true },
+    relevant_parts: { type: [Number], required: true },
+    relevant_product: { type: String, required: true },
+    material: { type: String, required: true },
+    working_hours: { type: Number, required: true },
+    production_rate: { type: Number, required: true },
+    week_count: { type: Number, required: true }
 });
 
 module.exports = mongoose.model('Machine', machineSchema);
-
-
