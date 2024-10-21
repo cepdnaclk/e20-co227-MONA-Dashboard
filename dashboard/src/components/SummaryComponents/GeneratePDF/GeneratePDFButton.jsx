@@ -29,11 +29,12 @@ const GeneratePDFButton = ({ targetId, filename = 'document.pdf' }) => {
 
     return (
         <Tooltip title="Download PDF" placement="left" arrow>
-            <button className='pdfbutton' onClick={handleGeneratePDF} >
+            <button className='pdfbutton_1' onClick={handleGeneratePDF} style={{marginTop:'5px'}}>
 
                 <FileDownloadOutlinedIcon
                     className='pdficon'
-                    fontSize='25px'
+                    fontSize='30px'
+                    style={{marginLeft:'-8px'}}
                 />
 
             </button>

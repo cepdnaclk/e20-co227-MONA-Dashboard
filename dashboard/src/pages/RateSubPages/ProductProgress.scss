@@ -1,105 +1,252 @@
-.container{
-    width:100%;
+.production-page {
+    padding: 20px;
+    margin-top: 40px;
     display: flex;
-    flex-direction: row;
-}
-.total-product{
-    
-    background-color: #fef6ff;
-    border: 1px solid #ddd;
-    width:40%;
-    height: 900px;
-    margin-left: 30px;
-    margin-top: 10px;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 2px 2px 2px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s, box-shadow 0.3s;
-    
-    // &:hover {
-    //     transform: scale(1.01);
-    // }
-}
+    justify-content: center;
+    position: relative;
 
-.product-progress-page {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    padding-left: 20px;
-    margin-right: 30px;
-    margin-left: 0px;
-    margin-top: 10px;
-    width: 60%;
-}
+    .product-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); // Increase min width
+        gap: 20px;
+        width: 100%;
+        max-width: 1650px; // Slightly larger max width
+    }
 
-.product-block {
-    background-color: #fef6ff;
-    border: 1px solid #ddd;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    border-radius: 15px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 2px 2px 2px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s, box-shadow 0.3s;
-    cursor: pointer;
-    height: 900px;
-    
-    // &:hover {
-    //     transform: scale(1.01);
-    // }
-}
+    .product-card {
+        background-color: #ffffff;
+        border: 1px solid #ddd;
+        border-radius: 12px; // More rounded corners
+        padding: 25px; // Slightly reduced padding for compactness
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); // Softer shadow
+        transition: all 0.3s ease;
+        cursor: pointer;
+        overflow: hidden;
+        position: relative;
 
+        h2 {
+            font-size: 1.4rem; // Slightly smaller title
+            margin-bottom: 10px;
+            color: #333;
+            font-weight: bold; // Bold title
+        }
 
+        .product-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 10px; // Slightly increased space between stats items
+            margin-bottom: 12px; // Space before progress
+            color: #555; // Slightly darker color for better readability
 
-.product-info {
-    text-align: center;
-    margin-bottom: 10px;
-}
+            .stat-item {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background-color: #f1f1f1; // Lighter background for better contrast
+                padding: 10px 15px; // Increased padding for a larger look
+                border-radius: 8px; // More rounded corners for each stat block
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // Soft shadow to lift the element
+                font-size: 1rem; // Slightly larger font for better readability
 
-.product-title {
-    font-size: 18px;
-    font-weight: bold;
-}
-.part-title{
-    font-size: 16px;
-    font-weight: bold;
-    margin-left: 10px;
-    margin-bottom: -10px;
-}
-.g-product-title {
-    font-size: 18px;
-    font-weight: bold;
-    margin-top: 10px;
-    margin-left: 10px;
-}
-.g-part-title{
-    font-size: 16px;
-    font-weight: bold;
-    margin-left: 25px;
-    margin-top: 10px;
-}
+                .label {
+                    font-weight: 500; // Slightly lighter font for the label
+                    color: #333; // Darker color for the label text
+                }
 
-.product-overall-progress {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    left: 0;
-    width: 100%;
-    font-size: 16px;
-    color: #333;
-}
+                .value {
+                    font-weight: 600; // Bold value to make it stand out
+                    color: #76c7c0; // Use theme color for value to match the progress bar
+                    font-size: 1.2rem; // Slightly larger value for emphasis
+                }
+            }
+        }
 
-.Pchart-container {
-    width: 100%;
-    margin-top: 10px;
-}
+        .progress-container {
+            background-color: #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+            height: 18px; // Keep height for progress bar
+            position: relative; // Relative position for percentage positioning
+            margin-top: 20px;
+            // margin-bottom: 10px;
 
-.gauge-container {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    
+            .progress-bar {
+                background-color: #76c7c0;
+                height: 100%;
+                transition: width 0.4s ease;
+                position: relative;
+
+                .progress-percentage {
+                    position: absolute;
+                    top: 50%; // Vertically centered
+                    left: 5px; // Start from the left
+                    transform: translateY(-50%);
+                    color: #fff; // Default color for readability inside bar
+                    font-size: 0.85rem; // Smaller percentage font size
+                    font-weight: bold;
+                    white-space: nowrap; // Prevent text wrap
+
+                    // Move outside if progress is too low (less than 10%)
+                    @media (max-width: 10%) {
+                        left: 100%; // Move percentage outside the bar
+                        color: #333; // Darker color for better readability outside
+                    }
+                }
+            }
+        }
+
+        &:hover {
+            border: 2px solid #76c7c0; // Green accent on hover
+            transform: scale(1.02); // Slight zoom effect on hover
+        }
+    }
+
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.8); // Darker overlay for contrast
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        cursor: pointer;
+
+        .expanded-modal {
+            background-color: white;
+            border-radius: 12px; // More rounded corners
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            max-width: 900px; // Set max width to avoid being too lengthy
+            width: 90%;
+            cursor: default;
+
+            h2 {
+                font-size: 1.7rem;
+                margin-bottom: 15px;
+            }
+
+            .product-stats-expanded {
+                margin-bottom: 15px;
+
+                .stat-item {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    background-color: #f1f1f1; // Same design as regular stats
+                    padding: 10px 15px; // Increased padding for expanded stats
+                    border-radius: 8px; // More rounded corners
+                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                    font-size: 1rem;
+
+                    .label {
+                        font-weight: 500;
+                        color: #333;
+                    }
+
+                    .value {
+                        font-weight: 600;
+                        color: #76c7c0;
+                        font-size: 1.2rem;
+                    }
+                }
+            }
+
+            .progress-container-expanded {
+                background-color: #f1f1f1;
+                border-radius: 10px;
+                overflow: hidden;
+                height: 20px; // Maintain height similar to regular view
+                margin-top: 15px;
+                position: relative;
+                margin-bottom: 20px;
+
+                .progress-bar-expanded {
+                    background-color: #76c7c0;
+                    height: 100%;
+                    transition: width 0.4s ease;
+
+                    .progress-percentage-expanded {
+                        position: absolute;
+                        top: 50%;
+                        right: 10px;
+                        transform: translateY(-50%);
+                        color: #333;
+                        font-size: 0.9rem;
+                        font-weight: bold;
+                    }
+                }
+            }
+
+            .parts-mold-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr); // 3-column layout for part blocks
+                gap: 15px; // Decrease gap for a cleaner look
+
+                // Center the last two blocks
+                &:nth-last-child(2) {
+                    grid-column: 2 / 3; // Move the second to last block to the center
+                }
+
+                &:nth-last-child(1) {
+                    grid-column: 3 / 4; // Move the last block to the center
+                }
+
+                .part-mold-item {
+                    background-color: #f9f9f9; // Lighter background for parts
+                    padding: 15px;
+                    border: 1px solid #ddd;
+                    border-radius: 8px; // More rounded corners
+                    text-align: center;
+                    transition: background-color 0.3s ease; // Transition on hover
+
+                    &:hover {
+                        background-color: #eaeaea; // Change background on hover
+                    }
+
+                    .part-name {
+                        font-weight: bold;
+                        color: #333;
+                        margin-bottom: 10px;
+                    }
+
+                    .mold-name {
+                        color: #999;
+                        margin-bottom: 10px;
+                    }
+
+                    .production-time,
+                    .current-progress {
+                        margin-bottom: 10px;
+                        color: #666;
+                    }
+
+                    .part-progress-container {
+                        background-color: #e0e0e0;
+                        border-radius: 5px;
+                        overflow: hidden;
+                        height: 15px;
+                        margin-top: 10px;
+                        position: relative;
+
+                        .part-progress-bar {
+                            background-color: #76c7c0;
+                            height: 100%;
+                            transition: width 0.4s ease;
+
+                            .progress-percentage {
+                                position: absolute;
+                                right: 5px;
+                                color: #333;
+                                font-size: 0.7rem;
+                                font-weight: bold;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

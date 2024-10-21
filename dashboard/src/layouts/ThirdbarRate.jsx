@@ -16,11 +16,11 @@ const items = [
       label: "BY PRODUCT",
       icon: PrecisionManufacturingOutlinedIcon,
     },
-    {
-      path: "/rate/PartProgress",
-      label: "BY PART",
-      icon: MediationIcon,
-    },
+    // {
+    //   path: "/rate/PartProgress",
+    //   label: "BY PART",
+    //   icon: MediationIcon,
+    // },
   ];
 
   

@@ -1,14 +1,15 @@
 // Container for progress blocks
 .progress-page {
     display: grid;
-    grid-template-columns: repeat(12, minmax(100px, 1fr)); // Use 100px minimum to fit more columns
-    row-gap: 8px; // Reduce row gap to fit more rows
-    column-gap: 5px; // Reduce column gap to make better use of space
-    padding: 10px; // Reduced padding to free up vertical space
-    height: calc(100vh - 150px); // Fit within viewport height
-    overflow-y: auto; // Allow scrolling if necessary
+    grid-template-columns: repeat(12, minmax(80px, 1fr)); // Reduced minimum block size to fit more columns
+    row-gap: 8px; // Adjusted row gap
+    column-gap: 8px; // Adjusted column gap for balanced spacing
+    padding: 10px; // Reduced padding for better fit
+    height: calc(100vh - 150px); // Use available viewport height, avoiding scrolling
     box-sizing: border-box;
-    background-color: #f4f4f4; // Light background for contrast
+    background-color: #e7f6e7; // Light green background for contrast
+    overflow: hidden; // Prevent scrolling
+    margin-top: 7px !important; // Adjusted margin for better alignment
 }
 
 // Individual progress block
@@ -17,48 +18,92 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #ffffff;
-    border: 1px solid #d3d3d3;
-    border-radius: 8px; // Slightly smaller radius
+    background-color: #ffffff; // White background for blocks
+    border: 1px solid #b3e0b3; // Light green border
+    border-radius: 10px; // Soft rounded corners
     text-align: center;
-    height: 83px; // Reduced block height to fit more rows
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); // Subtle shadow for depth
-    transition: transform 0.2s ease;
-    cursor: pointer;
-}
+    height: 84px; // Reduced block height to fit more blocks vertically
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1); // Slight shadow for depth
+    transition: transform 0.2s ease, box-shadow 0.2s ease; // Smooth transition
+    cursor: pointer; // Pointer cursor for interactivity
 
-// Add hover effect to make blocks interactive
-.progress-block:hover {
-    transform: scale(1.05); // Slightly enlarge on hover
+    // Add hover effect to make blocks interactive
+    &:hover {
+        transform: scale(1.05); // Slightly enlarge on hover
+        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2); // Darker shadow on hover
+    }
 }
 
 // Text inside the progress block
 .progress-block p {
-    margin-top: 5px; // Smaller margin to fit text
-    font-size: 12px; // Reduced font size to fit more text
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 5px; // Smaller spacing between text and progress bar
+    margin-top: 5px; // Small margin to fit text
+    font-size: 12px; // Slightly reduced font size for better fit
+    font-weight: bold; // Bold product names
+    color: #333; // Dark color for text
 }
 
 // Circular progress bar customization
 .progress-block .CircularProgressbar {
-    width: 48x !important; // Reduced size for the progress circle
-    height: 48px !important;
+    width: 52px !important; // Smaller progress circle to fit the reduced block size
+    height: 52px !important;
+    margin-top: 4px !important; // Adjusted margin for better alignment
 }
 
 // Text inside CircularProgressbar (percentage)
 .CircularProgressbar-text {
-    fill: #4a90e2;
-    font-weight: bold;
-    font-size: 10px; // Smaller percentage text to fit the reduced size
+    fill: #4CAF50 !important; // Green color for percentage text
+    font-weight: bold; // Bold percentage text
+    font-size: 10px; // Reduced percentage text for better fit
 }
 
 // Custom styles for progress path
 .CircularProgressbar-path {
-    stroke: #4a90e2; // Blue color for the progress path
+    stroke: #4CAF50 !important; // Green color for the progress path
 }
 
 .CircularProgressbar-trail {
     stroke: #d3d3d3; // Light gray for the progress trail
+}
+
+// Modal overlay for expanded details
+.modal-overlay {
+    position: fixed; // Fixed positioning to cover the entire screen
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7); // Semi-transparent background
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; // Ensure it appears above other elements
+}
+
+// Modal content styling
+.modal-content {
+    background-color: #ffffff; // White background for modal
+    border-radius: 12px; // Rounded corners
+    padding: 20px; // Padding for content
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); // Enhanced shadow for depth
+    text-align: center; // Center text
+    width: 80%; // Responsive width for modal
+    max-width: 400px; // Maximum width for the modal
+}
+
+// Close button styling
+.close-button {
+    background: transparent; // Transparent background
+    border: none; // No border
+    font-size: 24px; // Font size for close button
+    position: absolute; // Absolute positioning in modal
+    top: 15px; // Position from the top
+    right: 15px; // Position from the right
+    cursor: pointer; // Pointer cursor for interactivity
+    color: #4CAF50; // Close button color matching the theme
+    transition: color 0.3s ease; // Transition for hover effect
+
+    // Add hover effect for close button
+    &:hover {
+        color: #333; // Darker color on hover
+    }
 }
