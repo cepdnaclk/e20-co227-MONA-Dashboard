@@ -10,7 +10,7 @@ const products = Array.from({ length: 10 }, (_, index) => {
   return {
     id: productId,
     name: `Product ${productId}`,
-    totalProduced: Math.floor(Math.random() * (targetCount + 1)), // Random produced count
+    totalProduced: Math.floor(Math.random() * (targetCount + 1) + 50), // Random produced count
     targetCount: targetCount,
     parts: Array.from({ length: 12 }, (_, partIndex) => ({
       name: `Part ${partIndex + 1}`,
