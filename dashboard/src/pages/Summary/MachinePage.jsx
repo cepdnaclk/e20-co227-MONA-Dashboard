@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import SummaryPage from './SummaryPage';
 import './MachinePage.scss';
 import Progressbar from '../../components/SummaryComponents/Progressbar/Progressbar';
@@ -7,19 +7,103 @@ import Table from '../../components/SummaryComponents/Tables/Table';
 import GeneratePDFButton from '../../components/SummaryComponents/GeneratePDF/GeneratePDFButton';
 import FourthbarSummary from '../../layouts/FourthbarSummary';
 
+const sampleMachineData = [
+    {
+        "machine_id": "M#001",
+        "machine_name": "Machine 1",
+        "target_slots_count": 309,
+        "total_slots_count": 272,
+        "success_slot_count": 161,
+        "failed_slot_count": 111,
+        "completed_slot_count": 272,
+        "success_percentage": 59.19,
+        "completed_percentage": 88.03,
+        "relevant_parts": [1, 2, 3],
+        "material": "Steel",
+        "working_hours": 40,
+        "production_rate": 6.8,
+        "week_count": 1
+    },
+    {
+        "machine_id": "M#001",
+        "machine_name": "Machine 1",
+        "target_slots_count": 610,
+        "total_slots_count": 520,
+        "success_slot_count": 300,
+        "failed_slot_count": 170,
+        "completed_slot_count": 520,
+        "success_percentage": 57.69,
+        "completed_percentage": 85.25,
+        "relevant_parts": [1, 2, 3],
+        "material": "Steel",
+        "working_hours": 80,
+        "production_rate": 6.5,
+        "week_count": 2
+    },
+    {
+        "machine_id": "M#002",
+        "machine_name": "Machine 2",
+        "target_slots_count": 200,
+        "total_slots_count": 180,
+        "success_slot_count": 150,
+        "failed_slot_count": 30,
+        "completed_slot_count": 180,
+        "success_percentage": 83.33,
+        "completed_percentage": 90,
+        "relevant_parts": [4, 5],
+        "material": "Aluminum",
+        "working_hours": 50,
+        "production_rate": 7.2,
+        "week_count": 1
+    },
+    {
+        "machine_id": "M#002",
+        "machine_name": "Machine 2",
+        "target_slots_count": 432,
+        "total_slots_count": 410,
+        "success_slot_count": 300,
+        "failed_slot_count": 110,
+        "completed_slot_count": 410,
+        "success_percentage": 76.78,
+        "completed_percentage": 97.69,
+        "relevant_parts": [4, 5],
+        "material": "GPPS",
+        "working_hours": 52,
+        "production_rate": 8.12,
+        "week_count": 2
+    }
+];
 
 const MachinePage = () => {
-    const machineDrop = ['Machine 1', 'Machine 2', 'Machine 3', 'Machine 4', 'Machine 5', 'Machine 6', 'Machine 7', 'Machine 8', 'Machine 9', 'Machine 10', 'Machine 11', 'Machine 12', 'Machine 13', 'Machine 14', 'Machine 15', 'Machine 16', 'Machine 17', 'Machine 18', 'Machine 19', 'Machine 20'];
+    const [selectedMachineId, setSelectedMachineId] = useState(sampleMachineData[0].machine_id); // Default to the first machine's ID
+    const [selectedDuration, setSelectedDuration] = useState('1 Week');
 
-    const machineLinechartData = [
-        { name: 'Target Shots', data: [40, 30, 32, 36, 40, 35, 38] },
-        { name: 'total Completed Shots', data: [31, 25, 26, 35, 33, 27, 31] },
-        { name: 'Success Shots', data: [25, 20, 22, 32, 28, 25, 27] },
-        { name: 'Failed Shots', data: [6, 5, 4, 1, 5, 2, 4] },
+    // Create options for machines
+    const machineOptions = Array.from(new Set(sampleMachineData.map(machine => machine.machine_id))) // Unique machine IDs
+        .map(id => {
+            const machine = sampleMachineData.find(m => m.machine_id === id);
+            return { label: machine.machine_name, value: id };
+        });
 
-    ];
+    // Handle changes in dropdowns
+    const handleMachineChange = (machineId) => {
+        setSelectedMachineId(machineId);
+    };
 
-    const datesRange = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'];
+    const handleDurationChange = (duration) => {
+        setSelectedDuration(duration);
+    };
+
+    // Filter data based on selected machine and duration
+    const filteredData = sampleMachineData.find(machine =>
+        machine.machine_id === selectedMachineId && 
+        (selectedDuration === '1 Week' ? machine.week_count === 1 : machine.week_count === 2)
+    );
+
+    // Check if filteredData is found
+    if (!filteredData) {
+        return <div>No data available for the selected machine and duration.</div>;
+    }
 
     const columnstable1 = [
         { label: 'Machine Detail', field: 'detailName' },
@@ -27,32 +111,45 @@ const MachinePage = () => {
     ];
 
     const datatable1 = [
-        { detailName: 'Machine ID', value: 'm001' },
-        { detailName: 'Machine Name', value: 'M401' },
-        { detailName: 'Target Shot Count', value: 35 },
-        { detailName: 'Total Shot Count', value: 30 },
-        { detailName: 'Succesive Shot Count', value: 25 },
-        { detailName: 'Failed Shot Count', value: 5 },
-        { detailName: 'Succesive Percentage', value: '75%' },
-        { detailName: 'Completed Percentage', value: '50%' },
-        { detailName: 'Relevent Part', value: 'PP001' },
-        { detailName: 'Material', value: 'APX67800' },
-        { detailName: 'Working hours per Range', value: '36hours' },
+        { detailName: 'Machine ID', value: filteredData.machine_id },
+        { detailName: 'Machine Name', value: filteredData.machine_name },
+        { detailName: 'Target Shot Count', value: filteredData.target_slots_count },
+        { detailName: 'Total Shot Count', value: filteredData.total_slots_count },
+        { detailName: 'Success Shot Count', value: filteredData.success_slot_count },
+        { detailName: 'Failed Shot Count', value: filteredData.failed_slot_count },
+        { detailName: 'Success Percentage', value: `${filteredData.success_percentage}%` },
+        { detailName: 'Completed Percentage', value: `${filteredData.completed_percentage}%` },
+        { detailName: 'Relevant Part', value: filteredData.relevant_parts.join(', ') },
+        { detailName: 'Material', value: filteredData.material },
+        { detailName: 'Working Hours', value: `${filteredData.working_hours} hours` },
+    ];
 
-
-
-
+    const machineLinechartData = [
+        { name: 'Success Shots', data: [filteredData.success_slot_count] }, 
+        { name: 'Failed Shots', data: [filteredData.failed_slot_count] },
     ];
 
     return (
         <div className='machinePage'>
             <SummaryPage />
-            <FourthbarSummary dropdownData={machineDrop} dropdownLabel="Select Machine" pdfname={'machine_page.pdf'} />
+
+            <FourthbarSummary 
+                dropdownData={machineOptions} 
+                dropdownLabel="Select Machine" 
+                onMachineChange={(option) => handleMachineChange(option.value)} // Pass machine ID directly
+                dropdownData3={[
+                    { label: '1 Week', value: '1 Week' }, 
+                    { label: '2 Weeks', value: '2 Weeks' }
+                ]}
+                dropdownLabel3="Select Duration"
+                onDurationChange={(option) => handleDurationChange(option.value)} // Pass selected duration directly
+                pdfname='machine_page.pdf'
+            />
             <div id='pdfContent' className='container'>
                 <div className='progressBar'>
-                    <Progressbar title="Production Rate %" value={70} gradientFrom="#99cc33" gradientTo="#99CC33" />
-                    <Progressbar title="Success %" value={75} gradientFrom="#99cc33" gradientTo="#99CC33" />
-                    <Progressbar title="Completed %" value={50} gradientFrom="#99cc33" gradientTo="#99CC33" />
+                    <Progressbar title="Production Rate %" value={filteredData.production_rate} gradientFrom="#99cc33" gradientTo="#99CC33" />
+                    <Progressbar title="Success %" value={filteredData.success_percentage} gradientFrom="#99cc33" gradientTo="#99CC33" />
+                    <Progressbar title="Completed %" value={filteredData.completed_percentage} gradientFrom="#99cc33" gradientTo="#99CC33" />
                 </div>
                 <div className='table'>
                     <Table columns={columnstable1} data={datatable1} />
@@ -61,13 +158,12 @@ const MachinePage = () => {
                     <LineChart
                         title="Machine Summary Chart"
                         seriesData={machineLinechartData}
-                        categories={datesRange}
+                        categories={['Data']}
                     />
                 </div>
                 <div className='exportButton'>
-                    <GeneratePDFButton targetId='pdfContent' filename='pmachine_page.pdf' />
+                    <GeneratePDFButton targetId='pdfContent' filename='machine_page.pdf' />
                 </div>
-
             </div>
         </div>
     );
