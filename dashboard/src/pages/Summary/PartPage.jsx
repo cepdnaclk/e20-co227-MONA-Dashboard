@@ -11,13 +11,19 @@ import FourthbarSummary from '../../layouts/FourthbarSummary';
 
 const PartPage = () => {
     const [selectedProduct, setSelectedProduct] = useState('Product 1');
-    const [selectedDateRange, setSelectedDateRange] = useState('1_week');
+    const [selectedDateRange, setSelectedDateRange] = useState('last week');
     const [selectedPart, setSelectedPart] = useState('Part 1');
 
 
     const partDrop = ['Part 1', 'Part 2', 'Part 3', 'Part 4', 'Part 5', 'Part 6', 'Part 7', 'Part 8', 'Part 9', 'Part 10', 'Part 10', 'Part 11', 'Part 12'];
     const productDrop = ['Product 1', 'Product 2', 'Product 3', 'Product 4', 'Product 5', 'Product 6', 'Product 7', 'Product 8', 'Product 9', 'Product 10',];
-    const dateRangeDrop = ['1_week', '2_weeks', '1_month', '3_months', '1_year'];
+    const dateRangeDrop = [
+        'last week', 
+        'last 2 weeks', 
+        'last 1 month', 
+        'last 3 months', 
+        'last 1 year'
+    ];
 
 
     const partData = [
