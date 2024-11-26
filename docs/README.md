@@ -18,6 +18,16 @@ This is a sample image, to show how to add images to your page. To learn more op
 
 ![Logo](./images/logo.png)
 
+## Table of Contents
+
+1. [Overview](#Overview)
+2. [Key Features](#Key-Features)
+3. [Team](#Team)
+4. [Links](#links)
+
+
+---
+
 
 ## Overview 
 
@@ -37,8 +47,6 @@ Another tab is devoted to displaying the current production rates of various mac
 #### Comprehensive Production History:
 The third tab provides access to a detailed history of production activities. Users can review past performance data, analyze trends, and generate reports. This historical perspective is crucial for long-term planning, quality control, and identifying recurring issues needing strategic solutions.
 
-
-
 ## Team
 
 - E/20/361, Yohan Senadheera, [e20361@eng.pdn.ac.lk](mailto:e20361@eng.pdn.ac.lk)
@@ -47,28 +55,15 @@ The third tab provides access to a detailed history of production activities. Us
 - E/20/024, Buddhika Ariyarathna , [e20024@engdn.ac.lk](mailto:e20024@eng.pdn.ac.lk)
 - E/20/089, Yasiru Harinda, [e20089@engdn.ac.lk](mailto:e20089@eng.pdn.ac.lk)
 
-## Table of Contents
-
-1. [Introduction](#Introduction)
-2. [Other Sub Topics](#other-sub-topics)
-3. [Links](#links)
-
----
-
-## Introduction
-
-Our project focuses on developing an advanced real-time monitoring dashboard tailored for a production environment. This dashboard aims to enhance the efficiency and reliability of production processes by providing critical insights and timely alerts. Our system is designed with user-friendliness at its core, ensuring that operators and managers can easily access and interpret the data they need to maintain optimal production performance.
-
-## Other Sub Topics
-
-.....
-
 ## Links
-
 - [Project Repository](https://github.com/cepdnaclk/{{ page.repository-name }}){:target="\_blank"}
 - [Project Page](https://cepdnaclk.github.io/{{ page.repository-name}}){:target="\_blank"}
 - [Department of Computer Engineering](http://www.ce.pdn.ac.lk/)
 - [University of Peradeniya](https://eng.pdn.ac.lk/)
+
+
+
+
 
 [//]: # "Please refer this to learn more about Markdown syntax"
 [//]: # "https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet"
