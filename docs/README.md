@@ -48,8 +48,8 @@ Another tab is devoted to displaying the current production rates of various mac
 #### Comprehensive Production History:
 The third tab provides access to a detailed history of production activities. Users can review past performance data, analyze trends, and generate reports. This historical perspective is crucial for long-term planning, quality control, and identifying recurring issues needing strategic solutions.
 
-##Software architecture
-![Logo](./images/logo.png)
+## Software architecture
+![Logo](./images/softwareArch.png)
 
 ## Team
 
