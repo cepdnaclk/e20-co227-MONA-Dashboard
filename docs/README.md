@@ -37,15 +37,15 @@ Our project focuses on developing an advanced real-time monitoring dashboard tai
 ## **Key Features**
 
 #### Real-Time Monitoring of Mold Machines:
-##### Particle Detection and Alerts:
+##### ***Particle Detection and Alerts:***
 The dashboard includes a dedicated tab for monitoring mold machines. It provides real-time detection of particles stuck in the molds, an issue that can significantly impact production quality and efficiency. When particles are detected, the system immediately triggers alerts, allowing for prompt intervention and minimizing downtime.
 
 #### Production Rate Monitoring:
-##### Live Production Metrics:
+##### ***Live Production Metrics:***
 Another tab is devoted to displaying the current production rates of various machines. This feature enables users to track and analyze the performance of each machine in real time. By continuously monitoring production rates, the dashboard helps identify bottlenecks, underperforming machines, and opportunities for process improvements.
 
 #### Historical Production Data:
-##### Comprehensive Production History:
+##### ***Comprehensive Production History:***
 The third tab provides access to a detailed history of production activities. Users can review past performance data, analyze trends, and generate reports. This historical perspective is crucial for long-term planning, quality control, and identifying recurring issues needing strategic solutions.
 
 ## **Software Architecture**
@@ -53,27 +53,27 @@ The third tab provides access to a detailed history of production activities. Us
 
 ## **Dashboard Views**
 
-### **Machine Status Page View**
+### ***Machine Status Page View***
 ![Status Page](./images/status/statuspage.jpg)
 
 ### **Expanding the Dashboard Views**
 
-**Active Machine Status**-
+***Active Machine Status***-
 Machine is working perfectly!
 
 ![Status Page](./images/status/greenMachine.jpg)
 
-**Emergency Machine Status**-
+***Emergency Machine Status***-
 There is a stuck particle in the machine.
 
 ![Status Page](./images/status/redmachine.jpg)
 
-**Inactive Machine Status**-
+***Inactive Machine Status***-
 Machine is OFF.
 
 ![Status Page](./images/status/ashMachine.jpg)
 
-**Idle Machine Status**-
+***Idle Machine Status***-
 Machine is ON but not making products.
 
 ![Status Page](./images/status/bluemachine.jpg)
@@ -81,9 +81,9 @@ Machine is ON but not making products.
 
 
 
-### **Production Rate Page View**
+### ***Production Rate Page View***
 
-### **Production Summary Page View**
+### ***Production Summary Page View***
 
 
 
