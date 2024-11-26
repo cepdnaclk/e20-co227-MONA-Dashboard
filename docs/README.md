@@ -53,10 +53,10 @@ The third tab provides access to a detailed history of production activities. Us
 
 ## **Dashboard Views**
 
-### ***Machine Status Page View***
+#### ***Machine Status Page View***
 ![Status Page](./images/status/statuspage.jpg)
 
-### **Expanding the Dashboard Views**
+#### **Expanding the Dashboard Views**
 
 ***Active Machine Status***-
 Machine is working perfectly!
@@ -81,9 +81,9 @@ Machine is ON but not making products.
 
 
 
-### ***Production Rate Page View***
+#### ***Production Rate Page View***
 
-### ***Production Summary Page View***
+#### ***Production Summary Page View***
 
 
 
