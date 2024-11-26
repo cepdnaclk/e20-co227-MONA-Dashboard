@@ -22,8 +22,9 @@ This is a sample image, to show how to add images to your page. To learn more op
 
 1. [Overview](#Overview)
 2. [Key Features](#Key-Features)
-3. [Team](#Team)
-4. [Links](#links)
+3. [Software Architecture](#Software-architecture)
+4. [Team](#Team)
+5. [Links](#links)
 
 
 ---
@@ -46,6 +47,9 @@ Another tab is devoted to displaying the current production rates of various mac
 ### Historical Production Data:
 #### Comprehensive Production History:
 The third tab provides access to a detailed history of production activities. Users can review past performance data, analyze trends, and generate reports. This historical perspective is crucial for long-term planning, quality control, and identifying recurring issues needing strategic solutions.
+
+##Software architecture
+![Logo](./images/logo.png)
 
 ## Team
 
