@@ -49,6 +49,7 @@ Another tab is devoted to displaying the current production rates of various mac
 The third tab provides access to a detailed history of production activities. Users can review past performance data, analyze trends, and generate reports. This historical perspective is crucial for long-term planning, quality control, and identifying recurring issues needing strategic solutions.
 
 ## **Software Architecture**
+
 ![Software Architecture](./images/softwareArch.png)
 
 ## **Dashboard Views**
