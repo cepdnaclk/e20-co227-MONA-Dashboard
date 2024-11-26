@@ -8,7 +8,7 @@ repository-name: e20-co227-MONA-Dashboard
 
 [comment]: # "This is the standard layout for the project, but you can clean this and use your own template"
 
-# MONA Dashboard
+# **MONA Dashboard**
 
 ---
 
@@ -30,11 +30,11 @@ This is a sample image, to show how to add images to your page. To learn more op
 ---
 
 
-## Overview 
+## **Overview**
 
 Our project focuses on developing an advanced real-time monitoring dashboard tailored for a production environment. This dashboard aims to enhance the efficiency and reliability of production processes by providing critical insights and timely alerts. Our system is designed with user-friendliness, ensuring that operators and managers can easily access and interpret the data they need to maintain optimal production performance.
 
-## Key Features
+## **Key Features**
 
 #### Real-Time Monitoring of Mold Machines:
 ##### Particle Detection and Alerts:
@@ -48,32 +48,32 @@ Another tab is devoted to displaying the current production rates of various mac
 ##### Comprehensive Production History:
 The third tab provides access to a detailed history of production activities. Users can review past performance data, analyze trends, and generate reports. This historical perspective is crucial for long-term planning, quality control, and identifying recurring issues needing strategic solutions.
 
-## Software Architecture
+## **Software Architecture**
 ![Software Architecture](./images/softwareArch.png)
 
-## Dashboard Views
+## **Dashboard Views**
 
-### Machine Status Page View
+### **Machine Status Page View**
 ![Status Page](./images/status/statuspage.jpg)
 
-### Expanding the Dashboard Views
+### **Expanding the Dashboard Views**
 
-#### Active Machine Status
+**Active Machine Status**-
 Machine is working perfectly!
 
 ![Status Page](./images/status/greenMachine.jpg)
 
-#### Emergency Machine Status
+**Emergency Machine Status**-
 There is a stuck particle in the machine.
 
 ![Status Page](./images/status/redmachine.jpg)
 
-#### Inactive Machine Status
+**Inactive Machine Status**-
 Machine is OFF.
 
 ![Status Page](./images/status/ashMachine.jpg)
 
-#### Idle Machine Status
+**Idle Machine Status**-
 Machine is ON but not making products.
 
 ![Status Page](./images/status/bluemachine.jpg)
@@ -81,13 +81,13 @@ Machine is ON but not making products.
 
 
 
-#### Production Rate Page View
+### **Production Rate Page View**
 
-#### Production Summary Page View
+### **Production Summary Page View**
 
 
 
-## Team
+## **Team**
 
 - E/20/361, Yohan Senadheera, [e20361@eng.pdn.ac.lk](mailto:e20361@eng.pdn.ac.lk)
 - E/20/378, Amanda Siriwardhane, [e20378@eng.pdn.ac.lk](mailto:e20378@eng.pdn.ac.lk)
@@ -95,7 +95,7 @@ Machine is ON but not making products.
 - E/20/024, Buddhika Ariyarathna , [e20024@engdn.ac.lk](mailto:e20024@eng.pdn.ac.lk)
 - E/20/089, Yasiru Harinda, [e20089@engdn.ac.lk](mailto:e20089@eng.pdn.ac.lk)
 
-## Links
+## **Links**
 - [Project Repository](https://github.com/cepdnaclk/{{ page.repository-name }}){:target="\_blank"}
 - [Project Page](https://cepdnaclk.github.io/{{ page.repository-name}}){:target="\_blank"}
 - [Department of Computer Engineering](http://www.ce.pdn.ac.lk/)
