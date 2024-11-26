@@ -49,16 +49,42 @@ Another tab is devoted to displaying the current production rates of various mac
 The third tab provides access to a detailed history of production activities. Users can review past performance data, analyze trends, and generate reports. This historical perspective is crucial for long-term planning, quality control, and identifying recurring issues needing strategic solutions.
 
 ## Software Architecture
-![Logo](./images/softwareArch.png)
+![Software Architecture](./images/softwareArch.png)
 
-## Dashboard Views 
+## Dashboard Views
 
-##### Machine Status Page View
-![Status Page](./images/status/statuspage.png)
+### Machine Status Page View
+![Status Page](./images/status/statuspage.jpg)
 
-##### Production Rate Page View
+### Expanding the Dashboard Views
 
-##### Production Summary Page View
+#### Active Machine Status
+Machine is working perfectly!
+
+![Status Page](./images/status/greenMachine.jpg)
+
+#### Emergency Machine Status
+There is a stuck particle in the machine.
+
+![Status Page](./images/status/redmachine.jpg)
+
+#### Inactive Machine Status
+Machine is OFF.
+
+![Status Page](./images/status/ashMachine.jpg)
+
+#### Idle Machine Status
+Machine is ON but not making products.
+
+![Status Page](./images/status/bluemachine.jpg)
+
+
+
+
+#### Production Rate Page View
+
+#### Production Summary Page View
+
 
 
 ## Team
