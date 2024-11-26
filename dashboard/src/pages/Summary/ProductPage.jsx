@@ -11,6 +11,8 @@ import FourthbarSummary from '../../layouts/FourthbarSummary';
 
 const ProductPage = () => {
     const productDrop = ['All Products', 'Product 1', 'Product 2', 'Product 3', 'Product 4', 'Product 5', 'Product 6', 'Product 7', 'Product 8', 'Product 9', 'Product 10',];
+    const dateRangeDrop = ['1_week', '2_weeks', '1_month', '3_months', '1_year'];
+
 
     const productData = [
         { name: 'Part 1', count: 50 },
@@ -32,7 +34,6 @@ const ProductPage = () => {
         { name: 'To be Made', data: [12, 11, 14, 18, 17, 13, 13] },
     ];
 
-    const datesRange = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'];
 
     const columnstable1 = [
         { label: 'Product Detail', field: 'detailName' },
@@ -69,7 +70,12 @@ const ProductPage = () => {
     return (
         <div className='productPage'>
             <SummaryPage />
-            <FourthbarSummary dropdownData={productDrop} dropdownLabel="Select Product" pdfname={'product_page.pdf'} />
+            <FourthbarSummary 
+                dropdownData={productDrop} 
+                dropdownLabel="Select Product" 
+                dropdownData3={dateRangeDrop}
+                dropdownLabel3="Select Duration"
+                pdfname={'product_page.pdf'} />
             <div id='pdfContent' className='container'>
                 <div className='barChart'>
                     <Barchart data={productData} />
@@ -88,7 +94,7 @@ const ProductPage = () => {
                     <LineChart
                         title="Product Summary Chart"
                         seriesData={productLinechartData}
-                        categories={datesRange}
+                        categories={dateRangeDrop}
                     />
                 </div>
                 <div className='exportButton'>

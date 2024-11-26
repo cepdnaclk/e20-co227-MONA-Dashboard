@@ -10,6 +10,8 @@ import FourthbarSummary from '../../layouts/FourthbarSummary';
 
 const MachinePage = () => {
     const machineDrop = ['Machine 1', 'Machine 2', 'Machine 3', 'Machine 4', 'Machine 5', 'Machine 6', 'Machine 7', 'Machine 8', 'Machine 9', 'Machine 10', 'Machine 11', 'Machine 12', 'Machine 13', 'Machine 14', 'Machine 15', 'Machine 16', 'Machine 17', 'Machine 18', 'Machine 19', 'Machine 20'];
+    const dateRangeDrop = ['1_week', '2_weeks', '1_month', '3_months', '1_year'];
+
 
     const machineLinechartData = [
         { name: 'Target Shots', data: [40, 30, 32, 36, 40, 35, 38] },
@@ -19,7 +21,6 @@ const MachinePage = () => {
 
     ];
 
-    const datesRange = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'];
 
     const columnstable1 = [
         { label: 'Machine Detail', field: 'detailName' },
@@ -47,7 +48,11 @@ const MachinePage = () => {
     return (
         <div className='machinePage'>
             <SummaryPage />
-            <FourthbarSummary dropdownData={machineDrop} dropdownLabel="Select Machine" pdfname={'machine_page.pdf'} />
+            <FourthbarSummary dropdownData={machineDrop} 
+            dropdownLabel="Select Machine" 
+            dropdownData3={dateRangeDrop}
+            dropdownLabel3="Select Duration"
+            pdfname={'machine_page.pdf'} />
             <div id='pdfContent' className='container'>
                 <div className='progressBar'>
                     <Progressbar title="Production Rate %" value={70} gradientFrom="#99cc33" gradientTo="#99CC33" />
@@ -61,7 +66,7 @@ const MachinePage = () => {
                     <LineChart
                         title="Machine Summary Chart"
                         seriesData={machineLinechartData}
-                        categories={datesRange}
+                        categories={dateRangeDrop}
                     />
                 </div>
                 <div className='exportButton'>

@@ -1,11 +1,9 @@
 import React from 'react';
 import './Fourth.scss';
 import Dropdown from '../components/SummaryComponents/DropDown/Dropdown';
-import Dropdownbox from '../components/SummaryComponents/Boxes/Dropdownbox';
-import DurationDropdown from '../components/SummaryComponents/DropDown/DurationDropdown';
 import GeneratePDFButton from '../components/SummaryComponents/GeneratePDF/GeneratePDFButton';
 
-const FourthbarSummary = ({ dropdownData, dropdownLabel, dropdownData2, dropdownLabel2 , pdfname}) => {
+const FourthbarSummary = ({ dropdownData, dropdownLabel, dropdownData2, dropdownLabel2 ,dropdownData3 , dropdownLabel3, pdfname}) => {
     return (
         <div>
             <div className='summaryContainer'>
@@ -18,7 +16,7 @@ const FourthbarSummary = ({ dropdownData, dropdownLabel, dropdownData2, dropdown
                             {dropdownData2 && <Dropdown data={dropdownData2} label={dropdownLabel2} />}
                         </div>
                         <div className='date'>
-                            <DurationDropdown />
+                            <Dropdown data={dropdownData3} label={dropdownLabel3} />
                         </div>
                     </div>
                     <div style={{ cursor: 'pointer', margin:'0.2%'}}>
