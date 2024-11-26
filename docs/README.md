@@ -93,10 +93,6 @@ User can change the password and machine details by verifying the password as de
 ![setting Page](./images/setting/password.png)
 
 
-=======
-
-#### ***Production Summary Page View***
-
 
 
 ## **Team**
