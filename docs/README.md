@@ -61,27 +61,39 @@ The third tab provides access to a detailed history of production activities. Us
 ***Active Machine Status***-
 Machine is working perfectly!
 
-![Status Page](./images/status/greenMachine.jpg)
+![active machine](./images/status/greenMachine.jpg)
 
 ***Emergency Machine Status***-
 There is a stuck particle in the machine.
 
-![Status Page](./images/status/redmachine.jpg)
+![emergency machine](./images/status/redmachine.jpg)
 
 ***Inactive Machine Status***-
 Machine is OFF.
 
-![Status Page](./images/status/ashMachine.jpg)
+![inactive machine](./images/status/ashMachine.jpg)
 
 ***Idle Machine Status***-
 Machine is ON but not making products.
 
-![Status Page](./images/status/bluemachine.jpg)
+![idle machine](./images/status/bluemachine.jpg)
 
 
 
 
 #### ***Production Rate Page View***
+
+#### ***Production Summary Page View***
+
+#### ***Setting Page View***
+
+User can change the password and machine details by verifying the password as desired.
+
+![setting Page](./images/setting/machine.png)
+![setting Page](./images/setting/password.png)
+
+
+=======
 
 #### ***Production Summary Page View***
 
