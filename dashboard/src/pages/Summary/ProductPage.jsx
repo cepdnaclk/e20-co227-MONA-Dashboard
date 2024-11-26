@@ -1,5 +1,4 @@
-// ProductPage.jsx
-import React from 'react';
+import React, { useState } from 'react';
 import SummaryPage from './SummaryPage';
 import './ProductPage.scss';
 import Barchart from '../../components/SummaryComponents/Barchart/Barchart';
@@ -10,9 +9,28 @@ import GeneratePDFButton from '../../components/SummaryComponents/GeneratePDF/Ge
 import FourthbarSummary from '../../layouts/FourthbarSummary';
 
 const ProductPage = () => {
-    const productDrop = ['All Products', 'Product 1', 'Product 2', 'Product 3', 'Product 4', 'Product 5', 'Product 6', 'Product 7', 'Product 8', 'Product 9', 'Product 10',];
-    const dateRangeDrop = ['1_week', '2_weeks', '1_month', '3_months', '1_year'];
+    const [selectedProduct, setSelectedProduct] = useState('Product 1');
+    const [selectedDateRange, setSelectedDateRange] = useState('last week');
 
+    const productDrop = [
+        'Product 1',
+        'Product 2',
+        'Product 3',
+        'Product 4',
+        'Product 5',
+        'Product 6',
+        'Product 7',
+        'Product 8',
+        'Product 9',
+        'Product 10',
+    ];
+    const dateRangeDrop = [
+        'last week', 
+        'last 2 weeks', 
+        'last 1 month', 
+        'last 3 months', 
+        'last 1 year'
+    ];
 
     const productData = [
         { name: 'Part 1', count: 50 },
@@ -34,7 +52,6 @@ const ProductPage = () => {
         { name: 'To be Made', data: [12, 11, 14, 18, 17, 13, 13] },
     ];
 
-
     const columnstable1 = [
         { label: 'Product Detail', field: 'detailName' },
         { label: 'Value', field: 'value' },
@@ -47,8 +64,6 @@ const ProductPage = () => {
         { detailName: 'Completed Product Count', value: 28 },
         { detailName: 'Products to be Made', value: 2 },
         { detailName: 'Completed Product Percentage', value: '90%' },
-
-
     ];
 
     const columnstable2 = [
@@ -63,42 +78,50 @@ const ProductPage = () => {
     const datatable2 = [
         { detailName: 'Target Count', part1: 32, part2: 32, part3: 32, part4: 32, part5: 32 },
         { detailName: 'Completed Count', part1: 30, part2: 29, part3: 32, part4: 31, part5: 28 },
-
-
     ];
 
     return (
-        <div className='productPage'>
+        <div className="productPage">
             <SummaryPage />
-            <FourthbarSummary 
-                dropdownData={productDrop} 
-                dropdownLabel="Select Product" 
+            <FourthbarSummary
+                dropdownData={productDrop}
+                dropdownLabel="Select Product"
                 dropdownData3={dateRangeDrop}
                 dropdownLabel3="Select Duration"
-                pdfname={'product_page.pdf'} />
-            <div id='pdfContent' className='container'>
-                <div className='barChart'>
+                pdfname="product_page.pdf"
+                selectedProduct={selectedProduct}
+                onProductSelect={setSelectedProduct}
+                selectedDateRange={selectedDateRange}
+                onDateRangeSelect={setSelectedDateRange}
+            />
+
+            <div>
+                <h1 className="title">Selected Product: {selectedProduct}</h1>
+                <h1>Selected Date Range: {selectedDateRange}</h1>
+            </div>
+            <div id="pdfContent" className="container">
+                <div className="barChart">
                     <Barchart data={productData} />
                 </div>
-                <div className='progressBar'>
-                    <Progressbar title="Success %" value={75} gradientFrom="#99cc33" gradientTo="#99CC33" />
+                <div className="progressBar">
+                    <Progressbar title="Success %" value={74} gradientFrom="#99cc33" gradientTo="#99CC33" />
                     <Progressbar title="Completed %" value={50} gradientFrom="#99CC33" gradientTo="#99CC33" />
                 </div>
-                <div className='table'>
+                <div className="table">
                     <Table columns={columnstable1} data={datatable1} />
                 </div>
-                <div className='table2'>
+                <div className="table2">
                     <Table columns={columnstable2} data={datatable2} />
                 </div>
-                <div className='graph'>
+                <div className="graph">
                     <LineChart
                         title="Product Summary Chart"
                         seriesData={productLinechartData}
                         categories={dateRangeDrop}
                     />
                 </div>
-                <div className='exportButton'>
-                    <GeneratePDFButton targetId='pdfContent' filename='product_page.pdf' />
+                <div className="exportButton">
+                    <GeneratePDFButton targetId="pdfContent" filename="product_page.pdf" />
                 </div>
             </div>
         </div>

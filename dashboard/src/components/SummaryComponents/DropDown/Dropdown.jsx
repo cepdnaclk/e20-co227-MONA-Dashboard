@@ -16,14 +16,11 @@ const MenuProps = {
   },
 };
 
-export default function Dropdown({ data, label, onChange }) {
-  const [selectedItem, setSelectedItem] = React.useState('');
-
+export default function Dropdown({ data, label, value, onChange }) {
   const handleChange = (event) => {
-    const value = event.target.value;
-    setSelectedItem(value);
+    const selectedValue = event.target.value;
     if (onChange) {
-      onChange(value); // Call the onChange callback if provided
+      onChange(selectedValue);
     }
   };
 
@@ -35,7 +32,7 @@ export default function Dropdown({ data, label, onChange }) {
       <Select
         labelId={`${label}-select-label`}
         id={`${label}-select`}
-        value={selectedItem}
+        value={value || ''}
         onChange={handleChange}
         input={<OutlinedInput label={label} sx={{ height: 40 }} />}
         MenuProps={MenuProps}

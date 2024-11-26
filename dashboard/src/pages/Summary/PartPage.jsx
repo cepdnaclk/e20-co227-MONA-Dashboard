@@ -1,5 +1,5 @@
 // PartPage.jsx
-import React from 'react';
+import React, { useState } from 'react';
 import SummaryPage from './SummaryPage';
 import './PartPage.scss';
 import Barchart from '../../components/SummaryComponents/Barchart/Barchart';
@@ -10,6 +10,10 @@ import GeneratePDFButton from '../../components/SummaryComponents/GeneratePDF/Ge
 import FourthbarSummary from '../../layouts/FourthbarSummary';
 
 const PartPage = () => {
+    const [selectedProduct, setSelectedProduct] = useState('Product 1');
+    const [selectedDateRange, setSelectedDateRange] = useState('1_week');
+    const [selectedPart, setSelectedPart] = useState('Part 1');
+
 
     const partDrop = ['Part 1', 'Part 2', 'Part 3', 'Part 4', 'Part 5', 'Part 6', 'Part 7', 'Part 8', 'Part 9', 'Part 10', 'Part 10', 'Part 11', 'Part 12'];
     const productDrop = ['Product 1', 'Product 2', 'Product 3', 'Product 4', 'Product 5', 'Product 6', 'Product 7', 'Product 8', 'Product 9', 'Product 10',];
@@ -74,20 +78,32 @@ const PartPage = () => {
             <FourthbarSummary
                 dropdownData={productDrop}
                 dropdownLabel="Select Product"
-                dropdownData2={partDrop}
-                dropdownLabel2={"Select Part"}
                 dropdownData3={dateRangeDrop}
                 dropdownLabel3="Select Duration"
-                pdfname={'part_page.pdf'}
+                partDropdownData={partDrop}
+                partDropdownLabel="Select Part"
+                pdfname="part_page.pdf"
+                selectedProduct={selectedProduct}
+                onProductSelect={setSelectedProduct}
+                selectedDateRange={selectedDateRange}
+                onDateRangeSelect={setSelectedDateRange}
+                selectedPart={selectedPart}
+                onPartSelect={setSelectedPart}
             />
+
+            <div>
+                <h1>Selected Product: {selectedProduct}</h1>
+                <h1>Selected Date Range: {selectedDateRange}</h1>
+                <h1>Selected Part: {selectedPart}</h1>
+            </div>
 
             <div id='pdfContent' className='container'>
                 <div className='barChart'>
                     <Barchart data={partData} />
                 </div>
                 <div className='progressBar'>
-                    <Progressbar title="Success %" value={75} gradientFrom="#99cc33" gradientTo="#99CC33"/>
-                    <Progressbar title="Completed %" value={50} gradientFrom="#99cc33" gradientTo="#99CC33"/>
+                    <Progressbar title="Success %" value={75} gradientFrom="#99cc33" gradientTo="#99CC33" />
+                    <Progressbar title="Completed %" value={50} gradientFrom="#99cc33" gradientTo="#99CC33" />
                 </div>
                 <div className='table'>
                     <Table columns={columnstable1} data={datatable1} />
