@@ -4,6 +4,7 @@ const cors = require('cors');
 const machineInfo = require('../models/machineInfo');
 const rateInfo = require('../models/rateinfo');
 const partInfo =require('../models/partinfo')
+const historyMachine = require('../models/historymachine')
 
 const app = express();
 app.use(cors());
@@ -73,6 +74,13 @@ app.get('/partinfo', async (req, res) => {
         
     partInfo.find()
     .then(users4 => res.json(users4))
+    .catch(err => res.json('Error: ' + err))
+})
+
+app.get('/historymachine', async (req, res) => {
+        
+    historyMachine.find()
+    .then(users5 => res.json(users5))
     .catch(err => res.json('Error: ' + err))
 })
 
