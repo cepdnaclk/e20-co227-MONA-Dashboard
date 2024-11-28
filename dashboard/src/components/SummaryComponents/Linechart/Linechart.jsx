@@ -63,8 +63,6 @@ const LineChart = ({ title, seriesData, categories }) => {
       title: {
         text: 'Product Count',
       },
-      min: 5,
-      max: 40,
     },
     legend: {
       position: 'top',

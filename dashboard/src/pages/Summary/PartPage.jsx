@@ -1,5 +1,4 @@
-// PartPage.jsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SummaryPage from './SummaryPage';
 import './PartPage.scss';
 import Barchart from '../../components/SummaryComponents/Barchart/Barchart';
@@ -8,39 +7,160 @@ import LineChart from '../../components/SummaryComponents/Linechart/Linechart';
 import Table from '../../components/SummaryComponents/Tables/Table';
 import GeneratePDFButton from '../../components/SummaryComponents/GeneratePDF/GeneratePDFButton';
 import FourthbarSummary from '../../layouts/FourthbarSummary';
+import axios from 'axios';
 
 const PartPage = () => {
     const [selectedProduct, setSelectedProduct] = useState('Product 1');
     const [selectedDateRange, setSelectedDateRange] = useState('last week');
     const [selectedPart, setSelectedPart] = useState('Part 1');
+    const [selectedMachine, setSelectedMachine] = useState('Machine 1');
+    const [historymachine, setHistoryMachine] = useState([]);
+    const [filteredData, setFilteredData] = useState([]);
+    const [machineLinechartData, setMachineLinechartData] = useState([]);
+    const [chartCategories, setChartCategories] = useState([]);
+    const [datatable1, setDatatable1] = useState([]);
+    const [successPercentage, setSuccessPercentage] = useState(0);
+    const [completedPercentage, setCompletedPercentage] = useState(0);
+    const [partInfo, setPartInfo] = useState([]);
+
+    // Fetch partinfo and historymachine data
+    useEffect(() => {
+        const fetchPartData = async () => {
+            try {
+                const response = await axios.get("http://localhost:8000/partinfo");
+                setPartInfo(
+                    response.data.sort((a, b) => a.MachineNumber - b.MachineNumber)
+                );
+            } catch (error) {
+                console.error("Error fetching part info:", error);
+            }
+        };
+
+        const fetchHistoryMachineData = async () => {
+            try {
+                const response = await axios.get('http://localhost:8000/historymachine');
+                setHistoryMachine(response.data.sort((a, b) => a.machine_id - b.machine_id));
+            } catch (error) {
+                console.error('Error fetching machine data:', error);
+            }
+        };
+
+        fetchPartData();
+        fetchHistoryMachineData();
+    }, []);
+
+    // Update selectedMachine when selectedProduct or selectedPart changes
+    useEffect(() => {
+        // Extract the numeric part using regex
+        const productNumber = selectedProduct.match(/\d+/)?.[0]; // Extracts "1" from "Product 1" or "10" from "Product 10"
+        const partNumber = selectedPart.match(/\d+/)?.[0]; // Extracts "1" from "Part 1" or "25" from "Part 25"
+
+        if (productNumber && partNumber) {
+            // Find the matching machine
+            const matchedMachine = partInfo.find(
+                (item) =>
+                    item.ProductNumber === productNumber && item.PartNumber === partNumber
+            );
+
+            // Set selectedMachine as "Machine {number}" if a match is found
+            setSelectedMachine(matchedMachine ? `Machine ${matchedMachine.MachineNumber}` : '');
+        } else {
+            setSelectedMachine('');
+        }
+    }, [selectedProduct, selectedPart, partInfo]);
 
 
+    // Filter historymachine data based on selectedMachine and selectedDateRange
+    useEffect(() => {
+        const dateRangeToWeeks = {
+            'last week': 1,
+            'last 2 weeks': 2,
+            'last 1 month': 4,
+            'last 3 months': 12,
+            'last 1 year': 52,
+        };
+
+        const selectedWeekCount = dateRangeToWeeks[selectedDateRange];
+
+        const filtered = historymachine.filter(
+            (machine) =>
+                machine.machine_name === selectedMachine &&
+                machine.week_count <= selectedWeekCount
+        );
+
+        setFilteredData(filtered);
+    }, [selectedMachine, selectedDateRange, historymachine]);
+
+    // Update chart data and x-axis categories based on filteredData
+    useEffect(() => {
+        const targetShots = [];
+        const completedShots = [];
+        const successShots = [];
+        const failedShots = [];
+        const categories = [];
+
+        filteredData.forEach((machine) => {
+            targetShots.push(machine.target_slots_count || 0);
+            completedShots.push(machine.total_slots_count || 0);
+            successShots.push(machine.success_slot_count || 0);
+            failedShots.push(machine.failed_slot_count || 0);
+            categories.push(`Week ${machine.week_count}`);
+        });
+
+        setMachineLinechartData([
+            { name: 'Target Shots', data: targetShots },
+            { name: 'Total Completed Shots', data: completedShots },
+            { name: 'Success Shots', data: successShots },
+            { name: 'Failed Shots', data: failedShots },
+        ]);
+
+        setChartCategories(categories);
+    }, [filteredData]);
+
+    // Update table data and percentages
+    useEffect(() => {
+        if (filteredData.length === 0) {
+            setDatatable1([]);
+            setSuccessPercentage(0);
+            setCompletedPercentage(0);
+            return;
+        }
+
+        const firstItem = filteredData[0];
+        const totalTargetShots = filteredData.reduce((sum, item) => sum + (item.target_slots_count || 0), 0);
+        const totalCompletedShots = filteredData.reduce((sum, item) => sum + (item.total_slots_count || 0), 0);
+        const totalSuccessiveShots = filteredData.reduce((sum, item) => sum + (item.success_slot_count || 0), 0);
+        const totalFailedShots = filteredData.reduce((sum, item) => sum + (item.failed_slot_count || 0), 0);
+        const averageSuccessivePercentage = (filteredData.reduce((sum, item) => sum + (item.success_percentage || 0), 0) / filteredData.length).toFixed(2);
+        const averageCompletedPercentage = (filteredData.reduce((sum, item) => sum + (item.completed_percentage || 0), 0) / filteredData.length).toFixed(2);
+
+        setDatatable1([
+            { detailName: 'Relevant Products', value: firstItem.relevant_product },
+            { detailName: 'Part Name', value: selectedPart },
+            { detailName: 'Machine Name', value: firstItem.machine_name },
+            { detailName: 'Target Shot Count', value: totalTargetShots },
+            { detailName: 'Total Shot Count', value: totalCompletedShots },
+            { detailName: 'Successive Shot Count', value: totalSuccessiveShots },
+            { detailName: 'Failed Shot Count', value: totalFailedShots },
+            { detailName: 'Successive Percentage', value: `${averageSuccessivePercentage}%` },
+            { detailName: 'Completed Percentage', value: `${averageCompletedPercentage}%` },
+            { detailName: 'Material', value: firstItem.material },
+        ]);
+
+        setSuccessPercentage(Number(averageSuccessivePercentage));
+        setCompletedPercentage(Number(averageCompletedPercentage));
+    }, [filteredData]);
     const partDrop = ['Part 1', 'Part 2', 'Part 3', 'Part 4', 'Part 5', 'Part 6', 'Part 7', 'Part 8', 'Part 9', 'Part 10', 'Part 10', 'Part 11', 'Part 12'];
     const productDrop = ['Product 1', 'Product 2', 'Product 3', 'Product 4', 'Product 5', 'Product 6', 'Product 7', 'Product 8', 'Product 9', 'Product 10',];
     const dateRangeDrop = [
-        'last week', 
-        'last 2 weeks', 
-        'last 1 month', 
-        'last 3 months', 
+        'last week',
+        'last 2 weeks',
+        'last 1 month',
+        'last 3 months',
         'last 1 year'
     ];
 
 
-    const partData = [
-        { name: 'M101', count: 15 },
-        { name: 'M239', count: 25 },
-        { name: 'M023', count: 35 },
-        { name: 'M109', count: 45 },
-        { name: 'M440', count: 55 },
-    ];
-    const productLinechartData = [
-        { name: 'total Completed Parts', data: [31, 25, 26, 22, 33, 27, 31] },
-        { name: 'M101', data: [19, 15, 11, 18, 18, 16, 18] },
-        { name: 'M239', data: [17, 15, 10, 18, 17, 12, 18] },
-        { name: 'M023', data: [19, 14, 20, 12, 12, 10, 18] },
-        { name: 'M109', data: [10, 12, 17, 11, 12, 19, 19] },
-        { name: 'M440', data: [10, 20, 14, 11, 11, 11, 17] },
-    ];
 
 
     const columnstable1 = [
@@ -48,38 +168,10 @@ const PartPage = () => {
         { label: 'Value', field: 'value' },
     ];
 
-    const datatable1 = [
-        { detailName: 'Part ID', value: 'PP001' },
-        { detailName: 'Part Name', value: 'Part 1' },
-        { detailName: 'Target Part Count', value: 32 },
-        { detailName: 'Completed Part Count', value: 28 },
-        { detailName: 'Parts to be Made', value: 2 },
-        { detailName: 'Completed Parts Percentage', value: '90%' },
-        { detailName: 'Product made by the Part', value: 'PR001' },
-        { detailName: 'Material', value: 'APX67800' },
 
-
-    ];
-
-    const columnstable2 = [
-        { label: 'Used Machines Detail', field: 'detailName' },
-        { label: 'M101', field: 'm1' },
-        { label: 'M239', field: 'm2' },
-        { label: 'M023', field: 'm3' },
-        { label: 'M109', field: 'm4' },
-        { label: 'M440', field: 'm5' },
-    ];
-
-    const datatable2 = [
-        { detailName: 'Target Count', m1: 15, m2: 20, m3: 25, m4: 15, m5: 20 },
-        { detailName: 'Completed Count', m1: 12, m2: 18, m3: 22, m4: 10, m5: 18 },
-        { detailName: 'Failed Count', m1: 3, m2: 2, m3: 3, m4: 5, m5: 2 },
-
-
-    ];
 
     return (
-        <div className='partPage'>
+        <div className='machinePage'>
             <SummaryPage />
             <FourthbarSummary
                 dropdownData={productDrop}
@@ -97,35 +189,30 @@ const PartPage = () => {
                 onPartSelect={setSelectedPart}
             />
 
-            <div>
+            {/* <div>
                 <h1>Selected Product: {selectedProduct}</h1>
-                <h1>Selected Date Range: {selectedDateRange}</h1>
                 <h1>Selected Part: {selectedPart}</h1>
-            </div>
+                <h1>Selected Machine: {selectedMachine}</h1>
+                <h1>Selected Date Range: {selectedDateRange}</h1>
+            </div> */}
 
-            <div id='pdfContent' className='container'>
-                <div className='barChart'>
-                    <Barchart data={partData} />
+            <div id="pdfContent" className="container">
+                <div className="progressBar">
+                    <Progressbar title="Success %" value={successPercentage} gradientFrom="#99cc33" gradientTo="#99CC33" />
+                    <Progressbar title="Completed %" value={completedPercentage} gradientFrom="#99cc33" gradientTo="#99CC33" />
                 </div>
-                <div className='progressBar'>
-                    <Progressbar title="Success %" value={75} gradientFrom="#99cc33" gradientTo="#99CC33" />
-                    <Progressbar title="Completed %" value={50} gradientFrom="#99cc33" gradientTo="#99CC33" />
-                </div>
-                <div className='table'>
+                <div className="table">
                     <Table columns={columnstable1} data={datatable1} />
                 </div>
-                <div className='table2'>
-                    <Table columns={columnstable2} data={datatable2} />
-                </div>
-                <div className='graph'>
+                <div className="graph">
                     <LineChart
-                        title="Parts Summary Chart"
-                        seriesData={productLinechartData}
-                        categories={dateRangeDrop}
+                        title="Machine Summary Chart"
+                        seriesData={machineLinechartData}
+                        categories={chartCategories}
                     />
                 </div>
-                <div className='exportButton'>
-                    <GeneratePDFButton targetId='pdfContent' filename='part_page.pdf' />
+                <div className="exportButton">
+                    <GeneratePDFButton targetId="pdfContent" filename="machine_page.pdf" />
                 </div>
             </div>
         </div>

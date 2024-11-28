@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const historyMachineShecma = new mongoose.Schema({  
+const historyMachineSchema = new mongoose.Schema({  
     machine_id: {
         type: String,
         required: true
@@ -19,7 +19,7 @@ const historyMachineShecma = new mongoose.Schema({
     },
     success_slot_count: {
         type: Number,
-        required
+        required: true
     },
     failed_slot_count: {
         type: Number,
@@ -55,5 +55,5 @@ const historyMachineShecma = new mongoose.Schema({
     }
 });
 
-const historyMachine = mongoose.model('Historymachine', historyMachineShecma);
+const historyMachine = mongoose.model('Historymachine', historyMachineSchema);
 module.exports = historyMachine;
