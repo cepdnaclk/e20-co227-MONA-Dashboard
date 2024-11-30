@@ -118,10 +118,31 @@ Machine is ON but not making products.
 
 
 
-#### ***Production Rate Page View***
+#### ***Production Rate/Progress Page View***
+
+<p align="center">
+<img src="./images/progress/mold.png" alt="ProgressPage-machine" />
+<br>
+<strong>Production progress and rates by Mold</strong>
+</p>
+
+<p align="center">
+<img src="./images/progress/description.png" alt="info">
+<br>
+<em>(See user manual for more details)</em>
+</p>
+
+
 
 #### ***Production Summary Page View***
 The Production History tab allows users to explore and analyze detailed production metrics for products, parts, and machines. By default, the Product Summary view is displayed when the tab is opened. This section provides options to navigate between Product Summary, Part Summary, and Machine Summary.
+
+
+<p align="center">
+<img src="./images/summary/product.png" alt="Summary Page-product" />
+<br>
+<strong>Product Summary View</strong>
+</p>
 
 <p align="center">
 <img src="./images/summary/part.png" alt="Summary Page-part" />
