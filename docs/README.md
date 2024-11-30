@@ -87,25 +87,30 @@ The Machine Status tab offers a comprehensive view of the live status of all 24 
 
 ***Active Machine Status***-
 Machine is working perfectly!
-
-![active machine](./images/status/greenMachine.jpg)
+<p align="center">
+<img src="./images/status/greenMachine.jpg" alt="active machine">
+</p>
 
 ***Emergency Machine Status***-
 There is a stuck particle in the machine.
-
-![emergency machine](./images/status/redmachine.jpg)
+<p align="center">
+<img src="./images/status/redmachine.jpg" alt="emergency machine">
+</p>
 
 ***Inactive Machine Status***-
 Machine is OFF.
+<p align="center">
+<img src="./images/status/ashMachine.jpg" alt="inactive machine">
 
-![inactive machine](./images/status/ashMachine.jpg)
+</p>
 
 ***Idle Machine Status***-
 Machine is ON but not making products.
-
-![idle machine](./images/status/bluemachine.jpg)
-
-***(See user manual for more details)***
+<p align="center">
+<img src="./images/status/bluemachine.jpg" alt="idle machine">
+<br>
+<em>(See user manual for more details)</em>
+</p>
 
 
 
@@ -114,14 +119,21 @@ Machine is ON but not making products.
 #### ***Production Summary Page View***
 The Production History tab allows users to explore and analyze detailed production metrics for products, parts, and machines. By default, the Product Summary view is displayed when the tab is opened. This section provides options to navigate between Product Summary, Part Summary, and Machine Summary.
 
-![Summary Page-part](./images/summary/part.png)
-***Part Summary View***
+<p align="center">
+<img src="./images/summary/part.png" alt="Summary Page-part" />
+<br>
+<strong>Part Summary View</strong>
+</p>
 
-![Summary Page-machine](./images/summary/machine.png)
-***Machine Summary View***
+<p align="center">
+<img src="./images/summary/machine.png" alt="Summary Page-machine" />
+<br>
+<strong>Machine Summary View</strong>
+</p>
 
-***(See user manual for more details)***
-
+<p align="center">
+<em>(See user manual for more details)</em>
+</p>
 
 
 
