@@ -1,15 +1,15 @@
 .production-page {
   padding: 20px;
+  margin-top: 25px;
   display: flex;
   justify-content: center;
-  align-items: center;
-  min-height: 100vh;
 
-  .product-grid {
+  .product-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 15px;
     width: 100%;
+    max-width: 1850px;
   }
 
   .product-card {
@@ -17,9 +17,6 @@
     border: 1px solid #ddd;
     border-radius: 12px;
     padding: 20px;
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-    gap: 15px;
     text-align: center;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -29,122 +26,85 @@
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     }
 
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
+    h2 {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
 
-      p {
+    .product-stats {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+
+      .stat-item {
+        display: flex;
+        flex-direction: column;
         font-size: 14px;
-        color: #555;
 
-        span {
+        .label {
+          color: #777;
+          margin-bottom: 2px;
+        }
+
+        .value {
           font-weight: bold;
+          color: #333;
         }
       }
     }
 
-    .progress-bar-container {
+    .linear-progress {
+      position: relative;
       margin-top: 10px;
       height: 10px;
       background-color: #e0e0e0;
       border-radius: 5px;
-      position: relative;
+      overflow: hidden;
 
       .progress-bar {
         height: 100%;
-        background-color: #76c7c0;
-        border-radius: 5px;
+        background-color: #99cc33;
+        transition: width 0.5s ease;
       }
 
       .progress-label {
         position: absolute;
-        right: 5px;
-        top: -18px;
+        right: 10px;
+        top: -25px;
         font-size: 12px;
         color: #333;
       }
     }
 
-    .parts-grid {
-      margin-top: 10px;
+    .grid-layout {
       display: grid;
-      grid-template-columns: repeat(5, 1fr); /* Adjusted for 10 larger blocks (2 rows) */
-      gap: 15px;
-
-      .part-item {
-        height: 50px; /* Larger blocks */
-        background-color: #f2f2f2;
-        border-radius: 5px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 14px;
-        font-weight: bold;
-        color: #333;
-        transition: background-color 0.3s ease;
-
-        &.completed {
-          background-color: #4caf50; /* Green for completed */
-          color: #fff;
-        }
-
-        &.not-started {
-          background-color: #e0e0e0; /* Grey for not started */
-        }
-      }
-    }
-  }
-
-  .expanded-view {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1000;
-    padding: 30px;
-    background: #ffffff;
-    border-radius: 12px;
-    max-width: 900px;
-    width: 90%;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-    overflow-y: auto;
-    max-height: 80vh;
-
-    .molds-section {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
       margin-top: 20px;
-      display: grid;
-      grid-template-columns: repeat(5, 1fr); /* 10 molds in 2 rows */
-      gap: 15px;
 
-      .mold-item {
-        height: 50px; /* Larger blocks */
-        border-radius: 5px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 14px;
-        font-weight: bold;
-        color: #fff;
+      .grid-part {
+        text-align: center;
 
-        &.completed {
-          background-color: #4caf50; /* Green for completed */
+        .CircularProgressbar {
+          width: 60px;
+          height: 60px;
+          margin: 0 auto 5px;
         }
 
-        &.not-started {
-          background-color: #e0e0e0; /* Grey for not started */
+        .CircularProgressbar .CircularProgressbar-path {
+          stroke: #99cc33 !important;
+        }
+
+        .CircularProgressbar .CircularProgressbar-trail {
+          stroke: #e0e0e0 !important;
+        }
+
+        span {
+          font-size: 12px;
+          color: #333;
         }
       }
     }
-  }
-
-  .backdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 999;
   }
 }

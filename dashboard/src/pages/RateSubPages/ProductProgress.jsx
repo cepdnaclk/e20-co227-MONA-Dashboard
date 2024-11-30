@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import Header from "../../layouts/Header";
 import SecondBar from "../../layouts/SecondBar";
 import ThirdbarRate from "../../layouts/ThirdbarRate";
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
 import "./ProductProgress.scss";
 
 // Function to generate random percentages for progress
@@ -17,17 +19,10 @@ const generateInitialProducts = () =>
       name: `Part ${partIndex + 1}`,
       progress: getRandomProgress(),
     })),
-    molds: Array.from({ length: 9 }, () => ({
-      productionTime: Math.floor(Math.random() * 100),
-      currentProgress: getRandomProgress(),
-    })),
   }));
 
 const ProductProgress = () => {
   const [products, setProducts] = useState(generateInitialProducts());
-  const [expandedProduct, setExpandedProduct] = useState(null);
-
-  const closeExpandedView = () => setExpandedProduct(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -38,10 +33,6 @@ const ProductProgress = () => {
             product.totalProduced + Math.floor(Math.random() * 10) + 5,
             product.targetCount
           ),
-          molds: product.molds.map((mold) => ({
-            ...mold,
-            currentProgress: Math.min(mold.currentProgress + 4, 100),
-          })),
         }))
       );
     }, 10000);
@@ -54,120 +45,57 @@ const ProductProgress = () => {
       <Header />
       <SecondBar />
       <ThirdbarRate />
-
       <div className="production-page">
-        {expandedProduct ? (
-          <div className="expanded-view" onClick={(e) => e.stopPropagation()}>
-            <div className="expanded-header">
-              <h1>{expandedProduct.name}</h1>
-              <div className="stats">
-                <p>
-                  Total Produced: <span>{expandedProduct.totalProduced}</span>
-                </p>
-                <p>
-                  Target: <span>{expandedProduct.targetCount}</span>
-                </p>
-              </div>
-            </div>
+        <div className="product-list">
+          {products.map((product) => {
+            const progressPercentage =
+              (product.totalProduced / product.targetCount) * 100;
 
-            <div className="progress-bar-container">
-              <div
-                className="progress-bar"
-                style={{
-                  width: `${
-                    (expandedProduct.totalProduced /
-                      expandedProduct.targetCount) *
-                    100
-                  }%`,
-                }}
-              />
-              <p className="progress-label">
-                {Math.round(
-                  (expandedProduct.totalProduced /
-                    expandedProduct.targetCount) *
-                    100
-                )}
-                %
-              </p>
-            </div>
-
-            <div className="molds-section">
-              {expandedProduct.molds.slice(0, 10).map((mold, index) => (
-                <div
-                  key={index}
-                  className={`mold-item ${
-                    mold.currentProgress === 100
-                      ? "completed"
-                      : "not-started"
-                  }`}
-                >
-                  Mold {index + 1}
+            return (
+              <div key={product.id} className="product-card">
+                <h2>{product.name}</h2>
+                <div className="product-stats">
+                  <div className="stat-item">
+                    <span className="label">Total Produced:</span>
+                    <span className="value">{product.totalProduced}</span>
+                  </div>
+                  <div className="stat-item">
+                    <span className="label">Target Count:</span>
+                    <span className="value">{product.targetCount}</span>
+                  </div>
                 </div>
-              ))}
-            </div>
-
-            <div className="parts-grid">
-              {expandedProduct.parts.slice(0, 10).map((part, partIndex) => (
-                <div
-                  key={partIndex}
-                  className={`part-item ${
-                    part.progress === 100 ? "completed" : "not-started"
-                  }`}
-                >
-                  {part.name}
-                </div>
-              ))}
-            </div>
-          </div>
-        ) : (
-          <div className="product-grid">
-            {products.map((product) => (
-              <div
-                key={product.id}
-                className="product-card"
-                onClick={() => setExpandedProduct(product)}
-              >
-                <h3>{product.name}</h3>
-                <div className="stats">
-                  <p>
-                    Total Produced: <span>{product.totalProduced}</span>
-                  </p>
-                  <p>
-                    Target: <span>{product.targetCount}</span>
-                  </p>
-                </div>
-                <div className="progress-bar-container">
+                <div className="linear-progress">
                   <div
                     className="progress-bar"
-                    style={{
-                      width: `${
-                        (product.totalProduced / product.targetCount) * 100
-                      }%`,
-                    }}
-                  />
+                    style={{ width: `${progressPercentage}%` }}
+                  ></div>
+                  <span className="progress-label">
+                    {progressPercentage.toFixed(1)}%
+                  </span>
                 </div>
-                <div className="parts-grid">
-                  {product.parts.slice(0, 10).map((part, partIndex) => (
-                    <div
-                      key={partIndex}
-                      className={`part-item ${
-                        part.progress === 100 ? "completed" : "not-started"
-                      }`}
-                    >
-                      {part.name}
+                <div className="grid-layout">
+                  {product.parts.map((part, partIndex) => (
+                    <div key={partIndex} className="grid-part">
+                      <CircularProgressbar
+                        value={part.progress}
+                        text={`${part.progress}%`}
+                        styles={buildStyles({
+                          textColor: "#333",
+                          pathColor: "#99cc33",
+                          trailColor: "#e0e0e0",
+                        })}
+                      />
+                      <span>{part.name}</span>
                     </div>
                   ))}
                 </div>
               </div>
-            ))}
-          </div>
-        )}
+            );
+          })}
+        </div>
       </div>
-
-      {expandedProduct && <div className="backdrop" onClick={closeExpandedView} />}
     </>
   );
 };
-
 
 export default ProductProgress;
