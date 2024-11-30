@@ -108,6 +108,10 @@ Machine is OFF.
 Machine is ON but not making products.
 <p align="center">
 <img src="./images/status/bluemachine.jpg" alt="idle machine">
+</p>
+
+<p align="center">
+<img src="./images/status/description.png" alt="info">
 <br>
 <em>(See user manual for more details)</em>
 </p>
