@@ -203,9 +203,9 @@ User can change the password and machine details by verifying the password as de
 ## **User Manual**
 - [Click Here to Download the User Manual](https://drive.google.com/file/d/1OQaTvS8Ffn3QKi3v4_H6W8KU7Qow8z3c/view)
 <p align="center">
- <img src="./images/QR.png" alt="qr" />
-<br>
-<em>(Scan Here to Download the User Manual)</em>
+  <img src="./images/QR.png" alt="qr" width="200" />
+  <br>
+  <em>(Scan Here to Download the User Manual)</em>
 </p>
 
 
