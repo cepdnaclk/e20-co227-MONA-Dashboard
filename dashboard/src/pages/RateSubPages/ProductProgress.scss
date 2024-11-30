@@ -1,252 +1,150 @@
 .production-page {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    width: 100%;
+  }
+
+  .product-card {
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 12px;
     padding: 20px;
-    margin-top: 40px;
-    display: flex;
-    justify-content: center;
-    position: relative;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    gap: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 
-    .product-list {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); // Increase min width
-        gap: 20px;
-        width: 100%;
-        max-width: 1650px; // Slightly larger max width
+    &:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     }
 
-    .product-card {
-        background-color: #ffffff;
-        border: 1px solid #ddd;
-        border-radius: 12px; // More rounded corners
-        padding: 25px; // Slightly reduced padding for compactness
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); // Softer shadow
-        transition: all 0.3s ease;
-        cursor: pointer;
-        overflow: hidden;
-        position: relative;
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
 
-        h2 {
-            font-size: 1.4rem; // Slightly smaller title
-            margin-bottom: 10px;
-            color: #333;
-            font-weight: bold; // Bold title
+      p {
+        font-size: 14px;
+        color: #555;
+
+        span {
+          font-weight: bold;
         }
-
-        .product-stats {
-            display: flex;
-            flex-direction: column;
-            gap: 10px; // Slightly increased space between stats items
-            margin-bottom: 12px; // Space before progress
-            color: #555; // Slightly darker color for better readability
-
-            .stat-item {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                background-color: #f1f1f1; // Lighter background for better contrast
-                padding: 10px 15px; // Increased padding for a larger look
-                border-radius: 8px; // More rounded corners for each stat block
-                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // Soft shadow to lift the element
-                font-size: 1rem; // Slightly larger font for better readability
-
-                .label {
-                    font-weight: 500; // Slightly lighter font for the label
-                    color: #333; // Darker color for the label text
-                }
-
-                .value {
-                    font-weight: 600; // Bold value to make it stand out
-                    color: #76c7c0; // Use theme color for value to match the progress bar
-                    font-size: 1.2rem; // Slightly larger value for emphasis
-                }
-            }
-        }
-
-        .progress-container {
-            background-color: #e0e0e0;
-            border-radius: 8px;
-            overflow: hidden;
-            height: 18px; // Keep height for progress bar
-            position: relative; // Relative position for percentage positioning
-            margin-top: 20px;
-            // margin-bottom: 10px;
-
-            .progress-bar {
-                background-color: #76c7c0;
-                height: 100%;
-                transition: width 0.4s ease;
-                position: relative;
-
-                .progress-percentage {
-                    position: absolute;
-                    top: 50%; // Vertically centered
-                    left: 5px; // Start from the left
-                    transform: translateY(-50%);
-                    color: #fff; // Default color for readability inside bar
-                    font-size: 0.85rem; // Smaller percentage font size
-                    font-weight: bold;
-                    white-space: nowrap; // Prevent text wrap
-
-                    // Move outside if progress is too low (less than 10%)
-                    @media (max-width: 10%) {
-                        left: 100%; // Move percentage outside the bar
-                        color: #333; // Darker color for better readability outside
-                    }
-                }
-            }
-        }
-
-        &:hover {
-            border: 2px solid #76c7c0; // Green accent on hover
-            transform: scale(1.02); // Slight zoom effect on hover
-        }
+      }
     }
 
-    .overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background: rgba(0, 0, 0, 0.8); // Darker overlay for contrast
+    .progress-bar-container {
+      margin-top: 10px;
+      height: 10px;
+      background-color: #e0e0e0;
+      border-radius: 5px;
+      position: relative;
+
+      .progress-bar {
+        height: 100%;
+        background-color: #76c7c0;
+        border-radius: 5px;
+      }
+
+      .progress-label {
+        position: absolute;
+        right: 5px;
+        top: -18px;
+        font-size: 12px;
+        color: #333;
+      }
+    }
+
+    .parts-grid {
+      margin-top: 10px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr); /* Adjusted for 10 larger blocks (2 rows) */
+      gap: 15px;
+
+      .part-item {
+        height: 50px; /* Larger blocks */
+        background-color: #f2f2f2;
+        border-radius: 5px;
         display: flex;
-        align-items: center;
         justify-content: center;
-        z-index: 9999;
-        cursor: pointer;
+        align-items: center;
+        font-size: 14px;
+        font-weight: bold;
+        color: #333;
+        transition: background-color 0.3s ease;
 
-        .expanded-modal {
-            background-color: white;
-            border-radius: 12px; // More rounded corners
-            padding: 40px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-            max-width: 900px; // Set max width to avoid being too lengthy
-            width: 90%;
-            cursor: default;
-
-            h2 {
-                font-size: 1.7rem;
-                margin-bottom: 15px;
-            }
-
-            .product-stats-expanded {
-                margin-bottom: 15px;
-
-                .stat-item {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    background-color: #f1f1f1; // Same design as regular stats
-                    padding: 10px 15px; // Increased padding for expanded stats
-                    border-radius: 8px; // More rounded corners
-                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-                    font-size: 1rem;
-
-                    .label {
-                        font-weight: 500;
-                        color: #333;
-                    }
-
-                    .value {
-                        font-weight: 600;
-                        color: #76c7c0;
-                        font-size: 1.2rem;
-                    }
-                }
-            }
-
-            .progress-container-expanded {
-                background-color: #f1f1f1;
-                border-radius: 10px;
-                overflow: hidden;
-                height: 20px; // Maintain height similar to regular view
-                margin-top: 15px;
-                position: relative;
-                margin-bottom: 20px;
-
-                .progress-bar-expanded {
-                    background-color: #76c7c0;
-                    height: 100%;
-                    transition: width 0.4s ease;
-
-                    .progress-percentage-expanded {
-                        position: absolute;
-                        top: 50%;
-                        right: 10px;
-                        transform: translateY(-50%);
-                        color: #333;
-                        font-size: 0.9rem;
-                        font-weight: bold;
-                    }
-                }
-            }
-
-            .parts-mold-grid {
-                display: grid;
-                grid-template-columns: repeat(3, 1fr); // 3-column layout for part blocks
-                gap: 15px; // Decrease gap for a cleaner look
-
-                // Center the last two blocks
-                &:nth-last-child(2) {
-                    grid-column: 2 / 3; // Move the second to last block to the center
-                }
-
-                &:nth-last-child(1) {
-                    grid-column: 3 / 4; // Move the last block to the center
-                }
-
-                .part-mold-item {
-                    background-color: #f9f9f9; // Lighter background for parts
-                    padding: 15px;
-                    border: 1px solid #ddd;
-                    border-radius: 8px; // More rounded corners
-                    text-align: center;
-                    transition: background-color 0.3s ease; // Transition on hover
-
-                    &:hover {
-                        background-color: #eaeaea; // Change background on hover
-                    }
-
-                    .part-name {
-                        font-weight: bold;
-                        color: #333;
-                        margin-bottom: 10px;
-                    }
-
-                    .mold-name {
-                        color: #999;
-                        margin-bottom: 10px;
-                    }
-
-                    .production-time,
-                    .current-progress {
-                        margin-bottom: 10px;
-                        color: #666;
-                    }
-
-                    .part-progress-container {
-                        background-color: #e0e0e0;
-                        border-radius: 5px;
-                        overflow: hidden;
-                        height: 15px;
-                        margin-top: 10px;
-                        position: relative;
-
-                        .part-progress-bar {
-                            background-color: #76c7c0;
-                            height: 100%;
-                            transition: width 0.4s ease;
-
-                            .progress-percentage {
-                                position: absolute;
-                                right: 5px;
-                                color: #333;
-                                font-size: 0.7rem;
-                                font-weight: bold;
-                            }
-                        }
-                    }
-                }
-            }
+        &.completed {
+          background-color: #4caf50; /* Green for completed */
+          color: #fff;
         }
+
+        &.not-started {
+          background-color: #e0e0e0; /* Grey for not started */
+        }
+      }
     }
+  }
+
+  .expanded-view {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 12px;
+    max-width: 900px;
+    width: 90%;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    overflow-y: auto;
+    max-height: 80vh;
+
+    .molds-section {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr); /* 10 molds in 2 rows */
+      gap: 15px;
+
+      .mold-item {
+        height: 50px; /* Larger blocks */
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 14px;
+        font-weight: bold;
+        color: #fff;
+
+        &.completed {
+          background-color: #4caf50; /* Green for completed */
+        }
+
+        &.not-started {
+          background-color: #e0e0e0; /* Grey for not started */
+        }
+      }
+    }
+  }
+
+  .backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+  }
 }
