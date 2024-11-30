@@ -24,12 +24,24 @@ const ProductPage = () => {
         'Product 9',
         'Product 10',
     ];
+    const dataRangeToWeeks = [
+        'monday',
+        'tuesday',
+        'wednesday',
+        'thursday',
+        'friday',
+        'saturday',
+        'sunday'
+    ];
+
     const dateRangeDrop = [
-        'last week', 
-        'last 2 weeks', 
-        'last 1 month', 
-        'last 3 months', 
+        'last week',
+        'last 2 weeks',
+        'last 1 month',
+        'last 3 months',
         'last 1 year'
+
+     
     ];
 
     const productData = [
@@ -73,11 +85,18 @@ const ProductPage = () => {
         { label: 'Part 3', field: 'part3' },
         { label: 'Part 4', field: 'part4' },
         { label: 'Part 5', field: 'part5' },
+        { label: 'Part 6', field: 'part6' },
+        { label: 'Part 7', field: 'part7' },
+        { label: 'Part 8', field: 'part8' },
+        { label: 'Part 9', field: 'part9' },
+        { label: 'Part 10', field: 'part10' },
+        { label: 'Part 11', field: 'part11' },
+        { label: 'Part 12', field: 'part12' },
     ];
 
     const datatable2 = [
-        { detailName: 'Target Count', part1: 32, part2: 32, part3: 32, part4: 32, part5: 32 },
-        { detailName: 'Completed Count', part1: 30, part2: 29, part3: 32, part4: 31, part5: 28 },
+        { detailName: 'Target Count', part1: 32, part2: 32, part3: 32, part4: 32, part5: 32 , part6: 32, part7: 32, part8: 32, part9: 32, part10: 32, part11: 32, part12: 32 },
+        { detailName: 'Completed Count', part1: 30, part2: 29, part3: 32, part4: 31, part5: 28 , part6: 30, part7: 29, part8: 30, part9: 31, part10: 30, part11: 29, part12: 28 },
     ];
 
     return (
@@ -117,7 +136,7 @@ const ProductPage = () => {
                     <LineChart
                         title="Product Summary Chart"
                         seriesData={productLinechartData}
-                        categories={dateRangeDrop}
+                        categories={dataRangeToWeeks}
                     />
                 </div>
                 <div className="exportButton">

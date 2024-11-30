@@ -25,7 +25,7 @@ const MachinePage = () => {
         const fetchHistoryMachineData = async () => {
             try {
                 const response = await axios.get('http://localhost:8000/historymachine');
-                setHistoryMachine(response.data.sort((a, b) => a.machine_id - b.machine_id));
+                setHistoryMachine(response.data.sort((a, b) => a.week_count - b.week_count));
             } catch (error) {
                 console.error('Error fetching machine data:', error);
             }
