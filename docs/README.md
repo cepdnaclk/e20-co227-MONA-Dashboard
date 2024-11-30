@@ -121,6 +121,7 @@ Machine is ON but not making products.
 
 
 #### ***Production Rate/Progress Page View***
+The Production Progress Tab in the Mold section provides detailed monitoring of hourly slot rates across 24 machines. Below are the key elements of a machine block in this view:
 
 <p align="center">
 <img src="./images/progress/mold.png" alt="ProgressPage-machine" />
@@ -133,7 +134,22 @@ Machine is ON but not making products.
 <br>
 <em>(See user manual for more details)</em>
 </p>
+The Production Progress section provides an overview of all products and their production status. Here's how it works:
+<p align="center">
+<img src="./images/progress/product.png" alt="ProgressPage-product" />
+<br>
+<strong>Production progress and rates by Products and parts</strong>
+</p>
+<p align="center">
+<img src="./images/progress/product_des.png" alt="info">
+<br>
+<em>(See user manual for more details)</em>
+</p>
 
+Example Workflow:
+- Select a Product: On the dashboard, click on any product card (e.g., "Product 3").
+- View Details: A modal pops up with detailed information about the 12 parts of the selected product, including production time and progress for each part.
+- Analyze Progress: Use this information to monitor and manage the production efficiency of specific parts within the product.
 
 
 #### ***Production Summary Page View***
@@ -185,7 +201,12 @@ User can change the password and machine details by verifying the password as de
 
 
 ## **User Manual**
-- [Click Here to Download the User Manual](https://eng.pdn.ac.lk/)
+- [Click Here to Download the User Manual](https://tinyurl.com/monadashboard-user-manual)
+<p align="center">
+ <img src="./images/QR.png" alt="qr" />
+<br>
+<em>(Scan Here to Download the User Manual)</em>
+</p>
 
 
 ## **Team**
