@@ -24,8 +24,10 @@ This is a sample image, to show how to add images to your page. To learn more op
 2. [Overview](#overview)
 3. [Key Features](#key-features)
 4. [Software Architecture](#software-architecture)
-5. [Team](#team)
-6. [Links](#links)
+5. [Dashboard Views](#dashboard-views)
+6. [User Manual](#user-manual)
+7. [Team](#team)
+8. [Links](#links)
 
 
 ---
@@ -118,10 +120,31 @@ Machine is ON but not making products.
 
 
 
-#### ***Production Rate Page View***
+#### ***Production Rate/Progress Page View***
+
+<p align="center">
+<img src="./images/progress/mold.png" alt="ProgressPage-machine" />
+<br>
+<strong>Production progress and rates by Mold</strong>
+</p>
+
+<p align="center">
+<img src="./images/progress/description.png" alt="info">
+<br>
+<em>(See user manual for more details)</em>
+</p>
+
+
 
 #### ***Production Summary Page View***
 The Production History tab allows users to explore and analyze detailed production metrics for products, parts, and machines. By default, the Product Summary view is displayed when the tab is opened. This section provides options to navigate between Product Summary, Part Summary, and Machine Summary.
+
+
+<p align="center">
+<img src="./images/summary/product.png" alt="Summary Page-product" />
+<br>
+<strong>Product Summary View</strong>
+</p>
 
 <p align="center">
 <img src="./images/summary/part.png" alt="Summary Page-part" />
@@ -145,11 +168,24 @@ The Production History tab allows users to explore and analyze detailed producti
 #### ***Setting Page View***
 
 User can change the password and machine details by verifying the password as desired.
+<p align="center">
+<img src="./images/setting/machine.png" alt="Setting Page-machine details" />
+<br>
+<strong>Changing Machnine Details</strong>
+</p>
+<p align="center">
+<img src="./images/setting/password.png" alt="Setting Page- password" />
+<br>
+<strong>Changing Password</strong>
+</p>
 
-![setting Page](./images/setting/machine.png)
-![setting Page](./images/setting/password.png)
+<p align="center">
+<em>(See user manual for more details)</em>
+</p>
 
 
+## **User Manual**
+- [Click Here to Download the User Manual](https://eng.pdn.ac.lk/)
 
 
 ## **Team**
