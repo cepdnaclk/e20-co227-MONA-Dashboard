@@ -24,8 +24,10 @@ This is a sample image, to show how to add images to your page. To learn more op
 2. [Overview](#overview)
 3. [Key Features](#key-features)
 4. [Software Architecture](#software-architecture)
-5. [Team](#team)
-6. [Links](#links)
+5. [Dashboard Views](#dashboard-views)
+6. [User Manual](#user-manual)
+7. [Team](#team)
+8. [Links](#links)
 
 
 ---
@@ -166,11 +168,24 @@ The Production History tab allows users to explore and analyze detailed producti
 #### ***Setting Page View***
 
 User can change the password and machine details by verifying the password as desired.
+<p align="center">
+<img src="./images/setting/machine.png" alt="Setting Page-machine details" />
+<br>
+<strong>Changing Machnine Details</strong>
+</p>
+<p align="center">
+<img src="./images/setting/password.png" alt="Setting Page- password" />
+<br>
+<strong>Changing Password</strong>
+</p>
 
-![setting Page](./images/setting/machine.png)
-![setting Page](./images/setting/password.png)
+<p align="center">
+<em>(See user manual for more details)</em>
+</p>
 
 
+## **User Manual**
+- [Click Here to Download the User Manual](https://eng.pdn.ac.lk/)
 
 
 ## **Team**
