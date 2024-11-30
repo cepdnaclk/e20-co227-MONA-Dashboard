@@ -18,6 +18,8 @@ const MachinePage = () => {
     const [datatable1, setDatatable1] = useState([]);
     const [successPercentage, setSuccessPercentage] = useState(0);
     const [completedPercentage, setCompletedPercentage] = useState(0);
+    const [selectedPart, setSelectedPart] = useState('Part 1');
+    const [selectedProduct, setSelectedProduct] = useState('Product 1');
 
     useEffect(() => {
         const fetchHistoryMachineData = async () => {
@@ -118,6 +120,8 @@ const MachinePage = () => {
         'Machine 16', 'Machine 17', 'Machine 18', 'Machine 19', 'Machine 20',
         'Machine 21', 'Machine 22', 'Machine 23', 'Machine 24',
     ];
+    // const partDrop = ['Part 1', 'Part 2', 'Part 3', 'Part 4', 'Part 5', 'Part 6', 'Part 7', 'Part 8', 'Part 9', 'Part 10', 'Part 10', 'Part 11', 'Part 12'];
+    // const productDrop = ['Product 1', 'Product 2', 'Product 3', 'Product 4', 'Product 5', 'Product 6', 'Product 7', 'Product 8', 'Product 9', 'Product 10',];
 
     const dateRangeDrop = [
         'last week',
@@ -132,7 +136,7 @@ const MachinePage = () => {
         { label: 'Value', field: 'value' },
     ];
 
- 
+
 
     return (
         <div className="machinePage">
@@ -148,23 +152,23 @@ const MachinePage = () => {
                 selectedDateRange={selectedDateRange}
                 onDateRangeSelect={setSelectedDateRange}
             />
-            
+
 
             <div id="pdfContent" className="container">
-            <div className="progressBar">
-                <Progressbar
-                    title="Success %"
-                    value={successPercentage}
-                    gradientFrom="#99cc33"
-                    gradientTo="#99CC33"
-                />
-                <Progressbar
-                    title="Completed %"
-                    value={completedPercentage}
-                    gradientFrom="#99cc33"
-                    gradientTo="#99CC33"
-                />
-            </div>
+                <div className="progressBar">
+                    <Progressbar
+                        title="Success %"
+                        value={successPercentage}
+                        gradientFrom="#99cc33"
+                        gradientTo="#99CC33"
+                    />
+                    <Progressbar
+                        title="Completed %"
+                        value={completedPercentage}
+                        gradientFrom="#99cc33"
+                        gradientTo="#99CC33"
+                    />
+                </div>
                 <div className="table">
                     <Table columns={columnstable1} data={datatable1} />
                 </div>

@@ -95,10 +95,10 @@ const ProductPage = () => {
                 onDateRangeSelect={setSelectedDateRange}
             />
 
-            <div>
+            {/* <div>
                 <h1 className="title">Selected Product: {selectedProduct}</h1>
                 <h1>Selected Date Range: {selectedDateRange}</h1>
-            </div>
+            </div> */}
             <div id="pdfContent" className="container">
                 <div className="barChart">
                     <Barchart data={productData} />
