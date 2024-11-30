@@ -80,6 +80,7 @@ The Settings page is a utility tab for administrative and configuration purposes
 ## **Dashboard Views**
 
 #### ***Machine Status Page View***
+The Machine Status tab offers a comprehensive view of the live status of all 24 machines.
 ![Status Page](./images/status/statuspage.jpg)
 
 #### **Expanding the Dashboard Views**
@@ -104,12 +105,26 @@ Machine is ON but not making products.
 
 ![idle machine](./images/status/bluemachine.jpg)
 
+***(See user manual for more details)***
 
 
 
 #### ***Production Rate Page View***
 
 #### ***Production Summary Page View***
+The Production History tab allows users to explore and analyze detailed production metrics for products, parts, and machines. By default, the Product Summary view is displayed when the tab is opened. This section provides options to navigate between Product Summary, Part Summary, and Machine Summary.
+
+![Summary Page-part](./images/summary/part.png)
+***Part Summary View***
+
+![Summary Page-machine](./images/summary/machine.png)
+***Machine Summary View***
+
+***(See user manual for more details)***
+
+
+
+
 
 #### ***Setting Page View***
 
