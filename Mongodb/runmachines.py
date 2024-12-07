@@ -9,10 +9,10 @@ import sys
 
 # Replace these with your connection details
 # Local database
-client = pymongo.MongoClient("mongodb://localhost:27017/")  # Assuming local MongoDB
+#3client = pymongo.MongoClient("mongodb://localhost:27017/")  # Assuming local MongoDB
 
 # Atlas database
-#client = pymongo.MongoClient("mongodb+srv://bhagya:bhagya123@monadash.v8cvc3k.mongodb.net/?retryWrites=true&w=majority&appName=monadash")
+client = pymongo.MongoClient("mongodb+srv://bhagya:bhagya123@monadash.v8cvc3k.mongodb.net/?retryWrites=true&w=majority&appName=monadash")
 
 # Database and collection names
 db = client["test"]  
