@@ -12,7 +12,7 @@ const MachinePage = () => {
     const [historymachine, setHistoryMachine] = useState([]);
     const [filteredData, setFilteredData] = useState([]);
     const [selectedMachine, setSelectedMachine] = useState('Machine 1');
-    const [selectedDateRange, setSelectedDateRange] = useState('last week');
+    const [selectedDateRange, setSelectedDateRange] = useState('last 1 month');
     const [machineLinechartData, setMachineLinechartData] = useState([]);
     const [chartCategories, setChartCategories] = useState([]);
     const [datatable1, setDatatable1] = useState([]);

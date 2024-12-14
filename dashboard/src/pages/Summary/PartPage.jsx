@@ -11,7 +11,7 @@ import axios from 'axios';
 
 const PartPage = () => {
     const [selectedProduct, setSelectedProduct] = useState('Product 1');
-    const [selectedDateRange, setSelectedDateRange] = useState('last week');
+    const [selectedDateRange, setSelectedDateRange] = useState('last 1 month');
     const [selectedPart, setSelectedPart] = useState('Part 1');
     const [selectedMachine, setSelectedMachine] = useState('Machine 1');
     const [historymachine, setHistoryMachine] = useState([]);
